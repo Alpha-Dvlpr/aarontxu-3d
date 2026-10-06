@@ -1,0 +1,6 @@
+title: Aarontxu 3D
+description: Servicios de impresión 3D personalizada en Asturias.
+url: https://3d.aarontxu.com
+baseurl: ""
+plugins:
+  - jekyll-sitemap
