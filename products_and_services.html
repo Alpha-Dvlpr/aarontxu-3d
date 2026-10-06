@@ -12,6 +12,7 @@ translate_button_class: "text-orange-600 hover:bg-orange-50"
 main_class: "w-full max-w-4xl px-4 py-8"
 ---
 {% assign products = site.data.aarontxu_3d.productsAndServices %}
+{% assign whatsapp_contact = site.data.aarontxu_3d.profile.chips | where: "name", "Contacto (WhatsApp)" | first %}
 <section class="flex flex-col items-center rounded-2xl bg-white p-6 text-center shadow-md" aria-labelledby="products-intro">
     <h2 id="products-intro" class="sr-only">{{ products.title | escape }}</h2>
     <div class="whitespace-pre-line text-lg text-slate-700">
@@ -23,17 +24,30 @@ main_class: "w-full max-w-4xl px-4 py-8"
 
 <section class="mb-10 mt-8 flex flex-col gap-8 text-center" aria-label="Catálogo de productos">
     {% for product in products.elements %}
-    <article class="flex w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-md" data-product-card data-category="{{ product.category.id | escape }}" data-category-name="{{ product.category.name | escape }}">
-        <h2 class="text-lg font-semibold text-orange-600">{{ product.category.name | escape }}</h2>
+    <article class="flex w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-md" data-product-card data-product-id="{{ product.id | escape }}" data-product-name="{{ product.title | default: product.category.name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{{ product.price_label | escape }}" data-product-image="{{ product.images.first | relative_url }}" data-category="{{ product.category.id | escape }}" data-category-name="{{ product.category.name | escape }}">
+        {% if product.title and product.title != product.category.name %}<p class="text-sm font-medium text-orange-700">{{ product.category.name | escape }}</p>{% endif %}
+        <h2 class="text-lg font-semibold text-orange-600">{{ product.title | default: product.category.name | escape }}</h2>
         <div class="whitespace-pre-line text-slate-700">
             {% for paragraph in product.description %}<p class="mb-3 last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
         </div>
-        <p class="text-lg font-semibold text-orange-600">Precio: {{ product.price | round: 2 }} €</p>
+        {% assign price_in_cents = product.price | times: 100 | round %}
+        {% assign price_euros = price_in_cents | divided_by: 100 %}
+        {% assign price_cents = price_in_cents | modulo: 100 %}
+        <p class="text-lg font-semibold text-orange-600">{% if product.price_label %}{{ product.price_label | escape }}{% else %}Precio: {{ price_euros }},{% if price_cents < 10 %}0{% endif %}{{ price_cents }} €{% endif %}</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+            <div class="inline-flex items-center overflow-hidden rounded-lg border border-orange-200" aria-label="Seleccionar cantidad">
+                <button class="grid h-10 w-10 place-items-center text-lg text-orange-700 transition hover:bg-orange-100" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
+                <label class="sr-only" for="quantity-{{ product.id | escape }}">Cantidad de {{ product.title | default: product.category.name | escape }}</label>
+                <input class="h-10 w-12 border-x border-orange-200 bg-white text-center text-sm text-gray-900" id="quantity-{{ product.id | escape }}" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                <button class="grid h-10 w-10 place-items-center text-lg text-orange-700 transition hover:bg-orange-100" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
+            </div>
+            <button class="inline-flex items-center justify-center rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-700 transition hover:bg-orange-200" type="button" data-add-to-cart>Añadir a la cesta</button>
+        </div>
         {% if product.images.size > 0 %}
         <div class="flex gap-4 overflow-x-auto pb-2">
             {% for image in product.images %}
-            <button class="shrink-0 cursor-zoom-in" type="button" data-image-src="{{ image | relative_url }}" data-image-alt="{{ product.category.name | escape }}">
-                <img class="h-48 w-auto rounded-xl object-contain shadow" src="{{ image | relative_url }}" alt="{{ product.category.name | escape }}" width="320" height="192" loading="lazy" decoding="async">
+            <button class="shrink-0 cursor-zoom-in" type="button" data-image-src="{{ image | relative_url }}" data-image-alt="{{ product.title | default: product.category.name | escape }}">
+                <img class="h-48 w-auto rounded-xl object-contain shadow" src="{{ image | relative_url }}" alt="{{ product.title | default: product.category.name | escape }}" width="320" height="192" loading="lazy" decoding="async">
             </button>
             {% endfor %}
         </div>
@@ -41,6 +55,8 @@ main_class: "w-full max-w-4xl px-4 py-8"
     </article>
     {% endfor %}
 </section>
+
+<p id="cart-announcement" class="sr-only" aria-live="polite"></p>
 
 <dialog id="image-modal" class="max-h-[90vh] max-w-[90vw] rounded-xl bg-transparent p-0 backdrop:bg-black/80">
     <form method="dialog" class="absolute right-4 top-4">

@@ -57,11 +57,15 @@
     <header class="relative grid w-full grid-cols-[1fr_auto_1fr] items-center p-4 shadow-md sm:p-6 {{ header_class }}">
         <div class="justify-self-start">
             {% if page.back_url %}
-            <a href="{{ page.back_url | relative_url }}" class="rounded-full bg-blue-500 px-3 py-2 text-sm text-white shadow-sm hover:bg-blue-600">← Inicio</a>
+            <a href="{{ page.back_url | relative_url }}" class="flex items-center gap-1 rounded-full bg-orange-100 px-3 py-2 text-sm text-orange-700 transition hover:bg-orange-200" aria-label="Volver atrás" title="Atrás"><span aria-hidden="true">←</span><span class="hidden sm:inline">Atrás</span></a>
             {% endif %}
         </div>
         <h1 class="min-w-0 max-w-[55vw] break-words text-center text-base font-semibold sm:max-w-none sm:text-3xl {{ heading_class }}">{% case page.heading_source %}{% when 'cv_profile_name' %}{{ site.data.cv.profile.name | escape }}{% when 'cv_jobs_title' %}{{ site.data.cv.jobs.title | escape }}{% when 'cv_studies_title' %}{{ site.data.cv.studies.title | escape }}{% when 'cv_contact_title' %}{{ site.data.cv.contact.title | escape }}{% when '3d_profile_title' %}{{ site.data.aarontxu_3d.profile.title | escape }}{% when '3d_products_title' %}{{ site.data.aarontxu_3d.productsAndServices.title | escape }}{% else %}{{ page.heading | default: page.title | escape }}{% endcase %}</h1>
-        <div id="translate-container" class="justify-self-end">
+        <div id="translate-container" class="relative flex items-center gap-2 justify-self-end">
+            <a id="cart-link" href="{{ '/cart.html' | relative_url }}" class="relative grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white text-xl shadow-md transition hover:bg-orange-50" aria-label="Cesta" title="Ver cesta">
+                <span aria-hidden="true">🛒</span>
+                <span id="cart-count" class="absolute -right-1 -top-1 hidden min-w-5 rounded-full bg-orange-600 px-1 text-center text-xs font-semibold leading-5 text-white">0</span>
+            </a>
             <button id="translate-btn" type="button" class="rounded-lg bg-white px-3 py-2 text-sm shadow-md transition {{ translate_button_class }}" aria-haspopup="true" aria-expanded="false" title="Traducir página">🌐 <span class="hidden sm:inline">Traducir</span></button>
             <div id="google_translate_element" class="absolute right-4 top-full z-50 hidden bg-white p-2 shadow-md" aria-label="Seleccionar idioma"></div>
         </div>

@@ -1,0 +1,29 @@
+---
+layout: default
+title: "Tu cesta | Aarontxu 3D"
+heading: "Tu cesta"
+description: "Revisa los productos seleccionados y envía tu pedido por WhatsApp."
+back_url: "/products_and_services.html"
+body_class: "bg-orange-50"
+header_class: "bg-gradient-to-r from-orange-500 to-red-500"
+heading_class: "text-white"
+translate_button_class: "text-orange-600 hover:bg-orange-50"
+main_class: "w-full max-w-4xl px-4 py-8"
+---
+{% assign whatsapp_contact = site.data.aarontxu_3d.profile.chips | where: "name", "Contacto (WhatsApp)" | first %}
+<section id="cart-page" data-whatsapp-url="{{ whatsapp_contact.destination | escape }}" aria-labelledby="cart-title">
+    <h2 id="cart-title" class="sr-only">Productos de la cesta</h2>
+    <aside class="mb-6 rounded-xl border border-orange-200 bg-orange-50 p-4 text-sm text-orange-900" aria-label="Información importante sobre el pedido">
+        <p class="font-semibold">El pedido no se envía ni se confirma automáticamente.</p>
+        <p class="mt-1">Al pulsar «Pedir por WhatsApp» se abrirá un mensaje preparado; tendrás que revisarlo y enviarlo. Después concretaremos por el chat los detalles y el precio final: fotos de referencia y nombre para los Funkos, modificaciones, diseños para llaveros u otros productos.</p>
+    </aside>
+    <p id="cart-empty" class="rounded-xl bg-white p-8 text-center text-gray-600 shadow-sm">Tu cesta está vacía.</p>
+    <ul id="cart-items" class="flex flex-col gap-3"></ul>
+    <section id="cart-summary" class="mt-6 flex flex-col items-stretch gap-4 rounded-2xl bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between" hidden aria-label="Resumen del pedido">
+        <div>
+            <p class="text-lg font-semibold text-gray-900"><span id="cart-total-label">Total:</span> <span id="cart-total" class="text-orange-700">0,00 €</span></p>
+            <p id="cart-quote-note" class="mt-1 max-w-xl text-sm text-gray-600" hidden>Subtotal de productos con precio fijo. Los artículos a consultar se cotizan por WhatsApp.</p>
+        </div>
+        <a id="cart-order-link" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-5 py-3 font-semibold text-white transition hover:bg-orange-600" href="#" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+    </section>
+</section>

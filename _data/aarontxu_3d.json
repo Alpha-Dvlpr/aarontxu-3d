@@ -31,29 +31,170 @@
         "elements": [
             {
                 "id": "PROD_01",
+                "title": "Funko personalizado",
                 "category": {
-                    "id": "funko",
-                    "name": "Funko personalizado"
+                    "id": "funkos",
+                    "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Figura estilo Funko personalizada a partir de tus fotos.",
-                    "Completamente personalizable, si hay algo que no aparezca en la foto se puede añadir."
+                    "Figura estilo Funko personalizada a partir de tus fotos y pintada a mano para captar el estilo de la persona retratada.",
+                    "Mide aproximadamente 10 cm e incluye una caja personalizada. Envíame fotos e ideas para preparar el diseño."
                 ],
                 "price": 20.0,
-                "images": ["/img/products/PROD_01/1.jpg"]
+                "images": [
+                    "/img/products/PROD_01/1.jpg",
+                    "/img/products/PROD_01/2.jpg",
+                    "/img/products/PROD_01/3.jpg",
+                    "/img/products/PROD_01/4.jpg",
+                    "/img/products/PROD_01/5.jpg"
+                ]
             },
             {
                 "id": "PROD_02",
+                "title": "Funko personalizado 2 personas",
                 "category": {
-                    "id": "funko_2",
-                    "name": "Funko personalizado 2 personas"
+                    "id": "funkos",
+                    "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Figura estilo Funko personalizada de 2 personas a partir de tus fotos.",
-                    "Completamente personalizable, si hay algo que no aparezca en la foto se puede añadir."
+                    "Dos personas reunidas en figuras estilo Funko, diseñadas a partir de tus fotos y pintadas a mano.",
+                    "Incluye caja personalizada a juego. Envíame fotos e ideas para preparar el diseño."
                 ],
                 "price": 35.0,
-                "images": ["/img/products/PROD_02/1.jpg"]
+                "images": [
+                    "/img/products/PROD_02/1.jpg",
+                    "/img/products/PROD_02/2.jpg",
+                    "/img/products/PROD_02/3.jpg",
+                    "/img/products/PROD_02/4.jpg",
+                    "/img/products/PROD_02/5.jpg",
+                    "/img/products/PROD_02/6.jpg"
+                ]
+            },
+            {
+                "id": "PROD_03",
+                "title": "Funko personalizado Mundial 2026",
+                "category": {
+                    "id": "funkos",
+                    "name": "Funkos personalizados"
+                },
+                "description": [
+                    "Figura Funko personalizada con temática del Mundial de Fútbol 2026, creada a partir de fotos y pintada a mano.",
+                    "Mide aproximadamente 10 cm e incluye una caja personalizada."
+                ],
+                "price": 25.0,
+                "images": ["/img/products/PROD_03/1.jpg"]
+            },
+            {
+                "id": "PROD_04",
+                "title": "Funko mascotas",
+                "category": {
+                    "id": "funkos",
+                    "name": "Funkos personalizados"
+                },
+                "description": [
+                    "Tu mascota en versión Funko 3D, creada a partir de fotos para reproducir su pose, colores y detalles.",
+                    "Incluye caja protectora personalizada. Envíame fotos para preparar un boceto."
+                ],
+                "price": 20.0,
+                "images": [
+                    "/img/products/PROD_04/1.jpg",
+                    "/img/products/PROD_04/2.jpg",
+                    "/img/products/PROD_04/3.jpg",
+                    "/img/products/PROD_04/4.jpg"
+                ]
+            },
+            {
+                "id": "PROD_05",
+                "title": "Llaveros personalizados",
+                "category": {
+                    "id": "llaveros",
+                    "name": "Llaveros personalizados"
+                },
+                "description": [
+                    "Llaveros 3D personalizados con logotipos, nombres, formas y colores a medida.",
+                    "También se pueden crear llaveros NFC para enlazar a una web, redes sociales o información de contacto. Precio a consultar."
+                ],
+                "price": 0.0,
+                "price_label": "Precio a consultar",
+                "images": [
+                    "/img/products/PROD_05/1.jpg",
+                    "/img/products/PROD_05/2.jpg",
+                    "/img/products/PROD_05/3.jpg"
+                ]
+            },
+            {
+                "id": "PROD_06",
+                "title": "Mosaico 3D grande",
+                "category": {
+                    "id": "mosaicos_3d",
+                    "name": "Mosaicos 3D"
+                },
+                "description": [
+                    "Convierte una fotografía en un mosaico 3D multicolor con relieve y colores adaptados a la imagen.",
+                    "Formato grande de aproximadamente 17 × 17 cm. Envíame la foto para preparar una propuesta."
+                ],
+                "price": 10.0,
+                "images": [
+                    "/img/products/PROD_06/1.jpg",
+                    "/img/products/PROD_06/2.jpg"
+                ]
+            },
+            {
+                "id": "PROD_07",
+                "title": "Mosaico 3D mediano",
+                "category": {
+                    "id": "mosaicos_3d",
+                    "name": "Mosaicos 3D"
+                },
+                "description": [
+                    "Mosaico 3D multicolor basado en una fotografía, con relieve y colores personalizados.",
+                    "Formato mediano de aproximadamente 17 × 10 cm."
+                ],
+                "price": 7.5,
+                "images": ["/img/products/PROD_07/1.jpg"]
+            },
+            {
+                "id": "PROD_08",
+                "title": "Medallas de graduación",
+                "category": {
+                    "id": "medallas_graduacion",
+                    "name": "Medallas de graduación"
+                },
+                "description": [
+                    "Medallas de graduación 3D personalizadas con relieve, nombre, curso, año o temática y varios colores.",
+                    "Precio orientativo: 5 € por unidad. En pedidos grandes se puede ajustar el precio final."
+                ],
+                "price": 5.0,
+                "images": ["/img/products/PROD_08/1.jpg"]
+            },
+            {
+                "id": "PROD_09",
+                "title": "Parrilla Seat León FR",
+                "category": {
+                    "id": "piezas_coches",
+                    "name": "Piezas para coches"
+                },
+                "description": [
+                    "Parrilla superior personalizada en 3D para Seat León FR, diseñada y fabricada a medida.",
+                    "Fabricada en ASA, resistente al calor y a los rayos UV. Confirma la compatibilidad de tu vehículo antes de encargarla."
+                ],
+                "price": 35.0,
+                "images": ["/img/products/PROD_09/1.jpg"]
+            },
+            {
+                "id": "PROD_10",
+                "title": "Piezas personalizadas para coches RC",
+                "category": {
+                    "id": "impresion_personalizada",
+                    "name": "Impresión personalizada"
+                },
+                "description": [
+                    "Piezas impresas en 3D a partir del modelo que elijas, personalizadas con nombres y colores.",
+                    "El precio depende de la pieza, el material y el tiempo de impresión. Envíame el diseño o una idea para solicitar presupuesto."
+                ],
+                "price": 0.0,
+                "price_label": "Precio a consultar",
+                "images": ["/img/products/PROD_10/1.jpg"]
             }
         ]
     },

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Revisa los productos seleccionados y envía tu pedido por WhatsApp.">
+    <meta name="theme-color" content="#fefce8">
+    <title>Tu cesta | Aarontxu 3D</title>
+    <link rel="canonical" href="https://3d.aarontxu.com/cart.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Aarontxu 3D">
+    <meta property="og:title" content="Tu cesta | Aarontxu 3D">
+    <meta property="og:description" content="Revisa los productos seleccionados y envía tu pedido por WhatsApp.">
+    <meta property="og:url" content="https://3d.aarontxu.com/cart.html">
+    <meta property="og:image" content="https://3d.aarontxu.com/img/mini_img.png">
+    <meta name="twitter:card" content="summary">
+    
+    <link rel="icon" type="image/png" href="/img/mini_img.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/mini_img.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Monaco';
+            src: url('/fonts/Monaco.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Monaco', monospace;
+        }
+    </style>
+    
+</head>
+<body class="bg-orange-50 flex min-h-screen flex-col items-center">
+    <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:p-3" href="#main-content">Saltar al contenido</a>
+    
+    
+    
+    <header class="relative grid w-full grid-cols-[1fr_auto_1fr] items-center p-4 shadow-md sm:p-6 bg-gradient-to-r from-orange-500 to-red-500">
+        <div class="justify-self-start">
+            
+            <a href="/products_and_services.html" class="flex items-center gap-1 rounded-full bg-orange-100 px-3 py-2 text-sm text-orange-700 transition hover:bg-orange-200" aria-label="Volver atrás" title="Atrás"><span aria-hidden="true">←</span><span class="hidden sm:inline">Atrás</span></a>
+            
+        </div>
+        <h1 class="min-w-0 max-w-[55vw] break-words text-center text-base font-semibold sm:max-w-none sm:text-3xl text-white">Tu cesta</h1>
+        <div id="translate-container" class="relative flex items-center gap-2 justify-self-end">
+            <a id="cart-link" href="/cart.html" class="relative grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white text-xl shadow-md transition hover:bg-orange-50" aria-label="Cesta" title="Ver cesta">
+                <span aria-hidden="true">🛒</span>
+                <span id="cart-count" class="absolute -right-1 -top-1 hidden min-w-5 rounded-full bg-orange-600 px-1 text-center text-xs font-semibold leading-5 text-white">0</span>
+            </a>
+            <button id="translate-btn" type="button" class="rounded-lg bg-white px-3 py-2 text-sm shadow-md transition text-orange-600 hover:bg-orange-50" aria-haspopup="true" aria-expanded="false" title="Traducir página">🌐 <span class="hidden sm:inline">Traducir</span></button>
+            <div id="google_translate_element" class="absolute right-4 top-full z-50 hidden bg-white p-2 shadow-md" aria-label="Seleccionar idioma"></div>
+        </div>
+    </header>
+    <main id="main-content" class="w-full max-w-4xl px-4 py-8">
+        
+<section id="cart-page" data-whatsapp-url="https://wa.me/34604972522" aria-labelledby="cart-title">
+    <h2 id="cart-title" class="sr-only">Productos de la cesta</h2>
+    <aside class="mb-6 rounded-xl border border-orange-200 bg-orange-50 p-4 text-sm text-orange-900" aria-label="Información importante sobre el pedido">
+        <p class="font-semibold">El pedido no se envía ni se confirma automáticamente.</p>
+        <p class="mt-1">Al pulsar «Pedir por WhatsApp» se abrirá un mensaje preparado; tendrás que revisarlo y enviarlo. Después concretaremos por el chat los detalles y el precio final: fotos de referencia y nombre para los Funkos, modificaciones, diseños para llaveros u otros productos.</p>
+    </aside>
+    <p id="cart-empty" class="rounded-xl bg-white p-8 text-center text-gray-600 shadow-sm">Tu cesta está vacía.</p>
+    <ul id="cart-items" class="flex flex-col gap-3"></ul>
+    <section id="cart-summary" class="mt-6 flex flex-col items-stretch gap-4 rounded-2xl bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between" hidden aria-label="Resumen del pedido">
+        <div>
+            <p class="text-lg font-semibold text-gray-900"><span id="cart-total-label">Total:</span> <span id="cart-total" class="text-orange-700">0,00 €</span></p>
+            <p id="cart-quote-note" class="mt-1 max-w-xl text-sm text-gray-600" hidden>Subtotal de productos con precio fijo. Los artículos a consultar se cotizan por WhatsApp.</p>
+        </div>
+        <a id="cart-order-link" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-5 py-3 font-semibold text-white transition hover:bg-orange-600" href="#" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+    </section>
+</section>
+    </main>
+    <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-6 right-6 z-50 rounded-full bg-blue-500 px-4 py-2 text-white opacity-0 shadow-lg transition-opacity hover:bg-blue-600" aria-label="Volver arriba">↑ Arriba</button>
+    <footer class="mt-auto p-6 text-center text-sm text-gray-500">© 2026 Aarontxu 3D</footer>
+    <script type="application/json" id="translate-languages">{"es":"Español","en":"English","fr":"Français","it":"Italiano","de":"Deutsch","pt":"Português"}</script>
+    <script defer src="/script.js"></script>
+</body>
+</html>

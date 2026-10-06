@@ -38,6 +38,7 @@ content:
             list: true
             fields:
               - { name: id, label: Identificador, type: string }
+              - { name: title, label: Producto, type: string }
               - name: category
                 label: Categoría
                 type: object
@@ -46,6 +47,7 @@ content:
                   - { name: name, label: Nombre, type: string }
               - { name: description, label: Descripción, type: text, list: true }
               - { name: price, label: Precio, type: number }
+              - { name: price_label, label: Precio mostrado (opcional), type: string }
               - name: images
                 label: Imágenes
                 type: image
