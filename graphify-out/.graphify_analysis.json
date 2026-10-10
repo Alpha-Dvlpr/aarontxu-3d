@@ -1,0 +1,104 @@
+{
+  "communities": {
+    "0": [
+      "script",
+      "script_formatcurrency",
+      "script_initializebacktotop",
+      "script_initializeimagemodal",
+      "script_initializeproductfilters",
+      "script_initializetranslation"
+    ],
+    "1": [
+      "script_changecartquantity",
+      "script_initializecartpage",
+      "script_readcart",
+      "script_removecartitem"
+    ],
+    "2": [
+      "script_initializeproductcart",
+      "script_normalizequantity",
+      "script_savecart",
+      "script_updatecartbadge"
+    ]
+  },
+  "cohesion": {
+    "0": 0.3333333333333333,
+    "1": 1.0,
+    "2": 0.5
+  },
+  "gods": [
+    {
+      "id": "script_initializecartpage",
+      "label": "initializeCartPage()",
+      "degree": 6
+    },
+    {
+      "id": "script_readcart",
+      "label": "readCart()",
+      "degree": 5
+    },
+    {
+      "id": "script_savecart",
+      "label": "saveCart()",
+      "degree": 5
+    },
+    {
+      "id": "script_changecartquantity",
+      "label": "changeCartQuantity()",
+      "degree": 5
+    },
+    {
+      "id": "script_removecartitem",
+      "label": "removeCartItem()",
+      "degree": 5
+    },
+    {
+      "id": "script_initializeproductcart",
+      "label": "initializeProductCart()",
+      "degree": 4
+    },
+    {
+      "id": "script_updatecartbadge",
+      "label": "updateCartBadge()",
+      "degree": 3
+    },
+    {
+      "id": "script_formatcurrency",
+      "label": "formatCurrency()",
+      "degree": 2
+    },
+    {
+      "id": "script_normalizequantity",
+      "label": "normalizeQuantity()",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "initializeProductCart()",
+      "target": "readCart()",
+      "source_files": [
+        "script.js",
+        "script.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 1 \u2192 community 2"
+    },
+    {
+      "source": "initializeCartPage()",
+      "target": "formatCurrency()",
+      "source_files": [
+        "script.js",
+        "script.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 0 \u2192 community 1"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
