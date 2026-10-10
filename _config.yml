@@ -4,3 +4,5 @@ url: https://3d.aarontxu.com
 baseurl: ""
 plugins:
   - jekyll-sitemap
+exclude:
+  - graphify-out
