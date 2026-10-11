@@ -10,5 +10,47 @@
     "seen": 1791663236.850046,
     "ast_hash": "06dee06ab13377e6e5a851a73d7f29d7",
     "semantic_hash": "06dee06ab13377e6e5a851a73d7f29d7"
+  },
+  ".pages.yml": {
+    "mtime": 1791328911.105783,
+    "seen": 1791666168.8939252,
+    "ast_hash": "3566d77a19aa4dd6fc9eba4a8c437a0d",
+    "semantic_hash": "3566d77a19aa4dd6fc9eba4a8c437a0d"
+  },
+  "README.md": {
+    "mtime": 1791323961.2571163,
+    "seen": 1791666168.893926,
+    "ast_hash": "58b6720fde7c4ae3a88c02f0e84dd97d",
+    "semantic_hash": "58b6720fde7c4ae3a88c02f0e84dd97d"
+  },
+  "_config.yml": {
+    "mtime": 1791665808.5701578,
+    "seen": 1791666168.893926,
+    "ast_hash": "0bb4cfea2d162ddd760f10561606502d",
+    "semantic_hash": "0bb4cfea2d162ddd760f10561606502d"
+  },
+  "_layouts/default.html": {
+    "mtime": 1791327917.2879333,
+    "seen": 1791666168.8939269,
+    "ast_hash": "dc4d058a6d70449151cb50b6d80f9dc0",
+    "semantic_hash": "dc4d058a6d70449151cb50b6d80f9dc0"
+  },
+  "cart.html": {
+    "mtime": 1791328949.2054656,
+    "seen": 1791666168.893928,
+    "ast_hash": "e04b3a99268dc07c71245dcce82e0a11",
+    "semantic_hash": "e04b3a99268dc07c71245dcce82e0a11"
+  },
+  "index.html": {
+    "mtime": 1791323961.2596738,
+    "seen": 1791666168.893929,
+    "ast_hash": "fdd17474916bcd2a1ccb9d22237e8291",
+    "semantic_hash": "fdd17474916bcd2a1ccb9d22237e8291"
+  },
+  "products_and_services.html": {
+    "mtime": 1791329209.1458232,
+    "seen": 1791666168.893929,
+    "ast_hash": "65580c8d71edf6ebece7c75efc1969ea",
+    "semantic_hash": "65580c8d71edf6ebece7c75efc1969ea"
   }
 }

@@ -1,6 +1,15 @@
 {
   "communities": {
     "0": [
+      "_config",
+      "_config_jekyll_sitemap",
+      "pages",
+      "pages_aarontxu_3d",
+      "pages_site_images",
+      "readme",
+      "readme_github_pages"
+    ],
+    "1": [
       "script",
       "script_formatcurrency",
       "script_initializebacktotop",
@@ -8,13 +17,32 @@
       "script_initializeproductfilters",
       "script_initializetranslation"
     ],
-    "1": [
+    "2": [
+      "index",
+      "layouts_default",
+      "layouts_default_heading_source",
+      "layouts_default_tailwind_cdn",
+      "layouts_default_translate"
+    ],
+    "3": [
+      "cart",
+      "cart_cart_page",
+      "cart_whatsapp_order",
+      "layouts_default_cart_link"
+    ],
+    "4": [
+      "products_and_services",
+      "products_and_services_image_modal",
+      "products_and_services_product_card",
+      "products_and_services_product_filters"
+    ],
+    "5": [
       "script_changecartquantity",
       "script_initializecartpage",
       "script_readcart",
       "script_removecartitem"
     ],
-    "2": [
+    "6": [
       "script_initializeproductcart",
       "script_normalizequantity",
       "script_savecart",
@@ -23,8 +51,12 @@
   },
   "cohesion": {
     "0": 0.3333333333333333,
-    "1": 1.0,
-    "2": 0.5
+    "1": 0.3333333333333333,
+    "2": 0.4,
+    "3": 0.5,
+    "4": 0.5,
+    "5": 1.0,
+    "6": 0.5
   },
   "gods": [
     {
@@ -33,18 +65,13 @@
       "degree": 6
     },
     {
-      "id": "script_readcart",
-      "label": "readCart()",
-      "degree": 5
-    },
-    {
-      "id": "script_savecart",
-      "label": "saveCart()",
-      "degree": 5
-    },
-    {
       "id": "script_changecartquantity",
       "label": "changeCartQuantity()",
+      "degree": 5
+    },
+    {
+      "id": "script_readcart",
+      "label": "readCart()",
       "degree": 5
     },
     {
@@ -53,8 +80,18 @@
       "degree": 5
     },
     {
+      "id": "script_savecart",
+      "label": "saveCart()",
+      "degree": 5
+    },
+    {
       "id": "script_initializeproductcart",
       "label": "initializeProductCart()",
+      "degree": 4
+    },
+    {
+      "id": "cart",
+      "label": "cart.html (Tu cesta)",
       "degree": 4
     },
     {
@@ -63,42 +100,64 @@
       "degree": 3
     },
     {
-      "id": "script_formatcurrency",
-      "label": "formatCurrency()",
-      "degree": 2
+      "id": "pages",
+      "label": ".pages.yml (Pages CMS config)",
+      "degree": 3
     },
     {
-      "id": "script_normalizequantity",
-      "label": "normalizeQuantity()",
-      "degree": 2
+      "id": "pages_site_images",
+      "label": "site_images media (img/)",
+      "degree": 3
     }
   ],
   "surprises": [
     {
-      "source": "initializeProductCart()",
-      "target": "readCart()",
+      "source": "Product card (data-product-card)",
+      "target": "site_images media (img/)",
       "source_files": [
-        "script.js",
-        "script.js"
+        "products_and_services.html",
+        ".pages.yml"
       ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "note": "Bridges community 1 \u2192 community 2"
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
     },
     {
-      "source": "initializeCartPage()",
-      "target": "formatCurrency()",
+      "source": "#cart-link / #cart-count",
+      "target": "cart.html (Tu cesta)",
       "source_files": [
-        "script.js",
-        "script.js"
+        "_layouts/default.html",
+        "cart.html"
       ],
       "confidence": "EXTRACTED",
-      "relation": "calls",
-      "note": "Bridges community 0 \u2192 community 1"
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "README Aarontxu 3D",
+      "target": ".pages.yml (Pages CMS config)",
+      "source_files": [
+        "README.md",
+        ".pages.yml"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "_config.yml (Jekyll config)",
+      "target": "GitHub Pages hosting (3d.aarontxu.com)",
+      "source_files": [
+        "_config.yml",
+        "README.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source"
     }
   ],
   "tokens": {
-    "input": 0,
-    "output": 0
+    "input": 37705,
+    "output": 5385
   }
 }
