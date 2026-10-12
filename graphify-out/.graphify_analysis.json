@@ -1,67 +1,118 @@
 {
   "communities": {
     "0": [
-      "_config",
-      "_config_jekyll_sitemap",
-      "pages",
-      "pages_aarontxu_3d",
-      "pages_site_images",
-      "readme",
-      "readme_github_pages"
-    ],
-    "1": [
       "script",
-      "script_formatcurrency",
       "script_initializebacktotop",
+      "script_initializecartbacklink",
+      "script_initializegallerydrag",
       "script_initializeimagemodal",
+      "script_initializenfcguide",
       "script_initializeproductfilters",
       "script_initializetranslation"
     ],
+    "1": [
+      "pages_yml",
+      "pages_yml_languages",
+      "pages_yml_privacy",
+      "pages_yml_products_and_services",
+      "pages_yml_site_images"
+    ],
     "2": [
-      "index",
-      "layouts_default",
-      "layouts_default_heading_source",
-      "layouts_default_tailwind_cdn",
-      "layouts_default_translate"
-    ],
-    "3": [
-      "cart",
-      "cart_cart_page",
-      "cart_whatsapp_order",
-      "layouts_default_cart_link"
-    ],
-    "4": [
-      "products_and_services",
-      "products_and_services_image_modal",
-      "products_and_services_product_card",
-      "products_and_services_product_filters"
-    ],
-    "5": [
       "script_changecartquantity",
+      "script_formatcurrency",
       "script_initializecartpage",
       "script_readcart",
       "script_removecartitem"
     ],
-    "6": [
+    "3": [
+      "_config",
+      "_config_jekyll_sitemap",
+      "readme",
+      "readme_github_pages"
+    ],
+    "4": [
+      "guias_llaveros_nfc_index",
+      "guias_llaveros_nfc_index_stepper",
+      "guias_llaveros_nfc_index_wa_helper",
+      "pages_yml_nfc_guide"
+    ],
+    "5": [
       "script_initializeproductcart",
       "script_normalizequantity",
       "script_savecart",
       "script_updatecartbadge"
+    ],
+    "6": [
+      "cart_html",
+      "cart_whatsapp_order_flow",
+      "pages_yml_profile"
+    ],
+    "7": [
+      "data_aarontxu_3d_json",
+      "index_html",
+      "privacy_html"
+    ],
+    "8": [
+      "layouts_default_html",
+      "layouts_default_html_cart_badge",
+      "layouts_default_html_google_translate"
+    ],
+    "9": [
+      "products_and_services_html",
+      "products_and_services_html_filters_gallery"
     ]
   },
   "cohesion": {
-    "0": 0.3333333333333333,
-    "1": 0.3333333333333333,
-    "2": 0.4,
+    "0": 0.25,
+    "1": 0.5,
+    "2": 0.7,
     "3": 0.5,
-    "4": 0.5,
-    "5": 1.0,
-    "6": 0.5
+    "4": 0.6666666666666666,
+    "5": 0.5,
+    "6": 0.6666666666666666,
+    "7": 1.0,
+    "8": 0.6666666666666666,
+    "9": 1.0
   },
   "gods": [
     {
+      "id": "layouts_default_html",
+      "label": "Default layout (_layouts/default.html)",
+      "degree": 9
+    },
+    {
+      "id": "pages_yml",
+      "label": "Pages CMS config (.pages.yml)",
+      "degree": 7
+    },
+    {
+      "id": "data_aarontxu_3d_json",
+      "label": "_data/aarontxu_3d.json (site content data)",
+      "degree": 7
+    },
+    {
       "id": "script_initializecartpage",
       "label": "initializeCartPage()",
+      "degree": 6
+    },
+    {
+      "id": "guias_llaveros_nfc_index",
+      "label": "NFC keychain guide page",
+      "degree": 6
+    },
+    {
+      "id": "cart_html",
+      "label": "Cart page (cart.html)",
+      "degree": 6
+    },
+    {
+      "id": "index_html",
+      "label": "Home page (index.html)",
+      "degree": 6
+    },
+    {
+      "id": "products_and_services_html",
+      "label": "Products and services page",
       "degree": 6
     },
     {
@@ -73,91 +124,85 @@
       "id": "script_readcart",
       "label": "readCart()",
       "degree": 5
-    },
-    {
-      "id": "script_removecartitem",
-      "label": "removeCartItem()",
-      "degree": 5
-    },
-    {
-      "id": "script_savecart",
-      "label": "saveCart()",
-      "degree": 5
-    },
-    {
-      "id": "script_initializeproductcart",
-      "label": "initializeProductCart()",
-      "degree": 4
-    },
-    {
-      "id": "cart",
-      "label": "cart.html (Tu cesta)",
-      "degree": 4
-    },
-    {
-      "id": "script_updatecartbadge",
-      "label": "updateCartBadge()",
-      "degree": 3
-    },
-    {
-      "id": "pages",
-      "label": ".pages.yml (Pages CMS config)",
-      "degree": 3
-    },
-    {
-      "id": "pages_site_images",
-      "label": "site_images media (img/)",
-      "degree": 3
     }
   ],
   "surprises": [
     {
-      "source": "Product card (data-product-card)",
-      "target": "site_images media (img/)",
+      "source": "Default layout (_layouts/default.html)",
+      "target": "languages section",
       "source_files": [
-        "products_and_services.html",
+        "_layouts/default.html",
         ".pages.yml"
       ],
-      "confidence": "INFERRED",
+      "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `languages section` unexpectedly reaches hub `Default layout (_layouts/default.html)`"
     },
     {
-      "source": "#cart-link / #cart-count",
-      "target": "cart.html (Tu cesta)",
+      "source": "Header cart link and count badge",
+      "target": "Cart page (cart.html)",
       "source_files": [
         "_layouts/default.html",
         "cart.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories"
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Header cart link and count badge` unexpectedly reaches hub `Cart page (cart.html)`"
     },
     {
-      "source": "README Aarontxu 3D",
-      "target": ".pages.yml (Pages CMS config)",
+      "source": "NFC keychain guide page",
+      "target": "_data/aarontxu_3d.json (site content data)",
       "source_files": [
-        "README.md",
+        "guias/llaveros-nfc/index.html",
         ".pages.yml"
       ],
-      "confidence": "INFERRED",
+      "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "inferred connection - not explicitly stated in source"
+      "why": "connects across different repos/directories; bridges separate communities"
     },
     {
-      "source": "_config.yml (Jekyll config)",
-      "target": "GitHub Pages hosting (3d.aarontxu.com)",
+      "source": "NFC keychain guide page",
+      "target": "Home page (index.html)",
       "source_files": [
-        "_config.yml",
-        "README.md"
+        "guias/llaveros-nfc/index.html",
+        "index.html"
       ],
-      "confidence": "INFERRED",
-      "relation": "conceptually_related_to",
-      "why": "inferred connection - not explicitly stated in source"
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "NFC keychain guide page",
+      "target": "Default layout (_layouts/default.html)",
+      "source_files": [
+        "guias/llaveros-nfc/index.html",
+        "_layouts/default.html"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
     }
   ],
-  "tokens": {
-    "input": 37705,
-    "output": 5385
-  }
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Default layout (_layouts/default.html)` connect `Default Layout & Header` to `Pages CMS Config`, `NFC Keychain Guide`, `WhatsApp Order Flow`, `Site Content Pages`, `Products Page & Gallery`?",
+      "why": "High betweenness centrality (0.064) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `jekyll-sitemap plugin`, `README Aarontxu 3D`, `WhatsApp order flow (cart, no auto-confirm)` to the rest of the system?",
+      "why": "5 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `NFC keychain guide page` connect `NFC Keychain Guide` to `Default Layout & Header`, `Site Content Pages`?",
+      "why": "High betweenness centrality (0.053) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Pages CMS config (.pages.yml)` connect `Pages CMS Config` to `NFC Keychain Guide`, `WhatsApp Order Flow`, `Site Content Pages`?",
+      "why": "High betweenness centrality (0.041) - this node is a cross-community bridge."
+    }
+  ]
 }

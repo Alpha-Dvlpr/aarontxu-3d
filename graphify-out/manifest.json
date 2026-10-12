@@ -1,21 +1,21 @@
 {
   "_data/aarontxu_3d.json": {
-    "mtime": 1791328911.1109893,
-    "seen": 1791663236.850045,
-    "ast_hash": "d0837996eea9a6ff05fe278d1c0cd461",
-    "semantic_hash": "d0837996eea9a6ff05fe278d1c0cd461"
+    "mtime": 1791817419.504279,
+    "seen": 1791818715.184646,
+    "ast_hash": "9782f104cd6ef936f6d5270195754597",
+    "semantic_hash": "9782f104cd6ef936f6d5270195754597"
   },
   "script.js": {
-    "mtime": 1791329188.9766307,
-    "seen": 1791663236.850046,
-    "ast_hash": "06dee06ab13377e6e5a851a73d7f29d7",
-    "semantic_hash": "06dee06ab13377e6e5a851a73d7f29d7"
+    "mtime": 1791817575.9333234,
+    "seen": 1791818715.1846468,
+    "ast_hash": "b0027345ee69357c201c7bcc4837762a",
+    "semantic_hash": "b0027345ee69357c201c7bcc4837762a"
   },
   ".pages.yml": {
-    "mtime": 1791328911.105783,
-    "seen": 1791666168.8939252,
-    "ast_hash": "3566d77a19aa4dd6fc9eba4a8c437a0d",
-    "semantic_hash": "3566d77a19aa4dd6fc9eba4a8c437a0d"
+    "mtime": 1791817419.504992,
+    "seen": 1791818715.184648,
+    "ast_hash": "68de9fad3e38f7b922173466c4d1e170",
+    "semantic_hash": "68de9fad3e38f7b922173466c4d1e170"
   },
   "README.md": {
     "mtime": 1791323961.2571163,
@@ -33,24 +33,36 @@
     "mtime": 1791327917.2879333,
     "seen": 1791666168.8939269,
     "ast_hash": "dc4d058a6d70449151cb50b6d80f9dc0",
-    "semantic_hash": "dc4d058a6d70449151cb50b6d80f9dc0"
+    "semantic_hash": ""
   },
   "cart.html": {
     "mtime": 1791328949.2054656,
     "seen": 1791666168.893928,
     "ast_hash": "e04b3a99268dc07c71245dcce82e0a11",
-    "semantic_hash": "e04b3a99268dc07c71245dcce82e0a11"
+    "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1791323961.2596738,
-    "seen": 1791666168.893929,
-    "ast_hash": "fdd17474916bcd2a1ccb9d22237e8291",
-    "semantic_hash": "fdd17474916bcd2a1ccb9d22237e8291"
+    "mtime": 1791818136.9310892,
+    "seen": 1791818715.18465,
+    "ast_hash": "2c8b68051cbab1c15463c36d2a2ff316",
+    "semantic_hash": "2c8b68051cbab1c15463c36d2a2ff316"
   },
   "products_and_services.html": {
     "mtime": 1791329209.1458232,
     "seen": 1791666168.893929,
     "ast_hash": "65580c8d71edf6ebece7c75efc1969ea",
-    "semantic_hash": "65580c8d71edf6ebece7c75efc1969ea"
+    "semantic_hash": ""
+  },
+  "guias/llaveros-nfc/index.html": {
+    "mtime": 1791817649.6503801,
+    "seen": 1791818715.184649,
+    "ast_hash": "f7fc13b1d6b332557c3b1695e74e56c2",
+    "semantic_hash": "f7fc13b1d6b332557c3b1695e74e56c2"
+  },
+  "privacy.html": {
+    "mtime": 1791814079.999753,
+    "seen": 1791818715.184651,
+    "ast_hash": "a3582b2449c1466f01c0ece39d522350",
+    "semantic_hash": "a3582b2449c1466f01c0ece39d522350"
   }
 }
