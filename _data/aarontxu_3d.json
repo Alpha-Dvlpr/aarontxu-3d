@@ -20,6 +20,10 @@
                 "name": "Instagram",
                 "destination": "https://www.instagram.com/aarontxu.3d",
                 "newPage": true
+            },
+            {
+                "name": "Guía de configuración de llaveros NFC",
+                "destination": "/guias/llaveros-nfc/"
             }
         ]
     },
@@ -209,6 +213,280 @@
                 ]
             }
         ]
+    },
+    "nfcGuide": {
+        "title": "Guía de llaveros NFC",
+        "heading": "Cómo configurar tu llavero NFC",
+        "intro": [
+            "Tu llavero NFC lleva grabado el enlace a esta guía. Sigue estos pasos para borrarlo y grabar lo que quieras: abrir un WhatsApp, un perfil de una red social o una página web.",
+            "Necesitarás una app gratuita para leer y escribir etiquetas NFC. Elige abajo si tienes Android o iPhone, porque la app cambia un poco en cada uno."
+        ],
+        "app": {
+            "heading": "La app que uso: NFC Tools",
+            "disclosure": "NFC Tools es la app que yo utilizo. No es un patrocinio y no recibo ningún dinero ni compensación por recomendarla.",
+            "versionNote": "Esta guía está basada en la versión 3.4 de iOS y la 9.8 de Android. En el futuro puede haber diferencias; intentaré actualizarla lo más a menudo posible.",
+            "stores": [
+                {
+                    "id": "android",
+                    "prefix": "Disponible en",
+                    "name": "Google Play",
+                    "url": "https://play.google.com/store/apps/details?id=com.wakdev.wdnfc&hl=es&pli=1"
+                },
+                {
+                    "id": "ios",
+                    "prefix": "Descargar en la",
+                    "name": "App Store",
+                    "url": "https://apps.apple.com/es/app/nfc-tools/id1252962749"
+                }
+            ]
+        },
+        "selector": {
+            "title": "¿Qué móvil tienes?"
+        },
+        "platforms": [
+            {
+                "id": "android",
+                "name": "Android",
+                "steps": [
+                    {
+                        "title": "Borra el chip",
+                        "text": [
+                            "Primero hay que borrar el llavero para que no quede grabado el enlace a esta guía.",
+                            "En las pestañas de la parte superior abre «Otro» y después «Borrar una etiqueta». Acerca el llavero al móvil hasta que confirme el borrado."
+                        ]
+                    },
+                    {
+                        "title": "Elige qué quieres grabar",
+                        "optionsLabel": "Qué quieres grabar",
+                        "text": [
+                            "Abre la pestaña «Escribir»; no hace falta volver a ningún sitio, todo está en las pestañas de la parte superior.",
+                            "Aquí se guardan los últimos registros, por si tienes que grabar varios llaveros y no quieres repetir el proceso cada vez. Elige una de estas opciones:"
+                        ],
+                        "options": [
+                            {
+                                "id": "whatsapp",
+                                "label": "Abrir un WhatsApp",
+                                "text": [
+                                    "Pulsa «Añadir un registro» → «URL/URI personalizada» y pega la URL de WhatsApp."
+                                ]
+                            },
+                            {
+                                "id": "social",
+                                "label": "Redes sociales",
+                                "text": [
+                                    "Pulsa «Añadir un registro» → «Redes sociales». Por defecto aparece Facebook, pero con el botón «Modificar» puedes elegir entre muchas otras redes.",
+                                    "Selecciona la que quieras y escribe en el campo inferior el nombre del perfil.",
+                                    "Ejemplo: elige Instagram y escribe aarontxu.3d."
+                                ]
+                            },
+                            {
+                                "id": "web",
+                                "label": "Página web",
+                                "text": [
+                                    "Pulsa «Añadir un registro» → «URL/URI». Por defecto aparece «https://»; se puede modificar, pero lo recomendado es mantenerlo.",
+                                    "Escribe la dirección de la web en el campo inferior."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Graba el llavero",
+                        "text": [
+                            "Desde la pantalla «Escribir», pulsa el botón «Escribir». Al lado verás los kilobytes que ocupa el mensaje; es solo informativo.",
+                            "Acerca el llavero al móvil y espera al sonido de confirmación."
+                        ]
+                    },
+                    {
+                        "title": "Comprueba que funciona",
+                        "text": [
+                            "Sal de la app o acerca el llavero a otro dispositivo para comprobar que funciona correctamente."
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "ios",
+                "name": "iPhone (iOS)",
+                "steps": [
+                    {
+                        "title": "Borra el chip",
+                        "text": [
+                            "Primero hay que borrar el llavero para que no quede grabado el enlace a esta guía.",
+                            "En la pantalla principal pulsa «Otro» y después «Borrar una etiqueta». Acerca el llavero al móvil hasta que confirme el borrado."
+                        ]
+                    },
+                    {
+                        "title": "Elige qué quieres grabar",
+                        "optionsLabel": "Qué quieres grabar",
+                        "text": [
+                            "Vuelve a la pantalla principal y pulsa «Escribir».",
+                            "Aquí se guardan los últimos registros, por si tienes que grabar varios llaveros y no quieres repetir el proceso cada vez. Elige una de estas opciones:"
+                        ],
+                        "options": [
+                            {
+                                "id": "whatsapp",
+                                "label": "Abrir un WhatsApp",
+                                "text": [
+                                    "Pulsa «Añadir un registro» → «URL/URI personalizada» y pega la URL de WhatsApp."
+                                ]
+                            },
+                            {
+                                "id": "social",
+                                "label": "Redes sociales",
+                                "text": [
+                                    "Pulsa «Añadir un registro» → «Redes sociales». Por defecto aparece Facebook, pero con el botón «Modificar» puedes elegir entre muchas otras redes.",
+                                    "Selecciona la que quieras y escribe en el campo inferior el nombre del perfil.",
+                                    "Ejemplo: elige Instagram y escribe aarontxu.3d."
+                                ]
+                            },
+                            {
+                                "id": "web",
+                                "label": "Página web",
+                                "text": [
+                                    "Pulsa «Añadir un registro» → «URL/URI». Por defecto aparece «https://»; se puede modificar, pero lo recomendado es mantenerlo.",
+                                    "Escribe la dirección de la web en el campo inferior."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Graba el llavero",
+                        "text": [
+                            "Desde la pantalla «Escribir», pulsa el botón «Escribir». Al lado verás los kilobytes que ocupa el mensaje; es solo informativo.",
+                            "Acerca el llavero al móvil y espera al sonido de confirmación."
+                        ]
+                    },
+                    {
+                        "title": "Comprueba que funciona",
+                        "text": [
+                            "Sal de la app o acerca el llavero a otro dispositivo para comprobar que funciona correctamente."
+                        ]
+                    }
+                ]
+            }
+        ],
+        "whatsapp": {
+            "checkboxLabel": "No sé crear la URL de WhatsApp: ayúdame a generarla",
+            "title": "Generador de enlace de WhatsApp",
+            "privacy": "El número que escribas aquí no se guarda ni se envía a ningún sitio: todo ocurre en tu navegador y solo sirve de ayuda para crear el enlace.",
+            "prefixes": [
+                {
+                    "name": "España",
+                    "code": "34"
+                },
+                {
+                    "name": "Portugal",
+                    "code": "351"
+                },
+                {
+                    "name": "Francia",
+                    "code": "33"
+                },
+                {
+                    "name": "Italia",
+                    "code": "39"
+                },
+                {
+                    "name": "Alemania",
+                    "code": "49"
+                },
+                {
+                    "name": "Reino Unido",
+                    "code": "44"
+                },
+                {
+                    "name": "Irlanda",
+                    "code": "353"
+                },
+                {
+                    "name": "Países Bajos",
+                    "code": "31"
+                },
+                {
+                    "name": "Bélgica",
+                    "code": "32"
+                },
+                {
+                    "name": "Suiza",
+                    "code": "41"
+                },
+                {
+                    "name": "Andorra",
+                    "code": "376"
+                },
+                {
+                    "name": "Rumanía",
+                    "code": "40"
+                },
+                {
+                    "name": "Polonia",
+                    "code": "48"
+                },
+                {
+                    "name": "Marruecos",
+                    "code": "212"
+                },
+                {
+                    "name": "Estados Unidos y Canadá",
+                    "code": "1"
+                },
+                {
+                    "name": "México",
+                    "code": "52"
+                },
+                {
+                    "name": "Colombia",
+                    "code": "57"
+                },
+                {
+                    "name": "Argentina",
+                    "code": "54"
+                },
+                {
+                    "name": "Chile",
+                    "code": "56"
+                },
+                {
+                    "name": "Perú",
+                    "code": "51"
+                },
+                {
+                    "name": "Venezuela",
+                    "code": "58"
+                },
+                {
+                    "name": "Ecuador",
+                    "code": "593"
+                },
+                {
+                    "name": "Uruguay",
+                    "code": "598"
+                },
+                {
+                    "name": "Brasil",
+                    "code": "55"
+                }
+            ],
+            "prefixLabel": "Prefijo",
+            "numberLabel": "Número de teléfono",
+            "numberHint": "Sin prefijo, solo el número. Ejemplo: 612345678",
+            "errorSpain": "Un móvil de España tiene 9 cifras y empieza por 6 o 7.",
+            "errorOther": "Escribe solo cifras, sin el 0 inicial ni el prefijo (entre 6 y 12 cifras).",
+            "generate": "Generar enlace",
+            "resultLabel": "Tu enlace de WhatsApp",
+            "copy": "Copiar",
+            "copied": "Copiado",
+            "copyError": "No se ha podido copiar. Mantén pulsado el enlace para copiarlo.",
+            "close": "Cerrar"
+        },
+        "ui": {
+            "stepOf": "Paso {n} de {total}",
+            "prev": "Anterior",
+            "next": "Siguiente",
+            "restart": "Empezar de nuevo",
+            "finished": "¡Listo! Ya has terminado.",
+            "externalNote": "(se abre en otra pestaña)"
+        }
     },
     "languages": {
         "es": "Español",

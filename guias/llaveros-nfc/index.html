@@ -1,0 +1,118 @@
+---
+layout: default
+title: "Guía de llaveros NFC | Aarontxu 3D"
+favicon: "/img/mini_img.png"
+heading_source: 3d_nfc_title
+description: "Guía paso a paso para borrar y grabar tu llavero NFC con la app NFC Tools en Android o iPhone."
+back_url: "/"
+main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
+---
+{% assign g = site.data.aarontxu_3d.nfcGuide %}
+{% assign wa = g.whatsapp %}
+<div id="nfc-guide" class="flex flex-col gap-6" data-step-of="{{ g.ui.stepOf | escape }}" data-copy-label="{{ wa.copy | escape }}" data-copied-label="{{ wa.copied | escape }}" data-copy-error="{{ wa.copyError | escape }}" data-error-spain="{{ wa.errorSpain | escape }}" data-error-other="{{ wa.errorOther | escape }}">
+
+    <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-labelledby="nfc-title">
+        <h2 id="nfc-title" class="text-2xl font-bold tracking-tight text-ink sm:text-3xl">{{ g.heading | escape }}</h2>
+        {% for paragraph in g.intro %}<p class="mt-4 whitespace-pre-line leading-relaxed text-muted">{{ paragraph | escape }}</p>{% endfor %}
+    </section>
+
+    <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-labelledby="nfc-app-title">
+        <h2 id="nfc-app-title" class="text-xl font-bold tracking-tight text-ink">{{ g.app.heading | escape }}</h2>
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+            {% for store in g.app.stores %}
+            <a class="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-line bg-ink px-5 py-2 text-canvas transition hover:opacity-90 active:scale-95" href="{{ store.url | escape }}" target="_blank" rel="noopener noreferrer">
+                {% if store.id == 'ios' %}
+                <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                {% else %}
+                <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+                {% endif %}
+                <span class="flex flex-col text-left leading-tight"><span class="text-xs">{{ store.prefix | escape }}</span><span class="text-lg font-semibold">{{ store.name | escape }}</span></span>
+                <span class="sr-only">{{ g.ui.externalNote | escape }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        <p class="mt-5 rounded-2xl bg-brand-tint p-4 text-sm leading-relaxed text-ink">{{ g.app.disclosure | escape }}</p>
+        <p class="mt-3 text-sm leading-relaxed text-muted">{{ g.app.versionNote | escape }}</p>
+    </section>
+
+    <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-labelledby="nfc-select-title">
+        <h2 id="nfc-select-title" class="text-xl font-bold tracking-tight text-ink">{{ g.selector.title | escape }}</h2>
+        <div class="mt-4 flex flex-wrap gap-3" role="group" aria-labelledby="nfc-select-title">
+            {% for platform in g.platforms %}
+            <button type="button" class="min-h-12 rounded-full bg-fill px-6 text-base font-medium text-ink transition active:scale-95" data-platform-btn="{{ platform.id | escape }}" aria-pressed="false">{{ platform.name | escape }}</button>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="nfc-stepper" class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-label="Pasos" hidden>
+        <p id="nfc-counter" class="text-sm font-semibold text-brand-text" aria-live="polite"></p>
+        <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-fill" aria-hidden="true"><div id="nfc-progress" class="h-full rounded-full bg-brand transition-all"></div></div>
+
+        {% for platform in g.platforms %}
+        <div class="mt-6" data-platform="{{ platform.id | escape }}" hidden>
+            {% for step in platform.steps %}
+            <div data-step hidden>
+                <h3 class="text-2xl font-bold tracking-tight text-ink" tabindex="-1" data-step-title>{{ step.title | escape }}</h3>
+                {% for paragraph in step.text %}<p class="mt-3 whitespace-pre-line leading-relaxed text-muted">{{ paragraph | escape }}</p>{% endfor %}
+                {% if step.options %}
+                <div class="mt-5">
+                    {% if step.optionsLabel %}<p id="opt-{{ platform.id }}-{{ forloop.index }}" class="mb-3 text-sm font-semibold text-ink">{{ step.optionsLabel | escape }}</p>{% endif %}
+                    <div class="flex flex-wrap gap-3" role="group" {% if step.optionsLabel %}aria-labelledby="opt-{{ platform.id }}-{{ forloop.index }}"{% endif %}>
+                        {% for option in step.options %}
+                        <button type="button" class="min-h-11 rounded-full bg-fill px-5 text-sm font-medium text-ink transition active:scale-95" data-option-btn="{{ option.id | escape }}" aria-pressed="false">{{ option.label | escape }}</button>
+                        {% endfor %}
+                    </div>
+                    {% for option in step.options %}
+                    <div class="mt-5 rounded-2xl bg-fill p-5" data-option="{{ option.id | escape }}" hidden>
+                        {% for paragraph in option.text %}<p class="mb-3 whitespace-pre-line leading-relaxed text-ink last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
+                        {% if option.id == 'whatsapp' %}
+                        <label class="mt-4 flex min-h-11 cursor-pointer items-center gap-3 text-sm font-medium text-ink">
+                            <input type="checkbox" class="h-6 w-6 shrink-0 accent-brand" data-wa-checkbox>
+                            <span>{{ wa.checkboxLabel | escape }}</span>
+                        </label>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <p id="nfc-finished" class="mt-6 rounded-2xl bg-brand-tint p-4 text-sm font-semibold text-ink" hidden>{{ g.ui.finished | escape }}</p>
+
+        <div class="mt-8 flex items-center justify-between gap-3">
+            <button id="nfc-prev" type="button" class="min-h-12 rounded-full bg-fill px-6 text-base font-medium text-ink transition active:scale-95 disabled:opacity-40">{{ g.ui.prev | escape }}</button>
+            <button id="nfc-next" type="button" class="inline-flex min-h-12 items-center gap-1 rounded-full bg-brand px-6 text-base font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95">{{ g.ui.next | escape }}<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+            <button id="nfc-restart" type="button" class="min-h-12 rounded-full bg-brand px-6 text-base font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" hidden>{{ g.ui.restart | escape }}</button>
+        </div>
+    </section>
+
+    <section id="nfc-wa-helper" class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-labelledby="nfc-wa-title" hidden>
+        <h2 id="nfc-wa-title" class="text-xl font-bold tracking-tight text-ink">{{ wa.title | escape }}</h2>
+        <p class="mt-3 rounded-2xl bg-brand-tint p-4 text-sm leading-relaxed text-ink">{{ wa.privacy | escape }}</p>
+        <div class="mt-5 flex flex-col gap-4 sm:flex-row">
+            <label class="flex flex-col gap-1 text-sm font-medium text-ink sm:w-56">{{ wa.prefixLabel | escape }}
+                <select class="h-12 rounded-2xl border border-line bg-fill px-3 text-base text-ink" data-wa-prefix>
+                    {% for prefix in wa.prefixes %}<option value="{{ prefix.code | escape }}"{% if prefix.code == '34' %} selected{% endif %}>{{ prefix.name | escape }} (+{{ prefix.code | escape }})</option>{% endfor %}
+                </select>
+            </label>
+            <label class="flex flex-1 flex-col gap-1 text-sm font-medium text-ink">{{ wa.numberLabel | escape }}
+                <input type="tel" inputmode="numeric" autocomplete="off" class="min-h-12 rounded-2xl border border-line bg-fill px-4 text-base text-ink" data-wa-number aria-describedby="nfc-wa-hint nfc-wa-error">
+            </label>
+        </div>
+        <p id="nfc-wa-hint" class="mt-2 text-sm text-muted">{{ wa.numberHint | escape }}</p>
+        <p id="nfc-wa-error" class="mt-2 text-sm font-medium text-danger" role="alert"></p>
+        <button type="button" class="mt-4 min-h-12 rounded-full bg-brand px-6 text-base font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" data-wa-generate hidden>{{ wa.generate | escape }}</button>
+        <div class="mt-5 rounded-2xl bg-fill p-4" data-wa-result hidden>
+            <p class="text-sm font-semibold text-ink">{{ wa.resultLabel | escape }}</p>
+            <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a class="break-all font-medium text-brand-text underline underline-offset-2" data-wa-link target="_blank" rel="noopener noreferrer" href="#"></a>
+                <button type="button" class="min-h-11 shrink-0 rounded-full bg-brand px-5 text-sm font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" data-wa-copy>{{ wa.copy | escape }}</button>
+            </div>
+            <p class="mt-2 text-sm text-danger" data-wa-copy-error role="alert"></p>
+        </div>
+        <button type="button" class="mt-6 min-h-12 rounded-full bg-fill px-6 text-base font-medium text-ink transition hover:bg-line active:scale-95" data-wa-close>{{ wa.close | escape }}</button>
+    </section>
+</div>

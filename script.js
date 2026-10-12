@@ -377,7 +377,136 @@ function initializeGalleryDrag() {
     });
 }
 
+function initializeNfcGuide() {
+    const root = document.getElementById('nfc-guide');
+    if (!root) return;
+
+    const stepper = document.getElementById('nfc-stepper');
+    const helper = document.getElementById('nfc-wa-helper');
+    const counter = document.getElementById('nfc-counter');
+    const progress = document.getElementById('nfc-progress');
+    const prevButton = document.getElementById('nfc-prev');
+    const nextButton = document.getElementById('nfc-next');
+    const restartButton = document.getElementById('nfc-restart');
+    const finished = document.getElementById('nfc-finished');
+    const prefixSelect = helper.querySelector('[data-wa-prefix]');
+    const numberInput = helper.querySelector('[data-wa-number]');
+    const errorOutput = document.getElementById('nfc-wa-error');
+    const generateButton = helper.querySelector('[data-wa-generate]');
+    const resultBox = helper.querySelector('[data-wa-result]');
+    const resultLink = helper.querySelector('[data-wa-link]');
+    const copyButton = helper.querySelector('[data-wa-copy]');
+    const copyError = helper.querySelector('[data-wa-copy-error]');
+    let platform = null;
+    let index = 0;
+
+    const setSelected = (button, selected) => {
+        button.setAttribute('aria-pressed', String(selected));
+        button.classList.toggle('bg-brand', selected);
+        button.classList.toggle('text-brand-on', selected);
+        button.classList.toggle('bg-fill', !selected);
+        button.classList.toggle('text-ink', !selected);
+    };
+
+    const cleanNumber = () => numberInput.value.replace(/[\s.-]/g, '');
+    const isValidNumber = number => prefixSelect.value === '34' ? /^[67]\d{8}$/.test(number) : /^\d{6,12}$/.test(number);
+
+    const updateHelper = () => {
+        const number = cleanNumber();
+        const valid = isValidNumber(number);
+        errorOutput.textContent = number && !valid ? (prefixSelect.value === '34' ? root.dataset.errorSpain : root.dataset.errorOther) : '';
+        generateButton.hidden = !valid;
+        resultBox.hidden = true;
+        copyError.textContent = '';
+    };
+
+    const closeHelper = () => {
+        helper.hidden = true;
+        numberInput.value = '';
+        prefixSelect.value = '34';
+        updateHelper();
+        root.querySelectorAll('[data-wa-checkbox]').forEach(box => { box.checked = false; });
+    };
+
+    const resetOptions = () => {
+        root.querySelectorAll('[data-option-btn]').forEach(button => setSelected(button, false));
+        root.querySelectorAll('[data-option]').forEach(pane => { pane.hidden = true; });
+        closeHelper();
+    };
+
+    const render = (moveFocus = false) => {
+        stepper.hidden = !platform;
+        root.querySelectorAll('[data-platform-btn]').forEach(button => setSelected(button, button.dataset.platformBtn === platform));
+        root.querySelectorAll('[data-platform]').forEach(block => { block.hidden = block.dataset.platform !== platform; });
+        if (!platform) return;
+
+        const steps = root.querySelectorAll(`[data-platform="${platform}"] [data-step]`);
+        const last = index === steps.length - 1;
+        steps.forEach((step, i) => { step.hidden = i !== index; });
+        counter.textContent = root.dataset.stepOf.replace('{n}', index + 1).replace('{total}', steps.length);
+        progress.style.width = `${((index + 1) / steps.length) * 100}%`;
+        prevButton.disabled = index === 0;
+        nextButton.hidden = last;
+        restartButton.hidden = !last;
+        finished.hidden = !last;
+        if (moveFocus) steps[index].querySelector('[data-step-title]').focus();
+    };
+
+    const goTo = (newIndex, moveFocus) => {
+        index = newIndex;
+        resetOptions();
+        render(moveFocus);
+    };
+
+    root.querySelectorAll('[data-platform-btn]').forEach(button => {
+        button.addEventListener('click', () => {
+            platform = button.dataset.platformBtn;
+            goTo(0, true);
+        });
+    });
+    prevButton.addEventListener('click', () => goTo(index - 1, true));
+    nextButton.addEventListener('click', () => goTo(index + 1, true));
+    restartButton.addEventListener('click', () => goTo(0, true));
+
+    root.querySelectorAll('[data-option-btn]').forEach(button => {
+        button.addEventListener('click', () => {
+            const step = button.closest('[data-step]');
+            step.querySelectorAll('[data-option-btn]').forEach(other => setSelected(other, other === button));
+            step.querySelectorAll('[data-option]').forEach(pane => { pane.hidden = pane.dataset.option !== button.dataset.optionBtn; });
+            closeHelper();
+        });
+    });
+
+    root.querySelectorAll('[data-wa-checkbox]').forEach(box => {
+        box.addEventListener('change', () => {
+            helper.hidden = !box.checked;
+            if (box.checked) helper.scrollIntoView({ block: 'nearest' });
+        });
+    });
+
+    prefixSelect.addEventListener('change', updateHelper);
+    numberInput.addEventListener('input', updateHelper);
+    generateButton.addEventListener('click', () => {
+        const url = `https://wa.me/${prefixSelect.value}${cleanNumber()}`;
+        resultLink.href = url;
+        resultLink.textContent = url;
+        copyButton.textContent = root.dataset.copyLabel;
+        resultBox.hidden = false;
+    });
+    copyButton.addEventListener('click', () => {
+        copyError.textContent = '';
+        navigator.clipboard.writeText(resultLink.href).then(() => {
+            copyButton.textContent = root.dataset.copiedLabel;
+            window.setTimeout(() => { copyButton.textContent = root.dataset.copyLabel; }, 1500);
+        }).catch(() => { copyError.textContent = root.dataset.copyError; });
+    });
+    helper.querySelector('[data-wa-close]').addEventListener('click', closeHelper);
+
+    render();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    initializeNfcGuide();
     initializeGalleryDrag();
     initializeCartBackLink();
     initializeBackToTop();

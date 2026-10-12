@@ -67,6 +67,92 @@ content:
             fields:
               - { name: heading, label: Encabezado, type: string }
               - { name: paragraphs, label: Párrafos, type: text, list: true }
+      - name: nfcGuide
+        label: Guía de llaveros NFC
+        type: object
+        fields:
+          - { name: title, label: Título de la cabecera, type: string }
+          - { name: heading, label: Título de la página, type: string }
+          - { name: intro, label: Introducción, type: text, list: true }
+          - name: app
+            label: App recomendada
+            type: object
+            fields:
+              - { name: heading, label: Encabezado, type: string }
+              - { name: disclosure, label: Aviso de no patrocinio, type: text }
+              - { name: versionNote, label: Aviso de versiones, type: text }
+              - name: stores
+                label: Botones de descarga
+                type: object
+                list: true
+                fields:
+                  - { name: id, label: Identificador (android o ios), type: string }
+                  - { name: prefix, label: Texto pequeño, type: string }
+                  - { name: name, label: Nombre de la tienda, type: string }
+                  - { name: url, label: Enlace, type: string }
+          - name: selector
+            label: Selector de móvil
+            type: object
+            fields:
+              - { name: title, label: Pregunta, type: string }
+          - name: platforms
+            label: Guías por móvil
+            type: object
+            list: true
+            fields:
+              - { name: id, label: Identificador (android o ios), type: string }
+              - { name: name, label: Nombre, type: string }
+              - name: steps
+                label: Pasos
+                type: object
+                list: true
+                fields:
+                  - { name: title, label: Título, type: string }
+                  - { name: text, label: Texto, type: text, list: true }
+                  - { name: optionsLabel, label: Título del selector de opciones (opcional), type: string }
+                  - name: options
+                    label: Opciones (opcional)
+                    type: object
+                    list: true
+                    fields:
+                      - { name: id, label: Identificador (whatsapp activa el ayudante), type: string }
+                      - { name: label, label: Nombre, type: string }
+                      - { name: text, label: Texto, type: text, list: true }
+          - name: whatsapp
+            label: Ayudante de WhatsApp
+            type: object
+            fields:
+              - { name: checkboxLabel, label: Texto de la casilla, type: string }
+              - { name: title, label: Título, type: string }
+              - { name: privacy, label: Aviso de privacidad, type: text }
+              - { name: prefixLabel, label: Etiqueta del prefijo, type: string }
+              - { name: numberLabel, label: Etiqueta del número, type: string }
+              - { name: numberHint, label: Ayuda del número, type: string }
+              - { name: errorSpain, label: Error número de España, type: string }
+              - { name: errorOther, label: Error otros países, type: string }
+              - { name: generate, label: Botón generar, type: string }
+              - { name: resultLabel, label: Etiqueta del resultado, type: string }
+              - { name: copy, label: Botón copiar, type: string }
+              - { name: copied, label: Texto tras copiar, type: string }
+              - { name: copyError, label: Error al copiar, type: string }
+              - { name: close, label: Botón cerrar, type: string }
+              - name: prefixes
+                label: Prefijos
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: País, type: string }
+                  - { name: code, label: Prefijo (sin +), type: string }
+          - name: ui
+            label: Textos de la interfaz
+            type: object
+            fields:
+              - { name: stepOf, label: Contador ({n} y {total}), type: string }
+              - { name: prev, label: Botón anterior, type: string }
+              - { name: next, label: Botón siguiente, type: string }
+              - { name: restart, label: Botón reiniciar, type: string }
+              - { name: finished, label: Mensaje final, type: string }
+              - { name: externalNote, label: Aviso enlace externo, type: string }
       - name: languages
         label: Idiomas de traducción
         type: object
