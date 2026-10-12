@@ -299,7 +299,7 @@ function initializeProductFilters() {
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = label;
-        button.className = 'min-h-11 shrink-0 rounded-full px-5 text-sm font-medium transition active:scale-95';
+        button.className = 'min-h-11 whitespace-nowrap rounded-full px-5 text-sm font-medium transition active:scale-95';
         button.setAttribute('aria-pressed', String(index === 0));
         button.classList.add(...(index === 0 ? ['bg-brand', 'text-brand-on'] : ['bg-fill', 'text-ink']));
         button.addEventListener('click', () => {

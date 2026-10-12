@@ -14,7 +14,7 @@ back_url: "/"
     </div>
 </section>
 
-<nav id="product-filters" class="sticky top-[61px] z-30 -mx-4 mt-6 flex gap-2 overflow-x-auto bg-canvas/80 px-4 py-3 backdrop-blur-xl sm:flex-wrap sm:justify-center" aria-label="Filtrar productos"></nav>
+<nav id="product-filters" class="z-30 -mx-4 mt-6 flex flex-wrap justify-center gap-2 bg-canvas/80 px-4 py-3 backdrop-blur-xl sm:sticky sm:top-[61px]" aria-label="Filtrar productos"></nav>
 
 <section class="mb-10 mt-4 grid grid-cols-1 gap-6 md:grid-cols-2" aria-label="Catálogo de productos">
     {% for product in products.elements %}
