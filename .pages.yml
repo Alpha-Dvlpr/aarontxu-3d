@@ -18,6 +18,7 @@ content:
         fields:
           - { name: title, label: Título, type: string }
           - { name: description, label: Presentación, type: text, list: true }
+          - { name: externalTitle, label: Título de la tarjeta de enlaces externos, type: string }
           - name: chips
             label: Enlaces
             type: object

@@ -6,13 +6,14 @@
             "En esta web encontrarás información sobre los servicios que ofrezco y las diferentes formas de contactarme para resolver tus dudas, solicitar un presupuesto o realizar un pedido personalizado.",
             "Contáctame y te proporcionaré un presupuesto detallado sin compromiso para cualquier idea que tengas."
         ],
+        "externalTitle": "Contacto y redes",
         "chips": [
             {
                 "name": "Productos y servicios",
-                "destination": "/products_and_services.html"
+                "destination": "/pages/products.html"
             },
             {
-                "name": "Contacto (WhatsApp)",
+                "name": "WhatsApp",
                 "destination": "https://wa.me/34604972522",
                 "newPage": true
             },
@@ -23,7 +24,7 @@
             },
             {
                 "name": "Guía de configuración de llaveros NFC",
-                "destination": "/guias/llaveros-nfc/"
+                "destination": "/pages/guides/nfc.html"
             }
         ]
     },

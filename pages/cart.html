@@ -3,10 +3,10 @@ layout: default
 title: "Tu cesta | Aarontxu 3D"
 heading: "Tu cesta"
 description: "Revisa los productos seleccionados y envía tu pedido por WhatsApp."
-back_url: "/products_and_services.html"
+back_url: "/pages/products.html"
 main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
 ---
-{% assign whatsapp_contact = site.data.aarontxu_3d.profile.chips | where: "name", "Contacto (WhatsApp)" | first %}
+{% assign whatsapp_contact = site.data.aarontxu_3d.profile.chips | where_exp: "chip", "chip.destination contains 'wa.me'" | first %}
 <section id="cart-page" data-whatsapp-url="{{ whatsapp_contact.destination | escape }}" aria-labelledby="cart-title">
     <h2 id="cart-title" class="sr-only">Productos de la cesta</h2>
     <aside class="mb-6 rounded-3xl bg-brand-tint p-5 text-sm leading-relaxed text-ink" aria-label="Información importante sobre el pedido">
@@ -15,7 +15,7 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
     </aside>
     <div id="cart-empty" class="rounded-3xl bg-surface p-10 text-center shadow-card">
         <p class="text-lg text-muted">Tu cesta está vacía.</p>
-        <a class="mt-5 inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" href="{{ '/products_and_services.html' | relative_url }}">Ver productos</a>
+        <a class="mt-5 inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" href="{{ '/pages/products.html' | relative_url }}">Ver productos</a>
     </div>
     <ul id="cart-items" class="flex flex-col gap-3"></ul>
     <section id="cart-summary" class="mt-6" hidden aria-label="Resumen del pedido">

@@ -2,52 +2,10 @@
   "directed": false,
   "multigraph": false,
   "graph": {
-    "hyperedges": [
-      {
-        "id": "cms_content_driven_pages",
-        "label": "Pages driven by aarontxu_3d.json content edited through Pages CMS",
-        "nodes": [
-          "pages_yml",
-          "data_aarontxu_3d_json",
-          "index_html",
-          "products_and_services_html",
-          "privacy_html",
-          "guias_llaveros_nfc_index"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 0.9,
-        "source_file": ".pages.yml"
-      },
-      {
-        "id": "pages_using_default_layout",
-        "label": "Pages rendered with the default Jekyll layout",
-        "nodes": [
-          "index_html",
-          "cart_html",
-          "privacy_html",
-          "products_and_services_html",
-          "guias_llaveros_nfc_index",
-          "layouts_default_html"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 0.95,
-        "source_file": "_layouts/default.html"
-      }
-    ],
     "_unverified_semantic_shrink": {
-      "cart.html": [
-        3,
-        2
-      ],
-      "products_and_services.html": [
-        4,
-        2
-      ],
       "_layouts/default.html": [
-        5,
-        3
+        14,
+        5
       ]
     },
     "schema_version": 1,
@@ -55,190 +13,364 @@
   },
   "nodes": [
     {
+      "id": "script_initializebacklink",
+      "label": "initializeBackLink()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "script.js",
+      "file_type": "code",
+      "norm_label": "initializebacklink()",
+      "source_file": "script.js",
+      "source_location": "L20"
+    },
+    {
       "id": "script_initializebacktotop",
       "label": "initializeBackToTop()",
       "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "initializebacktotop()",
       "source_file": "script.js",
       "source_location": "L3"
     },
     {
-      "id": "script_initializecartbacklink",
-      "label": "initializeCartBackLink()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "initializecartbacklink()",
-      "source_file": "script.js",
-      "source_location": "L20"
-    },
-    {
       "id": "script_initializegallerydrag",
       "label": "initializeGalleryDrag()",
       "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "initializegallerydrag()",
       "source_file": "script.js",
-      "source_location": "L342"
+      "source_location": "L369"
     },
     {
       "id": "script_initializeimagemodal",
       "label": "initializeImageModal()",
       "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "initializeimagemodal()",
       "source_file": "script.js",
-      "source_location": "L324"
+      "source_location": "L351"
     },
     {
       "id": "script_initializenfcguide",
       "label": "initializeNfcGuide()",
       "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "initializenfcguide()",
       "source_file": "script.js",
-      "source_location": "L380"
+      "source_location": "L407"
     },
     {
       "id": "script_initializeproductfilters",
       "label": "initializeProductFilters()",
       "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "initializeproductfilters()",
       "source_file": "script.js",
-      "source_location": "L290"
+      "source_location": "L317"
+    },
+    {
+      "id": "script_initializethemetoggle",
+      "label": "initializeThemeToggle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "script.js",
+      "file_type": "code",
+      "norm_label": "initializethemetoggle()",
+      "source_file": "script.js",
+      "source_location": "L254"
     },
     {
       "id": "script_initializetranslation",
       "label": "initializeTranslation()",
       "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "initializetranslation()",
       "source_file": "script.js",
-      "source_location": "L250"
+      "source_location": "L277"
     },
     {
       "id": "script_changecartquantity",
       "label": "changeCartQuantity()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
+      "community_name": "initializeCartPage",
       "file_type": "code",
       "norm_label": "changecartquantity()",
       "source_file": "script.js",
-      "source_location": "L233"
+      "source_location": "L237"
     },
     {
       "id": "script_formatcurrency",
       "label": "formatCurrency()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
+      "community_name": "initializeCartPage",
       "file_type": "code",
       "norm_label": "formatcurrency()",
       "source_file": "script.js",
-      "source_location": "L54"
+      "source_location": "L58"
     },
     {
       "id": "script_initializecartpage",
       "label": "initializeCartPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
+      "community_name": "initializeCartPage",
       "file_type": "code",
       "norm_label": "initializecartpage()",
       "source_file": "script.js",
-      "source_location": "L131"
+      "source_location": "L135"
     },
     {
       "id": "script_readcart",
       "label": "readCart()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
+      "community_name": "initializeCartPage",
       "file_type": "code",
       "norm_label": "readcart()",
       "source_file": "script.js",
-      "source_location": "L33"
+      "source_location": "L37"
     },
     {
       "id": "script_removecartitem",
       "label": "removeCartItem()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
+      "community_name": "initializeCartPage",
       "file_type": "code",
       "norm_label": "removecartitem()",
       "source_file": "script.js",
-      "source_location": "L244"
+      "source_location": "L248"
     },
     {
       "id": "script_initializeproductcart",
       "label": "initializeProductCart()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
+      "community_name": "saveCart",
       "file_type": "code",
       "norm_label": "initializeproductcart()",
       "source_file": "script.js",
-      "source_location": "L84"
+      "source_location": "L88"
     },
     {
       "id": "script_normalizequantity",
       "label": "normalizeQuantity()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
+      "community_name": "saveCart",
       "file_type": "code",
       "norm_label": "normalizequantity()",
       "source_file": "script.js",
-      "source_location": "L79"
+      "source_location": "L83"
     },
     {
       "id": "script_savecart",
       "label": "saveCart()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
+      "community_name": "saveCart",
       "file_type": "code",
       "norm_label": "savecart()",
       "source_file": "script.js",
-      "source_location": "L69"
+      "source_location": "L73"
     },
     {
       "id": "script_updatecartbadge",
       "label": "updateCartBadge()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
+      "community_name": "saveCart",
       "file_type": "code",
       "norm_label": "updatecartbadge()",
       "source_file": "script.js",
-      "source_location": "L58"
+      "source_location": "L62"
     },
     {
       "id": "script",
       "label": "script.js",
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
+      "community_name": "script.js",
       "file_type": "code",
       "norm_label": "script.js",
       "source_file": "script.js",
       "source_location": "L1"
+    },
+    {
+      "id": "pages_yml_nfc_guide",
+      "label": "nfcGuide schema",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "NFC keychain guide page",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "nfcguide schema",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml_whatsapp_helper",
+      "label": "nfcGuide whatsapp helper schema",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "NFC keychain guide page",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "nfcguide whatsapp helper schema",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml",
+      "label": "Pages CMS config (.pages.yml)",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "pages cms config (.pages.yml)",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null,
+      "verification": "unverified"
+    },
+    {
+      "id": "pages_yml_aarontxu_3d_content",
+      "label": "aarontxu_3d content file definition",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "aarontxu_3d content file definition",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml_languages",
+      "label": "languages schema",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "languages schema",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml_privacy",
+      "label": "privacy schema",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "privacy schema",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml_products_and_services",
+      "label": "productsAndServices schema",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "productsandservices schema",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml_profile",
+      "label": "profile (Portada) schema",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "profile (portada) schema",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_yml_site_images",
+      "label": "site_images media collection",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "community_name": "aarontxu_3d content file definition",
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "site_images media collection",
+      "rationale": null,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "source_url": null
     },
     {
       "id": "_config",
@@ -246,7 +378,8 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 4,
+      "community_name": "_config.yml (Jekyll config)",
       "contributor": null,
       "file_type": "code",
       "norm_label": "_config.yml (jekyll config)",
@@ -262,7 +395,8 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 4,
+      "community_name": "_config.yml (Jekyll config)",
       "contributor": null,
       "file_type": "code",
       "norm_label": "jekyll-sitemap plugin",
@@ -277,7 +411,8 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 4,
+      "community_name": "_config.yml (Jekyll config)",
       "contributor": null,
       "file_type": "concept",
       "norm_label": "github pages hosting (3d.aarontxu.com)",
@@ -292,7 +427,8 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 4,
+      "community_name": "_config.yml (Jekyll config)",
       "contributor": null,
       "file_type": "document",
       "norm_label": "readme aarontxu 3d",
@@ -302,176 +438,147 @@
       "source_url": null
     },
     {
-      "id": "pages_yml",
-      "label": "Pages CMS config (.pages.yml)",
+      "id": "_layouts_default",
+      "label": "default layout",
       "author": null,
       "captured_at": null,
-      "community": 1,
+      "community": 2,
       "contributor": null,
       "file_type": "code",
-      "norm_label": "pages cms config (.pages.yml)",
+      "norm_label": "default layout",
       "rationale": null,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "source_url": null,
-      "verification": "unverified"
-    },
-    {
-      "id": "pages_yml_languages",
-      "label": "languages section",
-      "author": null,
-      "captured_at": null,
-      "community": 1,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "languages section",
-      "rationale": null,
-      "source_file": ".pages.yml",
+      "source_file": "_layouts/default.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "pages_yml_privacy",
-      "label": "privacy section",
-      "author": null,
-      "captured_at": null,
-      "community": 1,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "privacy section",
-      "rationale": null,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "pages_yml_products_and_services",
-      "label": "productsAndServices section",
-      "author": null,
-      "captured_at": null,
-      "community": 1,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "productsandservices section",
-      "rationale": null,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "pages_yml_site_images",
-      "label": "site_images media collection",
-      "author": null,
-      "captured_at": null,
-      "community": 1,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "site_images media collection",
-      "rationale": null,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "guias_llaveros_nfc_index",
+      "id": "pages_guides_nfc",
       "label": "NFC keychain guide page",
       "author": null,
       "captured_at": null,
-      "community": 4,
+      "community": 2,
       "contributor": null,
       "file_type": "code",
       "norm_label": "nfc keychain guide page",
       "rationale": null,
-      "source_file": "guias/llaveros-nfc/index.html",
+      "source_file": "pages/guides/nfc.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "guias_llaveros_nfc_index_stepper",
-      "label": "NFC step-by-step guide stepper",
+      "id": "pages_privacy",
+      "label": "Privacy policy page",
       "author": null,
       "captured_at": null,
-      "community": 4,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "nfc step-by-step guide stepper",
-      "rationale": null,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "guias_llaveros_nfc_index_wa_helper",
-      "label": "WhatsApp link generator helper",
-      "author": null,
-      "captured_at": null,
-      "community": 4,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "whatsapp link generator helper",
-      "rationale": null,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "pages_yml_nfc_guide",
-      "label": "nfcGuide section",
-      "author": null,
-      "captured_at": null,
-      "community": 4,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "nfcguide section",
-      "rationale": null,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "cart_html",
-      "label": "Cart page (cart.html)",
-      "author": null,
-      "captured_at": null,
-      "community": 6,
+      "community": 2,
       "contributor": null,
       "file_type": "code",
-      "norm_label": "cart page (cart.html)",
+      "norm_label": "privacy policy page",
       "rationale": null,
-      "source_file": "cart.html",
+      "source_file": "pages/privacy.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "cart_whatsapp_order_flow",
-      "label": "WhatsApp order flow (cart, no auto-confirm)",
+      "id": "_layouts_default_tailwind_palette",
+      "label": "Tailwind palette via CSS variables",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 2,
       "contributor": null,
       "file_type": "concept",
-      "norm_label": "whatsapp order flow (cart, no auto-confirm)",
-      "rationale": "Order is not sent or confirmed automatically; a prepared WhatsApp message must be reviewed and sent by the user, and final details and price are agreed in chat.",
-      "source_file": "cart.html",
+      "norm_label": "tailwind palette via css variables",
+      "rationale": "Global palette colours come from :root CSS variables, defined for light and dark, so the theme can switch without changing classes.",
+      "source_file": "_layouts/default.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "pages_yml_profile",
-      "label": "profile section (Portada)",
+      "id": "_layouts_default_theme_switcher",
+      "label": "Theme switcher (auto/light/dark)",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 2,
       "contributor": null,
       "file_type": "concept",
-      "norm_label": "profile section (portada)",
-      "rationale": null,
-      "source_file": ".pages.yml",
+      "norm_label": "theme switcher (auto/light/dark)",
+      "rationale": "Saved choice in localStorage; in auto it follows the system preference and falls back to dark if it cannot be read.",
+      "source_file": "_layouts/default.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "index_html",
+      "id": "pages_guides_nfc_stepper",
+      "label": "NFC platform step-by-step stepper",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "nfc platform step-by-step stepper",
+      "rationale": null,
+      "source_file": "pages/guides/nfc.html",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_cart",
+      "label": "Cart page",
+      "author": null,
+      "captured_at": null,
+      "community": 5,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "cart page",
+      "rationale": null,
+      "source_file": "pages/cart.html",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_layouts_default_header",
+      "label": "Header with cart link, theme and translate buttons",
+      "author": null,
+      "captured_at": null,
+      "community": 5,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "header with cart link, theme and translate buttons",
+      "rationale": null,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "_layouts_default_translate",
+      "label": "Google Translate widget container",
+      "author": null,
+      "captured_at": null,
+      "community": 5,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "google translate widget container",
+      "rationale": null,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_cart_whatsapp_order",
+      "label": "WhatsApp order flow (no automatic send)",
+      "author": null,
+      "captured_at": null,
+      "community": 5,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "whatsapp order flow (no automatic send)",
+      "rationale": "The order is neither sent nor confirmed automatically; the user reviews and sends a prepared WhatsApp message, then price and details are agreed in chat.",
+      "source_file": "pages/cart.html",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "index",
       "label": "Home page (index.html)",
       "author": null,
       "captured_at": null,
@@ -485,100 +592,72 @@
       "source_url": null
     },
     {
-      "id": "privacy_html",
-      "label": "Privacy page (privacy.html)",
+      "id": "index_external_section",
+      "label": "External contact and social links section",
       "author": null,
       "captured_at": null,
       "community": 7,
       "contributor": null,
       "file_type": "code",
-      "norm_label": "privacy page (privacy.html)",
-      "rationale": null,
-      "source_file": "privacy.html",
+      "norm_label": "external contact and social links section",
+      "rationale": "Only rendered when at least one chip has newPage set; external links open in a new tab with rel noopener noreferrer and an sr-only notice for accessibility.",
+      "source_file": "index.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "data_aarontxu_3d_json",
-      "label": "_data/aarontxu_3d.json (site content data)",
+      "id": "index_intro_section",
+      "label": "Intro section with profile image, description and internal chips nav",
       "author": null,
       "captured_at": null,
       "community": 7,
       "contributor": null,
-      "file_type": "document",
-      "norm_label": "_data/aarontxu_3d.json (site content data)",
-      "rationale": null,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "layouts_default_html",
-      "label": "Default layout (_layouts/default.html)",
-      "author": null,
-      "captured_at": null,
-      "community": 8,
-      "contributor": null,
       "file_type": "code",
-      "norm_label": "default layout (_layouts/default.html)",
-      "rationale": "Tailwind palette uses CSS variables on :root with a dark-mode override so colors adapt to the color scheme.",
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "layouts_default_html_cart_badge",
-      "label": "Header cart link and count badge",
-      "author": null,
-      "captured_at": null,
-      "community": 8,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "header cart link and count badge",
+      "norm_label": "intro section with profile image, description and internal chips nav",
       "rationale": null,
-      "source_file": "_layouts/default.html",
+      "source_file": "index.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "layouts_default_html_google_translate",
-      "label": "Google Translate language widget",
-      "author": null,
-      "captured_at": null,
-      "community": 8,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "google translate language widget",
-      "rationale": null,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "products_and_services_html",
+      "id": "pages_products",
       "label": "Products and services page",
       "author": null,
       "captured_at": null,
-      "community": 9,
+      "community": 8,
       "contributor": null,
       "file_type": "code",
       "norm_label": "products and services page",
       "rationale": null,
-      "source_file": "products_and_services.html",
+      "source_file": "pages/products.html",
       "source_location": null,
       "source_url": null
     },
     {
-      "id": "products_and_services_html_filters_gallery",
-      "label": "Product filters, gallery and image modal",
+      "id": "pages_products_filters",
+      "label": "Product category filters",
       "author": null,
       "captured_at": null,
-      "community": 9,
+      "community": 8,
       "contributor": null,
       "file_type": "concept",
-      "norm_label": "product filters, gallery and image modal",
+      "norm_label": "product category filters",
       "rationale": null,
-      "source_file": "products_and_services.html",
+      "source_file": "pages/products.html",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "pages_products_image_modal",
+      "label": "Image zoom modal",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "image zoom modal",
+      "rationale": null,
+      "source_file": "pages/products.html",
       "source_location": null,
       "source_url": null
     }
@@ -593,7 +672,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L235",
+      "source_location": "L239",
       "weight": 1.0
     },
     {
@@ -605,7 +684,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L239",
+      "source_location": "L243",
       "weight": 1.0
     },
     {
@@ -617,24 +696,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L240",
+      "source_location": "L244",
       "weight": 1.0
     },
     {
       "source": "script_initializecartpage",
       "target": "script_readcart",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "script.js",
-      "source_location": "L143",
-      "weight": 1.0
-    },
-    {
-      "source": "script_initializecartpage",
-      "target": "script_updatecartbadge",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -646,6 +713,18 @@
     },
     {
       "source": "script_initializecartpage",
+      "target": "script_updatecartbadge",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "script.js",
+      "source_location": "L151",
+      "weight": 1.0
+    },
+    {
+      "source": "script_initializecartpage",
       "target": "script_formatcurrency",
       "relation": "calls",
       "_origin": "ast",
@@ -653,7 +732,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L171",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -665,7 +744,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L182",
+      "source_location": "L186",
       "weight": 1.0
     },
     {
@@ -677,31 +756,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L205",
-      "weight": 1.0
-    },
-    {
-      "source": "script_initializeproductcart",
-      "target": "script_readcart",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "script.js",
-      "source_location": "L113",
-      "weight": 1.0
-    },
-    {
-      "source": "script_initializeproductcart",
-      "target": "script_savecart",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "script.js",
-      "source_location": "L122",
+      "source_location": "L209",
       "weight": 1.0
     },
     {
@@ -713,7 +768,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L96",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "script_initializeproductcart",
+      "target": "script_readcart",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "script.js",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "script_initializeproductcart",
+      "target": "script_savecart",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "script.js",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -725,7 +804,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L245",
+      "source_location": "L249",
       "weight": 1.0
     },
     {
@@ -737,7 +816,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L246",
+      "source_location": "L250",
       "weight": 1.0
     },
     {
@@ -749,7 +828,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L76",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -761,12 +840,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L131",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
       "source": "script",
-      "target": "script_initializecartbacklink",
+      "target": "script_initializebacklink",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -778,6 +857,18 @@
     },
     {
       "source": "script",
+      "target": "script_initializethemetoggle",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "script.js",
+      "source_location": "L254",
+      "weight": 1.0
+    },
+    {
+      "source": "script",
       "target": "script_initializetranslation",
       "relation": "contains",
       "_origin": "ast",
@@ -785,19 +876,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L250",
-      "weight": 1.0
-    },
-    {
-      "source": "script",
-      "target": "script_initializeproductfilters",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "script.js",
-      "source_location": "L290",
+      "source_location": "L277",
       "weight": 1.0
     },
     {
@@ -814,6 +893,18 @@
     },
     {
       "source": "script",
+      "target": "script_initializeproductfilters",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "script.js",
+      "source_location": "L317",
+      "weight": 1.0
+    },
+    {
+      "source": "script",
       "target": "script_initializeimagemodal",
       "relation": "contains",
       "_origin": "ast",
@@ -821,7 +912,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L324",
+      "source_location": "L351",
       "weight": 1.0
     },
     {
@@ -833,7 +924,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L342",
+      "source_location": "L369",
       "weight": 1.0
     },
     {
@@ -845,7 +936,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L380",
+      "source_location": "L407",
       "weight": 1.0
     },
     {
@@ -857,7 +948,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L58",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -869,7 +960,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "script.js",
-      "source_location": "L84",
+      "source_location": "L88",
       "weight": 1.0
     },
     {
@@ -880,7 +971,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "script.js",
-      "source_location": "L233",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -891,7 +982,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "script.js",
-      "source_location": "L244",
+      "source_location": "L248",
       "weight": 1.0
     },
     {
@@ -902,7 +993,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "script.js",
-      "source_location": "L33",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -913,7 +1004,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "script.js",
-      "source_location": "L54",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -924,7 +1015,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "script.js",
-      "source_location": "L69",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -935,7 +1026,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "script.js",
-      "source_location": "L79",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -946,6 +1037,105 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "_config.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml",
+      "target": "pages_yml_aarontxu_3d_content",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml",
+      "target": "pages_yml_site_images",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_aarontxu_3d_content",
+      "target": "pages_yml_languages",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_aarontxu_3d_content",
+      "target": "pages_yml_nfc_guide",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_aarontxu_3d_content",
+      "target": "pages_yml_privacy",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_aarontxu_3d_content",
+      "target": "pages_yml_products_and_services",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_aarontxu_3d_content",
+      "target": "pages_yml_profile",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_nfc_guide",
+      "target": "pages_yml_whatsapp_helper",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_yml_products_and_services",
+      "target": "pages_yml_site_images",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pages.yml",
       "source_location": null,
       "weight": 1.0
     },
@@ -972,409 +1162,176 @@
       "weight": 1.0
     },
     {
-      "source": "guias_llaveros_nfc_index_stepper",
-      "target": "guias_llaveros_nfc_index_wa_helper",
+      "source": "_layouts_default",
+      "target": "_layouts_default_header",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_layouts_default",
+      "target": "_layouts_default_tailwind_palette",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_layouts_default",
+      "target": "_layouts_default_theme_switcher",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_layouts_default",
+      "target": "pages_privacy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_layouts_default_header",
+      "target": "_layouts_default_translate",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_layouts_default_header",
+      "target": "pages_cart",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "_layouts/default.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "_layouts_default",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "index_external_section",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "index_intro_section",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_cart",
+      "target": "_layouts_default",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/cart.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_cart",
+      "target": "pages_cart_whatsapp_order",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/cart.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_guides_nfc",
+      "target": "_layouts_default",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/guides/nfc.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_guides_nfc",
+      "target": "pages_guides_nfc_stepper",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/guides/nfc.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_products",
+      "target": "_layouts_default",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/products.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_products",
+      "target": "pages_products_filters",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/products.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_products",
+      "target": "pages_products_image_modal",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pages/products.html",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pages_products",
+      "target": "pages_cart",
       "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.9,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "cart_html",
-      "target": "pages_yml_profile",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.9,
-      "source_file": "cart.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "cart_html",
-      "target": "cart_whatsapp_order_flow",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cart.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "cart_html",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cart.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "cart_html",
-      "target": "layouts_default_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cart.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "guias_llaveros_nfc_index",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "guias_llaveros_nfc_index",
-      "target": "guias_llaveros_nfc_index_stepper",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "guias_llaveros_nfc_index",
-      "target": "guias_llaveros_nfc_index_wa_helper",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "guias_llaveros_nfc_index",
-      "target": "index_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "guias_llaveros_nfc_index",
-      "target": "layouts_default_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "guias_llaveros_nfc_index",
-      "target": "pages_yml_nfc_guide",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "guias/llaveros-nfc/index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "index_html",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "index_html",
-      "target": "layouts_default_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "index_html",
-      "target": "pages_yml_profile",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "layouts_default_html",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "layouts_default_html",
-      "target": "layouts_default_html_cart_badge",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "layouts_default_html",
-      "target": "layouts_default_html_google_translate",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "layouts_default_html",
-      "target": "pages_yml_languages",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "layouts_default_html",
-      "target": "privacy_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "layouts_default_html_cart_badge",
-      "target": "cart_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "_layouts/default.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "pages_yml_languages",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "pages_yml_nfc_guide",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "pages_yml_privacy",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "pages_yml_products_and_services",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "pages_yml_profile",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml",
-      "target": "pages_yml_site_images",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "pages_yml_products_and_services",
-      "target": "pages_yml_site_images",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".pages.yml",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "privacy_html",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "privacy_html",
-      "target": "index_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "privacy_html",
-      "target": "pages_yml_privacy",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "products_and_services_html",
-      "target": "data_aarontxu_3d_json",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "products_and_services.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "products_and_services_html",
-      "target": "index_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "products_and_services.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "products_and_services_html",
-      "target": "layouts_default_html",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "products_and_services.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "products_and_services_html",
-      "target": "pages_yml_products_and_services",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "products_and_services.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "products_and_services_html",
-      "target": "products_and_services_html_filters_gallery",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "products_and_services.html",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "products_and_services_html",
-      "target": "cart_html",
-      "relation": "shares_data_with",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "products_and_services.html",
+      "source_file": "pages/products.html",
       "source_location": null,
       "weight": 1.0
     }
   ],
-  "hyperedges": [
-    {
-      "id": "cms_content_driven_pages",
-      "label": "Pages driven by aarontxu_3d.json content edited through Pages CMS",
-      "nodes": [
-        "pages_yml",
-        "data_aarontxu_3d_json",
-        "index_html",
-        "products_and_services_html",
-        "privacy_html",
-        "guias_llaveros_nfc_index"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.9,
-      "source_file": ".pages.yml"
-    },
-    {
-      "id": "pages_using_default_layout",
-      "label": "Pages rendered with the default Jekyll layout",
-      "nodes": [
-        "index_html",
-        "cart_html",
-        "privacy_html",
-        "products_and_services_html",
-        "guias_llaveros_nfc_index",
-        "layouts_default_html"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.95,
-      "source_file": "_layouts/default.html"
-    }
-  ],
-  "built_at_commit": "7a0f6eaa58c3c236d3f449344eed5a7c2ef2b95b"
+  "hyperedges": [],
+  "built_at_commit": "e9265b0eb77de98cb8043c38a1cb0f3d4bbb6f2e"
 }

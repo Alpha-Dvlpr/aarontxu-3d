@@ -17,17 +17,21 @@ function initializeBackToTop() {
     updateVisibility();
 }
 
-function initializeCartBackLink() {
-    const originKey = 'aarontxu-3d-cart-origin';
-    try {
-        if (!document.getElementById('cart-empty')) {
-            sessionStorage.setItem(originKey, location.pathname + location.search);
-            return;
-        }
-        const origin = sessionStorage.getItem(originKey);
-        const link = document.getElementById('back-link');
-        if (origin && link) link.href = origin;
-    } catch {}
+function initializeBackLink() {
+    const link = document.getElementById('back-link');
+    if (!link) return;
+
+    link.addEventListener('click', event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        let cameFromHere = false;
+        try {
+            const from = new URL(document.referrer);
+            cameFromHere = from.origin === location.origin && from.href !== location.href;
+        } catch {}
+        if (!cameFromHere || history.length < 2) return;
+        event.preventDefault();
+        history.back();
+    });
 }
 
 function readCart() {
@@ -244,6 +248,29 @@ function changeCartQuantity(productId, quantity, render) {
 function removeCartItem(productId, render) {
     const cart = readCart().filter(item => item.id !== productId);
     saveCart(cart);
+    render();
+}
+
+function initializeThemeToggle() {
+    const button = document.getElementById('theme-btn');
+    if (!button || !window.applyTheme) return;
+
+    const order = ['auto', 'light', 'dark'];
+    const labels = { auto: 'automático', light: 'claro', dark: 'oscuro' };
+    const render = () => {
+        const choice = document.documentElement.dataset.themeChoice || 'auto';
+        button.querySelectorAll('[data-theme-icon]').forEach(icon => icon.classList.toggle('hidden', icon.dataset.themeIcon !== choice));
+        button.setAttribute('aria-label', `Tema: ${labels[choice]}`);
+        button.title = `Tema: ${labels[choice]}`;
+    };
+
+    button.addEventListener('click', () => {
+        const current = document.documentElement.dataset.themeChoice || 'auto';
+        const next = order[(order.indexOf(current) + 1) % order.length];
+        try { localStorage.setItem('theme', next); } catch {}
+        window.applyTheme(next);
+        render();
+    });
     render();
 }
 
@@ -508,8 +535,9 @@ function initializeNfcGuide() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeNfcGuide();
     initializeGalleryDrag();
-    initializeCartBackLink();
+    initializeBackLink();
     initializeBackToTop();
+    initializeThemeToggle();
     initializeTranslation();
     initializeProductFilters();
     initializeImageModal();

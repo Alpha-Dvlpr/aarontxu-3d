@@ -1,94 +1,87 @@
 {
   "communities": {
     "0": [
+      "pages_yml",
+      "pages_yml_aarontxu_3d_content",
+      "pages_yml_languages",
+      "pages_yml_nfc_guide",
+      "pages_yml_privacy",
+      "pages_yml_products_and_services",
+      "pages_yml_profile",
+      "pages_yml_site_images",
+      "pages_yml_whatsapp_helper"
+    ],
+    "1": [
       "script",
+      "script_initializebacklink",
       "script_initializebacktotop",
-      "script_initializecartbacklink",
       "script_initializegallerydrag",
       "script_initializeimagemodal",
       "script_initializenfcguide",
       "script_initializeproductfilters",
+      "script_initializethemetoggle",
       "script_initializetranslation"
     ],
-    "1": [
-      "pages_yml",
-      "pages_yml_languages",
-      "pages_yml_privacy",
-      "pages_yml_products_and_services",
-      "pages_yml_site_images"
-    ],
     "2": [
+      "_layouts_default",
+      "_layouts_default_tailwind_palette",
+      "_layouts_default_theme_switcher",
+      "pages_guides_nfc",
+      "pages_guides_nfc_stepper",
+      "pages_privacy"
+    ],
+    "3": [
       "script_changecartquantity",
       "script_formatcurrency",
       "script_initializecartpage",
       "script_readcart",
       "script_removecartitem"
     ],
-    "3": [
+    "4": [
       "_config",
       "_config_jekyll_sitemap",
       "readme",
       "readme_github_pages"
     ],
-    "4": [
-      "guias_llaveros_nfc_index",
-      "guias_llaveros_nfc_index_stepper",
-      "guias_llaveros_nfc_index_wa_helper",
-      "pages_yml_nfc_guide"
-    ],
     "5": [
+      "_layouts_default_header",
+      "_layouts_default_translate",
+      "pages_cart",
+      "pages_cart_whatsapp_order"
+    ],
+    "6": [
       "script_initializeproductcart",
       "script_normalizequantity",
       "script_savecart",
       "script_updatecartbadge"
     ],
-    "6": [
-      "cart_html",
-      "cart_whatsapp_order_flow",
-      "pages_yml_profile"
-    ],
     "7": [
-      "data_aarontxu_3d_json",
-      "index_html",
-      "privacy_html"
+      "index",
+      "index_external_section",
+      "index_intro_section"
     ],
     "8": [
-      "layouts_default_html",
-      "layouts_default_html_cart_badge",
-      "layouts_default_html_google_translate"
-    ],
-    "9": [
-      "products_and_services_html",
-      "products_and_services_html_filters_gallery"
+      "pages_products",
+      "pages_products_filters",
+      "pages_products_image_modal"
     ]
   },
   "cohesion": {
     "0": 0.25,
-    "1": 0.5,
-    "2": 0.7,
-    "3": 0.5,
-    "4": 0.6666666666666666,
+    "1": 0.2222222222222222,
+    "2": 0.3333333333333333,
+    "3": 0.7,
+    "4": 0.5,
     "5": 0.5,
-    "6": 0.6666666666666666,
-    "7": 1.0,
-    "8": 0.6666666666666666,
-    "9": 1.0
+    "6": 0.5,
+    "7": 0.6666666666666666,
+    "8": 0.6666666666666666
   },
   "gods": [
     {
-      "id": "layouts_default_html",
-      "label": "Default layout (_layouts/default.html)",
-      "degree": 9
-    },
-    {
-      "id": "pages_yml",
-      "label": "Pages CMS config (.pages.yml)",
-      "degree": 7
-    },
-    {
-      "id": "data_aarontxu_3d_json",
-      "label": "_data/aarontxu_3d.json (site content data)",
-      "degree": 7
+      "id": "_layouts_default",
+      "label": "default layout",
+      "degree": 8
     },
     {
       "id": "script_initializecartpage",
@@ -96,24 +89,14 @@
       "degree": 6
     },
     {
-      "id": "cart_html",
-      "label": "Cart page (cart.html)",
+      "id": "pages_yml_aarontxu_3d_content",
+      "label": "aarontxu_3d content file definition",
       "degree": 6
     },
     {
-      "id": "index_html",
-      "label": "Home page (index.html)",
-      "degree": 6
-    },
-    {
-      "id": "products_and_services_html",
-      "label": "Products and services page",
-      "degree": 6
-    },
-    {
-      "id": "guias_llaveros_nfc_index",
-      "label": "NFC keychain guide page",
-      "degree": 6
+      "id": "script_changecartquantity",
+      "label": "changeCartQuantity()",
+      "degree": 5
     },
     {
       "id": "script_readcart",
@@ -121,51 +104,60 @@
       "degree": 5
     },
     {
+      "id": "script_removecartitem",
+      "label": "removeCartItem()",
+      "degree": 5
+    },
+    {
       "id": "script_savecart",
       "label": "saveCart()",
       "degree": 5
+    },
+    {
+      "id": "script_initializeproductcart",
+      "label": "initializeProductCart()",
+      "degree": 4
+    },
+    {
+      "id": "pages_cart",
+      "label": "Cart page",
+      "degree": 4
+    },
+    {
+      "id": "pages_products",
+      "label": "Products and services page",
+      "degree": 4
     }
   ],
   "surprises": [
     {
-      "source": "Default layout (_layouts/default.html)",
-      "target": "languages section",
+      "source": "default layout",
+      "target": "Privacy policy page",
       "source_files": [
         "_layouts/default.html",
-        ".pages.yml"
+        "pages/privacy.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `languages section` unexpectedly reaches hub `Default layout (_layouts/default.html)`"
+      "why": "connects across different repos/directories; peripheral node `Privacy policy page` unexpectedly reaches hub `default layout`"
     },
     {
-      "source": "Header cart link and count badge",
-      "target": "Cart page (cart.html)",
+      "source": "Home page (index.html)",
+      "target": "default layout",
       "source_files": [
-        "_layouts/default.html",
-        "cart.html"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Header cart link and count badge` unexpectedly reaches hub `Cart page (cart.html)`"
-    },
-    {
-      "source": "NFC keychain guide page",
-      "target": "_data/aarontxu_3d.json (site content data)",
-      "source_files": [
-        "guias/llaveros-nfc/index.html",
-        ".pages.yml"
+        "index.html",
+        "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
       "why": "connects across different repos/directories; bridges separate communities"
     },
     {
-      "source": "Default layout (_layouts/default.html)",
-      "target": "_data/aarontxu_3d.json (site content data)",
+      "source": "Cart page",
+      "target": "default layout",
       "source_files": [
-        "_layouts/default.html",
-        ".pages.yml"
+        "pages/cart.html",
+        "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
@@ -173,18 +165,29 @@
     },
     {
       "source": "NFC keychain guide page",
-      "target": "nfcGuide section",
+      "target": "default layout",
       "source_files": [
-        "guias/llaveros-nfc/index.html",
-        ".pages.yml"
+        "pages/guides/nfc.html",
+        "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `nfcGuide section` unexpectedly reaches hub `NFC keychain guide page`"
+      "why": "connects across different repos/directories; peripheral node `NFC keychain guide page` unexpectedly reaches hub `default layout`"
+    },
+    {
+      "source": "Products and services page",
+      "target": "default layout",
+      "source_files": [
+        "pages/products.html",
+        "_layouts/default.html"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
     }
   ],
   "tokens": {
-    "input": 174785,
-    "output": 12310
+    "input": 0,
+    "output": 0
   }
 }

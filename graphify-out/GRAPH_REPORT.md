@@ -4,104 +4,99 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 41 nodes · 70 edges · 10 communities (8 shown, 2 thin omitted)
+- 47 nodes · 60 edges · 9 communities (8 shown, 1 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
-- Token cost: 66,926 input · 142 output
+- Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7a0f6eaa`
+- Built from commit: `e9265b0e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Pages CMS Config
-- Cart Page Logic
-- Jekyll Site Config
-- NFC Keychain Guide
-- Product Cart Storage
-- WhatsApp Order Flow
-- Site Content Pages
-- Default Layout & Header
-- Products Page & Gallery
+- aarontxu_3d content file definition
+- default layout
+- initializeCartPage
+- _config.yml (Jekyll config)
+- Cart page
+- saveCart
+- Home page (index.html)
+- Products and services page
 
 ## God Nodes (most connected - your core abstractions)
-1. `Default layout (_layouts/default.html)` - 9 edges
-2. `Pages CMS config (.pages.yml)` - 7 edges
-3. `_data/aarontxu_3d.json (site content data)` - 7 edges
-4. `initializeCartPage()` - 6 edges
-5. `NFC keychain guide page` - 6 edges
-6. `Cart page (cart.html)` - 6 edges
-7. `Home page (index.html)` - 6 edges
-8. `Products and services page` - 6 edges
-9. `changeCartQuantity()` - 5 edges
-10. `readCart()` - 5 edges
+1. `default layout` - 8 edges
+2. `initializeCartPage()` - 6 edges
+3. `aarontxu_3d content file definition` - 6 edges
+4. `changeCartQuantity()` - 5 edges
+5. `readCart()` - 5 edges
+6. `removeCartItem()` - 5 edges
+7. `saveCart()` - 5 edges
+8. `initializeProductCart()` - 4 edges
+9. `Cart page` - 4 edges
+10. `Products and services page` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Default layout (_layouts/default.html)` --references--> `languages section`  [EXTRACTED]
-  _layouts/default.html → .pages.yml
-- `Header cart link and count badge` --references--> `Cart page (cart.html)`  [EXTRACTED]
-  _layouts/default.html → cart.html
-- `NFC keychain guide page` --references--> `_data/aarontxu_3d.json (site content data)`  [EXTRACTED]
-  guias/llaveros-nfc/index.html → .pages.yml
-- `NFC keychain guide page` --references--> `Home page (index.html)`  [EXTRACTED]
-  guias/llaveros-nfc/index.html → index.html
-- `NFC keychain guide page` --references--> `Default layout (_layouts/default.html)`  [EXTRACTED]
-  guias/llaveros-nfc/index.html → _layouts/default.html
+- `default layout` --references--> `Privacy policy page`  [EXTRACTED]
+  _layouts/default.html → pages/privacy.html
+- `Home page (index.html)` --references--> `default layout`  [EXTRACTED]
+  index.html → _layouts/default.html
+- `Cart page` --references--> `default layout`  [EXTRACTED]
+  pages/cart.html → _layouts/default.html
+- `NFC keychain guide page` --references--> `default layout`  [EXTRACTED]
+  pages/guides/nfc.html → _layouts/default.html
+- `Products and services page` --references--> `default layout`  [EXTRACTED]
+  pages/products.html → _layouts/default.html
 
 ## Import Cycles
 - None detected.
 
-## Hyperedges (group relationships)
-- **Pages driven by aarontxu_3d.json content edited through Pages CMS** — pages_yml, data_aarontxu_3d_json, index_html, products_and_services_html, privacy_html, guias_llaveros_nfc_index [EXTRACTED 0.90]
-- **Pages rendered with the default Jekyll layout** — index_html, cart_html, privacy_html, products_and_services_html, guias_llaveros_nfc_index, layouts_default_html [EXTRACTED 0.95]
+## Communities (9 total, 1 thin omitted)
 
-## Communities (10 total, 2 thin omitted)
+### Community 0 - "aarontxu_3d content file definition"
+Cohesion: 0.25
+Nodes (9): Pages CMS config (.pages.yml), aarontxu_3d content file definition, languages schema, nfcGuide schema, privacy schema, productsAndServices schema, profile (Portada) schema, site_images media collection (+1 more)
 
-### Community 1 - "Pages CMS Config"
-Cohesion: 0.50
-Nodes (5): Pages CMS config (.pages.yml), languages section, privacy section, productsAndServices section, site_images media collection
+### Community 2 - "default layout"
+Cohesion: 0.33
+Nodes (6): default layout, Tailwind palette via CSS variables, Theme switcher (auto/light/dark), NFC keychain guide page, NFC platform step-by-step stepper, Privacy policy page
 
-### Community 2 - "Cart Page Logic"
+### Community 3 - "initializeCartPage"
 Cohesion: 0.70
 Nodes (5): changeCartQuantity(), formatCurrency(), initializeCartPage(), readCart(), removeCartItem()
 
-### Community 3 - "Jekyll Site Config"
+### Community 4 - "_config.yml (Jekyll config)"
 Cohesion: 0.50
 Nodes (4): _config.yml (Jekyll config), jekyll-sitemap plugin, README Aarontxu 3D, GitHub Pages hosting (3d.aarontxu.com)
 
-### Community 4 - "NFC Keychain Guide"
-Cohesion: 0.67
-Nodes (4): NFC keychain guide page, NFC step-by-step guide stepper, WhatsApp link generator helper, nfcGuide section
+### Community 5 - "Cart page"
+Cohesion: 0.50
+Nodes (4): Header with cart link, theme and translate buttons, Google Translate widget container, Cart page, WhatsApp order flow (no automatic send)
 
-### Community 5 - "Product Cart Storage"
+### Community 6 - "saveCart"
 Cohesion: 0.50
 Nodes (4): initializeProductCart(), normalizeQuantity(), saveCart(), updateCartBadge()
 
-### Community 6 - "WhatsApp Order Flow"
+### Community 7 - "Home page (index.html)"
 Cohesion: 0.67
-Nodes (3): Cart page (cart.html), WhatsApp order flow (cart, no auto-confirm), profile section (Portada)
+Nodes (3): Home page (index.html), External contact and social links section, Intro section with profile image, description and internal chips nav
 
-### Community 7 - "Site Content Pages"
-Cohesion: 1.00
-Nodes (3): _data/aarontxu_3d.json (site content data), Home page (index.html), Privacy page (privacy.html)
-
-### Community 8 - "Default Layout & Header"
+### Community 8 - "Products and services page"
 Cohesion: 0.67
-Nodes (3): Default layout (_layouts/default.html), Header cart link and count badge, Google Translate language widget
+Nodes (3): Products and services page, Product category filters, Image zoom modal
 
 ## Knowledge Gaps
-- **5 isolated node(s):** `jekyll-sitemap plugin`, `README Aarontxu 3D`, `WhatsApp order flow (cart, no auto-confirm)`, `Google Translate language widget`, `Product filters, gallery and image modal`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 12 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **16 isolated node(s):** `nfcGuide whatsapp helper schema`, `languages schema`, `privacy schema`, `profile (Portada) schema`, `jekyll-sitemap plugin` (+11 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 24 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Default layout (_layouts/default.html)` connect `Default Layout & Header` to `Pages CMS Config`, `NFC Keychain Guide`, `WhatsApp Order Flow`, `Site Content Pages`, `Products Page & Gallery`?**
-  _High betweenness centrality (0.064) - this node is a cross-community bridge._
-- **What connects `jekyll-sitemap plugin`, `README Aarontxu 3D`, `WhatsApp order flow (cart, no auto-confirm)` to the rest of the system?**
-  _5 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Why does `NFC keychain guide page` connect `NFC Keychain Guide` to `Default Layout & Header`, `Site Content Pages`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
-- **Why does `Pages CMS config (.pages.yml)` connect `Pages CMS Config` to `NFC Keychain Guide`, `WhatsApp Order Flow`, `Site Content Pages`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
+- **Why does `default layout` connect `default layout` to `Products and services page`, `Cart page`, `Home page (index.html)`?**
+  _High betweenness centrality (0.080) - this node is a cross-community bridge._
+- **What connects `nfcGuide whatsapp helper schema`, `languages schema`, `privacy schema` to the rest of the system?**
+  _16 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `Home page (index.html)` connect `Home page (index.html)` to `default layout`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `Products and services page` connect `Products and services page` to `default layout`, `Cart page`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
