@@ -9,6 +9,7 @@ function initializeBackToTop() {
         button.classList.toggle('opacity-100', isVisible);
         button.classList.toggle('opacity-0', !isVisible);
         button.classList.toggle('pointer-events-none', !isVisible);
+        button.inert = !isVisible;
     };
 
     window.addEventListener('scroll', updateVisibility, { passive: true });
@@ -147,7 +148,7 @@ function initializeCartPage() {
 
         cart.forEach(item => {
             const row = document.createElement('li');
-            row.className = 'flex flex-col gap-4 rounded-xl border border-brand-100 p-4 sm:flex-row sm:items-center';
+            row.className = 'flex flex-col gap-4 rounded-3xl bg-surface p-4 shadow-card sm:flex-row sm:items-center';
 
             if (item.image) {
                 const image = document.createElement('img');
@@ -156,17 +157,17 @@ function initializeCartPage() {
                 image.width = 96;
                 image.height = 96;
                 image.loading = 'lazy';
-                image.className = 'h-24 w-24 self-center rounded-lg object-contain sm:self-auto';
+                image.className = 'h-24 w-24 shrink-0 self-center rounded-2xl object-cover sm:self-auto';
                 row.appendChild(image);
             }
 
             const details = document.createElement('div');
             details.className = 'min-w-0 flex-1 text-center sm:text-left';
             const name = document.createElement('h2');
-            name.className = 'font-semibold text-gray-900';
+            name.className = 'font-semibold text-ink';
             name.textContent = item.name;
             const unitPrice = document.createElement('p');
-            unitPrice.className = 'mt-1 text-sm text-gray-600';
+            unitPrice.className = 'mt-1 text-sm text-muted';
             unitPrice.textContent = item.priceLabel || `${formatCurrency(item.price)} / unidad`;
             details.append(name, unitPrice);
             row.appendChild(details);
@@ -177,22 +178,22 @@ function initializeCartPage() {
             decreaseButton.type = 'button';
             decreaseButton.textContent = '−';
             decreaseButton.setAttribute('aria-label', `Reducir cantidad de ${item.name}`);
-            decreaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700';
+            decreaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
             decreaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity - 1, render));
             const quantity = document.createElement('span');
-            quantity.className = 'min-w-8 text-center font-medium';
+            quantity.className = 'min-w-8 text-center font-medium text-ink';
             quantity.textContent = String(item.quantity);
             const increaseButton = document.createElement('button');
             increaseButton.type = 'button';
             increaseButton.textContent = '+';
             increaseButton.setAttribute('aria-label', `Aumentar cantidad de ${item.name}`);
-            increaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700';
+            increaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
             increaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity + 1, render));
             quantityControls.append(decreaseButton, quantity, increaseButton);
             row.appendChild(quantityControls);
 
             const subtotal = document.createElement('p');
-            subtotal.className = 'min-w-24 text-center font-semibold text-brand-700';
+            subtotal.className = 'min-w-24 text-center font-bold text-brand-text';
             subtotal.textContent = item.priceLabel ? 'A consultar' : formatCurrency(item.price * item.quantity);
             row.appendChild(subtotal);
 
@@ -200,7 +201,7 @@ function initializeCartPage() {
             removeButton.type = 'button';
             removeButton.textContent = 'Quitar';
             removeButton.setAttribute('aria-label', `Quitar ${item.name} de la cesta`);
-            removeButton.className = 'text-sm text-gray-600 underline hover:text-gray-900';
+            removeButton.className = 'min-h-11 rounded-full px-4 text-sm font-medium text-danger transition hover:bg-fill';
             removeButton.addEventListener('click', () => removeCartItem(item.id, render));
             row.appendChild(removeButton);
             itemList.appendChild(row);
@@ -298,9 +299,9 @@ function initializeProductFilters() {
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = label;
-        button.className = 'rounded-full px-4 py-2 transition';
+        button.className = 'min-h-11 shrink-0 rounded-full px-5 text-sm font-medium transition active:scale-95';
         button.setAttribute('aria-pressed', String(index === 0));
-        button.classList.add(...(index === 0 ? ['bg-brand-500', 'text-white'] : ['bg-brand-100', 'text-brand-700']));
+        button.classList.add(...(index === 0 ? ['bg-brand', 'text-brand-on'] : ['bg-fill', 'text-ink']));
         button.addEventListener('click', () => {
             cards.forEach(card => {
                 const shouldHide = id !== 'all' && card.dataset.category !== id;
@@ -310,10 +311,10 @@ function initializeProductFilters() {
             controls.querySelectorAll('button').forEach(filterButton => {
                 const selected = filterButton === button;
                 filterButton.setAttribute('aria-pressed', String(selected));
-                filterButton.classList.toggle('bg-brand-500', selected);
-                filterButton.classList.toggle('text-white', selected);
-                filterButton.classList.toggle('bg-brand-100', !selected);
-                filterButton.classList.toggle('text-brand-700', !selected);
+                filterButton.classList.toggle('bg-brand', selected);
+                filterButton.classList.toggle('text-brand-on', selected);
+                filterButton.classList.toggle('bg-fill', !selected);
+                filterButton.classList.toggle('text-ink', !selected);
             });
         });
         controls.appendChild(button);
@@ -338,7 +339,46 @@ function initializeImageModal() {
     });
 }
 
+function initializeGalleryDrag() {
+    document.querySelectorAll('[data-gallery]').forEach(gallery => {
+        let startX = 0;
+        let startScroll = 0;
+        let dragged = false;
+
+        gallery.addEventListener('pointerdown', event => {
+            if (event.pointerType !== 'mouse' || event.button !== 0) return;
+            startX = event.clientX;
+            startScroll = gallery.scrollLeft;
+            dragged = false;
+            const onMove = moveEvent => {
+                const delta = moveEvent.clientX - startX;
+                if (Math.abs(delta) > 5) {
+                    dragged = true;
+                    gallery.classList.add('dragging');
+                }
+                gallery.scrollLeft = startScroll - delta;
+            };
+            const onUp = () => {
+                window.removeEventListener('pointermove', onMove);
+                window.removeEventListener('pointerup', onUp);
+                gallery.classList.remove('dragging');
+            };
+            window.addEventListener('pointermove', onMove);
+            window.addEventListener('pointerup', onUp);
+        });
+
+        gallery.addEventListener('click', event => {
+            if (dragged) {
+                event.stopPropagation();
+                event.preventDefault();
+                dragged = false;
+            }
+        }, true);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    initializeGalleryDrag();
     initializeCartBackLink();
     initializeBackToTop();
     initializeTranslation();

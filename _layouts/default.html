@@ -2,9 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
-    <meta name="theme-color" content="#fff7ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#faf7f3" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#110f0e" media="(prefers-color-scheme: dark)">
     <title>{{ page.title | default: site.title | escape }}</title>
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <meta property="og:type" content="website">
@@ -19,29 +21,88 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ favicon | relative_url }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Paleta global: para cambiar los colores de toda la web basta con editar estos valores.
+        // Paleta global: los colores salen de las variables CSS de :root (claro y oscuro, abajo).
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI"', 'system-ui', 'sans-serif']
+                    },
                     colors: {
-                        brand: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 900: '#7c2d12' },
-                        accent: '#ef4444'
+                        canvas: 'rgb(var(--canvas) / <alpha-value>)',
+                        surface: 'rgb(var(--surface) / <alpha-value>)',
+                        fill: 'rgb(var(--fill) / <alpha-value>)',
+                        ink: 'rgb(var(--ink) / <alpha-value>)',
+                        muted: 'rgb(var(--muted) / <alpha-value>)',
+                        line: 'rgb(var(--line) / <alpha-value>)',
+                        brand: {
+                            DEFAULT: 'rgb(var(--brand) / <alpha-value>)',
+                            hover: 'rgb(var(--brand-hover) / <alpha-value>)',
+                            text: 'rgb(var(--brand-text) / <alpha-value>)',
+                            on: 'rgb(var(--brand-on) / <alpha-value>)',
+                            tint: 'rgb(var(--brand-tint) / <alpha-value>)'
+                        },
+                        danger: 'rgb(var(--danger) / <alpha-value>)',
+                        'grad-from': 'rgb(var(--grad-from) / <alpha-value>)',
+                        'grad-to': 'rgb(var(--grad-to) / <alpha-value>)'
+                    },
+                    boxShadow: {
+                        card: '0 1px 2px rgb(0 0 0 / .04), 0 8px 24px rgb(0 0 0 / .06)'
                     }
                 }
             }
         };
     </script>
     <style>
-        @font-face {
-            font-family: 'Monaco';
-            src: url('{{ '/fonts/Monaco.woff' | relative_url }}') format('woff');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
+        :root {
+            --canvas: 250 247 243;
+            --surface: 255 255 255;
+            --fill: 242 237 231;
+            --ink: 29 29 31;
+            --muted: 99 99 102;
+            --line: 226 220 212;
+            --brand: 194 65 12;
+            --brand-hover: 154 52 18;
+            --brand-text: 184 58 10;
+            --brand-on: 255 255 255;
+            --brand-tint: 255 237 213;
+            --danger: 200 24 24;
+            --grad-from: 194 65 12;
+            --grad-to: 185 28 28;
         }
 
-        body {
-            font-family: 'Monaco', monospace;
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: 17 15 14;
+                --surface: 29 27 26;
+                --fill: 44 41 39;
+                --ink: 245 245 247;
+                --muted: 172 168 163;
+                --line: 62 58 55;
+                --brand: 251 146 60;
+                --brand-hover: 253 186 116;
+                --brand-text: 253 164 90;
+                --brand-on: 28 25 23;
+                --brand-tint: 58 30 12;
+                --danger: 255 105 97;
+                --grad-from: 251 146 60;
+                --grad-to: 248 113 113;
+            }
+        }
+
+        html { -webkit-text-size-adjust: 100%; }
+        body { -webkit-font-smoothing: antialiased; }
+        .gallery { scrollbar-width: none; cursor: grab; }
+        .gallery::-webkit-scrollbar { display: none; }
+        .gallery.dragging { cursor: grabbing; }
+        :focus-visible { outline: 3px solid rgb(var(--brand)); outline-offset: 2px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
     {% if page.person_schema %}
@@ -62,32 +123,32 @@
     </script>
     {% endif %}
 </head>
-<body class="{{ page.body_class | default: 'bg-brand-50' }} flex min-h-screen flex-col items-center">
-    <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:p-3" href="#main-content">Saltar al contenido</a>
-    {% assign header_class = page.header_class | default: 'bg-brand-50' %}
-    {% assign heading_class = page.heading_class | default: 'text-gray-900' %}
-    {% assign translate_button_class = page.translate_button_class | default: 'text-gray-700 hover:bg-brand-50 hover:text-brand-600' %}
-    <header class="relative grid w-full grid-cols-[1fr_auto_1fr] items-center p-4 shadow-md sm:p-6 {{ header_class }}">
-        <div class="justify-self-start">
-            {% if page.back_url %}
-            <a id="back-link" href="{{ page.back_url | relative_url }}" class="flex items-center gap-1 rounded-full bg-brand-100 px-3 py-2 text-sm text-brand-700 transition hover:bg-brand-200" aria-label="Volver atrás" title="Atrás"><span aria-hidden="true">←</span><span class="hidden sm:inline">Atrás</span></a>
-            {% endif %}
-        </div>
-        <h1 class="min-w-0 max-w-[55vw] break-words text-center text-base font-semibold sm:max-w-none sm:text-3xl {{ heading_class }}">{% case page.heading_source %}{% when 'cv_profile_name' %}{{ site.data.cv.profile.name | escape }}{% when 'cv_jobs_title' %}{{ site.data.cv.jobs.title | escape }}{% when 'cv_studies_title' %}{{ site.data.cv.studies.title | escape }}{% when 'cv_contact_title' %}{{ site.data.cv.contact.title | escape }}{% when '3d_profile_title' %}{{ site.data.aarontxu_3d.profile.title | escape }}{% when '3d_privacy_title' %}{{ site.data.aarontxu_3d.privacy.title | escape }}{% when '3d_products_title' %}{{ site.data.aarontxu_3d.productsAndServices.title | escape }}{% else %}{{ page.heading | default: page.title | escape }}{% endcase %}</h1>
-        <div id="translate-container" class="relative flex items-center gap-2 justify-self-end">
-            <a id="cart-link" href="{{ '/cart.html' | relative_url }}" class="relative grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white text-xl shadow-md transition hover:bg-brand-50" aria-label="Cesta" title="Ver cesta">
-                <span aria-hidden="true">🛒</span>
-                <span id="cart-count" class="absolute -right-1 -top-1 hidden min-w-5 rounded-full bg-brand-600 px-1 text-center text-xs font-semibold leading-5 text-white">0</span>
-            </a>
-            <button id="translate-btn" type="button" class="rounded-lg bg-white px-3 py-2 text-sm shadow-md transition {{ translate_button_class }}" aria-haspopup="true" aria-expanded="false" title="Traducir página">🌐 <span class="hidden sm:inline">Traducir</span></button>
-            <div id="google_translate_element" class="absolute right-4 top-full z-50 hidden bg-white p-2 shadow-md" aria-label="Seleccionar idioma"></div>
+<body class="{{ page.body_class | default: 'bg-canvas text-ink' }} flex min-h-screen flex-col items-center font-sans">
+    <a class="sr-only rounded-full bg-surface px-4 py-3 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]" href="#main-content">Saltar al contenido</a>
+    {% assign heading_class = page.heading_class | default: 'text-ink' %}
+    <header class="sticky top-0 z-40 w-full border-b border-line bg-canvas/80 backdrop-blur-xl backdrop-saturate-150">
+        <div class="mx-auto grid w-full max-w-5xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-[max(1rem,env(safe-area-inset-left))] py-2">
+            <div class="justify-self-start">
+                {% if page.back_url %}
+                <a id="back-link" href="{{ page.back_url | relative_url }}" class="-ml-2 flex min-h-11 items-center gap-0.5 rounded-full pl-1 pr-3 text-base font-medium text-brand-text transition hover:bg-fill" aria-label="Volver atrás" title="Atrás"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span class="hidden sm:inline">Atrás</span></a>
+                {% endif %}
+            </div>
+            <h1 class="line-clamp-2 min-w-0 max-w-[50vw] break-words text-center text-sm font-semibold leading-tight sm:max-w-md sm:text-base {{ heading_class }}">{% case page.heading_source %}{% when 'cv_profile_name' %}{{ site.data.cv.profile.name | escape }}{% when 'cv_jobs_title' %}{{ site.data.cv.jobs.title | escape }}{% when 'cv_studies_title' %}{{ site.data.cv.studies.title | escape }}{% when 'cv_contact_title' %}{{ site.data.cv.contact.title | escape }}{% when '3d_profile_title' %}{{ site.data.aarontxu_3d.profile.title | escape }}{% when '3d_privacy_title' %}{{ site.data.aarontxu_3d.privacy.title | escape }}{% when '3d_products_title' %}{{ site.data.aarontxu_3d.productsAndServices.title | escape }}{% else %}{{ page.heading | default: page.title | escape }}{% endcase %}</h1>
+            <div id="translate-container" class="relative flex items-center gap-2 justify-self-end">
+                <a id="cart-link" href="{{ '/cart.html' | relative_url }}" class="relative grid h-11 w-11 shrink-0 place-items-center rounded-full bg-fill text-ink transition hover:bg-line" aria-label="Cesta" title="Ver cesta">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1 12h-11l-1-12z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
+                    <span id="cart-count" class="absolute -right-1 -top-1 hidden h-5 min-w-5 rounded-full bg-brand px-1 text-center text-xs font-bold leading-5 text-brand-on" aria-hidden="true">0</span>
+                </a>
+                <button id="translate-btn" type="button" class="flex h-11 items-center gap-2 rounded-full bg-fill px-3 text-sm font-medium text-ink transition hover:bg-line sm:px-4" aria-haspopup="true" aria-expanded="false" title="Traducir página"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span class="hidden sm:inline">Traducir</span></button>
+                <div id="google_translate_element" class="absolute right-0 top-full z-50 mt-2 hidden rounded-2xl border border-line bg-surface p-3 shadow-card" aria-label="Seleccionar idioma"></div>
+            </div>
         </div>
     </header>
-    <main id="main-content" class="{{ page.main_class | default: 'w-full max-w-5xl px-4 py-8' }}">
+    <main id="main-content" class="{{ page.main_class | default: 'w-full max-w-5xl px-4 py-8 sm:py-12' }}">
         {{ content }}
     </main>
-    <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-6 right-6 z-50 rounded-full bg-brand-500 px-4 py-2 text-white opacity-0 shadow-lg transition-opacity hover:bg-brand-600" aria-label="Volver arriba">↑ Arriba</button>
-    <footer class="mt-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1 p-6 text-center text-sm text-gray-500"><span>© {{ site.time | date: '%Y' }} {{ site.title }}</span><a class="underline transition hover:text-brand-600" href="{{ '/privacy.html' | relative_url }}">{{ site.data.aarontxu_3d.privacy.linkLabel | default: 'Política de privacidad' | escape }}</a></footer>
+    <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-11 items-center gap-1 rounded-full bg-brand px-5 font-semibold text-brand-on opacity-0 shadow-lg transition hover:bg-brand-hover sm:right-6" aria-label="Volver arriba" inert><span aria-hidden="true">↑</span> Arriba</button>
+    <footer class="mt-auto flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-line p-6 text-center text-sm text-muted"><span>© {{ site.time | date: '%Y' }} {{ site.title }}</span><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="{{ '/privacy.html' | relative_url }}">{{ site.data.aarontxu_3d.privacy.linkLabel | default: 'Política de privacidad' | escape }}</a></footer>
     <script type="application/json" id="translate-languages">{{ site.data.aarontxu_3d.languages | jsonify }}</script>
     <script defer src="{{ '/script.js' | relative_url }}"></script>
 </body>
