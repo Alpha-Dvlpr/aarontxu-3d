@@ -134,7 +134,7 @@ function initializeCartPage() {
 
         cart.forEach(item => {
             const row = document.createElement('li');
-            row.className = 'flex flex-col gap-4 rounded-xl border border-orange-100 p-4 sm:flex-row sm:items-center';
+            row.className = 'flex flex-col gap-4 rounded-xl border border-brand-100 p-4 sm:flex-row sm:items-center';
 
             if (item.image) {
                 const image = document.createElement('img');
@@ -164,7 +164,7 @@ function initializeCartPage() {
             decreaseButton.type = 'button';
             decreaseButton.textContent = '−';
             decreaseButton.setAttribute('aria-label', `Reducir cantidad de ${item.name}`);
-            decreaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-orange-100 text-orange-700';
+            decreaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700';
             decreaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity - 1, render));
             const quantity = document.createElement('span');
             quantity.className = 'min-w-8 text-center font-medium';
@@ -173,13 +173,13 @@ function initializeCartPage() {
             increaseButton.type = 'button';
             increaseButton.textContent = '+';
             increaseButton.setAttribute('aria-label', `Aumentar cantidad de ${item.name}`);
-            increaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-orange-100 text-orange-700';
+            increaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700';
             increaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity + 1, render));
             quantityControls.append(decreaseButton, quantity, increaseButton);
             row.appendChild(quantityControls);
 
             const subtotal = document.createElement('p');
-            subtotal.className = 'min-w-24 text-center font-semibold text-orange-700';
+            subtotal.className = 'min-w-24 text-center font-semibold text-brand-700';
             subtotal.textContent = item.priceLabel ? 'A consultar' : formatCurrency(item.price * item.quantity);
             row.appendChild(subtotal);
 
@@ -287,7 +287,7 @@ function initializeProductFilters() {
         button.textContent = label;
         button.className = 'rounded-full px-4 py-2 transition';
         button.setAttribute('aria-pressed', String(index === 0));
-        button.classList.add(...(index === 0 ? ['bg-orange-500', 'text-white'] : ['bg-orange-100', 'text-orange-700']));
+        button.classList.add(...(index === 0 ? ['bg-brand-500', 'text-white'] : ['bg-brand-100', 'text-brand-700']));
         button.addEventListener('click', () => {
             cards.forEach(card => {
                 const shouldHide = id !== 'all' && card.dataset.category !== id;
@@ -297,10 +297,10 @@ function initializeProductFilters() {
             controls.querySelectorAll('button').forEach(filterButton => {
                 const selected = filterButton === button;
                 filterButton.setAttribute('aria-pressed', String(selected));
-                filterButton.classList.toggle('bg-orange-500', selected);
+                filterButton.classList.toggle('bg-brand-500', selected);
                 filterButton.classList.toggle('text-white', selected);
-                filterButton.classList.toggle('bg-orange-100', !selected);
-                filterButton.classList.toggle('text-orange-700', !selected);
+                filterButton.classList.toggle('bg-brand-100', !selected);
+                filterButton.classList.toggle('text-brand-700', !selected);
             });
         });
         controls.appendChild(button);

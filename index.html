@@ -4,10 +4,10 @@ title: "Aarontxu 3D | Impresión 3D personalizada"
 favicon: "/img/mini_img.png"
 heading_source: 3d_profile_title
 description: "Servicios de impresión 3D personalizada en Asturias. Consulta productos, servicios y solicita un presupuesto."
-body_class: "bg-orange-50"
-header_class: "bg-gradient-to-r from-orange-500 to-red-500"
+body_class: "bg-brand-50"
+header_class: "bg-gradient-to-r from-brand-500 to-accent"
 heading_class: "text-white"
-translate_button_class: "text-orange-600 hover:bg-orange-50"
+translate_button_class: "text-brand-600 hover:bg-brand-50"
 main_class: "w-full max-w-4xl px-4 py-8"
 ---
 {% assign profile = site.data.aarontxu_3d.profile %}
@@ -20,6 +20,6 @@ main_class: "w-full max-w-4xl px-4 py-8"
 
 <nav class="mt-8 flex flex-wrap justify-center gap-3" aria-label="Enlaces principales">
     {% for chip in profile.chips %}
-    <a class="rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-700 transition hover:bg-orange-200" href="{% if chip.newPage %}{{ chip.destination | escape }}{% else %}{{ chip.destination | relative_url }}{% endif %}" {% if chip.newPage %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ chip.name | escape }}</a>
+    <a class="rounded-full bg-brand-100 px-4 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-200" href="{% if chip.newPage %}{{ chip.destination | escape }}{% else %}{{ chip.destination | relative_url }}{% endif %}" {% if chip.newPage %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ chip.name | escape }}</a>
     {% endfor %}
 </nav>
