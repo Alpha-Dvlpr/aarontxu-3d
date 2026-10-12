@@ -19,7 +19,7 @@ description: "Servicios de impresión 3D personalizada en Asturias. Consulta pro
     {% endfor %}
     <nav class="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap" aria-label="Enlaces principales">
         {% for chip in profile.chips %}
-        <a class="inline-flex min-h-12 items-center justify-center gap-1 rounded-full px-6 text-base font-semibold transition active:scale-95 {% if forloop.first %}bg-brand text-brand-on hover:bg-brand-hover{% else %}bg-fill text-ink hover:bg-line{% endif %}" href="{% if chip.newPage %}{{ chip.destination | escape }}{% else %}{{ chip.destination | relative_url }}{% endif %}" {% if chip.newPage %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ chip.name | escape }}{% if chip.newPage %}<span aria-hidden="true">↗</span><span class="sr-only">(se abre en otra pestaña)</span>{% endif %}</a>
+        <a class="inline-flex min-h-12 items-center justify-center gap-1 rounded-full px-6 py-3 text-center text-base leading-snug font-semibold transition active:scale-95 {% if forloop.first %}bg-brand text-brand-on hover:bg-brand-hover{% else %}bg-fill text-ink hover:bg-line{% endif %}" href="{% if chip.newPage %}{{ chip.destination | escape }}{% else %}{{ chip.destination | relative_url }}{% endif %}" {% if chip.newPage %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ chip.name | escape }}{% if chip.newPage %}<span aria-hidden="true">↗</span><span class="sr-only">(se abre en otra pestaña)</span>{% endif %}</a>
         {% endfor %}
     </nav>
 </section>
