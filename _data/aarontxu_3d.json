@@ -198,6 +198,18 @@
             }
         ]
     },
+    "privacy": {
+        "title": "Política de privacidad",
+        "linkLabel": "Política de privacidad",
+        "sections": [
+            {
+                "heading": "Pendiente de redactar",
+                "paragraphs": [
+                    "Esta política de privacidad se publicará próximamente."
+                ]
+            }
+        ]
+    },
     "languages": {
         "es": "Español",
         "en": "English",

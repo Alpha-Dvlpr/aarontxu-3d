@@ -16,6 +16,19 @@ function initializeBackToTop() {
     updateVisibility();
 }
 
+function initializeCartBackLink() {
+    const originKey = 'aarontxu-3d-cart-origin';
+    try {
+        if (!document.getElementById('cart-empty')) {
+            sessionStorage.setItem(originKey, location.pathname + location.search);
+            return;
+        }
+        const origin = sessionStorage.getItem(originKey);
+        const link = document.getElementById('back-link');
+        if (origin && link) link.href = origin;
+    } catch {}
+}
+
 function readCart() {
     try {
         const storedCart = JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY) || '[]');
@@ -326,6 +339,7 @@ function initializeImageModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initializeCartBackLink();
     initializeBackToTop();
     initializeTranslation();
     initializeProductFilters();

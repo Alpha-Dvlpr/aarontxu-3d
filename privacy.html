@@ -1,0 +1,23 @@
+---
+layout: default
+title: "Política de privacidad | Aarontxu 3D"
+favicon: "/img/mini_img.png"
+heading_source: 3d_privacy_title
+description: "Política de privacidad de Aarontxu 3D."
+back_url: "/"
+body_class: "bg-brand-50"
+header_class: "bg-gradient-to-r from-brand-500 to-accent"
+heading_class: "text-white"
+translate_button_class: "text-brand-600 hover:bg-brand-50"
+main_class: "w-full max-w-4xl px-4 py-8"
+---
+<article class="rounded-2xl bg-white p-6 shadow-md">
+    {% for section in site.data.aarontxu_3d.privacy.sections %}
+    <section class="mb-6 last:mb-0">
+        {% if section.heading %}<h2 class="mb-2 text-lg font-semibold text-brand-600">{{ section.heading | escape }}</h2>{% endif %}
+        <div class="text-slate-700">
+            {% for paragraph in section.paragraphs %}<p class="mb-3 whitespace-pre-line last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</article>

@@ -54,6 +54,19 @@ content:
                 options:
                   media: site_images
                   multiple: { max: 12 }
+      - name: privacy
+        label: Política de privacidad
+        type: object
+        fields:
+          - { name: title, label: Título de la página, type: string }
+          - { name: linkLabel, label: Texto del enlace en el pie, type: string }
+          - name: sections
+            label: Apartados
+            type: object
+            list: true
+            fields:
+              - { name: heading, label: Encabezado, type: string }
+              - { name: paragraphs, label: Párrafos, type: text, list: true }
       - name: languages
         label: Idiomas de traducción
         type: object
