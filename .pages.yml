@@ -54,7 +54,7 @@ content:
                 type: image
                 options:
                   media: site_images
-                  multiple: { max: 12 }
+                  multiple: { max: 20 }
       - name: privacy
         label: Política de privacidad
         type: object

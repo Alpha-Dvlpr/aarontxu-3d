@@ -1,0 +1,68 @@
+{
+  "_data/aarontxu_3d.json": {
+    "mtime": 1791835378.1153243,
+    "seen": 1791835673.6302469,
+    "ast_hash": "36efa82f225e317f9cc82371a4608e24",
+    "semantic_hash": "36efa82f225e317f9cc82371a4608e24"
+  },
+  "script.js": {
+    "mtime": 1791834684.508981,
+    "seen": 1791834883.0375512,
+    "ast_hash": "31f329926b1669b7b79676bc8b1951b8",
+    "semantic_hash": "31f329926b1669b7b79676bc8b1951b8"
+  },
+  ".pages.yml": {
+    "mtime": 1791833401.428501,
+    "seen": 1791833460.511364,
+    "ast_hash": "848d1d195f7f38957f4d0b71af7a751c",
+    "semantic_hash": "848d1d195f7f38957f4d0b71af7a751c"
+  },
+  "README.md": {
+    "mtime": 1791323961.2571163,
+    "seen": 1791666168.893926,
+    "ast_hash": "58b6720fde7c4ae3a88c02f0e84dd97d",
+    "semantic_hash": "58b6720fde7c4ae3a88c02f0e84dd97d"
+  },
+  "_config.yml": {
+    "mtime": 1791665808.5701578,
+    "seen": 1791666168.893926,
+    "ast_hash": "0bb4cfea2d162ddd760f10561606502d",
+    "semantic_hash": "0bb4cfea2d162ddd760f10561606502d"
+  },
+  "_layouts/default.html": {
+    "mtime": 1791835378.1149683,
+    "seen": 1791835673.630283,
+    "ast_hash": "1d9973a7b63d108bd5917891f887a2fd",
+    "semantic_hash": "1d9973a7b63d108bd5917891f887a2fd"
+  },
+  "index.html": {
+    "mtime": 1791834421.9954517,
+    "seen": 1791835673.630283,
+    "ast_hash": "61ada6bc3ffde80719aefb6d9a4ee3ff",
+    "semantic_hash": "61ada6bc3ffde80719aefb6d9a4ee3ff"
+  },
+  "pages/cart.html": {
+    "mtime": 1791835378.114706,
+    "seen": 1791835673.630285,
+    "ast_hash": "ad85d20cfd33887cf5c579c2d23800df",
+    "semantic_hash": "ad85d20cfd33887cf5c579c2d23800df"
+  },
+  "pages/guides/nfc.html": {
+    "mtime": 1791817649.6503801,
+    "seen": 1791835673.630285,
+    "ast_hash": "f7fc13b1d6b332557c3b1695e74e56c2",
+    "semantic_hash": "f7fc13b1d6b332557c3b1695e74e56c2"
+  },
+  "pages/privacy.html": {
+    "mtime": 1791814079.999753,
+    "seen": 1791835673.630286,
+    "ast_hash": "a3582b2449c1466f01c0ece39d522350",
+    "semantic_hash": "a3582b2449c1466f01c0ece39d522350"
+  },
+  "pages/products.html": {
+    "mtime": 1791815225.678564,
+    "seen": 1791835673.6302872,
+    "ast_hash": "02ae313411ec6d018e048653cbe7c5dd",
+    "semantic_hash": "02ae313411ec6d018e048653cbe7c5dd"
+  }
+}

@@ -9,11 +9,29 @@ function initializeBackToTop() {
         button.classList.toggle('opacity-100', isVisible);
         button.classList.toggle('opacity-0', !isVisible);
         button.classList.toggle('pointer-events-none', !isVisible);
+        button.inert = !isVisible;
     };
 
     window.addEventListener('scroll', updateVisibility, { passive: true });
     button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     updateVisibility();
+}
+
+function initializeBackLink() {
+    const link = document.getElementById('back-link');
+    if (!link) return;
+
+    link.addEventListener('click', event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        let cameFromHere = false;
+        try {
+            const from = new URL(document.referrer);
+            cameFromHere = from.origin === location.origin && from.href !== location.href;
+        } catch {}
+        if (!cameFromHere || history.length < 2) return;
+        event.preventDefault();
+        history.back();
+    });
 }
 
 function readCart() {
@@ -134,7 +152,7 @@ function initializeCartPage() {
 
         cart.forEach(item => {
             const row = document.createElement('li');
-            row.className = 'flex flex-col gap-4 rounded-xl border border-orange-100 p-4 sm:flex-row sm:items-center';
+            row.className = 'flex flex-col gap-4 rounded-3xl bg-surface p-4 shadow-card sm:flex-row sm:items-center';
 
             if (item.image) {
                 const image = document.createElement('img');
@@ -143,17 +161,17 @@ function initializeCartPage() {
                 image.width = 96;
                 image.height = 96;
                 image.loading = 'lazy';
-                image.className = 'h-24 w-24 self-center rounded-lg object-contain sm:self-auto';
+                image.className = 'h-24 w-24 shrink-0 self-center rounded-2xl object-cover sm:self-auto';
                 row.appendChild(image);
             }
 
             const details = document.createElement('div');
             details.className = 'min-w-0 flex-1 text-center sm:text-left';
             const name = document.createElement('h2');
-            name.className = 'font-semibold text-gray-900';
+            name.className = 'font-semibold text-ink';
             name.textContent = item.name;
             const unitPrice = document.createElement('p');
-            unitPrice.className = 'mt-1 text-sm text-gray-600';
+            unitPrice.className = 'mt-1 text-sm text-muted';
             unitPrice.textContent = item.priceLabel || `${formatCurrency(item.price)} / unidad`;
             details.append(name, unitPrice);
             row.appendChild(details);
@@ -164,22 +182,22 @@ function initializeCartPage() {
             decreaseButton.type = 'button';
             decreaseButton.textContent = '−';
             decreaseButton.setAttribute('aria-label', `Reducir cantidad de ${item.name}`);
-            decreaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-orange-100 text-orange-700';
+            decreaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
             decreaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity - 1, render));
             const quantity = document.createElement('span');
-            quantity.className = 'min-w-8 text-center font-medium';
+            quantity.className = 'min-w-8 text-center font-medium text-ink';
             quantity.textContent = String(item.quantity);
             const increaseButton = document.createElement('button');
             increaseButton.type = 'button';
             increaseButton.textContent = '+';
             increaseButton.setAttribute('aria-label', `Aumentar cantidad de ${item.name}`);
-            increaseButton.className = 'grid h-9 w-9 place-items-center rounded-full bg-orange-100 text-orange-700';
+            increaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
             increaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity + 1, render));
             quantityControls.append(decreaseButton, quantity, increaseButton);
             row.appendChild(quantityControls);
 
             const subtotal = document.createElement('p');
-            subtotal.className = 'min-w-24 text-center font-semibold text-orange-700';
+            subtotal.className = 'min-w-24 text-center font-bold text-brand-text';
             subtotal.textContent = item.priceLabel ? 'A consultar' : formatCurrency(item.price * item.quantity);
             row.appendChild(subtotal);
 
@@ -187,7 +205,7 @@ function initializeCartPage() {
             removeButton.type = 'button';
             removeButton.textContent = 'Quitar';
             removeButton.setAttribute('aria-label', `Quitar ${item.name} de la cesta`);
-            removeButton.className = 'text-sm text-gray-600 underline hover:text-gray-900';
+            removeButton.className = 'min-h-11 rounded-full px-4 text-sm font-medium text-danger transition hover:bg-fill';
             removeButton.addEventListener('click', () => removeCartItem(item.id, render));
             row.appendChild(removeButton);
             itemList.appendChild(row);
@@ -230,6 +248,29 @@ function changeCartQuantity(productId, quantity, render) {
 function removeCartItem(productId, render) {
     const cart = readCart().filter(item => item.id !== productId);
     saveCart(cart);
+    render();
+}
+
+function initializeThemeToggle() {
+    const button = document.getElementById('theme-btn');
+    if (!button || !window.applyTheme) return;
+
+    const order = ['auto', 'light', 'dark'];
+    const labels = { auto: 'automático', light: 'claro', dark: 'oscuro' };
+    const render = () => {
+        const choice = document.documentElement.dataset.themeChoice || 'auto';
+        button.querySelectorAll('[data-theme-icon]').forEach(icon => icon.classList.toggle('hidden', icon.dataset.themeIcon !== choice));
+        button.setAttribute('aria-label', `Tema: ${labels[choice]}`);
+        button.title = `Tema: ${labels[choice]}`;
+    };
+
+    button.addEventListener('click', () => {
+        const current = document.documentElement.dataset.themeChoice || 'auto';
+        const next = order[(order.indexOf(current) + 1) % order.length];
+        try { localStorage.setItem('theme', next); } catch {}
+        window.applyTheme(next);
+        render();
+    });
     render();
 }
 
@@ -285,9 +326,9 @@ function initializeProductFilters() {
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = label;
-        button.className = 'rounded-full px-4 py-2 transition';
+        button.className = 'min-h-11 whitespace-nowrap rounded-full px-5 text-sm font-medium transition active:scale-95';
         button.setAttribute('aria-pressed', String(index === 0));
-        button.classList.add(...(index === 0 ? ['bg-orange-500', 'text-white'] : ['bg-orange-100', 'text-orange-700']));
+        button.classList.add(...(index === 0 ? ['bg-brand', 'text-brand-on'] : ['bg-fill', 'text-ink']));
         button.addEventListener('click', () => {
             cards.forEach(card => {
                 const shouldHide = id !== 'all' && card.dataset.category !== id;
@@ -297,10 +338,10 @@ function initializeProductFilters() {
             controls.querySelectorAll('button').forEach(filterButton => {
                 const selected = filterButton === button;
                 filterButton.setAttribute('aria-pressed', String(selected));
-                filterButton.classList.toggle('bg-orange-500', selected);
-                filterButton.classList.toggle('text-white', selected);
-                filterButton.classList.toggle('bg-orange-100', !selected);
-                filterButton.classList.toggle('text-orange-700', !selected);
+                filterButton.classList.toggle('bg-brand', selected);
+                filterButton.classList.toggle('text-brand-on', selected);
+                filterButton.classList.toggle('bg-fill', !selected);
+                filterButton.classList.toggle('text-ink', !selected);
             });
         });
         controls.appendChild(button);
@@ -325,8 +366,178 @@ function initializeImageModal() {
     });
 }
 
+function initializeGalleryDrag() {
+    document.querySelectorAll('[data-gallery]').forEach(gallery => {
+        let startX = 0;
+        let startScroll = 0;
+        let dragged = false;
+
+        gallery.addEventListener('pointerdown', event => {
+            if (event.pointerType !== 'mouse' || event.button !== 0) return;
+            startX = event.clientX;
+            startScroll = gallery.scrollLeft;
+            dragged = false;
+            const onMove = moveEvent => {
+                const delta = moveEvent.clientX - startX;
+                if (Math.abs(delta) > 5) {
+                    dragged = true;
+                    gallery.classList.add('dragging');
+                }
+                gallery.scrollLeft = startScroll - delta;
+            };
+            const onUp = () => {
+                window.removeEventListener('pointermove', onMove);
+                window.removeEventListener('pointerup', onUp);
+                gallery.classList.remove('dragging');
+            };
+            window.addEventListener('pointermove', onMove);
+            window.addEventListener('pointerup', onUp);
+        });
+
+        gallery.addEventListener('click', event => {
+            if (dragged) {
+                event.stopPropagation();
+                event.preventDefault();
+                dragged = false;
+            }
+        }, true);
+    });
+}
+
+function initializeNfcGuide() {
+    const root = document.getElementById('nfc-guide');
+    if (!root) return;
+
+    const stepper = document.getElementById('nfc-stepper');
+    const helper = document.getElementById('nfc-wa-helper');
+    const counter = document.getElementById('nfc-counter');
+    const progress = document.getElementById('nfc-progress');
+    const prevButton = document.getElementById('nfc-prev');
+    const nextButton = document.getElementById('nfc-next');
+    const restartButton = document.getElementById('nfc-restart');
+    const finished = document.getElementById('nfc-finished');
+    const prefixSelect = helper.querySelector('[data-wa-prefix]');
+    const numberInput = helper.querySelector('[data-wa-number]');
+    const errorOutput = document.getElementById('nfc-wa-error');
+    const generateButton = helper.querySelector('[data-wa-generate]');
+    const resultBox = helper.querySelector('[data-wa-result]');
+    const resultLink = helper.querySelector('[data-wa-link]');
+    const copyButton = helper.querySelector('[data-wa-copy]');
+    const copyError = helper.querySelector('[data-wa-copy-error]');
+    let platform = null;
+    let index = 0;
+
+    const setSelected = (button, selected) => {
+        button.setAttribute('aria-pressed', String(selected));
+        button.classList.toggle('bg-brand', selected);
+        button.classList.toggle('text-brand-on', selected);
+        button.classList.toggle('bg-fill', !selected);
+        button.classList.toggle('text-ink', !selected);
+    };
+
+    const cleanNumber = () => numberInput.value.replace(/[\s.-]/g, '');
+    const isValidNumber = number => prefixSelect.value === '34' ? /^[67]\d{8}$/.test(number) : /^\d{6,12}$/.test(number);
+
+    const updateHelper = () => {
+        const number = cleanNumber();
+        const valid = isValidNumber(number);
+        errorOutput.textContent = number && !valid ? (prefixSelect.value === '34' ? root.dataset.errorSpain : root.dataset.errorOther) : '';
+        generateButton.hidden = !valid;
+        resultBox.hidden = true;
+        copyError.textContent = '';
+    };
+
+    const closeHelper = () => {
+        helper.hidden = true;
+        numberInput.value = '';
+        prefixSelect.value = '34';
+        updateHelper();
+        root.querySelectorAll('[data-wa-checkbox]').forEach(box => { box.checked = false; });
+    };
+
+    const resetOptions = () => {
+        root.querySelectorAll('[data-option-btn]').forEach(button => setSelected(button, false));
+        root.querySelectorAll('[data-option]').forEach(pane => { pane.hidden = true; });
+        closeHelper();
+    };
+
+    const render = (moveFocus = false) => {
+        stepper.hidden = !platform;
+        root.querySelectorAll('[data-platform-btn]').forEach(button => setSelected(button, button.dataset.platformBtn === platform));
+        root.querySelectorAll('[data-platform]').forEach(block => { block.hidden = block.dataset.platform !== platform; });
+        if (!platform) return;
+
+        const steps = root.querySelectorAll(`[data-platform="${platform}"] [data-step]`);
+        const last = index === steps.length - 1;
+        steps.forEach((step, i) => { step.hidden = i !== index; });
+        counter.textContent = root.dataset.stepOf.replace('{n}', index + 1).replace('{total}', steps.length);
+        progress.style.width = `${((index + 1) / steps.length) * 100}%`;
+        prevButton.disabled = index === 0;
+        nextButton.hidden = last;
+        restartButton.hidden = !last;
+        finished.hidden = !last;
+        if (moveFocus) steps[index].querySelector('[data-step-title]').focus();
+    };
+
+    const goTo = (newIndex, moveFocus) => {
+        index = newIndex;
+        resetOptions();
+        render(moveFocus);
+    };
+
+    root.querySelectorAll('[data-platform-btn]').forEach(button => {
+        button.addEventListener('click', () => {
+            platform = button.dataset.platformBtn;
+            goTo(0, true);
+        });
+    });
+    prevButton.addEventListener('click', () => goTo(index - 1, true));
+    nextButton.addEventListener('click', () => goTo(index + 1, true));
+    restartButton.addEventListener('click', () => goTo(0, true));
+
+    root.querySelectorAll('[data-option-btn]').forEach(button => {
+        button.addEventListener('click', () => {
+            const step = button.closest('[data-step]');
+            step.querySelectorAll('[data-option-btn]').forEach(other => setSelected(other, other === button));
+            step.querySelectorAll('[data-option]').forEach(pane => { pane.hidden = pane.dataset.option !== button.dataset.optionBtn; });
+            closeHelper();
+        });
+    });
+
+    root.querySelectorAll('[data-wa-checkbox]').forEach(box => {
+        box.addEventListener('change', () => {
+            helper.hidden = !box.checked;
+            if (box.checked) helper.scrollIntoView({ block: 'nearest' });
+        });
+    });
+
+    prefixSelect.addEventListener('change', updateHelper);
+    numberInput.addEventListener('input', updateHelper);
+    generateButton.addEventListener('click', () => {
+        const url = `https://wa.me/${prefixSelect.value}${cleanNumber()}`;
+        resultLink.href = url;
+        resultLink.textContent = url;
+        copyButton.textContent = root.dataset.copyLabel;
+        resultBox.hidden = false;
+    });
+    copyButton.addEventListener('click', () => {
+        copyError.textContent = '';
+        navigator.clipboard.writeText(resultLink.href).then(() => {
+            copyButton.textContent = root.dataset.copiedLabel;
+            window.setTimeout(() => { copyButton.textContent = root.dataset.copyLabel; }, 1500);
+        }).catch(() => { copyError.textContent = root.dataset.copyError; });
+    });
+    helper.querySelector('[data-wa-close]').addEventListener('click', closeHelper);
+
+    render();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    initializeNfcGuide();
+    initializeGalleryDrag();
+    initializeBackLink();
     initializeBackToTop();
+    initializeThemeToggle();
     initializeTranslation();
     initializeProductFilters();
     initializeImageModal();

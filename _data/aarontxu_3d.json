@@ -42,8 +42,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Figura estilo Funko personalizada a partir de tus fotos y pintada a mano para captar el estilo de la persona retratada.",
-                    "Mide aproximadamente 10 cm e incluye una caja personalizada. Envíame fotos e ideas para preparar el diseño."
+                    "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. La modelo en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
+                    "Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería."
                 ],
                 "price": 20.0,
                 "images": [
@@ -51,7 +51,17 @@
                     "/img/products/PROD_01/2.jpg",
                     "/img/products/PROD_01/3.jpg",
                     "/img/products/PROD_01/4.jpg",
-                    "/img/products/PROD_01/5.jpg"
+                    "/img/products/PROD_01/5.jpg",
+                    "/img/products/PROD_01/6.jpg",
+                    "/img/products/PROD_01/7.jpg",
+                    "/img/products/PROD_01/8.jpg",
+                    "/img/products/PROD_01/9.jpg",
+                    "/img/products/PROD_01/10.jpg",
+                    "/img/products/PROD_01/11.jpg",
+                    "/img/products/PROD_01/12.jpg",
+                    "/img/products/PROD_01/13.jpg",
+                    "/img/products/PROD_01/14.jpg",
+                    "/img/products/PROD_01/15.jpg"
                 ]
             },
             {
@@ -62,8 +72,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Dos personas reunidas en figuras estilo Funko, diseñadas a partir de tus fotos y pintadas a mano.",
-                    "Incluye caja personalizada a juego. Envíame fotos e ideas para preparar el diseño."
+                    "Dos personas en una sola pieza: una pareja, dos amigos, hermanos o madre e hijo. Cada figura mide 10 cm de alto, tiene su propio parecido y su propia ropa, y las dos van en la misma composición. Se imprimen en PLA blanco, se lijan y se pintan a mano con acrílicos.",
+                    "Incluye una caja personalizada a juego, más ancha para que quepan juntas (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para aniversarios, bodas y cumpleaños."
                 ],
                 "price": 35.0,
                 "images": [
@@ -72,7 +82,8 @@
                     "/img/products/PROD_02/3.jpg",
                     "/img/products/PROD_02/4.jpg",
                     "/img/products/PROD_02/5.jpg",
-                    "/img/products/PROD_02/6.jpg"
+                    "/img/products/PROD_02/6.jpg",
+                    "/img/products/PROD_02/7.jpg"
                 ]
             },
             {
@@ -83,11 +94,14 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Figura Funko personalizada con temática del Mundial de Fútbol 2026, creada a partir de fotos y pintada a mano.",
-                    "Mide aproximadamente 10 cm e incluye una caja personalizada."
+                    "Para el aficionado que vive el Mundial de Fútbol 2026: una figura estilo Funko de 10 cm con temática futbolera, hecha a partir de fotos y con el parecido de la persona. Impresa en PLA blanco, lijada y pintada a mano con acrílicos.",
+                    "Viene en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar a cualquier fan."
                 ],
                 "price": 25.0,
-                "images": ["/img/products/PROD_03/1.jpg"]
+                "images": [
+                    "/img/products/PROD_03/1.jpg",
+                    "/img/products/PROD_03/2.jpg"
+                ]
             },
             {
                 "id": "PROD_04",
@@ -97,8 +111,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Tu mascota en versión Funko 3D, creada a partir de fotos para reproducir su pose, colores y detalles.",
-                    "Incluye caja protectora personalizada. Envíame fotos para preparar un boceto."
+                    "Tu perro, tu gato o cualquier otro animal de la casa convertido en un Funko de 10 cm, con su pose, su pelaje y sus detalles. Se hace a partir de tus fotos, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
+                    "Se entrega en una caja protectora personalizada del mismo tamaño que la de un Funko de persona (14 × 10 × 7,5 cm). El precio es por animal."
                 ],
                 "price": 20.0,
                 "images": [
@@ -112,19 +126,21 @@
                 "id": "PROD_05",
                 "title": "Llaveros personalizados",
                 "category": {
-                    "id": "llaveros",
-                    "name": "Llaveros personalizados"
+                    "id": "llaveros_medallas",
+                    "name": "Llaveros y medallas"
                 },
                 "description": [
-                    "Llaveros 3D personalizados con logotipos, nombres, formas y colores a medida.",
-                    "También se pueden crear llaveros NFC para enlazar a una web, redes sociales o información de contacto. Precio a consultar."
+                    "Llaveros 3D hechos a tu gusto: con tu logotipo, el escudo de tu equipo, un nombre o una forma original, e incluso articulados. Tú eliges tamaño, forma y colores, hasta 4 a la vez en una misma pieza.",
+                    "También se pueden fabricar con chip NFC para que, al acercar el móvil, abra tu web, tus redes o tus datos de contacto. Son una opción práctica para negocios, regalos de empresa y aficionados. El precio depende del diseño y de la cantidad."
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
                 "images": [
                     "/img/products/PROD_05/1.jpg",
                     "/img/products/PROD_05/2.jpg",
-                    "/img/products/PROD_05/3.jpg"
+                    "/img/products/PROD_05/3.jpg",
+                    "/img/products/PROD_05/4.jpg",
+                    "/img/products/PROD_05/5.jpg"
                 ]
             },
             {
@@ -135,8 +151,8 @@
                     "name": "Mosaicos 3D"
                 },
                 "description": [
-                    "Convierte una fotografía en un mosaico 3D multicolor con relieve y colores adaptados a la imagen.",
-                    "Formato grande de aproximadamente 17 × 17 cm. Envíame la foto para preparar una propuesta."
+                    "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, de modo que el retrato gana profundidad y textura. Formato grande, de unos 17 × 17 cm y entre 2 y 3 mm de grosor según el relieve.",
+                    "Lleva un pequeño pie negro en el que encaja por abajo para que se mantenga de pie en cualquier mueble. Es un detalle original para parejas, familias y mascotas."
                 ],
                 "price": 10.0,
                 "images": [
@@ -152,8 +168,8 @@
                     "name": "Mosaicos 3D"
                 },
                 "description": [
-                    "Mosaico 3D multicolor basado en una fotografía, con relieve y colores personalizados.",
-                    "Formato mediano de aproximadamente 17 × 10 cm."
+                    "Tu fotografía en un mosaico de colores con relieve, impreso en PLA, con colores adaptados a la imagen. Formato mediano, de unos 17 × 10 cm y entre 2 y 3 mm de grosor según el relieve.",
+                    "Incluye un pequeño pie negro en el que encaja por la parte inferior para que se mantenga de pie. Es un regalo vistoso y original, ideal para una estantería o un escritorio."
                 ],
                 "price": 7.5,
                 "images": ["/img/products/PROD_07/1.jpg"]
@@ -162,12 +178,12 @@
                 "id": "PROD_08",
                 "title": "Medallas de graduación",
                 "category": {
-                    "id": "medallas_graduacion",
-                    "name": "Medallas de graduación"
+                    "id": "llaveros_medallas",
+                    "name": "Llaveros y medallas"
                 },
                 "description": [
-                    "Medallas de graduación 3D personalizadas con relieve, nombre, curso, año o temática y varios colores.",
-                    "Precio orientativo: 5 € por unidad. En pedidos grandes se puede ajustar el precio final."
+                    "Medallas de 8,5 cm de diámetro con relieve, para celebrar el final de curso, de etapa o de carrera. Puedes personalizar los textos, las tipografías y los colores, con el nombre, el curso, el año o la temática del grupo.",
+                    "Se entregan con su cinta incluida en el precio, que es por unidad. En pedidos grandes se puede ajustar el precio final."
                 ],
                 "price": 5.0,
                 "images": ["/img/products/PROD_08/1.jpg"]
@@ -180,11 +196,15 @@
                     "name": "Piezas para coches"
                 },
                 "description": [
-                    "Parrilla superior personalizada en 3D para Seat León FR, diseñada y fabricada a medida.",
-                    "Fabricada en ASA, resistente al calor y a los rayos UV. Confirma la compatibilidad de tu vehículo antes de encargarla."
+                    "Juego de 3 parrillas, la central y las dos laterales, diseñadas a medida para el Seat León FR. Están impresas en ASA, un material que resiste el calor y los rayos UV y aguanta bien la intemperie y el uso diario.",
+                    "Puedes elegir el color del fondo de la \"S\" de la parrilla central para dar a tu coche un toque propio. El precio incluye las 3 piezas."
                 ],
                 "price": 35.0,
-                "images": ["/img/products/PROD_09/1.jpg"]
+                "images": [
+                    "/img/products/PROD_09/1.jpg",
+                    "/img/products/PROD_09/2.jpg",
+                    "/img/products/PROD_09/3.jpg"
+                ]
             },
             {
                 "id": "PROD_10",
@@ -194,12 +214,97 @@
                     "name": "Impresión personalizada"
                 },
                 "description": [
-                    "Piezas impresas en 3D a partir del modelo que elijas, personalizadas con nombres y colores.",
-                    "El precio depende de la pieza, el material y el tiempo de impresión. Envíame el diseño o una idea para solicitar presupuesto."
+                    "Piezas y accesorios impresos en 3D para tu coche radiocontrol: componentes de dirección y elementos decorativos como bidones o planchas de arena. Se hacen a partir de un modelo que tú eliges y se adaptan con tu nombre y tus colores.",
+                    "Están impresas en PLA. Las piezas que van a sufrir más esfuerzo se refuerzan por dentro para que resistan mejor, mientras que las meramente decorativas se imprimen sin refuerzo. El precio depende de la pieza y del tiempo de impresión."
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
-                "images": ["/img/products/PROD_10/1.jpg"]
+                "images": [
+                    "/img/products/PROD_10/1.jpg",
+                    "/img/products/PROD_10/2.jpg",
+                    "/img/products/PROD_10/3.jpg"
+                ]
+            },
+            {
+                "id": "PROD_11",
+                "title": "Funko de famosos y personajes",
+                "category": {
+                    "id": "funkos",
+                    "name": "Funkos personalizados"
+                },
+                "description": [
+                    "Tu cantante, actor o personaje favorito de película, serie o libro, en versión Funko de 10 cm de alto. Se modela en 3D a partir de fotos de referencia, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos para reproducir su look más reconocible.",
+                    "Incluye una caja personalizada a juego (14 × 10 × 7,5 cm). Es un regalo pensado para fans y coleccionistas."
+                ],
+                "price": 20.0,
+                "images": [
+                    "/img/products/PROD_11/1.jpg",
+                    "/img/products/PROD_11/2.jpg"
+                ]
+            },
+            {
+                "id": "PROD_12",
+                "title": "Réplicas de coches en miniatura",
+                "category": {
+                    "id": "replicas_coches",
+                    "name": "Réplicas de coches"
+                },
+                "description": [
+                    "Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos. Mide unos 7 × 5,1 × 10 cm de alto, ancho y fondo.",
+                    "Si quieres, puedes añadir una mini cabeza estilo Funko con el conductor, sin coste extra. Se entrega en una caja a juego de 14 × 10 × 8 cm."
+                ],
+                "price": 20.0,
+                "images": [
+                    "/img/products/PROD_12/1.jpg"
+                ]
+            },
+            {
+                "id": "PROD_13",
+                "title": "Figuras de animales realistas",
+                "category": {
+                    "id": "figuras_animales",
+                    "name": "Figuras de animales"
+                },
+                "description": [
+                    "Una escultura realista de tu perro, o de cualquier otro animal, que recoge su postura, su pelaje y su mirada. Se imprime en PLA y se termina a mano con pintura acrílica. Mide unos 15 cm de alto si está sentado, o 15 cm en su lado más largo si está tumbado.",
+                    "A diferencia de los Funkos, el acabado es naturalista, no de dibujo animado. Es un recuerdo muy especial de una mascota. El precio es por unidad y no incluye caja."
+                ],
+                "price": 15.0,
+                "images": [
+                    "/img/products/PROD_13/1.jpg",
+                    "/img/products/PROD_13/2.jpg"
+                ]
+            },
+            {
+                "id": "PROD_14",
+                "title": "Letreros 3D personalizados",
+                "category": {
+                    "id": "letreros",
+                    "name": "Letreros"
+                },
+                "description": [
+                    "Letreros con la forma, el texto o el logotipo que tú elijas, con luz LED por todo el contorno interior para que destaquen también de noche. Están pensados para cumpleaños, negocios y decoración.",
+                    "Se fabrican en dos piezas, con la parte frontal encajada en el cuerpo a modo de tapa. En la parte trasera tienen un orificio para el cable y se alimentan por USB. Si prefieres otro tipo de iluminación, se puede estudiar, y el precio dependerá del tamaño, del diseño y del sistema elegido."
+                ],
+                "price": 0.0,
+                "price_label": "Precio a consultar",
+                "images": [
+                    "/img/products/PROD_14/1.jpg"
+                ]
+            },
+            {
+                "id": "PROD_15",
+                "title": "Funko mascotas grandes",
+                "category": {
+                    "id": "funkos",
+                    "name": "Funkos personalizados"
+                },
+                "description": [
+                    "Para toda la familia peluda: una composición con varias mascotas, o con personas y mascotas, en estilo Funko de 10 cm de alto. Cada figura mantiene el parecido, los colores y los detalles del original. Se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
+                    "La figura va sobre una base y en una caja personalizada más amplia (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para quien considera a sus animales parte de la familia."
+                ],
+                "price": 35.0,
+                "images": ["/img/products/PROD_15/1.jpg"]
             }
         ]
     },
