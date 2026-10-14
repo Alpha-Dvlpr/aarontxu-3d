@@ -7,13 +7,4 @@ description: "Política de privacidad de Aarontxu 3D."
 back_url: "/"
 main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
 ---
-<article class="rounded-3xl bg-surface p-6 shadow-card sm:p-10">
-    {% for section in site.data.aarontxu_3d.privacy.sections %}
-    <section class="mb-8 last:mb-0">
-        {% if section.heading %}<h2 class="mb-3 text-xl font-bold tracking-tight text-ink">{{ section.heading | escape }}</h2>{% endif %}
-        <div class="leading-relaxed text-muted">
-            {% for paragraph in section.paragraphs %}<p class="mb-3 whitespace-pre-line last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
-        </div>
-    </section>
-    {% endfor %}
-</article>
+{% include legal-sections.html sections=site.data.aarontxu_3d.privacy.sections %}

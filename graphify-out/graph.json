@@ -40,7 +40,7 @@
       "file_type": "code",
       "norm_label": "initializegallerydrag()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L369"
+      "source_location": "L374"
     },
     {
       "id": "script_initializeimagemodal",
@@ -52,7 +52,7 @@
       "file_type": "code",
       "norm_label": "initializeimagemodal()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L351"
+      "source_location": "L356"
     },
     {
       "id": "script_initializenfcguide",
@@ -64,7 +64,7 @@
       "file_type": "code",
       "norm_label": "initializenfcguide()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L407"
+      "source_location": "L412"
     },
     {
       "id": "script_initializeproductfilters",
@@ -76,7 +76,7 @@
       "file_type": "code",
       "norm_label": "initializeproductfilters()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L317"
+      "source_location": "L322"
     },
     {
       "id": "script_initializethemetoggle",
@@ -88,7 +88,7 @@
       "file_type": "code",
       "norm_label": "initializethemetoggle()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L254"
+      "source_location": "L259"
     },
     {
       "id": "script_initializetranslation",
@@ -100,7 +100,7 @@
       "file_type": "code",
       "norm_label": "initializetranslation()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L277"
+      "source_location": "L282"
     },
     {
       "id": "script_changecartquantity",
@@ -112,7 +112,7 @@
       "file_type": "code",
       "norm_label": "changecartquantity()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L237"
+      "source_location": "L242"
     },
     {
       "id": "script_formatcurrency",
@@ -160,7 +160,7 @@
       "file_type": "code",
       "norm_label": "removecartitem()",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L248"
+      "source_location": "L253"
     },
     {
       "id": "script_initializeproductcart",
@@ -698,7 +698,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L239",
+      "source_location": "L244",
       "weight": 1.0
     },
     {
@@ -710,7 +710,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L243",
+      "source_location": "L248",
       "weight": 1.0
     },
     {
@@ -722,7 +722,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L244",
+      "source_location": "L249",
       "weight": 1.0
     },
     {
@@ -734,7 +734,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L147",
+      "source_location": "L148",
       "weight": 1.0
     },
     {
@@ -746,7 +746,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L151",
+      "source_location": "L152",
       "weight": 1.0
     },
     {
@@ -758,7 +758,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L175",
+      "source_location": "L176",
       "weight": 1.0
     },
     {
@@ -770,7 +770,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L186",
+      "source_location": "L187",
       "weight": 1.0
     },
     {
@@ -782,7 +782,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L209",
+      "source_location": "L210",
       "weight": 1.0
     },
     {
@@ -830,7 +830,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L249",
+      "source_location": "L254",
       "weight": 1.0
     },
     {
@@ -842,7 +842,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L250",
+      "source_location": "L255",
       "weight": 1.0
     },
     {
@@ -890,7 +890,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L254",
+      "source_location": "L259",
       "weight": 1.0
     },
     {
@@ -902,7 +902,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L277",
+      "source_location": "L282",
       "weight": 1.0
     },
     {
@@ -926,7 +926,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L317",
+      "source_location": "L322",
       "weight": 1.0
     },
     {
@@ -938,7 +938,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L351",
+      "source_location": "L356",
       "weight": 1.0
     },
     {
@@ -950,7 +950,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L369",
+      "source_location": "L374",
       "weight": 1.0
     },
     {
@@ -962,7 +962,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L407",
+      "source_location": "L412",
       "weight": 1.0
     },
     {
@@ -997,7 +997,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L237",
+      "source_location": "L242",
       "weight": 1.0
     },
     {
@@ -1008,7 +1008,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "aarontxu-3d/script.js",
-      "source_location": "L248",
+      "source_location": "L253",
       "weight": 1.0
     },
     {
@@ -1376,5 +1376,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8c57daf5c324859f82ac11b3a1cd3d7cecc4415b"
+  "built_at_commit": "07c6b3c6dc3586da22eb674068bdba047f133081"
 }

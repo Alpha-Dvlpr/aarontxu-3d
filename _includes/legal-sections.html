@@ -1,0 +1,13 @@
+{% assign email = site.data.aarontxu_3d.legal.email %}
+{% capture email_link %}<a class="text-brand-text underline underline-offset-2 transition hover:text-brand-hover" href="mailto:{{ email }}">{{ email }}</a>{% endcapture %}
+{% capture aepd_link %}<a class="text-brand-text underline underline-offset-2 transition hover:text-brand-hover" href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es<span aria-hidden="true">↗</span><span class="sr-only">(se abre en otra pestaña)</span></a>{% endcapture %}
+<article class="rounded-3xl bg-surface p-6 shadow-card sm:p-10">
+    {% for section in include.sections %}
+    <section class="mb-8 last:mb-0">
+        {% if section.heading and section.heading != "" %}<h2 class="mb-3 text-xl font-bold tracking-tight text-ink">{{ section.heading | escape }}</h2>{% endif %}
+        <div class="leading-relaxed text-muted">
+            {% for paragraph in section.paragraphs %}{% assign text = paragraph | escape %}{% if email and email != "" %}{% assign text = text | replace: email, email_link %}{% endif %}<p class="mb-3 whitespace-pre-line last:mb-0">{{ text | replace: 'www.aepd.es', aepd_link }}</p>{% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</article>

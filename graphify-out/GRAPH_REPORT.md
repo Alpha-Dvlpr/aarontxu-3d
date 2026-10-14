@@ -1,7 +1,7 @@
 # Graph Report - aarontxu-3d  (2026-10-14)
 
 ## Corpus Check
-- 3 files · ~8,090 words
+- 3 files · ~10,918 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 4 file(s) not represented in the graph (top: (none) 4)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8c57daf5`
+- Built from commit: `07c6b3c6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -40,14 +40,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `Products and services page` --conceptually_related_to--> `Cart page`  [INFERRED]
   aarontxu-3d/pages/products.html → aarontxu-3d/pages/cart.html
-- `_config.yml (Jekyll config)` --conceptually_related_to--> `GitHub Pages hosting (3d.aarontxu.com)`  [INFERRED]
-  aarontxu-3d/_config.yml → aarontxu-3d/README.md
 - `Home page (index.html)` --references--> `default layout`  [EXTRACTED]
   aarontxu-3d/index.html → aarontxu-3d/_layouts/default.html
 - `default layout` --references--> `Privacy policy page`  [EXTRACTED]
   aarontxu-3d/_layouts/default.html → aarontxu-3d/pages/privacy.html
 - `Cart page` --references--> `default layout`  [EXTRACTED]
   aarontxu-3d/pages/cart.html → aarontxu-3d/_layouts/default.html
+- `Products and services page` --references--> `default layout`  [EXTRACTED]
+  aarontxu-3d/pages/products.html → aarontxu-3d/_layouts/default.html
 
 ## Import Cycles
 - None detected.
@@ -87,7 +87,7 @@ Cohesion: 0.67
 Nodes (3): Products and services page, Product category filters, Image zoom modal
 
 ## Knowledge Gaps
-- **16 isolated node(s):** `languages schema`, `privacy schema`, `profile (Portada) schema`, `nfcGuide whatsapp helper schema`, `jekyll-sitemap plugin` (+11 more)
+- **16 isolated node(s):** `languages schema`, `privacy schema`, `profile (Portada) schema`, `nfcGuide whatsapp helper schema`, `Privacy policy page` (+11 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 24 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Aviso legal de Aarontxu 3D: datos del titular, condiciones de uso y propiedad intelectual.">
+    <meta name="theme-color" content="#110f0e">
+    <script>
+        // Tema: elección guardada (auto/claro/oscuro); en auto sigue al sistema y, si no puede leerse, oscuro.
+        (function () {
+            var root = document.documentElement;
+            var light = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+            var choice = function () { try { return localStorage.getItem('theme') || 'auto'; } catch (e) { return 'auto'; } };
+            window.applyTheme = function (value) {
+                var dark = value === 'dark' || (value !== 'light' && !(light && light.matches));
+                root.dataset.theme = dark ? 'dark' : 'light';
+                root.dataset.themeChoice = value;
+                root.style.colorScheme = root.dataset.theme;
+                document.querySelector('meta[name="theme-color"]').content = dark ? '#110f0e' : '#faf7f3';
+            };
+            window.applyTheme(choice());
+            if (light && light.addEventListener) light.addEventListener('change', function () { if (choice() === 'auto') window.applyTheme('auto'); });
+        })();
+    </script>
+    <title>Aviso legal | Aarontxu 3D</title>
+    <link rel="canonical" href="http://localhost:4000/pages/legal.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Aarontxu 3D">
+    <meta property="og:title" content="Aviso legal | Aarontxu 3D">
+    <meta property="og:description" content="Aviso legal de Aarontxu 3D: datos del titular, condiciones de uso y propiedad intelectual.">
+    <meta property="og:url" content="http://localhost:4000/pages/legal.html">
+    <meta property="og:image" content="http://localhost:4000/img/mini_img.png">
+    <meta name="twitter:card" content="summary">
+    
+    <link rel="icon" type="image/png" href="/img/mini_img.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/mini_img.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Paleta global: los colores salen de las variables CSS de :root (claro y oscuro, abajo).
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI"', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        canvas: 'rgb(var(--canvas) / <alpha-value>)',
+                        surface: 'rgb(var(--surface) / <alpha-value>)',
+                        fill: 'rgb(var(--fill) / <alpha-value>)',
+                        ink: 'rgb(var(--ink) / <alpha-value>)',
+                        muted: 'rgb(var(--muted) / <alpha-value>)',
+                        line: 'rgb(var(--line) / <alpha-value>)',
+                        brand: {
+                            DEFAULT: 'rgb(var(--brand) / <alpha-value>)',
+                            hover: 'rgb(var(--brand-hover) / <alpha-value>)',
+                            text: 'rgb(var(--brand-text) / <alpha-value>)',
+                            on: 'rgb(var(--brand-on) / <alpha-value>)',
+                            tint: 'rgb(var(--brand-tint) / <alpha-value>)'
+                        },
+                        accent: {
+                            DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+                            hover: 'rgb(var(--accent-hover) / <alpha-value>)',
+                            on: 'rgb(var(--accent-on) / <alpha-value>)'
+                        },
+                        danger: 'rgb(var(--danger) / <alpha-value>)',
+                        'grad-from': 'rgb(var(--grad-from) / <alpha-value>)',
+                        'grad-to': 'rgb(var(--grad-to) / <alpha-value>)'
+                    },
+                    boxShadow: {
+                        card: '0 1px 2px rgb(0 0 0 / .04), 0 8px 24px rgb(0 0 0 / .06)'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        :root {
+            --canvas: 250 247 243;
+            --surface: 255 255 255;
+            --fill: 242 237 231;
+            --ink: 29 29 31;
+            --muted: 99 99 102;
+            --line: 226 220 212;
+            --brand: 194 65 12;
+            --brand-hover: 154 52 18;
+            --brand-text: 184 58 10;
+            --brand-on: 255 255 255;
+            --brand-tint: 255 237 213;
+            --accent: 185 28 28;
+            --accent-hover: 153 27 27;
+            --accent-on: 255 255 255;
+            --danger: 200 24 24;
+            --grad-from: 194 65 12;
+            --grad-to: 185 28 28;
+        }
+
+        :root[data-theme="dark"] {
+            --canvas: 17 15 14;
+            --surface: 29 27 26;
+            --fill: 44 41 39;
+            --ink: 245 245 247;
+            --muted: 172 168 163;
+            --line: 62 58 55;
+            --brand: 251 146 60;
+            --brand-hover: 253 186 116;
+            --brand-text: 253 164 90;
+            --brand-on: 28 25 23;
+            --brand-tint: 58 30 12;
+            --accent: 248 113 113;
+            --accent-hover: 252 165 165;
+            --accent-on: 17 15 14;
+            --danger: 255 105 97;
+            --grad-from: 251 146 60;
+            --grad-to: 248 113 113;
+        }
+
+        html { -webkit-text-size-adjust: 100%; }
+        body { -webkit-font-smoothing: antialiased; }
+        [hidden] { display: none !important; }
+        .gallery { scrollbar-width: none; cursor: grab; }
+        .gallery::-webkit-scrollbar { display: none; }
+        .gallery.dragging { cursor: grabbing; }
+        :focus-visible { outline: 3px solid rgb(var(--brand)); outline-offset: 2px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+    
+</head>
+<body class="bg-canvas text-ink flex min-h-screen flex-col items-center font-sans">
+    <a class="sr-only rounded-full bg-surface px-4 py-3 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]" href="#main-content">Saltar al contenido</a>
+    
+    <header class="sticky top-0 z-40 w-full border-b border-line bg-canvas/80 backdrop-blur-xl backdrop-saturate-150">
+        <div class="mx-auto grid w-full max-w-5xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-[max(1rem,env(safe-area-inset-left))] py-2">
+            <div class="justify-self-start">
+                
+                <a id="back-link" href="/" class="-ml-2 flex min-h-11 items-center gap-0.5 rounded-full pl-1 pr-3 text-base font-medium text-brand-text transition hover:bg-fill" aria-label="Volver atrás" title="Atrás"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span class="hidden sm:inline">Atrás</span></a>
+                
+            </div>
+            <h1 class="line-clamp-2 min-w-0 max-w-[50vw] break-words text-center text-sm font-semibold leading-tight sm:max-w-md sm:text-base text-ink">Aviso legal</h1>
+            <div id="translate-container" class="relative flex items-center gap-2 justify-self-end">
+                <a id="cart-link" href="/pages/cart.html" class="relative grid h-11 w-11 shrink-0 place-items-center rounded-full bg-fill text-ink transition hover:bg-line" aria-label="Cesta" title="Ver cesta">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1 12h-11l-1-12z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
+                    <span id="cart-count" class="absolute -right-1 -top-1 hidden h-5 min-w-5 rounded-full bg-brand px-1 text-center text-xs font-bold leading-5 text-brand-on" aria-hidden="true">0</span>
+                </a>
+                <button id="theme-btn" type="button" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-fill text-ink transition hover:bg-line" aria-label="Tema: automático" title="Tema: automático"><svg data-theme-icon="auto" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg data-theme-icon="light" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg data-theme-icon="dark" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+                <button id="translate-btn" type="button" class="flex h-11 items-center gap-2 rounded-full bg-fill px-3 text-sm font-medium text-ink transition hover:bg-line sm:px-4" aria-haspopup="true" aria-expanded="false" title="Traducir página"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span class="hidden sm:inline">Traducir</span></button>
+                <div id="google_translate_element" class="absolute right-0 top-full z-50 mt-2 hidden rounded-2xl border border-line bg-surface p-3 shadow-card" aria-label="Seleccionar idioma"></div>
+            </div>
+        </div>
+    </header>
+    <main id="main-content" class="w-full max-w-3xl px-4 py-8 sm:py-12">
+        
+
+
+<article class="rounded-3xl bg-surface p-6 shadow-card sm:p-10">
+    
+    <section class="mb-8 last:mb-0">
+        <h2 class="mb-3 text-xl font-bold tracking-tight text-ink">1. Titular de la web</h2>
+        <div class="leading-relaxed text-muted">
+            <p class="mb-3 whitespace-pre-line last:mb-0">Titular: Aarón Granado Amores</p><p class="mb-3 whitespace-pre-line last:mb-0">NIF: 45134922K</p><p class="mb-3 whitespace-pre-line last:mb-0">Domicilio: Calle Claudio Sánchez Albornoz 17, 2.º D, 33900 Sama de Langreo (Asturias, España)</p><p class="mb-3 whitespace-pre-line last:mb-0">Correo electrónico: <a class="text-brand-text underline underline-offset-2 transition hover:text-brand-hover" href="mailto:aarongranado98@gmail.com">aarongranado98@gmail.com</a></p><p class="mb-3 whitespace-pre-line last:mb-0">Sitio web: https://3d.aarontxu.com</p><p class="mb-3 whitespace-pre-line last:mb-0">Actividad: diseño e impresión 3D de productos personalizados.</p>
+        </div>
+    </section>
+    
+    <section class="mb-8 last:mb-0">
+        <h2 class="mb-3 text-xl font-bold tracking-tight text-ink">2. Uso de la web</h2>
+        <div class="leading-relaxed text-muted">
+            <p class="mb-3 whitespace-pre-line last:mb-0">Esta web es un escaparate de los trabajos y servicios de Aarontxu 3D. Los precios son orientativos. Un pedido no queda confirmado hasta que acordamos los detalles y el precio final por WhatsApp o Instagram. Al usar la web te comprometes a hacerlo de forma lícita y sin dañar su funcionamiento.</p>
+        </div>
+    </section>
+    
+    <section class="mb-8 last:mb-0">
+        <h2 class="mb-3 text-xl font-bold tracking-tight text-ink">3. Propiedad intelectual e industrial</h2>
+        <div class="leading-relaxed text-muted">
+            <p class="mb-3 whitespace-pre-line last:mb-0">Los textos, las fotografías y los diseños propios de esta web pertenecen a Aarón Granado Amores. No se pueden reproducir ni usar con fines comerciales sin permiso.</p><p class="mb-3 whitespace-pre-line last:mb-0">«Funko» es una marca registrada de Funko, LLC. La expresión «estilo Funko» solo describe la estética de las figuras, y Aarontxu 3D no tiene relación alguna con esa empresa. Las marcas, logotipos, escudos, vehículos y personajes que aparecen en algunos trabajos pertenecen a sus respectivos titulares. Son encargos personalizados y no implican afiliación ni patrocinio.</p>
+        </div>
+    </section>
+    
+    <section class="mb-8 last:mb-0">
+        <h2 class="mb-3 text-xl font-bold tracking-tight text-ink">4. Responsabilidad</h2>
+        <div class="leading-relaxed text-muted">
+            <p class="mb-3 whitespace-pre-line last:mb-0">Intento que la información de la web sea correcta y esté al día, pero puede contener errores. Los enlaces a servicios externos, como WhatsApp, Instagram o Google, llevan a sitios que no controlo y de cuyo contenido no soy responsable.</p>
+        </div>
+    </section>
+    
+    <section class="mb-8 last:mb-0">
+        <h2 class="mb-3 text-xl font-bold tracking-tight text-ink">5. Legislación aplicable</h2>
+        <div class="leading-relaxed text-muted">
+            <p class="mb-3 whitespace-pre-line last:mb-0">Este aviso se rige por la legislación española. Si eres consumidor, serán competentes los juzgados de tu domicilio.</p>
+        </div>
+    </section>
+    
+</article>
+
+
+    </main>
+    <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-11 items-center gap-1 rounded-full bg-brand px-5 font-semibold text-brand-on opacity-0 shadow-lg transition hover:bg-brand-hover sm:right-6" aria-label="Volver arriba" inert><span aria-hidden="true">↑</span> Arriba</button>
+    <footer class="mt-auto flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-line p-6 text-center text-sm text-muted"><span>© 2026 Aarontxu 3D</span><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="/pages/privacy.html">Política de privacidad</a><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="/pages/legal.html">Aviso legal</a></footer>
+    <script type="application/json" id="translate-languages">{"es":"Español","en":"English","fr":"Français","it":"Italiano","de":"Deutsch","pt":"Português"}</script>
+    <script defer src="/script.js"></script>
+</body>
+</html>

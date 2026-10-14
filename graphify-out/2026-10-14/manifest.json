@@ -1,9 +1,9 @@
 {
   "_data/aarontxu_3d.json": {
-    "mtime": 1791835378.1153243,
-    "seen": 1791835673.6302469,
-    "ast_hash": "36efa82f225e317f9cc82371a4608e24",
-    "semantic_hash": "36efa82f225e317f9cc82371a4608e24"
+    "mtime": 1791991352.7863376,
+    "seen": 1791991853.1361978,
+    "ast_hash": "60943a1ebe82c276f0bef920fe08506a",
+    "semantic_hash": ""
   },
   "script.js": {
     "mtime": 1791834684.508981,
@@ -12,10 +12,10 @@
     "semantic_hash": "31f329926b1669b7b79676bc8b1951b8"
   },
   ".pages.yml": {
-    "mtime": 1791833401.428501,
-    "seen": 1791833460.511364,
-    "ast_hash": "848d1d195f7f38957f4d0b71af7a751c",
-    "semantic_hash": "848d1d195f7f38957f4d0b71af7a751c"
+    "mtime": 1791989426.6187212,
+    "seen": 1791989457.722574,
+    "ast_hash": "81c6cb7199bcf2135b31a2d570b2b8a5",
+    "semantic_hash": ""
   },
   "README.md": {
     "mtime": 1791323961.2571163,
@@ -24,8 +24,8 @@
     "semantic_hash": "58b6720fde7c4ae3a88c02f0e84dd97d"
   },
   "_config.yml": {
-    "mtime": 1791665808.5701578,
-    "seen": 1791666168.893926,
+    "mtime": 1791835601.2145953,
+    "seen": 1791989457.722576,
     "ast_hash": "0bb4cfea2d162ddd760f10561606502d",
     "semantic_hash": "0bb4cfea2d162ddd760f10561606502d"
   },
@@ -64,5 +64,11 @@
     "seen": 1791835673.6302872,
     "ast_hash": "02ae313411ec6d018e048653cbe7c5dd",
     "semantic_hash": "02ae313411ec6d018e048653cbe7c5dd"
+  },
+  "404.html": {
+    "mtime": 1791992288.1141243,
+    "seen": 1791992482.5024981,
+    "ast_hash": "f4ec801a0645cf8bab1234e517f79838",
+    "semantic_hash": ""
   }
 }

@@ -142,6 +142,7 @@ function initializeCartPage() {
     const totalOutput = document.getElementById('cart-total');
     const orderLink = document.getElementById('cart-order-link');
     const whatsappUrl = cartPage.dataset.whatsappUrl;
+    const noPublish = document.getElementById('cart-no-publish');
 
     const render = () => {
         const cart = readCart();
@@ -221,7 +222,10 @@ function initializeCartPage() {
         if (cart.length > 0) {
             const orderLines = cart.map(item => `- ${item.name} x ${item.quantity}: ${item.priceLabel || formatCurrency(item.price * item.quantity)}`);
             const totalLine = `${hasQuoteItems ? 'Subtotal estimado (sin productos a consultar)' : 'Total'}: ${formatCurrency(total)}`;
-            const orderMessage = ['Hola, quiero realizar este pedido:', '', ...orderLines, '', totalLine].join('\n');
+            const publishLine = noPublish.checked
+                ? 'Publicación del trabajo terminado: me opongo a que se publique en la web y en redes sociales.'
+                : 'Publicación del trabajo terminado: no me opongo (puedo oponerme más adelante).';
+            const orderMessage = ['Hola, quiero realizar este pedido:', '', ...orderLines, '', totalLine, '', publishLine].join('\n');
             orderLink.href = `${whatsappUrl}?text=${encodeURIComponent(orderMessage)}`;
         } else {
             orderLink.href = '#';
@@ -229,6 +233,7 @@ function initializeCartPage() {
     };
 
     render();
+    noPublish.addEventListener('change', render);
     window.addEventListener('storage', event => {
         if (event.key === CART_STORAGE_KEY) render();
     });

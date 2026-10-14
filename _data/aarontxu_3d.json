@@ -313,9 +313,122 @@
         "linkLabel": "Política de privacidad",
         "sections": [
             {
-                "heading": "Pendiente de redactar",
+                "heading": "",
                 "paragraphs": [
-                    "Esta política de privacidad se publicará próximamente."
+                    "Última actualización: 14 de octubre de 2026."
+                ]
+            },
+            {
+                "heading": "1. Quién trata tus datos",
+                "paragraphs": [
+                    "El responsable es Aarón Granado Amores, con domicilio en Langreo (Asturias, España). Para cualquier cuestión sobre tus datos puedes escribir a aarongranado98@gmail.com."
+                ]
+            },
+            {
+                "heading": "2. Qué datos trato y para qué",
+                "paragraphs": [
+                    "Consultas y pedidos: cuando me escribes por WhatsApp o Instagram trato tu nombre, tu teléfono o usuario de Instagram, tus mensajes y las fotos o ideas que me envías. Los uso solo para responderte, preparar el presupuesto, diseñar la pieza y entregártela. La base legal es la aplicación de medidas precontractuales y la ejecución del encargo.",
+                    "Registro de clientes: guardo tu nombre sin apellidos, tu teléfono o usuario de Instagram y el número de pedidos que has hecho. Lo hago para saber si ya has sido cliente, ya que las conversaciones se borran (ver apartado 4). La base legal es mi interés legítimo en llevar el control de mis pedidos.",
+                    "Envíos: solo si pides que te lo envíe, trato tu nombre, tu dirección y tu teléfono para entregar el paquete.",
+                    "Pagos: por ahora los pagos son en efectivo, así que no trato datos bancarios.",
+                    "No uso tus datos para publicidad, no elaboro perfiles, no tomo decisiones automatizadas y no vendo tus datos a nadie."
+                ]
+            },
+            {
+                "heading": "3. Fotos de los trabajos terminados",
+                "paragraphs": [
+                    "Para mostrar mi trabajo publico en esta web y en Instagram fotos de las figuras y piezas ya terminadas, nunca las fotos que me envías como referencia. Al hacer un encargo aceptas que la pieza terminada pueda publicarse. La base legal es mi interés legítimo en dar a conocer mi trabajo.",
+                    "Si no quieres que se publique, dímelo al hacer el pedido y no la publicaré. También puedes oponerte en cualquier momento después: escríbeme y la retiraré de la web y de Instagram."
+                ]
+            },
+            {
+                "heading": "4. Cuánto tiempo guardo los datos",
+                "paragraphs": [
+                    "Conversaciones y fotos de referencia: se borran 30 días después de la entrega, salvo que tengas otro pedido en curso. Las fotos no se guardan en la galería del móvil ni en copias de seguridad.",
+                    "Registro de clientes: como máximo 3 años desde tu último pedido, o hasta que me pidas que lo borre.",
+                    "Datos de envío: solo el tiempo necesario para que el paquete llegue."
+                ]
+            },
+            {
+                "heading": "5. Con quién se comparten",
+                "paragraphs": [
+                    "No cedo tus datos a terceros, salvo en estos casos:",
+                    "Empresa de transporte: si pides un envío, Correos o la empresa que elijas recibirá los datos necesarios para entregarlo.",
+                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; y GitHub, que aloja esta web.",
+                    "Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, por ejemplo en Estados Unidos. Lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea."
+                ]
+            },
+            {
+                "heading": "6. Cookies y almacenamiento en tu navegador",
+                "paragraphs": [
+                    "Esta web no usa cookies de analítica ni de publicidad. Solo guarda en tu navegador lo necesario para que funcione lo que tú usas:",
+                    "Cesta: los productos que añades, para que no se pierdan al cambiar de página.",
+                    "Tema: tu preferencia de modo claro u oscuro.",
+                    "Guía de llaveros NFC: el número de teléfono que escribes en el ayudante de WhatsApp se procesa solo en tu navegador y no se envía a ningún sitio.",
+                    "Estos datos no salen de tu dispositivo y puedes borrarlos desde los ajustes del navegador.",
+                    "Si pulsas «Traducir», se carga el Traductor de Google, que puede guardar una cookie con el idioma elegido y recibir tu dirección IP según su propia política de privacidad. Además, para mostrar la web, el alojamiento (GitHub) y el servicio de estilos (Tailwind CSS) reciben tu dirección IP. Yo no tengo acceso a esos datos ni los uso."
+                ]
+            },
+            {
+                "heading": "7. Tus derechos",
+                "paragraphs": [
+                    "Puedes pedir el acceso, la rectificación, la supresión, la oposición, la limitación del tratamiento y la portabilidad de tus datos, y oponerte a que se publiquen fotos de tu encargo. Para ello, escribe a aarongranado98@gmail.com.",
+                    "Si crees que no he tratado bien tus datos, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es)."
+                ]
+            },
+            {
+                "heading": "8. Menores de edad",
+                "paragraphs": [
+                    "Si eres menor de 14 años, el pedido debe hacerlo tu padre, tu madre o tu tutor legal."
+                ]
+            },
+            {
+                "heading": "9. Cambios en esta política",
+                "paragraphs": [
+                    "Si cambio la forma de tratar los datos, actualizaré esta página y su fecha."
+                ]
+            }
+        ]
+    },
+    "legal": {
+        "title": "Aviso legal",
+        "linkLabel": "Aviso legal",
+        "email": "aarongranado98@gmail.com",
+        "sections": [
+            {
+                "heading": "1. Titular de la web",
+                "paragraphs": [
+                    "Titular: Aarón Granado Amores",
+                    "NIF: 45134922K",
+                    "Domicilio: Calle Claudio Sánchez Albornoz 17, 2.º D, 33900 Sama de Langreo (Asturias, España)",
+                    "Correo electrónico: aarongranado98@gmail.com",
+                    "Sitio web: https://3d.aarontxu.com",
+                    "Actividad: diseño e impresión 3D de productos personalizados."
+                ]
+            },
+            {
+                "heading": "2. Uso de la web",
+                "paragraphs": [
+                    "Esta web es un escaparate de los trabajos y servicios de Aarontxu 3D. Los precios son orientativos. Un pedido no queda confirmado hasta que acordamos los detalles y el precio final por WhatsApp o Instagram. Al usar la web te comprometes a hacerlo de forma lícita y sin dañar su funcionamiento."
+                ]
+            },
+            {
+                "heading": "3. Propiedad intelectual e industrial",
+                "paragraphs": [
+                    "Los textos, las fotografías y los diseños propios de esta web pertenecen a Aarón Granado Amores. No se pueden reproducir ni usar con fines comerciales sin permiso.",
+                    "«Funko» es una marca registrada de Funko, LLC. La expresión «estilo Funko» solo describe la estética de las figuras, y Aarontxu 3D no tiene relación alguna con esa empresa. Las marcas, logotipos, escudos, vehículos y personajes que aparecen en algunos trabajos pertenecen a sus respectivos titulares. Son encargos personalizados y no implican afiliación ni patrocinio."
+                ]
+            },
+            {
+                "heading": "4. Responsabilidad",
+                "paragraphs": [
+                    "Intento que la información de la web sea correcta y esté al día, pero puede contener errores. Los enlaces a servicios externos, como WhatsApp, Instagram o Google, llevan a sitios que no controlo y de cuyo contenido no soy responsable."
+                ]
+            },
+            {
+                "heading": "5. Legislación aplicable",
+                "paragraphs": [
+                    "Este aviso se rige por la legislación española. Si eres consumidor, serán competentes los juzgados de tu domicilio."
                 ]
             }
         ]

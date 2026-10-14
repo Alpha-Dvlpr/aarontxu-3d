@@ -68,6 +68,20 @@ content:
             fields:
               - { name: heading, label: Encabezado, type: string }
               - { name: paragraphs, label: Párrafos, type: text, list: true }
+      - name: legal
+        label: Aviso legal
+        type: object
+        fields:
+          - { name: title, label: Título de la página, type: string }
+          - { name: linkLabel, label: Texto del enlace en el pie, type: string }
+          - { name: email, label: "Correo de contacto (se enlaza solo en los textos de privacidad y aviso legal)", type: string }
+          - name: sections
+            label: Apartados
+            type: object
+            list: true
+            fields:
+              - { name: heading, label: Encabezado, type: string }
+              - { name: paragraphs, label: Párrafos, type: text, list: true }
       - name: nfcGuide
         label: Guía de llaveros NFC
         type: object
