@@ -1,17 +1,33 @@
 {
   "communities": {
     "0": [
+      "includes_legal_sections",
+      "layouts_default",
+      "layouts_default_footer",
+      "layouts_default_person_schema",
+      "layouts_default_tailwind_config",
+      "layouts_default_theme_script",
+      "pages_cart",
+      "pages_cart_publish_opt_out",
+      "pages_cart_whatsapp_order",
+      "pages_legal",
+      "pages_privacy",
+      "pages_products",
+      "pages_yml_legal"
+    ],
+    "1": [
+      "layouts_default_header",
       "pages_yml",
-      "pages_yml_aarontxu_3d_content",
+      "pages_yml_aarontxu_3d",
       "pages_yml_languages",
       "pages_yml_nfc_guide",
       "pages_yml_privacy",
       "pages_yml_products_and_services",
       "pages_yml_profile",
       "pages_yml_site_images",
-      "pages_yml_whatsapp_helper"
+      "pages_yml_whatsapp"
     ],
-    "1": [
+    "2": [
       "script",
       "script_initializebacklink",
       "script_initializebacktotop",
@@ -22,14 +38,6 @@
       "script_initializethemetoggle",
       "script_initializetranslation"
     ],
-    "2": [
-      "_layouts_default",
-      "_layouts_default_tailwind_palette",
-      "_layouts_default_theme_switcher",
-      "pages_guides_nfc",
-      "pages_guides_nfc_stepper",
-      "pages_privacy"
-    ],
     "3": [
       "script_changecartquantity",
       "script_formatcurrency",
@@ -38,22 +46,20 @@
       "script_removecartitem"
     ],
     "4": [
-      "_config",
-      "_config_jekyll_sitemap",
-      "readme",
-      "readme_github_pages"
-    ],
-    "5": [
-      "_layouts_default_header",
-      "_layouts_default_translate",
-      "pages_cart",
-      "pages_cart_whatsapp_order"
-    ],
-    "6": [
       "script_initializeproductcart",
       "script_normalizequantity",
       "script_savecart",
       "script_updatecartbadge"
+    ],
+    "5": [
+      "404_html",
+      "404_site_pages_json",
+      "404_suggestion_script"
+    ],
+    "6": [
+      "config_yml",
+      "config_yml_exclude_graphify_out",
+      "config_yml_jekyll_sitemap"
     ],
     "7": [
       "index",
@@ -61,27 +67,46 @@
       "index_intro_section"
     ],
     "8": [
-      "pages_products",
-      "pages_products_filters",
-      "pages_products_image_modal"
+      "pages_guides_nfc",
+      "pages_guides_nfc_stepper",
+      "pages_guides_nfc_wa_helper"
+    ],
+    "9": [
+      "readme"
     ]
   },
   "cohesion": {
-    "0": 0.25,
-    "1": 0.2222222222222222,
-    "2": 0.3333333333333333,
+    "0": 0.24358974358974358,
+    "1": 0.28888888888888886,
+    "2": 0.2222222222222222,
     "3": 0.7,
     "4": 0.5,
-    "5": 0.5,
-    "6": 0.5,
+    "5": 1.0,
+    "6": 0.6666666666666666,
     "7": 0.6666666666666666,
-    "8": 0.6666666666666666
+    "8": 0.6666666666666666,
+    "9": 1.0
   },
   "gods": [
     {
-      "id": "_layouts_default",
-      "label": "default layout",
+      "id": "layouts_default",
+      "label": "Default layout",
+      "degree": 13
+    },
+    {
+      "id": "pages_cart",
+      "label": "Cart page",
       "degree": 8
+    },
+    {
+      "id": "pages_yml_aarontxu_3d",
+      "label": "Content file: _data/aarontxu_3d.json",
+      "degree": 7
+    },
+    {
+      "id": "layouts_default_header",
+      "label": "Sticky header (back link, title, cart, theme, translate)",
+      "degree": 7
     },
     {
       "id": "script_initializecartpage",
@@ -89,23 +114,8 @@
       "degree": 6
     },
     {
-      "id": "pages_yml_aarontxu_3d_content",
-      "label": "aarontxu_3d content file definition",
-      "degree": 6
-    },
-    {
-      "id": "script_changecartquantity",
-      "label": "changeCartQuantity()",
-      "degree": 5
-    },
-    {
       "id": "script_readcart",
       "label": "readCart()",
-      "degree": 5
-    },
-    {
-      "id": "script_removecartitem",
-      "label": "removeCartItem()",
       "degree": 5
     },
     {
@@ -114,36 +124,36 @@
       "degree": 5
     },
     {
-      "id": "script_initializeproductcart",
-      "label": "initializeProductCart()",
-      "degree": 4
+      "id": "script_changecartquantity",
+      "label": "changeCartQuantity()",
+      "degree": 5
     },
     {
-      "id": "pages_cart",
-      "label": "Cart page",
-      "degree": 4
+      "id": "script_removecartitem",
+      "label": "removeCartItem()",
+      "degree": 5
     },
     {
-      "id": "pages_products",
-      "label": "Products and services page",
-      "degree": 4
+      "id": "pages_yml_legal",
+      "label": "Field group: legal",
+      "degree": 5
     }
   ],
   "surprises": [
     {
-      "source": "default layout",
-      "target": "Privacy policy page",
+      "source": "Default layout",
+      "target": "Field group: languages",
       "source_files": [
         "_layouts/default.html",
-        "pages/privacy.html"
+        ".pages.yml"
       ],
       "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `Privacy policy page` unexpectedly reaches hub `default layout`"
+      "relation": "shares_data_with",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Field group: languages` unexpectedly reaches hub `Default layout`"
     },
     {
       "source": "Home page (index.html)",
-      "target": "default layout",
+      "target": "Default layout",
       "source_files": [
         "index.html",
         "_layouts/default.html"
@@ -153,59 +163,41 @@
       "why": "connects across different repos/directories; bridges separate communities"
     },
     {
-      "source": "Cart page",
-      "target": "default layout",
-      "source_files": [
-        "pages/cart.html",
-        "_layouts/default.html"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities"
-    },
-    {
       "source": "NFC keychain guide page",
-      "target": "default layout",
+      "target": "Default layout",
       "source_files": [
         "pages/guides/nfc.html",
         "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `NFC keychain guide page` unexpectedly reaches hub `default layout`"
+      "why": "connects across different repos/directories; bridges separate communities"
     },
     {
       "source": "Products and services page",
-      "target": "default layout",
+      "target": "Default layout",
       "source_files": [
         "pages/products.html",
         "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Products and services page` unexpectedly reaches hub `Default layout`"
+    },
+    {
+      "source": "Cart page",
+      "target": "Field group: profile",
+      "source_files": [
+        "pages/cart.html",
+        ".pages.yml"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "shares_data_with",
       "why": "connects across different repos/directories; bridges separate communities"
     }
   ],
-  "questions": [
-    {
-      "type": "bridge_node",
-      "question": "Why does `default layout` connect `default layout` to `Products and services page`, `Cart page`, `Home page (index.html)`?",
-      "why": "High betweenness centrality (0.080) - this node is a cross-community bridge."
-    },
-    {
-      "type": "isolated_nodes",
-      "question": "What connects `nfcGuide whatsapp helper schema`, `languages schema`, `privacy schema` to the rest of the system?",
-      "why": "16 weakly-connected nodes found - possible documentation gaps or missing edges."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `Home page (index.html)` connect `Home page (index.html)` to `default layout`?",
-      "why": "High betweenness centrality (0.026) - this node is a cross-community bridge."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `Products and services page` connect `Products and services page` to `default layout`, `Cart page`?",
-      "why": "High betweenness centrality (0.026) - this node is a cross-community bridge."
-    }
-  ]
+  "tokens": {
+    "input": 165910,
+    "output": 14516
+  }
 }
