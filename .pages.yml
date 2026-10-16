@@ -61,6 +61,9 @@ content:
         fields:
           - { name: title, label: Título de la página, type: string }
           - { name: linkLabel, label: Texto del enlace en el pie, type: string }
+          - { name: updated, label: Fecha de la última actualización, type: string }
+          - { name: changesTitle, label: Título de los cambios, type: string }
+          - { name: changes, label: "Cambios respecto a la versión anterior (sustitúyelos en cada actualización)", type: text, list: true }
           - name: sections
             label: Apartados
             type: object
