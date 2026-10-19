@@ -317,12 +317,10 @@
     "privacy": {
         "title": "Política de privacidad",
         "linkLabel": "Política de privacidad",
-        "updated": "Última actualización: 16 de octubre de 2026.",
+        "updated": "Última actualización: 19 de octubre de 2026.",
         "changesTitle": "¿Qué ha cambiado?",
         "changes": [
-            "Apartado 2: explico que el diseño 2D de las figuras se prepara con ayuda de inteligencia artificial, pido que tengas permiso si las fotos son de otra persona y aclaro qué datos guardo en el registro de clientes según cómo me contactes.",
-            "Apartado 4: añado cuánto tiempo se guardan las copias en las herramientas de diseño, y el diseño 2D y el archivo de impresión de tu figura.",
-            "Apartado 5: añado las herramientas con las que diseño las figuras: Perplexity, remove.bg y MakerLab."
+            "Apartados 2, 4, 5 y 6: añado la información sobre las órdenes de compra de la web, su conservación durante 15 días y los servicios de Cloudflare que las procesan."
         ],
         "sections": [
             {
@@ -335,6 +333,7 @@
                 "heading": "2. Qué datos trato y para qué",
                 "paragraphs": [
                     "Consultas y pedidos: cuando me escribes por WhatsApp o Instagram trato tu nombre, tu teléfono o usuario de Instagram, tus mensajes y las fotos o ideas que me envías. Los uso solo para responderte, preparar el presupuesto, diseñar la pieza y entregártela. La base legal es la aplicación de medidas precontractuales y la ejecución del encargo.",
+                    "Órdenes de compra desde la web: al crear una orden sin datos personales guardo durante 15 días su número, los productos, cantidades, precios mostrados, fecha, estado y la preferencia sobre fotografías. Una clave aleatoria permite consultar la orden; guardo su hash, no la clave. Cloudflare procesa la solicitud y almacena estos datos en su base de datos D1. Si el pedido continúa, la información necesaria se incorpora a la conversación y a los registros del encargo; la orden temporal se elimina automáticamente al vencer el plazo.",
                     "Figuras personalizadas: a partir de tus fotos preparo, con ayuda de una herramienta de inteligencia artificial, un diseño 2D de la figura que revisas y apruebas antes de fabricarla. Con ese diseño hago después el modelo 3D y la caja.",
                     "Si las fotos son de otra persona, asegúrate de que está de acuerdo en que me las envíes y de que conoce esta política.",
                     "Registro de clientes: guardo solo lo necesario para identificarte, según cómo me contactes: tu usuario de Instagram, o tu teléfono junto con tu nombre sin apellidos o, si no me lo dices, tu alias de WhatsApp. Además anoto el número de pedidos que has hecho. Lo hago para saber si ya has sido cliente, ya que las conversaciones se borran (ver apartado 4). La base legal es mi interés legítimo en llevar el control de mis pedidos.",
@@ -357,6 +356,7 @@
                     "Copias en las herramientas de diseño: las fotos subidas a Perplexity y los modelos creados en MakerLab se borran al menos una vez al mes. remove.bg borra la imagen automáticamente en una hora.",
                     "Diseño 2D y archivo de impresión de tu figura: los guardo en un disco duro externo que solo uso para el negocio durante un máximo de 3 años desde tu último pedido, para poder repetir la figura o hacerte otra caja sin empezar de cero. La base legal es mi interés legítimo en poder repetir o reparar tus encargos. Si prefieres que los borre antes, dímelo.",
                     "Registro de clientes: como máximo 3 años desde tu último pedido, o hasta que me pidas que lo borre.",
+                    "Órdenes web: 15 días desde su creación, tras los cuales se eliminan automáticamente en todos sus estados. Este plazo no sustituye los plazos legales aplicables a facturas u otros registros que deban conservarse; si el pedido sigue adelante, traslado la información necesaria a esos registros.",
                     "Datos de envío: solo el tiempo necesario para que el paquete llegue."
                 ]
             },
@@ -365,7 +365,7 @@
                 "paragraphs": [
                     "No cedo tus datos a terceros, salvo en estos casos:",
                     "Empresa de transporte: si pides un envío, Correos o la empresa que elijas recibirá los datos necesarios para entregarlo.",
-                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; y GitHub, que aloja esta web.",
+                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; GitHub, que aloja esta web; y Cloudflare, que presta la base de datos y el servicio técnico para registrar y consultar las órdenes web, y verifica solicitudes mediante Turnstile. Estos servicios pueden recibir datos técnicos como la dirección IP y datos del navegador al tramitar una solicitud.",
                     "Herramientas de diseño de las figuras: Perplexity (Perplexity AI, Inc., Estados Unidos) recibe tus fotos de referencia para crear el diseño 2D, con la opción de usarlas para entrenar su inteligencia artificial desactivada; remove.bg (Canva Austria GmbH) recibe solo el diseño 2D ya generado, nunca tus fotos, para quitarle el fondo; y MakerLab (Bambu Lab) recibe ese diseño sin fondo para crear el modelo 3D. La caja la preparo en mi ordenador, sin subirla a la nube.",
                     "Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, por ejemplo en Estados Unidos. Lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea."
                 ]
@@ -374,7 +374,7 @@
                 "heading": "6. Cookies y almacenamiento en tu navegador",
                 "paragraphs": [
                     "Esta web no usa cookies de analítica ni de publicidad. Solo guarda en tu navegador lo necesario para que funcione lo que tú usas:",
-                    "Cesta: los productos que añades, para que no se pierdan al cambiar de página.",
+                    "Cesta: los productos que añades, para que no se pierdan al cambiar de página. Al tramitar una orden, el navegador guarda temporalmente una referencia de reintento y una clave aleatoria para que puedas volver a acceder a ella; la clave también aparece en el enlace de consulta. Puedes borrar estos datos desde los ajustes del navegador, pero si borras la clave podrías perder el acceso a la orden.",
                     "Tema: tu preferencia de modo claro u oscuro.",
                     "Guía de llaveros NFC: el número de teléfono que escribes en el ayudante de WhatsApp se procesa solo en tu navegador y no se envía a ningún sitio.",
                     "Estos datos no salen de tu dispositivo y puedes borrarlos desde los ajustes del navegador.",

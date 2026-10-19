@@ -1,7 +1,20 @@
 const CART_STORAGE_KEY = 'aarontxu-3d-cart-v1';
-const CART_CLEAR_AT_KEY = 'aarontxu-3d-cart-clear-at';
-const CART_AUTO_CLEAR_MS = 10 * 60 * 1000;
+const ORDER_REQUEST_STORAGE_KEY = 'aarontxu-3d-order-request-v1';
 const MAX_QUANTITY = 99;
+
+function localOrderRequest(fingerprint) {
+    try {
+        const saved = JSON.parse(localStorage.getItem(ORDER_REQUEST_STORAGE_KEY) || 'null');
+        if (saved?.fingerprint === fingerprint && /^[0-9a-f-]{36}$/.test(saved.requestKey) && /^[a-f0-9]{64}$/.test(saved.accessKey)) return saved;
+    } catch {}
+    const request = {
+        fingerprint,
+        requestKey: crypto.randomUUID(),
+        accessKey: Array.from(crypto.getRandomValues(new Uint8Array(32)), byte => byte.toString(16).padStart(2, '0')).join('')
+    };
+    try { localStorage.setItem(ORDER_REQUEST_STORAGE_KEY, JSON.stringify(request)); } catch {}
+    return request;
+}
 
 function initializeBackToTop() {
     const button = document.getElementById('scrollTopBtn');
@@ -124,29 +137,6 @@ function saveCart(cart) {
     return true;
 }
 
-function cartClearAt() {
-    try {
-        return Number(window.localStorage.getItem(CART_CLEAR_AT_KEY)) || 0;
-    } catch {
-        return 0;
-    }
-}
-
-function setCartClearAt(time) {
-    try {
-        if (time) window.localStorage.setItem(CART_CLEAR_AT_KEY, String(time));
-        else window.localStorage.removeItem(CART_CLEAR_AT_KEY);
-    } catch {}
-}
-
-// The deadline is stored rather than kept in a timer, so the cart also empties if the page was closed or asleep in the background.
-function clearExpiredCart() {
-    const clearAt = cartClearAt();
-    if (!clearAt || Date.now() < clearAt) return false;
-    setCartClearAt(0);
-    return saveCart([]);
-}
-
 function normalizeQuantity(value) {
     const quantity = Math.floor(Number(value));
     return Number.isFinite(quantity) ? Math.min(MAX_QUANTITY, Math.max(1, quantity)) : 1;
@@ -201,10 +191,9 @@ function initializeProductCart() {
                 cart.push(product);
             }
             const added = (existingItem || product).quantity - previousQuantity;
+            try { localStorage.removeItem(ORDER_REQUEST_STORAGE_KEY); } catch {}
 
             if (!saveCart(cart)) return;
-            // Adding more means a new order, so a pending auto-empty must not delete it.
-            setCartClearAt(0);
             announce(added === 0
                 ? `Ya tienes el máximo de ${MAX_QUANTITY} unidades de ${product.name} en la cesta.`
                 : `${added === 1 ? 'Añadida 1 unidad' : `Añadidas ${added} unidades`} de ${product.name} a la cesta.`);
@@ -224,12 +213,19 @@ function initializeCartPage() {
     const summary = document.getElementById('cart-summary');
     const totalOutput = document.getElementById('cart-total');
     const orderLink = document.getElementById('cart-order-link');
-    const whatsappUrl = cartPage.dataset.whatsappUrl;
     const noPublish = document.getElementById('cart-no-publish');
     const title = document.getElementById('cart-title');
-    const sentPanel = document.getElementById('cart-sent');
-    const countdown = document.getElementById('cart-countdown');
-    let countdownTimer;
+    const turnstile = document.querySelector('.cf-turnstile');
+    const verification = document.getElementById('cart-verification');
+    const verificationNote = document.getElementById('cart-verification-note');
+    const hasTurnstileSiteKey = turnstile && turnstile.dataset.sitekey && turnstile.dataset.sitekey !== 'CONFIGURE_TURNSTILE_SITE_KEY';
+    if (!hasTurnstileSiteKey) {
+        if (turnstile) turnstile.hidden = true;
+        if (verificationNote) verificationNote.textContent = 'La creación de órdenes estará disponible cuando se configure la verificación antispam.';
+    }
+    let turnstileToken = '';
+    let turnstileWidgetId = null;
+    let currentCart = [];
 
     const catalog = readCatalog();
     const retired = readStoredCart().filter(item => !applyCatalog(item, catalog));
@@ -239,27 +235,10 @@ function initializeCartPage() {
         notice.hidden = false;
     }
 
-    const updateCountdown = () => {
-        if (clearExpiredCart()) {
-            announce('La cesta se ha vaciado.');
-            render();
-            return;
-        }
-        const clearAt = cartClearAt();
-        sentPanel.hidden = !clearAt;
-        if (!clearAt) {
-            window.clearInterval(countdownTimer);
-            countdownTimer = undefined;
-            return;
-        }
-        const seconds = Math.ceil((clearAt - Date.now()) / 1000);
-        countdown.textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-        countdownTimer ??= window.setInterval(updateCountdown, 1000);
-    };
-
     // Rows are rebuilt on every change, so focus goes back to the same control by its key, or to the title if it is gone.
     const render = focusKey => {
         const cart = readCart();
+        currentCart = cart;
         itemList.replaceChildren();
         emptyMessage.hidden = cart.length > 0;
         summary.hidden = cart.length === 0;
@@ -336,30 +315,26 @@ function initializeCartPage() {
         quoteNote.hidden = !hasQuoteItems;
         totalOutput.textContent = formatCurrency(total);
         if (cart.length > 0) {
-            const orderLines = cart.map(item => `- ${item.name} x ${item.quantity}: ${item.priceLabel || formatCurrency(item.price * item.quantity)}`);
-            const totalLine = `${hasQuoteItems ? 'Subtotal estimado (sin productos a consultar)' : 'Total'}: ${formatCurrency(total)}`;
-            const publishLine = noPublish.checked
-                ? 'Publicación del trabajo terminado: me opongo a que se publique en la web y en redes sociales.'
-                : 'Publicación del trabajo terminado: no me opongo (puedo oponerme más adelante).';
-            const orderMessage = ['Hola, quiero realizar este pedido:', '', ...orderLines, '', totalLine, '', publishLine].join('\n');
-            orderLink.href = `${whatsappUrl}?text=${encodeURIComponent(orderMessage)}`;
+            orderLink.disabled = false;
+            orderLink.textContent = 'Crear orden de compra';
         } else {
-            orderLink.href = '#';
+            orderLink.disabled = true;
         }
 
-        updateCountdown();
         if (focusKey) (cartPage.querySelector(`[data-focus-key="${CSS.escape(focusKey)}"]`) || title).focus();
     };
 
     // Any change by hand means the order is being edited, so it also cancels a pending auto-empty.
     const update = (cart, message, focusKey) => {
         if (!saveCart(cart)) return;
-        setCartClearAt(0);
         announce(message);
         render(focusKey);
     };
 
-    const removeItem = item => update(readCart().filter(line => line.id !== item.id), `${item.name} se ha quitado de la cesta.`, 'title');
+    const removeItem = item => {
+        try { localStorage.removeItem(ORDER_REQUEST_STORAGE_KEY); } catch {}
+        update(readCart().filter(line => line.id !== item.id), `${item.name} se ha quitado de la cesta.`, 'title');
+    };
 
     const changeQuantity = (item, quantity, focusKey) => {
         if (quantity < 1) {
@@ -368,34 +343,96 @@ function initializeCartPage() {
         }
         const next = normalizeQuantity(quantity);
         const message = next === item.quantity ? `El máximo es de ${MAX_QUANTITY} unidades por producto.` : `Cantidad de ${item.name}: ${next}.`;
+        try { localStorage.removeItem(ORDER_REQUEST_STORAGE_KEY); } catch {}
         update(readCart().map(line => line.id === item.id ? { ...line, quantity: next } : line), message, focusKey);
     };
 
-    const clearCart = () => update([], 'La cesta se ha vaciado.', 'title');
+    const clearCart = () => {
+        try { localStorage.removeItem(ORDER_REQUEST_STORAGE_KEY); } catch {}
+        update([], 'La cesta se ha vaciado.', 'title');
+    };
 
     document.getElementById('cart-clear').addEventListener('click', () => {
         if (window.confirm('¿Quieres vaciar la cesta?')) clearCart();
     });
-    document.getElementById('cart-sent-clear').addEventListener('click', clearCart);
-    document.getElementById('cart-sent-keep').addEventListener('click', () => {
-        setCartClearAt(0);
-        announce('La cesta se mantiene.');
-        render('order');
-    });
-    orderLink.addEventListener('click', event => {
-        if (readCart().length === 0) {
-            event.preventDefault();
+    const orderButtonLabel = orderLink.textContent;
+    orderLink.disabled = true;
+    let creatingOrder = false;
+    orderLink.addEventListener('click', async () => {
+        if (creatingOrder || currentCart.length === 0) return;
+        if (!hasTurnstileSiteKey) {
+            announce('La creación de órdenes no está disponible mientras se configura la verificación antispam.');
             return;
         }
-        setCartClearAt(Date.now() + CART_AUTO_CLEAR_MS);
-        announce('Se ha abierto WhatsApp con tu pedido. Si lo envías, la cesta se vaciará sola en 10 minutos.');
-        updateCountdown();
+        creatingOrder = true;
+        orderLink.disabled = true;
+        orderLink.textContent = 'Creando orden…';
+        announce('Registrando el pedido. No cierres esta página.');
+        const notice = document.getElementById('cart-notice');
+        notice.textContent = 'Registrando el pedido…';
+        notice.hidden = false;
+        const fingerprint = JSON.stringify({ lines: currentCart.map(({ id, quantity }) => ({ id, quantity })), noPublish: noPublish.checked });
+        const request = localOrderRequest(fingerprint);
+        try {
+            if (window.turnstile && turnstileWidgetId !== null) turnstileToken = window.turnstile.getResponse(turnstileWidgetId) || '';
+            if (!turnstileToken) throw new Error('Completa la verificación antispam antes de continuar.');
+            const response = await fetch(`${cartPage.dataset.orderApi}/api/orders`, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ lines: currentCart.map(({ id, quantity }) => ({ id, quantity })), noPublish: noPublish.checked, requestKey: request.requestKey, accessKey: request.accessKey, turnstile: turnstileToken })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'No se ha podido registrar el pedido.');
+            const orderUrl = new URL('/pages/order.html', location.origin);
+            orderUrl.searchParams.set('n', result.id);
+            orderUrl.searchParams.set('k', result.key);
+            notice.hidden = true;
+            saveCart([]);
+            try { localStorage.removeItem(ORDER_REQUEST_STORAGE_KEY); } catch {}
+            location.href = orderUrl.href;
+        } catch (error) {
+            const message = error.message || 'No se ha podido registrar el pedido. La cesta sigue guardada.';
+            announce(message);
+            notice.textContent = `${message} La cesta sigue guardada.`;
+            notice.hidden = false;
+            orderLink.disabled = false;
+            orderLink.textContent = orderButtonLabel;
+        } finally {
+            creatingOrder = false;
+        }
     });
+    if (turnstile) {
+        window.onTurnstileSuccess = token => { turnstileToken = token; };
+        window.onTurnstileExpired = () => { turnstileToken = ''; };
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoaded';
+        script.async = true;
+        script.defer = true;
+        script.onerror = () => {
+            if (turnstile) turnstile.hidden = true;
+            if (verificationNote) verificationNote.textContent = 'No se ha podido cargar la verificación antispam. La creación de órdenes no está disponible.';
+        };
+        window.onTurnstileLoaded = () => {
+            if (!hasTurnstileSiteKey || !window.turnstile) return;
+            try {
+                turnstileWidgetId = window.turnstile.render(turnstile, {
+                    sitekey: turnstile.dataset.sitekey,
+                    action: 'create_order',
+                    callback: token => { turnstileToken = token; },
+                    'expired-callback': () => { turnstileToken = ''; }
+                });
+            } catch {
+                if (verification) verification.hidden = true;
+                if (verificationNote) verificationNote.textContent = 'No se ha podido cargar la verificación antispam. La creación de órdenes no está disponible.';
+            }
+        };
+        document.head.appendChild(script);
+    }
 
     render();
     noPublish.addEventListener('change', () => render());
     window.addEventListener('storage', event => {
-        if (event.key === CART_STORAGE_KEY || event.key === CART_CLEAR_AT_KEY) render();
+        if (event.key === CART_STORAGE_KEY) render();
     });
 }
 
@@ -704,7 +741,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProductFilters();
     initializeMasonry();
     initializeImageModal();
-    clearExpiredCart();
     updateCartBadge();
     initializeProductCart();
     initializeCartPage();

@@ -1,0 +1,74 @@
+---
+layout: default
+title: "Orden de compra | Aarontxu 3D"
+heading: "Orden de compra"
+description: "Consulta e imprime tu orden de compra no vinculante."
+noindex: true
+sitemap: false
+back_url: "/pages/products.html"
+main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
+---
+{% assign whatsapp_contact = site.data.aarontxu_3d.profile.chips | where_exp: "chip", "chip.destination contains 'wa.me'" | first %}
+<section id="order-page" class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" data-api="{{ site.orders_api_url | escape }}" data-whatsapp-url="{{ whatsapp_contact.destination | escape }}">
+    <p id="order-error" class="text-danger" role="status" hidden>No se ha podido cargar esta orden. Comprueba el enlace o vuelve a la cesta.</p>
+    <div id="order-content" hidden>
+        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-line pb-5">
+            <div><p class="text-sm font-semibold uppercase tracking-wide text-brand-text">Orden de compra no vinculante</p><h2 id="order-number" class="mt-1 text-3xl font-bold text-ink"></h2><p id="order-date" class="mt-1 text-sm text-muted"></p></div>
+            <p id="order-status" class="rounded-full bg-fill px-4 py-2 text-sm font-semibold text-ink"></p>
+        </div>
+        <ul id="order-items" class="my-6 divide-y divide-line"></ul>
+        <p class="border-t border-line pt-4 text-xl font-bold text-ink"><span id="order-total-label">Total</span>: <span id="order-total" class="text-brand-text"></span></p>
+        <p id="order-publish" class="mt-4 text-sm text-muted"></p>
+        <aside class="mt-6 rounded-2xl bg-brand-tint p-5 text-sm leading-relaxed text-ink"><p>Esta orden es una referencia de la solicitud y no implica aceptación ni confirma el encargo. Concretaremos por WhatsApp los detalles, disponibilidad y precio final. La factura se emitirá, con numeración independiente, cuando el pedido esté confirmado y pagado. Las órdenes no confirmadas o canceladas se eliminan a los 15 días.</p></aside>
+        <div class="mt-6 flex flex-wrap gap-3 print:hidden"><button id="order-print" type="button" class="min-h-12 rounded-full bg-fill px-6 font-semibold text-ink">Guardar o imprimir PDF</button><a id="order-whatsapp" class="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on" target="_blank" rel="noopener noreferrer">Continuar por WhatsApp</a></div>
+    </div>
+</section>
+<style>
+@media print {
+    @page { margin: 18mm; }
+    body { background: white !important; color: #111 !important; }
+    header, footer, #scrollTopBtn, #back-link, #translate-container, .print\:hidden { display: none !important; }
+    main { max-width: none !important; padding: 0 !important; }
+    #order-page { box-shadow: none !important; }
+}
+</style>
+<script>
+(async () => {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('n');
+    const key = params.get('k');
+    const error = document.getElementById('order-error');
+    if (!/^\d+$/.test(id || '') || !key) { error.hidden = false; return; }
+    try {
+        const response = await fetch(`${document.getElementById('order-page').dataset.api}/api/orders/${encodeURIComponent(id)}?key=${encodeURIComponent(key)}`);
+        if (!response.ok) throw new Error('not_found');
+        const order = await response.json();
+        const format = cents => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(cents / 100);
+        const status = { pending: 'Pendiente de revisar', confirmed: 'Confirmado', paid: 'Pagado', delivered: 'Entregado', cancelled: 'Cancelado' };
+        document.getElementById('order-number').textContent = order.order_number;
+        document.getElementById('order-date').textContent = new Date(order.created_at).toLocaleString('es-ES');
+        document.getElementById('order-status').textContent = status[order.status] || 'Pendiente';
+        const list = document.getElementById('order-items');
+        order.items.forEach(item => {
+            const li = document.createElement('li'); li.className = 'flex justify-between gap-4 py-3 text-sm text-ink';
+            const name = document.createElement('span'); name.textContent = `${item.name} × ${item.quantity}`;
+            const price = document.createElement('strong'); price.textContent = item.priceLabel || format(item.unitCents * item.quantity);
+            li.append(name, price); list.appendChild(li);
+        });
+        const quoted = order.items.some(item => item.priceLabel);
+        document.getElementById('order-total-label').textContent = quoted ? 'Subtotal estimado' : 'Total';
+        document.getElementById('order-total').textContent = format(order.total_cents);
+        document.getElementById('order-publish').textContent = order.no_publish ? 'Preferencia de publicación: te opones a que se publiquen fotografías del trabajo terminado.' : 'Preferencia de publicación: no has indicado oposición; puedes oponerte más adelante.';
+        const whatsapp = document.getElementById('order-whatsapp');
+        const whatsappUrl = new URL(document.getElementById('order-page').dataset.whatsappUrl);
+        whatsapp.rel = 'noopener noreferrer no-referrer';
+        const message = `Hola, quiero continuar con la orden ${order.order_number}.`;
+        whatsappUrl.searchParams.set('text', message);
+        whatsapp.href = whatsappUrl.href;
+        document.getElementById('order-print').addEventListener('click', () => window.print());
+        document.getElementById('order-content').hidden = false;
+    } catch {
+        error.hidden = false;
+    }
+})();
+</script>

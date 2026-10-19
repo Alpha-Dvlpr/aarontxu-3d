@@ -158,13 +158,13 @@
       "degree": 7
     },
     {
-      "id": "script_readcart",
-      "label": "readCart()",
+      "id": "script_savecart",
+      "label": "saveCart()",
       "degree": 6
     },
     {
-      "id": "script_savecart",
-      "label": "saveCart()",
+      "id": "script_readcart",
+      "label": "readCart()",
       "degree": 6
     },
     {
@@ -236,7 +236,7 @@
     }
   ],
   "tokens": {
-    "input": 67332,
-    "output": 8981
+    "input": 0,
+    "output": 0
   }
 }

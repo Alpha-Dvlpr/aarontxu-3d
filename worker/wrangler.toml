@@ -1,0 +1,39 @@
+name = "aarontxu-3d-orders"
+main = "src/index.js"
+compatibility_date = "2026-10-19"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aarontxu-3d-orders"
+database_id = "73593b73-7dd9-469f-99e5-67aa77083976"
+migrations_dir = "migrations"
+
+[vars]
+ENVIRONMENT = "production"
+ALLOWED_ORIGIN = "https://3d.aarontxu.com"
+ALLOWED_WORKER_ORIGIN = "https://aarontxu-3d-orders.aarontxu.workers.dev"
+CATALOG_URL = "https://3d.aarontxu.com/catalog.json"
+TURNSTILE_HOSTNAME = "3d.aarontxu.com"
+ADMIN_EMAILS = "aarongranado98@gmail.com"
+ACCESS_TEAM_DOMAIN = "aarontxu.cloudflareaccess.com"
+ACCESS_AUD = "5813f8a52f034ffa2f926978c32c4c2d49a7f6ab487f587354eaae2f5005e8da"
+
+[env.local.vars]
+ENVIRONMENT = "development"
+ALLOW_TEST_TURNSTILE = "true"
+ALLOWED_ORIGIN = "http://localhost:4000"
+ALLOWED_WORKER_ORIGIN = "http://127.0.0.1:8787"
+CATALOG_URL = "http://localhost:4000/catalog.json"
+TURNSTILE_HOSTNAME = "localhost"
+TURNSTILE_SECRET = "1x0000000000000000000000000000000AA"
+
+[[env.local.d1_databases]]
+binding = "DB"
+database_name = "aarontxu-3d-orders"
+database_id = "73593b73-7dd9-469f-99e5-67aa77083976"
+migrations_dir = "migrations"
+remote = true
+
+[triggers]
+crons = ["17 3 * * *"]
