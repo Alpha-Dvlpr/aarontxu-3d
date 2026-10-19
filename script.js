@@ -1,4 +1,7 @@
 const CART_STORAGE_KEY = 'aarontxu-3d-cart-v1';
+const CART_CLEAR_AT_KEY = 'aarontxu-3d-cart-clear-at';
+const CART_AUTO_CLEAR_MS = 10 * 60 * 1000;
+const MAX_QUANTITY = 99;
 
 function initializeBackToTop() {
     const button = document.getElementById('scrollTopBtn');
@@ -34,7 +37,7 @@ function initializeBackLink() {
     });
 }
 
-function readCart() {
+function readStoredCart() {
     try {
         const storedCart = JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY) || '[]');
         if (!Array.isArray(storedCart)) return [];
@@ -46,13 +49,53 @@ function readCart() {
                 name: item.name,
                 price: Number(item.price),
                 priceLabel: typeof item.priceLabel === 'string' ? item.priceLabel : '',
-                quantity: Math.max(1, Math.floor(Number(item.quantity))),
+                quantity: Math.min(MAX_QUANTITY, Math.max(1, Math.floor(Number(item.quantity)))),
                 image: typeof item.image === 'string' ? item.image : ''
             }))
             .filter(item => Number.isFinite(item.price) && Number.isFinite(item.quantity));
     } catch {
         return [];
     }
+}
+
+function readCatalog() {
+    try {
+        return JSON.parse(document.getElementById('product-catalog')?.textContent || 'null');
+    } catch {
+        return null;
+    }
+}
+
+function cartLineName(productName, extraLabels) {
+    return extraLabels.length ? `${productName} (extra: ${extraLabels.map(label => label.toLowerCase()).join(', ')})` : productName;
+}
+
+// Name, price and image always come from the published catalog, never from what the browser stored.
+// Returns null when the product or one of its extras is no longer in the catalog.
+function applyCatalog(item, catalog) {
+    if (!catalog) return item;
+    const [productId, ...extraIds] = item.id.split(':');
+    const product = Object.hasOwn(catalog, productId) ? catalog[productId] : null;
+    const extras = extraIds.map(id => product && Object.hasOwn(product.extras, id) ? product.extras[id] : null);
+    if (!product || extras.includes(null)) return null;
+
+    return {
+        ...item,
+        name: cartLineName(product.name, extras.map(extra => extra.label)),
+        price: extras.reduce((sum, extra) => sum + Number(extra.price), Number(product.price)),
+        priceLabel: product.priceLabel || '',
+        image: product.image || ''
+    };
+}
+
+function readCart() {
+    const catalog = readCatalog();
+    return readStoredCart().map(item => applyCatalog(item, catalog)).filter(Boolean);
+}
+
+function announce(message) {
+    const announcement = document.getElementById('cart-announcement');
+    if (announcement) announcement.textContent = message;
 }
 
 function formatCurrency(value) {
@@ -74,20 +117,43 @@ function saveCart(cart) {
     try {
         window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
     } catch {
-        const announcement = document.getElementById('cart-announcement');
-        if (announcement) announcement.textContent = 'No se ha podido guardar la cesta en este navegador.';
+        announce('No se ha podido guardar la cesta en este navegador.');
+        return false;
     }
     updateCartBadge(cart);
+    return true;
+}
+
+function cartClearAt() {
+    try {
+        return Number(window.localStorage.getItem(CART_CLEAR_AT_KEY)) || 0;
+    } catch {
+        return 0;
+    }
+}
+
+function setCartClearAt(time) {
+    try {
+        if (time) window.localStorage.setItem(CART_CLEAR_AT_KEY, String(time));
+        else window.localStorage.removeItem(CART_CLEAR_AT_KEY);
+    } catch {}
+}
+
+// The deadline is stored rather than kept in a timer, so the cart also empties if the page was closed or asleep in the background.
+function clearExpiredCart() {
+    const clearAt = cartClearAt();
+    if (!clearAt || Date.now() < clearAt) return false;
+    setCartClearAt(0);
+    return saveCart([]);
 }
 
 function normalizeQuantity(value) {
     const quantity = Math.floor(Number(value));
-    return Number.isFinite(quantity) ? Math.max(1, quantity) : 1;
+    return Number.isFinite(quantity) ? Math.min(MAX_QUANTITY, Math.max(1, quantity)) : 1;
 }
 
 function initializeProductCart() {
     const cards = document.querySelectorAll('[data-product-card]');
-    const announcement = document.getElementById('cart-announcement');
 
     cards.forEach(card => {
         const quantityInput = card.querySelector('[data-product-quantity]');
@@ -97,7 +163,7 @@ function initializeProductCart() {
         card.querySelectorAll('[data-quantity-step]').forEach(stepButton => {
             stepButton.addEventListener('click', () => {
                 const step = Number(stepButton.dataset.quantityStep);
-                quantityInput.value = String(Math.max(1, normalizeQuantity(quantityInput.value) + step));
+                quantityInput.value = String(normalizeQuantity(normalizeQuantity(quantityInput.value) + step));
             });
         });
 
@@ -112,12 +178,14 @@ function initializeProductCart() {
             if (priceOutput) priceOutput.textContent = formatCurrency(unitPrice());
         }));
 
+        const addLabel = addButton.textContent;
+        let labelTimer;
         addButton.addEventListener('click', () => {
             const extras = checkedExtras();
             // Each extra combination is its own cart line, so the id carries the extras.
             const product = {
                 id: [card.dataset.productId, ...extras.map(extra => extra.value)].join(':'),
-                name: extras.length ? `${card.dataset.productName} (extra: ${extras.map(extra => extra.dataset.extraLabel.toLowerCase()).join(', ')})` : card.dataset.productName,
+                name: cartLineName(card.dataset.productName, extras.map(extra => extra.dataset.extraLabel)),
                 price: unitPrice(),
                 priceLabel: card.dataset.productPriceLabel || '',
                 quantity: normalizeQuantity(quantityInput.value),
@@ -125,18 +193,24 @@ function initializeProductCart() {
             };
             const cart = readCart();
             const existingItem = cart.find(item => item.id === product.id);
+            const previousQuantity = existingItem ? existingItem.quantity : 0;
 
             if (existingItem) {
-                existingItem.quantity += product.quantity;
+                existingItem.quantity = normalizeQuantity(previousQuantity + product.quantity);
             } else {
                 cart.push(product);
             }
+            const added = (existingItem || product).quantity - previousQuantity;
 
-            saveCart(cart);
-            if (announcement) announcement.textContent = `Añadidas ${product.quantity} unidades de ${product.name} a la cesta.`;
-            const originalLabel = addButton.textContent;
+            if (!saveCart(cart)) return;
+            // Adding more means a new order, so a pending auto-empty must not delete it.
+            setCartClearAt(0);
+            announce(added === 0
+                ? `Ya tienes el máximo de ${MAX_QUANTITY} unidades de ${product.name} en la cesta.`
+                : `${added === 1 ? 'Añadida 1 unidad' : `Añadidas ${added} unidades`} de ${product.name} a la cesta.`);
             addButton.textContent = 'Añadido';
-            window.setTimeout(() => { addButton.textContent = originalLabel; }, 1200);
+            window.clearTimeout(labelTimer);
+            labelTimer = window.setTimeout(() => { addButton.textContent = addLabel; }, 1200);
         });
     });
 }
@@ -152,8 +226,39 @@ function initializeCartPage() {
     const orderLink = document.getElementById('cart-order-link');
     const whatsappUrl = cartPage.dataset.whatsappUrl;
     const noPublish = document.getElementById('cart-no-publish');
+    const title = document.getElementById('cart-title');
+    const sentPanel = document.getElementById('cart-sent');
+    const countdown = document.getElementById('cart-countdown');
+    let countdownTimer;
 
-    const render = () => {
+    const catalog = readCatalog();
+    const retired = readStoredCart().filter(item => !applyCatalog(item, catalog));
+    if (retired.length > 0 && saveCart(readCart())) {
+        const notice = document.getElementById('cart-notice');
+        notice.textContent = `Se ha quitado de la cesta lo que ya no está en el catálogo: ${retired.map(item => item.name).join(', ')}.`;
+        notice.hidden = false;
+    }
+
+    const updateCountdown = () => {
+        if (clearExpiredCart()) {
+            announce('La cesta se ha vaciado.');
+            render();
+            return;
+        }
+        const clearAt = cartClearAt();
+        sentPanel.hidden = !clearAt;
+        if (!clearAt) {
+            window.clearInterval(countdownTimer);
+            countdownTimer = undefined;
+            return;
+        }
+        const seconds = Math.ceil((clearAt - Date.now()) / 1000);
+        countdown.textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+        countdownTimer ??= window.setInterval(updateCountdown, 1000);
+    };
+
+    // Rows are rebuilt on every change, so focus goes back to the same control by its key, or to the title if it is gone.
+    const render = focusKey => {
         const cart = readCart();
         itemList.replaceChildren();
         emptyMessage.hidden = cart.length > 0;
@@ -193,7 +298,8 @@ function initializeCartPage() {
             decreaseButton.textContent = '−';
             decreaseButton.setAttribute('aria-label', `Reducir cantidad de ${item.name}`);
             decreaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
-            decreaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity - 1, render));
+            decreaseButton.dataset.focusKey = `${item.id}:decrease`;
+            decreaseButton.addEventListener('click', () => changeQuantity(item, item.quantity - 1, decreaseButton.dataset.focusKey));
             const quantity = document.createElement('span');
             quantity.className = 'min-w-8 text-center font-medium text-ink';
             quantity.textContent = String(item.quantity);
@@ -202,7 +308,8 @@ function initializeCartPage() {
             increaseButton.textContent = '+';
             increaseButton.setAttribute('aria-label', `Aumentar cantidad de ${item.name}`);
             increaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
-            increaseButton.addEventListener('click', () => changeCartQuantity(item.id, item.quantity + 1, render));
+            increaseButton.dataset.focusKey = `${item.id}:increase`;
+            increaseButton.addEventListener('click', () => changeQuantity(item, item.quantity + 1, increaseButton.dataset.focusKey));
             quantityControls.append(decreaseButton, quantity, increaseButton);
             row.appendChild(quantityControls);
 
@@ -216,7 +323,7 @@ function initializeCartPage() {
             removeButton.textContent = 'Quitar';
             removeButton.setAttribute('aria-label', `Quitar ${item.name} de la cesta`);
             removeButton.className = 'min-h-11 rounded-full px-4 text-sm font-medium text-danger transition hover:bg-fill';
-            removeButton.addEventListener('click', () => removeCartItem(item.id, render));
+            removeButton.addEventListener('click', () => removeItem(item));
             row.appendChild(removeButton);
             itemList.appendChild(row);
         });
@@ -239,30 +346,57 @@ function initializeCartPage() {
         } else {
             orderLink.href = '#';
         }
+
+        updateCountdown();
+        if (focusKey) (cartPage.querySelector(`[data-focus-key="${CSS.escape(focusKey)}"]`) || title).focus();
     };
 
-    render();
-    noPublish.addEventListener('change', render);
-    window.addEventListener('storage', event => {
-        if (event.key === CART_STORAGE_KEY) render();
+    // Any change by hand means the order is being edited, so it also cancels a pending auto-empty.
+    const update = (cart, message, focusKey) => {
+        if (!saveCart(cart)) return;
+        setCartClearAt(0);
+        announce(message);
+        render(focusKey);
+    };
+
+    const removeItem = item => update(readCart().filter(line => line.id !== item.id), `${item.name} se ha quitado de la cesta.`, 'title');
+
+    const changeQuantity = (item, quantity, focusKey) => {
+        if (quantity < 1) {
+            removeItem(item);
+            return;
+        }
+        const next = normalizeQuantity(quantity);
+        const message = next === item.quantity ? `El máximo es de ${MAX_QUANTITY} unidades por producto.` : `Cantidad de ${item.name}: ${next}.`;
+        update(readCart().map(line => line.id === item.id ? { ...line, quantity: next } : line), message, focusKey);
+    };
+
+    const clearCart = () => update([], 'La cesta se ha vaciado.', 'title');
+
+    document.getElementById('cart-clear').addEventListener('click', () => {
+        if (window.confirm('¿Quieres vaciar la cesta?')) clearCart();
     });
-}
+    document.getElementById('cart-sent-clear').addEventListener('click', clearCart);
+    document.getElementById('cart-sent-keep').addEventListener('click', () => {
+        setCartClearAt(0);
+        announce('La cesta se mantiene.');
+        render('order');
+    });
+    orderLink.addEventListener('click', event => {
+        if (readCart().length === 0) {
+            event.preventDefault();
+            return;
+        }
+        setCartClearAt(Date.now() + CART_AUTO_CLEAR_MS);
+        announce('Se ha abierto WhatsApp con tu pedido. Si lo envías, la cesta se vaciará sola en 10 minutos.');
+        updateCountdown();
+    });
 
-function changeCartQuantity(productId, quantity, render) {
-    if (quantity <= 0) {
-        removeCartItem(productId, render);
-        return;
-    }
-
-    const cart = readCart().map(item => item.id === productId ? { ...item, quantity } : item);
-    saveCart(cart);
     render();
-}
-
-function removeCartItem(productId, render) {
-    const cart = readCart().filter(item => item.id !== productId);
-    saveCart(cart);
-    render();
+    noPublish.addEventListener('change', () => render());
+    window.addEventListener('storage', event => {
+        if (event.key === CART_STORAGE_KEY || event.key === CART_CLEAR_AT_KEY) render();
+    });
 }
 
 function initializeThemeToggle() {
@@ -570,6 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProductFilters();
     initializeMasonry();
     initializeImageModal();
+    clearExpiredCart();
     updateCartBadge();
     initializeProductCart();
     initializeCartPage();

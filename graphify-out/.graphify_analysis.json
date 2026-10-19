@@ -1,205 +1,211 @@
 {
   "communities": {
     "0": [
-      "script",
-      "script_changecartquantity",
-      "script_formatcurrency",
-      "script_initializebacklink",
-      "script_initializebacktotop",
-      "script_initializecartpage",
-      "script_initializegallerydrag",
-      "script_initializeimagemodal",
-      "script_initializemasonry",
-      "script_initializenfcguide",
-      "script_initializeproductcart",
-      "script_initializeproductfilters",
-      "script_initializethemetoggle",
-      "script_initializetranslation",
-      "script_normalizequantity",
-      "script_readcart",
-      "script_removecartitem",
-      "script_savecart",
-      "script_updatecartbadge"
+      "layouts_default_footer",
+      "layouts_default_header",
+      "layouts_default_localbusiness_jsonld",
+      "layouts_default_product_catalog",
+      "layouts_default_translate_languages",
+      "pages_aarontxu_3d_content",
+      "pages_cart",
+      "pages_cart_no_publish_optout",
+      "pages_cart_sent_countdown",
+      "pages_cart_whatsapp_order",
+      "pages_config",
+      "pages_languages_schema",
+      "pages_legal_schema",
+      "pages_nfcguide_schema",
+      "pages_privacy_schema",
+      "pages_products_card",
+      "pages_products_extras",
+      "pages_products_jsonld",
+      "pages_products_schema",
+      "pages_profile_schema",
+      "pages_site_images",
+      "pages_whatsapp_helper_schema"
     ],
     "1": [
-      "_layouts_default",
-      "img_mini_img",
+      "404_html",
+      "404_site_pages_json",
+      "404_suggestion_script",
+      "includes_legal_sections",
       "index",
       "index_external_section",
       "index_intro_section",
+      "layouts_default",
+      "layouts_default_applytheme",
+      "layouts_default_css_palette",
+      "layouts_default_tailwind_config",
+      "pages_guides_nfc",
+      "pages_guides_nfc_stepper",
+      "pages_guides_nfc_wa_helper",
+      "pages_legal",
+      "pages_privacy"
+    ],
+    "2": [
+      "_layouts_default",
+      "img_mini_img",
       "pages_products",
       "pages_products_3d_products_title",
       "pages_products_cart_announcement",
+      "pages_products_filters",
       "pages_products_layout_default",
       "pages_products_product_catalog",
       "pages_products_product_filters",
       "pages_products_products_intro",
       "pages_products_productsandservices_data"
     ],
-    "2": [
+    "3": [
+      "script",
+      "script_initializebacklink",
+      "script_initializebacktotop",
+      "script_initializegallerydrag",
+      "script_initializeimagemodal",
+      "script_initializemasonry",
+      "script_initializenfcguide",
+      "script_initializeproductfilters",
+      "script_initializethemetoggle",
+      "script_initializetranslation"
+    ],
+    "4": [
       "pages_products_add_to_cart",
       "pages_products_catalog",
-      "pages_products_image_modal",
-      "pages_products_modal_image",
       "pages_products_price_formatting",
       "pages_products_price_output",
       "pages_products_product_card",
       "pages_products_product_extra",
       "pages_products_product_extras",
-      "pages_products_product_gallery",
       "pages_products_quantity_selector",
       "pages_products_quantity_stepper"
     ],
-    "3": [
-      "layouts_default",
-      "layouts_default_person_schema",
-      "layouts_default_tailwind_config",
-      "layouts_default_theme_script",
-      "pages_guides_nfc",
-      "pages_guides_nfc_stepper",
-      "pages_guides_nfc_wa_helper",
-      "pages_yml_languages"
-    ],
-    "4": [
-      "includes_legal_sections",
-      "layouts_default_footer",
-      "pages_legal",
-      "pages_privacy",
-      "pages_yml_legal",
-      "pages_yml_privacy"
-    ],
     "5": [
-      "pages_yml",
-      "pages_yml_aarontxu_3d",
-      "pages_yml_nfc_guide",
-      "pages_yml_products_and_services",
-      "pages_yml_site_images",
-      "pages_yml_whatsapp"
+      "script_announce",
+      "script_cartclearat",
+      "script_clearexpiredcart",
+      "script_initializecartpage",
+      "script_savecart",
+      "script_setcartclearat",
+      "script_updatecartbadge"
     ],
     "6": [
-      "layouts_default_header",
-      "pages_cart",
-      "pages_cart_publish_opt_out",
-      "pages_cart_whatsapp_order",
-      "pages_yml_profile"
+      "script_applycatalog",
+      "script_cartlinename",
+      "script_readcart",
+      "script_readcatalog",
+      "script_readstoredcart"
     ],
     "7": [
-      "404_html",
-      "404_site_pages_json",
-      "404_suggestion_script"
-    ],
-    "8": [
       "config_yml",
       "config_yml_exclude_graphify_out",
       "config_yml_jekyll_sitemap"
     ],
+    "8": [
+      "pages_products_image_modal",
+      "pages_products_modal_image",
+      "pages_products_product_gallery"
+    ],
     "9": [
+      "script_formatcurrency",
+      "script_initializeproductcart",
+      "script_normalizequantity"
+    ],
+    "10": [
       "readme"
     ]
   },
   "cohesion": {
-    "0": 0.19298245614035087,
-    "1": 0.1794871794871795,
-    "2": 0.22727272727272727,
-    "3": 0.25,
-    "4": 0.4666666666666667,
-    "5": 0.4,
-    "6": 0.5,
-    "7": 1.0,
+    "0": 0.12121212121212122,
+    "1": 0.15,
+    "2": 0.21818181818181817,
+    "3": 0.2,
+    "4": 0.3333333333333333,
+    "5": 0.5238095238095238,
+    "6": 0.4,
+    "7": 0.6666666666666666,
     "8": 0.6666666666666666,
-    "9": 1.0
+    "9": 0.6666666666666666,
+    "10": 1.0
   },
   "gods": [
+    {
+      "id": "pages_products",
+      "label": "Productos y servicios page",
+      "degree": 16
+    },
+    {
+      "id": "layouts_default",
+      "label": "Default layout",
+      "degree": 14
+    },
+    {
+      "id": "script_initializecartpage",
+      "label": "initializeCartPage()",
+      "degree": 13
+    },
     {
       "id": "pages_products_product_card",
       "label": "Product card (data-product-card)",
       "degree": 12
     },
     {
-      "id": "layouts_default",
-      "label": "Default layout",
-      "degree": 12
-    },
-    {
-      "id": "pages_products",
-      "label": "Productos y servicios page",
-      "degree": 11
-    },
-    {
-      "id": "pages_yml_aarontxu_3d",
-      "label": "Content file: _data/aarontxu_3d.json",
-      "degree": 7
-    },
-    {
-      "id": "layouts_default_header",
-      "label": "Sticky header (back link, title, cart, theme, translate)",
-      "degree": 7
-    },
-    {
-      "id": "pages_cart",
-      "label": "Cart page",
-      "degree": 7
-    },
-    {
-      "id": "script_initializecartpage",
-      "label": "initializeCartPage()",
-      "degree": 6
-    },
-    {
-      "id": "script_changecartquantity",
-      "label": "changeCartQuantity()",
-      "degree": 5
-    },
-    {
       "id": "script_initializeproductcart",
       "label": "initializeProductCart()",
-      "degree": 5
+      "degree": 8
+    },
+    {
+      "id": "pages_aarontxu_3d_content",
+      "label": "Content entry: Aarontxu 3D",
+      "degree": 7
+    },
+    {
+      "id": "script_savecart",
+      "label": "saveCart()",
+      "degree": 6
     },
     {
       "id": "script_readcart",
       "label": "readCart()",
+      "degree": 6
+    },
+    {
+      "id": "pages_cart",
+      "label": "Cart page (Tu cesta)",
+      "degree": 6
+    },
+    {
+      "id": "script_clearexpiredcart",
+      "label": "clearExpiredCart()",
       "degree": 5
     }
   ],
   "surprises": [
     {
-      "source": "Home page (index.html)",
-      "target": "Default layout",
+      "source": "Product card (gallery, quantity, add to cart)",
+      "target": "product-catalog JSON",
       "source_files": [
-        "index.html",
+        "pages/products.html",
         "_layouts/default.html"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Productos y servicios page",
+      "target": "Home page (index.html)",
+      "source_files": [
+        "pages/products.html",
+        "index.html"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
       "why": "connects across different repos/directories; bridges separate communities"
     },
     {
-      "source": "404 page",
+      "source": "Productos y servicios page",
       "target": "Default layout",
       "source_files": [
-        "404.html",
-        "_layouts/default.html"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities"
-    },
-    {
-      "source": "Default layout",
-      "target": "Field group: languages",
-      "source_files": [
-        "_layouts/default.html",
-        ".pages.yml"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "shares_data_with",
-      "why": "connects across different repos/directories; peripheral node `Field group: languages` unexpectedly reaches hub `Default layout`"
-    },
-    {
-      "source": "Cart page",
-      "target": "Default layout",
-      "source_files": [
-        "pages/cart.html",
+        "pages/products.html",
         "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
@@ -215,7 +221,18 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities"
+      "why": "connects across different repos/directories; peripheral node `Legal notice page` unexpectedly reaches hub `Default layout`"
+    },
+    {
+      "source": "Privacy policy page",
+      "target": "Default layout",
+      "source_files": [
+        "pages/privacy.html",
+        "_layouts/default.html"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Privacy policy page` unexpectedly reaches hub `Default layout`"
     }
   ],
   "tokens": {

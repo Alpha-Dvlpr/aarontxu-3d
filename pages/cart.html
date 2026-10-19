@@ -8,7 +8,9 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
 ---
 {% assign whatsapp_contact = site.data.aarontxu_3d.profile.chips | where_exp: "chip", "chip.destination contains 'wa.me'" | first %}
 <section id="cart-page" data-whatsapp-url="{{ whatsapp_contact.destination | escape }}" aria-labelledby="cart-title">
-    <h2 id="cart-title" class="sr-only">Productos de la cesta</h2>
+    <h2 id="cart-title" class="sr-only" tabindex="-1">Productos de la cesta</h2>
+    <p id="cart-announcement" class="sr-only" aria-live="polite"></p>
+    <p id="cart-notice" class="mb-6 rounded-3xl bg-fill p-5 text-sm leading-relaxed text-ink" role="status" hidden></p>
     <aside class="mb-6 rounded-3xl bg-brand-tint p-5 text-sm leading-relaxed text-ink" aria-label="Información importante sobre el pedido">
         <p class="font-semibold text-brand-text">El pedido no se envía ni se confirma automáticamente.</p>
         <p class="mt-1">Al pulsar «Pedir por WhatsApp» se abrirá un mensaje preparado; tendrás que revisarlo y enviarlo. Después concretaremos por el chat los detalles y el precio final: fotos de referencia y nombre para las figuras, modificaciones, diseños para llaveros u otros productos.</p>
@@ -32,7 +34,18 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
                     <span>Me opongo a que se publiquen fotografías de mi pedido en este sitio web y en las redes sociales de Aarontxu 3D.</span>
                 </label>
             </div>
-            <a id="cart-order-link" class="sm:self-end inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" href="#" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp<span class="sr-only"> (se abre en otra pestaña)</span></a>
+            <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <button id="cart-clear" type="button" class="min-h-11 rounded-full px-4 text-sm font-medium text-danger transition hover:bg-fill">Vaciar cesta</button>
+                <a id="cart-order-link" data-focus-key="order" class="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" href="#" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp<span class="sr-only"> (se abre en otra pestaña)</span></a>
+            </div>
+            <div id="cart-sent" class="rounded-2xl bg-brand-tint p-4 text-sm leading-relaxed text-ink" hidden>
+                <p class="font-semibold text-brand-text">¿Has enviado el mensaje por WhatsApp?</p>
+                <p class="mt-1">Si ya lo has enviado, la cesta se vaciará sola en <span id="cart-countdown" class="font-semibold tabular-nums">10:00</span> para que no repitas el pedido sin querer. Si no lo has enviado, mantén la cesta.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                    <button id="cart-sent-clear" type="button" class="min-h-11 rounded-full bg-brand px-5 text-sm font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95">Sí, vaciar la cesta</button>
+                    <button id="cart-sent-keep" type="button" class="min-h-11 rounded-full bg-surface px-5 text-sm font-medium text-ink transition hover:bg-fill">No, mantener la cesta</button>
+                </div>
+            </div>
         </div>
     </section>
 </section>

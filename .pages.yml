@@ -38,17 +38,25 @@ content:
             type: object
             list: true
             fields:
-              - { name: id, label: Identificador, type: string }
+              - { name: id, label: Identificador, type: string, required: true }
               - { name: title, label: Producto, type: string }
               - name: category
                 label: Categoría
                 type: object
                 fields:
-                  - { name: id, label: Identificador, type: string }
+                  - { name: id, label: Identificador, type: string, required: true }
                   - { name: name, label: Nombre, type: string }
               - { name: description, label: Descripción, type: text, list: true }
-              - { name: price, label: Precio, type: number }
+              - { name: price, label: "Precio (0 si es a consultar)", type: number, required: true }
               - { name: price_label, label: Precio mostrado (opcional), type: string }
+              - name: extras
+                label: Extras de pago (opcional)
+                type: object
+                list: true
+                fields:
+                  - { name: id, label: "Identificador (sin espacios ni dos puntos, p. ej. vehiculo-grande)", type: string, required: true }
+                  - { name: label, label: Nombre, type: string, required: true }
+                  - { name: price, label: Precio del extra, type: number, required: true }
               - name: images
                 label: Imágenes
                 type: image

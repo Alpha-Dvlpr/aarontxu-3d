@@ -31,7 +31,7 @@
     "productsAndServices": {
         "title": "Productos y servicios",
         "description": [
-            "Aquí encontrarás una lista con algunos ejemplos de todos los encargos que he realizado hasta ahora organizados por tipos."
+            "Aquí encontrarás una lista con algunos ejemplos de los encargos que he realizado hasta ahora, organizados por tipo."
         ],
         "elements": [
             {
@@ -42,7 +42,7 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. La modelo en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
+                    "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. Modelo la figura en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
                     "Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería.",
                     "Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como un funko de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.",
                     "Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea."
@@ -455,7 +455,7 @@
         "app": {
             "heading": "La app que uso: NFC Tools",
             "disclosure": "NFC Tools es la app que yo utilizo. No es un patrocinio y no recibo ningún dinero ni compensación por recomendarla.",
-            "versionNote": "Esta guía está basada en la versión 3.4 de iOS y la 9.8 de Android. En el futuro puede haber diferencias; intentaré actualizarla lo más a menudo posible.",
+            "versionNote": "Esta guía está basada en la versión 3.4 de la app para iOS y en la 9.8 de la app para Android. En el futuro puede haber diferencias; intentaré actualizarla lo más a menudo posible.",
             "stores": [
                 {
                     "id": "android",
@@ -523,7 +523,7 @@
                     {
                         "title": "Graba el llavero",
                         "text": [
-                            "Desde la pantalla «Escribir», pulsa el botón «Escribir». Al lado verás los kilobytes que ocupa el mensaje; es solo informativo.",
+                            "Desde la pantalla «Escribir», pulsa el botón «Escribir». Al lado verás los bytes que ocupa el mensaje; es solo informativo.",
                             "Acerca el llavero al móvil y espera al sonido de confirmación."
                         ]
                     },
@@ -583,7 +583,7 @@
                     {
                         "title": "Graba el llavero",
                         "text": [
-                            "Desde la pantalla «Escribir», pulsa el botón «Escribir». Al lado verás los kilobytes que ocupa el mensaje; es solo informativo.",
+                            "Desde la pantalla «Escribir», pulsa el botón «Escribir». Al lado verás los bytes que ocupa el mensaje; es solo informativo.",
                             "Acerca el llavero al móvil y espera al sonido de confirmación."
                         ]
                     },

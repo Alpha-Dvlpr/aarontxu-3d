@@ -131,6 +131,25 @@
         }
     </style>
     
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "http://localhost:4000/#business",
+        "name": "Aarontxu 3D",
+        "description": "Servicios de impresión 3D personalizada en Asturias.",
+        "url": "http://localhost:4000/",
+        "logo": "http://localhost:4000/img/mini_img.png",
+        "image": "http://localhost:4000/img/mini_img.png",
+        "telephone": "+34604972522",
+        "email": "aarongranado98@gmail.com",
+        "address": { "@type": "PostalAddress", "addressRegion": "Asturias", "addressCountry": "ES" },
+        "areaServed": "ES",
+        "sameAs": ["https://www.instagram.com/aarontxu.3d"]
+    }
+    </script>
 </head>
 <body class="bg-canvas text-ink flex min-h-screen flex-col items-center font-sans">
     <a class="sr-only rounded-full bg-surface px-4 py-3 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]" href="#main-content">Saltar al contenido</a>
@@ -159,7 +178,7 @@
 <section class="mx-auto max-w-2xl text-center" aria-labelledby="products-intro">
     <h2 id="products-intro" class="sr-only">Productos y servicios</h2>
     <div class="whitespace-pre-line text-lg leading-relaxed text-muted">
-        <p class="mb-4 last:mb-0">Aquí encontrarás una lista con algunos ejemplos de todos los encargos que he realizado hasta ahora organizados por tipos.</p>
+        <p class="mb-4 last:mb-0">Aquí encontrarás una lista con algunos ejemplos de los encargos que he realizado hasta ahora, organizados por tipo.</p>
     </div>
 </section>
 
@@ -258,7 +277,7 @@
             <p class="text-sm font-semibold text-brand-text">Funkos personalizados</p>
             <h2 class="text-2xl font-bold tracking-tight text-ink">Funko personalizado</h2>
             <div class="whitespace-pre-line leading-relaxed text-muted">
-                <p class="mb-3 last:mb-0">Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. La modelo en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.</p><p class="mb-3 last:mb-0">Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería.</p><p class="mb-3 last:mb-0">Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como un funko de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.</p><p class="mb-3 last:mb-0">Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea.</p>
+                <p class="mb-3 last:mb-0">Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. Modelo la figura en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.</p><p class="mb-3 last:mb-0">Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería.</p><p class="mb-3 last:mb-0">Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como un funko de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.</p><p class="mb-3 last:mb-0">Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea.</p>
             </div>
             
             
@@ -280,7 +299,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_01">Cantidad de Funko personalizado</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_01" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_01" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -342,7 +361,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_02">Cantidad de Funko personalizado 2 personas</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_02" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_02" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -384,7 +403,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_03">Cantidad de Funko personalizado Mundial 2026</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_03" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_03" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -436,7 +455,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_04">Cantidad de Funko mascotas</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_04" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_04" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -493,7 +512,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_05">Cantidad de Llaveros personalizados</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_05" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_05" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -535,7 +554,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_06">Cantidad de Mosaico 3D grande</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_06" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_06" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -572,7 +591,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_07">Cantidad de Mosaico 3D mediano</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_07" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_07" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -609,7 +628,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_08">Cantidad de Medallas de graduación</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_08" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_08" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -656,7 +675,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_09">Cantidad de Parrilla Seat León FR</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_09" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_09" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -703,7 +722,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_10">Cantidad de Piezas personalizadas para coches RC</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_10" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_10" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -745,7 +764,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_11">Cantidad de Funko de famosos y personajes</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_11" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_11" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -782,7 +801,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_12">Cantidad de Réplicas de coches en miniatura</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_12" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_12" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -824,7 +843,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_13">Cantidad de Figuras de animales realistas</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_13" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_13" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -861,7 +880,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_14">Cantidad de Letreros 3D personalizados</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_14" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_14" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -898,7 +917,7 @@
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-PROD_15">Cantidad de Funko mascotas grandes</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_15" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-PROD_15" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -916,10 +935,263 @@
     </form>
     <img id="modal-image" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" alt="">
 </dialog>
+
+<script type="application/ld+json">
+[
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_01",
+        "name": "Funko personalizado",
+        "category": "Funkos personalizados",
+        "description": "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. Modelo la figura en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles. Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería. Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como un funko de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €. Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea.",
+        "image": ["http://localhost:4000/img/products/PROD_01/1.jpg", "http://localhost:4000/img/products/PROD_01/2.jpg", "http://localhost:4000/img/products/PROD_01/3.jpg", "http://localhost:4000/img/products/PROD_01/4.jpg", "http://localhost:4000/img/products/PROD_01/5.jpg", "http://localhost:4000/img/products/PROD_01/6.jpg", "http://localhost:4000/img/products/PROD_01/7.jpg", "http://localhost:4000/img/products/PROD_01/8.jpg", "http://localhost:4000/img/products/PROD_01/9.jpg", "http://localhost:4000/img/products/PROD_01/10.jpg", "http://localhost:4000/img/products/PROD_01/11.jpg", "http://localhost:4000/img/products/PROD_01/12.jpg", "http://localhost:4000/img/products/PROD_01/13.jpg", "http://localhost:4000/img/products/PROD_01/14.jpg", "http://localhost:4000/img/products/PROD_01/15.jpg", "http://localhost:4000/img/products/PROD_01/16.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 20.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_02",
+        "name": "Funko personalizado 2 personas",
+        "category": "Funkos personalizados",
+        "description": "Dos personas en una sola pieza: una pareja, dos amigos, hermanos o madre e hijo. Cada figura mide 10 cm de alto, tiene su propio parecido y su propia ropa, y las dos van en la misma composición. Se imprimen en PLA blanco, se lijan y se pintan a mano con acrílicos. Incluye una caja personalizada a juego, más ancha para que quepan juntas (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para aniversarios, bodas y cumpleaños. Sin coste añadido, las figuras pueden ir acompañadas de mascotas o de objetos, en el suelo o en sus manos, siempre que no aumenten el ancho de la composición, para que quepa en la caja. Por eso, en este modelo no se pueden añadir vehículos, ni pequeños ni grandes.",
+        "image": ["http://localhost:4000/img/products/PROD_02/2.jpg", "http://localhost:4000/img/products/PROD_02/3.jpg", "http://localhost:4000/img/products/PROD_02/4.jpg", "http://localhost:4000/img/products/PROD_02/5.jpg", "http://localhost:4000/img/products/PROD_02/6.jpg", "http://localhost:4000/img/products/PROD_02/7.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 35.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_03",
+        "name": "Funko personalizado Mundial 2026",
+        "category": "Funkos personalizados",
+        "description": "Para el aficionado que vive el Mundial de Fútbol 2026: una figura estilo Funko de 10 cm con temática futbolera, hecha a partir de fotos y con el parecido de la persona. Impresa en PLA blanco, lijada y pintada a mano con acrílicos. Viene en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar a cualquier fan.",
+        "image": ["http://localhost:4000/img/products/PROD_03/1.jpg", "http://localhost:4000/img/products/PROD_03/2.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 25.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_04",
+        "name": "Funko mascotas",
+        "category": "Funkos personalizados",
+        "description": "Tu perro, tu gato o cualquier otro animal de la casa convertido en un Funko de 10 cm, con su pose, su pelaje y sus detalles. Se hace a partir de tus fotos, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos. Se entrega en una caja protectora personalizada del mismo tamaño que la de un Funko de persona (14 × 10 × 7,5 cm). El precio es por animal.",
+        "image": ["http://localhost:4000/img/products/PROD_04/1.jpg", "http://localhost:4000/img/products/PROD_04/2.jpg", "http://localhost:4000/img/products/PROD_04/3.jpg", "http://localhost:4000/img/products/PROD_04/4.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 20.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_05",
+        "name": "Llaveros personalizados",
+        "category": "Llaveros y medallas",
+        "description": "Llaveros 3D hechos a tu gusto: con tu logotipo, el escudo de tu equipo, un nombre o una forma original, e incluso articulados. Tú eliges tamaño, forma y colores, hasta 4 a la vez en una misma pieza. También se pueden fabricar con chip NFC para que, al acercar el móvil, abra tu web, tus redes o tus datos de contacto. Son una opción práctica para negocios, regalos de empresa y aficionados. El precio depende del diseño y de la cantidad.",
+        "image": ["http://localhost:4000/img/products/PROD_05/1.jpg", "http://localhost:4000/img/products/PROD_05/2.jpg", "http://localhost:4000/img/products/PROD_05/3.jpg", "http://localhost:4000/img/products/PROD_05/4.jpg", "http://localhost:4000/img/products/PROD_05/5.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_06",
+        "name": "Mosaico 3D grande",
+        "category": "Mosaicos 3D",
+        "description": "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, de modo que el retrato gana profundidad y textura. Formato grande, de unos 17 × 17 cm y entre 2 y 3 mm de grosor según el relieve. Lleva un pequeño pie negro en el que encaja por abajo para que se mantenga de pie en cualquier mueble. Es un detalle original para parejas, familias y mascotas.",
+        "image": ["http://localhost:4000/img/products/PROD_06/1.jpg", "http://localhost:4000/img/products/PROD_06/2.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 10.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_07",
+        "name": "Mosaico 3D mediano",
+        "category": "Mosaicos 3D",
+        "description": "Tu fotografía en un mosaico de colores con relieve, impreso en PLA, con colores adaptados a la imagen. Formato mediano, de unos 17 × 10 cm y entre 2 y 3 mm de grosor según el relieve. Incluye un pequeño pie negro en el que encaja por la parte inferior para que se mantenga de pie. Es un regalo vistoso y original, ideal para una estantería o un escritorio.",
+        "image": ["http://localhost:4000/img/products/PROD_07/1.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 7.5,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_08",
+        "name": "Medallas de graduación",
+        "category": "Llaveros y medallas",
+        "description": "Medallas de 8,5 cm de diámetro con relieve, para celebrar el final de curso, de etapa o de carrera. Puedes personalizar los textos, las tipografías y los colores, con el nombre, el curso, el año o la temática del grupo. Se entregan con su cinta incluida en el precio, que es por unidad. En pedidos grandes se puede ajustar el precio final.",
+        "image": ["http://localhost:4000/img/products/PROD_08/1.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 5.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_09",
+        "name": "Parrilla Seat León FR",
+        "category": "Piezas para coches",
+        "description": "Juego de 3 parrillas, la central y las dos laterales, diseñadas a medida para el Seat León FR. Están impresas en ASA, un material que resiste el calor y los rayos UV y aguanta bien la intemperie y el uso diario. Puedes elegir el color del fondo de la \"S\" de la parrilla central para dar a tu coche un toque propio. El precio incluye las 3 piezas.",
+        "image": ["http://localhost:4000/img/products/PROD_09/1.jpg", "http://localhost:4000/img/products/PROD_09/2.jpg", "http://localhost:4000/img/products/PROD_09/3.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 35.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_10",
+        "name": "Piezas personalizadas para coches RC",
+        "category": "Impresión personalizada",
+        "description": "Piezas y accesorios impresos en 3D para tu coche radiocontrol: componentes de dirección y elementos decorativos como bidones o planchas de arena. Se hacen a partir de un modelo que tú eliges y se adaptan con tu nombre y tus colores. Están impresas en PLA. Las piezas que van a sufrir más esfuerzo se refuerzan por dentro para que resistan mejor, mientras que las meramente decorativas se imprimen sin refuerzo. El precio depende de la pieza y del tiempo de impresión.",
+        "image": ["http://localhost:4000/img/products/PROD_10/1.jpg", "http://localhost:4000/img/products/PROD_10/2.jpg", "http://localhost:4000/img/products/PROD_10/3.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_11",
+        "name": "Funko de famosos y personajes",
+        "category": "Funkos personalizados",
+        "description": "Tu cantante, actor o personaje favorito de película, serie o libro, en versión Funko de 10 cm de alto. Se modela en 3D a partir de fotos de referencia, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos para reproducir su look más reconocible. Incluye una caja personalizada a juego (14 × 10 × 7,5 cm). Es un regalo pensado para fans y coleccionistas.",
+        "image": ["http://localhost:4000/img/products/PROD_11/1.jpg", "http://localhost:4000/img/products/PROD_11/2.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 20.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_12",
+        "name": "Réplicas de coches en miniatura",
+        "category": "Réplicas de coches",
+        "description": "Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos. Mide unos 7 × 5,1 × 10 cm de alto, ancho y fondo. Si quieres, puedes añadir una mini cabeza estilo Funko con el conductor, sin coste extra. Se entrega en una caja a juego de 14 × 10 × 8 cm.",
+        "image": ["http://localhost:4000/img/products/PROD_12/1.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 20.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_13",
+        "name": "Figuras de animales realistas",
+        "category": "Figuras de animales",
+        "description": "Una escultura realista de tu perro, o de cualquier otro animal, que recoge su postura, su pelaje y su mirada. Se imprime en PLA y se termina a mano con pintura acrílica. Mide unos 15 cm de alto si está sentado, o 15 cm en su lado más largo si está tumbado. A diferencia de los Funkos, el acabado es naturalista, no de dibujo animado. Es un recuerdo muy especial de una mascota. El precio es por unidad y no incluye caja.",
+        "image": ["http://localhost:4000/img/products/PROD_13/1.jpg", "http://localhost:4000/img/products/PROD_13/2.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 15.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_14",
+        "name": "Letreros 3D personalizados",
+        "category": "Letreros",
+        "description": "Letreros con la forma, el texto o el logotipo que tú elijas, con luz LED por todo el contorno interior para que destaquen también de noche. Están pensados para cumpleaños, negocios y decoración. Se fabrican en dos piezas, con la parte frontal encajada en el cuerpo a modo de tapa. En la parte trasera tienen un orificio para el cable y se alimentan por USB. Si prefieres otro tipo de iluminación, se puede estudiar, y el precio dependerá del tamaño, del diseño y del sistema elegido.",
+        "image": ["http://localhost:4000/img/products/PROD_14/1.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": "PROD_15",
+        "name": "Funko mascotas grandes",
+        "category": "Funkos personalizados",
+        "description": "Para toda la familia peluda: una composición con varias mascotas, o con personas y mascotas, en estilo Funko de 10 cm de alto. Cada figura mantiene el parecido, los colores y los detalles del original. Se imprime en PLA blanco, se lija y se pinta a mano con acrílicos. La figura va sobre una base y en una caja personalizada más amplia (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para quien considera a sus animales parte de la familia.",
+        "image": ["http://localhost:4000/img/products/PROD_15/1.jpg"],
+        "brand": { "@type": "Brand", "name": "Aarontxu 3D" },
+        "offers": {
+            "@type": "Offer",
+            "price": 35.0,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": "http://localhost:4000/pages/products.html",
+            "seller": { "@id": "http://localhost:4000/#business" }
+        }
+    }
+]
+</script>
     </main>
     <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-11 items-center gap-1 rounded-full bg-brand px-5 font-semibold text-brand-on opacity-0 shadow-lg transition hover:bg-brand-hover sm:right-6" aria-label="Volver arriba" inert><span aria-hidden="true">↑</span> Arriba</button>
     <footer class="mt-auto flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-line p-6 text-center text-sm text-muted"><span>© 2026 Aarontxu 3D</span><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="/pages/privacy.html">Política de privacidad</a><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="/pages/legal.html">Aviso legal</a></footer>
     <script type="application/json" id="translate-languages">{"es":"Español","en":"English","fr":"Français","it":"Italiano","de":"Deutsch","pt":"Português"}</script>
+    
+    <script type="application/json" id="product-catalog">{ "PROD_01": { "name": "Funko personalizado", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_01/1.jpg", "extras": { "vehiculo-grande": { "label": "Vehículo grande", "price": 5.0 } } }, "PROD_02": { "name": "Funko personalizado 2 personas", "price": 35.0, "priceLabel": "", "image": "/img/products/PROD_02/2.jpg", "extras": {  } }, "PROD_03": { "name": "Funko personalizado Mundial 2026", "price": 25.0, "priceLabel": "", "image": "/img/products/PROD_03/1.jpg", "extras": {  } }, "PROD_04": { "name": "Funko mascotas", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_04/1.jpg", "extras": {  } }, "PROD_05": { "name": "Llaveros personalizados", "price": 0.0, "priceLabel": "Precio a consultar", "image": "/img/products/PROD_05/1.jpg", "extras": {  } }, "PROD_06": { "name": "Mosaico 3D grande", "price": 10.0, "priceLabel": "", "image": "/img/products/PROD_06/1.jpg", "extras": {  } }, "PROD_07": { "name": "Mosaico 3D mediano", "price": 7.5, "priceLabel": "", "image": "/img/products/PROD_07/1.jpg", "extras": {  } }, "PROD_08": { "name": "Medallas de graduación", "price": 5.0, "priceLabel": "", "image": "/img/products/PROD_08/1.jpg", "extras": {  } }, "PROD_09": { "name": "Parrilla Seat León FR", "price": 35.0, "priceLabel": "", "image": "/img/products/PROD_09/1.jpg", "extras": {  } }, "PROD_10": { "name": "Piezas personalizadas para coches RC", "price": 0.0, "priceLabel": "Precio a consultar", "image": "/img/products/PROD_10/1.jpg", "extras": {  } }, "PROD_11": { "name": "Funko de famosos y personajes", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_11/1.jpg", "extras": {  } }, "PROD_12": { "name": "Réplicas de coches en miniatura", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_12/1.jpg", "extras": {  } }, "PROD_13": { "name": "Figuras de animales realistas", "price": 15.0, "priceLabel": "", "image": "/img/products/PROD_13/1.jpg", "extras": {  } }, "PROD_14": { "name": "Letreros 3D personalizados", "price": 0.0, "priceLabel": "Precio a consultar", "image": "/img/products/PROD_14/1.jpg", "extras": {  } }, "PROD_15": { "name": "Funko mascotas grandes", "price": 35.0, "priceLabel": "", "image": "/img/products/PROD_15/1.jpg", "extras": {  } } }</script>
     <script defer src="/script.js"></script>
 </body>
 </html>

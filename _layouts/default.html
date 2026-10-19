@@ -130,23 +130,26 @@
             }
         }
     </style>
-    {% if page.person_schema %}
+    {% assign profile = site.data.aarontxu_3d.profile %}
+    {% assign whatsapp_chip = profile.chips | where_exp: "chip", "chip.destination contains 'wa.me'" | first %}
+    {% assign instagram_chip = profile.chips | where_exp: "chip", "chip.destination contains 'instagram.com'" | first %}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": {{ site.data.cv.profile.name | jsonify }},
-        "jobTitle": "Desarrollador iOS",
-        "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Asturias",
-            "addressCountry": "ES"
-        },
-        "url": {{ page.url | absolute_url | jsonify }},
-        "sameAs": ["https://www.linkedin.com/in/aaron-granado-amores/"]
+        "@type": "LocalBusiness",
+        "@id": {{ '/#business' | absolute_url | jsonify }},
+        "name": {{ site.title | jsonify }},
+        "description": {{ site.description | jsonify }},
+        "url": {{ '/' | absolute_url | jsonify }},
+        "logo": {{ '/img/mini_img.png' | absolute_url | jsonify }},
+        "image": {{ '/img/mini_img.png' | absolute_url | jsonify }},
+        "telephone": {{ whatsapp_chip.destination | split: 'wa.me/' | last | prepend: '+' | jsonify }},
+        "email": {{ site.data.aarontxu_3d.legal.email | jsonify }},
+        "address": { "@type": "PostalAddress", "addressRegion": "Asturias", "addressCountry": "ES" },
+        "areaServed": "ES",
+        "sameAs": [{{ instagram_chip.destination | jsonify }}]
     }
     </script>
-    {% endif %}
 </head>
 <body class="{{ page.body_class | default: 'bg-canvas text-ink' }} flex min-h-screen flex-col items-center font-sans">
     <a class="sr-only rounded-full bg-surface px-4 py-3 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]" href="#main-content">Saltar al contenido</a>
@@ -158,7 +161,7 @@
                 <a id="back-link" href="{{ page.back_url | relative_url }}" class="-ml-2 flex min-h-11 items-center gap-0.5 rounded-full pl-1 pr-3 text-base font-medium text-brand-text transition hover:bg-fill" aria-label="Volver atrás" title="Atrás"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span class="hidden sm:inline">Atrás</span></a>
                 {% endif %}
             </div>
-            <h1 class="line-clamp-2 min-w-0 max-w-[50vw] break-words text-center text-sm font-semibold leading-tight sm:max-w-md sm:text-base {{ heading_class }}">{% case page.heading_source %}{% when 'cv_profile_name' %}{{ site.data.cv.profile.name | escape }}{% when 'cv_jobs_title' %}{{ site.data.cv.jobs.title | escape }}{% when 'cv_studies_title' %}{{ site.data.cv.studies.title | escape }}{% when 'cv_contact_title' %}{{ site.data.cv.contact.title | escape }}{% when '3d_profile_title' %}{{ site.data.aarontxu_3d.profile.title | escape }}{% when '3d_nfc_title' %}{{ site.data.aarontxu_3d.nfcGuide.title | escape }}{% when '3d_privacy_title' %}{{ site.data.aarontxu_3d.privacy.title | escape }}{% when '3d_legal_title' %}{{ site.data.aarontxu_3d.legal.title | escape }}{% when '3d_products_title' %}{{ site.data.aarontxu_3d.productsAndServices.title | escape }}{% else %}{{ page.heading | default: page.title | escape }}{% endcase %}</h1>
+            <h1 class="line-clamp-2 min-w-0 max-w-[50vw] break-words text-center text-sm font-semibold leading-tight sm:max-w-md sm:text-base {{ heading_class }}">{% case page.heading_source %}{% when '3d_profile_title' %}{{ site.data.aarontxu_3d.profile.title | escape }}{% when '3d_nfc_title' %}{{ site.data.aarontxu_3d.nfcGuide.title | escape }}{% when '3d_privacy_title' %}{{ site.data.aarontxu_3d.privacy.title | escape }}{% when '3d_legal_title' %}{{ site.data.aarontxu_3d.legal.title | escape }}{% when '3d_products_title' %}{{ site.data.aarontxu_3d.productsAndServices.title | escape }}{% else %}{{ page.heading | default: page.title | escape }}{% endcase %}</h1>
             <div id="translate-container" class="relative flex items-center gap-2 justify-self-end">
                 <a id="cart-link" href="{{ '/pages/cart.html' | relative_url }}" class="relative grid h-11 w-11 shrink-0 place-items-center rounded-full bg-fill text-ink transition hover:bg-line" aria-label="Cesta" title="Ver cesta">
                     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1 12h-11l-1-12z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
@@ -176,6 +179,8 @@
     <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-11 items-center gap-1 rounded-full bg-brand px-5 font-semibold text-brand-on opacity-0 shadow-lg transition hover:bg-brand-hover sm:right-6" aria-label="Volver arriba" inert><span aria-hidden="true">↑</span> Arriba</button>
     <footer class="mt-auto flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-line p-6 text-center text-sm text-muted"><span>© {{ site.time | date: '%Y' }} {{ site.title }}</span><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="{{ '/pages/privacy.html' | relative_url }}">{{ site.data.aarontxu_3d.privacy.linkLabel | default: 'Política de privacidad' | escape }}</a><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="{{ '/pages/legal.html' | relative_url }}">{{ site.data.aarontxu_3d.legal.linkLabel | default: 'Aviso legal' | escape }}</a></footer>
     <script type="application/json" id="translate-languages">{{ site.data.aarontxu_3d.languages | jsonify }}</script>
+    {% comment %}Precios y nombres vigentes: la cesta los toma de aquí, no de lo que guardó el navegador.{% endcomment %}
+    <script type="application/json" id="product-catalog">{ {% for product in site.data.aarontxu_3d.productsAndServices.elements %}{{ product.id | jsonify }}: { "name": {{ product.title | default: product.category.name | jsonify }}, "price": {{ product.price | default: 0 | jsonify }}, "priceLabel": {{ product.price_label | default: '' | jsonify }}, "image": {{ product.images.first | relative_url | default: '' | jsonify }}, "extras": { {% for extra in product.extras %}{{ extra.id | jsonify }}: { "label": {{ extra.label | jsonify }}, "price": {{ extra.price | default: 0 | jsonify }} }{% unless forloop.last %}, {% endunless %}{% endfor %} } }{% unless forloop.last %}, {% endunless %}{% endfor %} }</script>
     <script defer src="{{ '/script.js' | relative_url }}"></script>
 </body>
 </html>

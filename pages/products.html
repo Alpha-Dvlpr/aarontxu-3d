@@ -56,7 +56,7 @@ back_url: "/"
                 <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
                     <label class="sr-only" for="quantity-{{ product.id | escape }}">Cantidad de {{ product_name | escape }}</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.id | escape }}" type="number" min="1" step="1" value="1" inputmode="numeric" data-product-quantity>
+                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.id | escape }}" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                     <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
                 </div>
                 <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
@@ -74,3 +74,26 @@ back_url: "/"
     </form>
     <img id="modal-image" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" alt="">
 </dialog>
+
+<script type="application/ld+json">
+[{% for product in products.elements %}
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "sku": {{ product.id | jsonify }},
+        "name": {{ product.title | default: product.category.name | jsonify }},
+        "category": {{ product.category.name | jsonify }},
+        "description": {{ product.description | join: ' ' | jsonify }},
+        "image": [{% for image in product.images %}{{ image | absolute_url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+        "brand": { "@type": "Brand", "name": {{ site.title | jsonify }} }{% unless product.price_label %},
+        "offers": {
+            "@type": "Offer",
+            "price": {{ product.price | jsonify }},
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/MadeToOrder",
+            "url": {{ page.url | absolute_url | jsonify }},
+            "seller": { "@id": {{ '/#business' | absolute_url | jsonify }} }
+        }{% endunless %}
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+]
+</script>

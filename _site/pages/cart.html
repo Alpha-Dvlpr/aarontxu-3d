@@ -131,6 +131,25 @@
         }
     </style>
     
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "http://localhost:4000/#business",
+        "name": "Aarontxu 3D",
+        "description": "Servicios de impresión 3D personalizada en Asturias.",
+        "url": "http://localhost:4000/",
+        "logo": "http://localhost:4000/img/mini_img.png",
+        "image": "http://localhost:4000/img/mini_img.png",
+        "telephone": "+34604972522",
+        "email": "aarongranado98@gmail.com",
+        "address": { "@type": "PostalAddress", "addressRegion": "Asturias", "addressCountry": "ES" },
+        "areaServed": "ES",
+        "sameAs": ["https://www.instagram.com/aarontxu.3d"]
+    }
+    </script>
 </head>
 <body class="bg-canvas text-ink flex min-h-screen flex-col items-center font-sans">
     <a class="sr-only rounded-full bg-surface px-4 py-3 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]" href="#main-content">Saltar al contenido</a>
@@ -157,7 +176,9 @@
     <main id="main-content" class="w-full max-w-3xl px-4 py-8 sm:py-12">
         
 <section id="cart-page" data-whatsapp-url="https://wa.me/34604972522" aria-labelledby="cart-title">
-    <h2 id="cart-title" class="sr-only">Productos de la cesta</h2>
+    <h2 id="cart-title" class="sr-only" tabindex="-1">Productos de la cesta</h2>
+    <p id="cart-announcement" class="sr-only" aria-live="polite"></p>
+    <p id="cart-notice" class="mb-6 rounded-3xl bg-fill p-5 text-sm leading-relaxed text-ink" role="status" hidden></p>
     <aside class="mb-6 rounded-3xl bg-brand-tint p-5 text-sm leading-relaxed text-ink" aria-label="Información importante sobre el pedido">
         <p class="font-semibold text-brand-text">El pedido no se envía ni se confirma automáticamente.</p>
         <p class="mt-1">Al pulsar «Pedir por WhatsApp» se abrirá un mensaje preparado; tendrás que revisarlo y enviarlo. Después concretaremos por el chat los detalles y el precio final: fotos de referencia y nombre para las figuras, modificaciones, diseños para llaveros u otros productos.</p>
@@ -181,7 +202,18 @@
                     <span>Me opongo a que se publiquen fotografías de mi pedido en este sitio web y en las redes sociales de Aarontxu 3D.</span>
                 </label>
             </div>
-            <a id="cart-order-link" class="sm:self-end inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" href="#" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp<span class="sr-only"> (se abre en otra pestaña)</span></a>
+            <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <button id="cart-clear" type="button" class="min-h-11 rounded-full px-4 text-sm font-medium text-danger transition hover:bg-fill">Vaciar cesta</button>
+                <a id="cart-order-link" data-focus-key="order" class="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" href="#" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp<span class="sr-only"> (se abre en otra pestaña)</span></a>
+            </div>
+            <div id="cart-sent" class="rounded-2xl bg-brand-tint p-4 text-sm leading-relaxed text-ink" hidden>
+                <p class="font-semibold text-brand-text">¿Has enviado el mensaje por WhatsApp?</p>
+                <p class="mt-1">Si ya lo has enviado, la cesta se vaciará sola en <span id="cart-countdown" class="font-semibold tabular-nums">10:00</span> para que no repitas el pedido sin querer. Si no lo has enviado, mantén la cesta.</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                    <button id="cart-sent-clear" type="button" class="min-h-11 rounded-full bg-brand px-5 text-sm font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95">Sí, vaciar la cesta</button>
+                    <button id="cart-sent-keep" type="button" class="min-h-11 rounded-full bg-surface px-5 text-sm font-medium text-ink transition hover:bg-fill">No, mantener la cesta</button>
+                </div>
+            </div>
         </div>
     </section>
 </section>
@@ -190,6 +222,8 @@
     <button id="scrollTopBtn" type="button" class="pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-11 items-center gap-1 rounded-full bg-brand px-5 font-semibold text-brand-on opacity-0 shadow-lg transition hover:bg-brand-hover sm:right-6" aria-label="Volver arriba" inert><span aria-hidden="true">↑</span> Arriba</button>
     <footer class="mt-auto flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-line p-6 text-center text-sm text-muted"><span>© 2026 Aarontxu 3D</span><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="/pages/privacy.html">Política de privacidad</a><a class="rounded underline underline-offset-2 transition hover:text-brand-text" href="/pages/legal.html">Aviso legal</a></footer>
     <script type="application/json" id="translate-languages">{"es":"Español","en":"English","fr":"Français","it":"Italiano","de":"Deutsch","pt":"Português"}</script>
+    
+    <script type="application/json" id="product-catalog">{ "PROD_01": { "name": "Funko personalizado", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_01/1.jpg", "extras": { "vehiculo-grande": { "label": "Vehículo grande", "price": 5.0 } } }, "PROD_02": { "name": "Funko personalizado 2 personas", "price": 35.0, "priceLabel": "", "image": "/img/products/PROD_02/2.jpg", "extras": {  } }, "PROD_03": { "name": "Funko personalizado Mundial 2026", "price": 25.0, "priceLabel": "", "image": "/img/products/PROD_03/1.jpg", "extras": {  } }, "PROD_04": { "name": "Funko mascotas", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_04/1.jpg", "extras": {  } }, "PROD_05": { "name": "Llaveros personalizados", "price": 0.0, "priceLabel": "Precio a consultar", "image": "/img/products/PROD_05/1.jpg", "extras": {  } }, "PROD_06": { "name": "Mosaico 3D grande", "price": 10.0, "priceLabel": "", "image": "/img/products/PROD_06/1.jpg", "extras": {  } }, "PROD_07": { "name": "Mosaico 3D mediano", "price": 7.5, "priceLabel": "", "image": "/img/products/PROD_07/1.jpg", "extras": {  } }, "PROD_08": { "name": "Medallas de graduación", "price": 5.0, "priceLabel": "", "image": "/img/products/PROD_08/1.jpg", "extras": {  } }, "PROD_09": { "name": "Parrilla Seat León FR", "price": 35.0, "priceLabel": "", "image": "/img/products/PROD_09/1.jpg", "extras": {  } }, "PROD_10": { "name": "Piezas personalizadas para coches RC", "price": 0.0, "priceLabel": "Precio a consultar", "image": "/img/products/PROD_10/1.jpg", "extras": {  } }, "PROD_11": { "name": "Funko de famosos y personajes", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_11/1.jpg", "extras": {  } }, "PROD_12": { "name": "Réplicas de coches en miniatura", "price": 20.0, "priceLabel": "", "image": "/img/products/PROD_12/1.jpg", "extras": {  } }, "PROD_13": { "name": "Figuras de animales realistas", "price": 15.0, "priceLabel": "", "image": "/img/products/PROD_13/1.jpg", "extras": {  } }, "PROD_14": { "name": "Letreros 3D personalizados", "price": 0.0, "priceLabel": "Precio a consultar", "image": "/img/products/PROD_14/1.jpg", "extras": {  } }, "PROD_15": { "name": "Funko mascotas grandes", "price": 35.0, "priceLabel": "", "image": "/img/products/PROD_15/1.jpg", "extras": {  } } }</script>
     <script defer src="/script.js"></script>
 </body>
 </html>
