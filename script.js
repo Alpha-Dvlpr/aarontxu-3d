@@ -105,11 +105,20 @@ function initializeProductCart() {
             quantityInput.value = String(normalizeQuantity(quantityInput.value));
         });
 
+        const priceOutput = card.querySelector('[data-product-price-output]');
+        const checkedExtras = () => Array.from(card.querySelectorAll('[data-product-extra]:checked'));
+        const unitPrice = () => checkedExtras().reduce((sum, extra) => sum + Number(extra.dataset.extraPrice), Number(card.dataset.productPrice));
+        card.querySelectorAll('[data-product-extra]').forEach(extra => extra.addEventListener('change', () => {
+            if (priceOutput) priceOutput.textContent = formatCurrency(unitPrice());
+        }));
+
         addButton.addEventListener('click', () => {
+            const extras = checkedExtras();
+            // Each extra combination is its own cart line, so the id carries the extras.
             const product = {
-                id: card.dataset.productId,
-                name: card.dataset.productName,
-                price: Number(card.dataset.productPrice),
+                id: [card.dataset.productId, ...extras.map(extra => extra.value)].join(':'),
+                name: extras.length ? `${card.dataset.productName} (extra: ${extras.map(extra => extra.dataset.extraLabel.toLowerCase()).join(', ')})` : card.dataset.productName,
+                price: unitPrice(),
                 priceLabel: card.dataset.productPriceLabel || '',
                 quantity: normalizeQuantity(quantityInput.value),
                 image: card.dataset.productImage || ''
@@ -353,6 +362,20 @@ function initializeProductFilters() {
     });
 }
 
+// Masonry: 1px rows and each card spans its own height plus the gap, so cards fill the free space while keeping catalog order.
+// Without JS the grid stays a normal grid.
+function initializeMasonry() {
+    document.querySelectorAll('[data-masonry]').forEach(grid => {
+        const gap = parseFloat(getComputedStyle(grid).rowGap) || 0;
+        grid.style.gridAutoRows = '1px';
+        grid.style.rowGap = '0px';
+        const observer = new ResizeObserver(entries => entries.forEach(({ target }) => {
+            target.style.gridRowEnd = `span ${Math.ceil(target.getBoundingClientRect().height + gap)}`;
+        }));
+        Array.from(grid.children).forEach(card => observer.observe(card));
+    });
+}
+
 function initializeImageModal() {
     const modal = document.getElementById('image-modal');
     const image = document.getElementById('modal-image');
@@ -545,6 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeThemeToggle();
     initializeTranslation();
     initializeProductFilters();
+    initializeMasonry();
     initializeImageModal();
     updateCartBadge();
     initializeProductCart();

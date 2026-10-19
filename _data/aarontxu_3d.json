@@ -43,9 +43,14 @@
                 },
                 "description": [
                     "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. La modelo en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
-                    "Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería."
+                    "Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería.",
+                    "Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como un funko de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.",
+                    "Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea."
                 ],
                 "price": 20.0,
+                "extras": [
+                    { "id": "vehiculo-grande", "label": "Vehículo grande", "price": 5.0 }
+                ],
                 "images": [
                     "/img/products/PROD_01/1.jpg",
                     "/img/products/PROD_01/2.jpg",
@@ -61,7 +66,8 @@
                     "/img/products/PROD_01/12.jpg",
                     "/img/products/PROD_01/13.jpg",
                     "/img/products/PROD_01/14.jpg",
-                    "/img/products/PROD_01/15.jpg"
+                    "/img/products/PROD_01/15.jpg",
+                    "/img/products/PROD_01/16.jpg"
                 ]
             },
             {
@@ -73,11 +79,11 @@
                 },
                 "description": [
                     "Dos personas en una sola pieza: una pareja, dos amigos, hermanos o madre e hijo. Cada figura mide 10 cm de alto, tiene su propio parecido y su propia ropa, y las dos van en la misma composición. Se imprimen en PLA blanco, se lijan y se pintan a mano con acrílicos.",
-                    "Incluye una caja personalizada a juego, más ancha para que quepan juntas (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para aniversarios, bodas y cumpleaños."
+                    "Incluye una caja personalizada a juego, más ancha para que quepan juntas (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para aniversarios, bodas y cumpleaños.",
+                    "Sin coste añadido, las figuras pueden ir acompañadas de mascotas o de objetos, en el suelo o en sus manos, siempre que no aumenten el ancho de la composición, para que quepa en la caja. Por eso, en este modelo no se pueden añadir vehículos, ni pequeños ni grandes."
                 ],
                 "price": 35.0,
                 "images": [
-                    "/img/products/PROD_02/1.jpg",
                     "/img/products/PROD_02/2.jpg",
                     "/img/products/PROD_02/3.jpg",
                     "/img/products/PROD_02/4.jpg",

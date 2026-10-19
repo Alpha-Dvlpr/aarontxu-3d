@@ -1,102 +1,129 @@
 {
   "communities": {
     "0": [
-      "includes_legal_sections",
-      "layouts_default",
-      "layouts_default_footer",
-      "layouts_default_person_schema",
-      "layouts_default_tailwind_config",
-      "layouts_default_theme_script",
-      "pages_cart",
-      "pages_cart_publish_opt_out",
-      "pages_cart_whatsapp_order",
-      "pages_legal",
-      "pages_privacy",
-      "pages_products",
-      "pages_yml_legal"
-    ],
-    "1": [
-      "layouts_default_header",
-      "pages_yml",
-      "pages_yml_aarontxu_3d",
-      "pages_yml_languages",
-      "pages_yml_nfc_guide",
-      "pages_yml_privacy",
-      "pages_yml_products_and_services",
-      "pages_yml_profile",
-      "pages_yml_site_images",
-      "pages_yml_whatsapp"
-    ],
-    "2": [
       "script",
-      "script_initializebacklink",
-      "script_initializebacktotop",
-      "script_initializegallerydrag",
-      "script_initializeimagemodal",
-      "script_initializenfcguide",
-      "script_initializeproductfilters",
-      "script_initializethemetoggle",
-      "script_initializetranslation"
-    ],
-    "3": [
       "script_changecartquantity",
       "script_formatcurrency",
+      "script_initializebacklink",
+      "script_initializebacktotop",
       "script_initializecartpage",
-      "script_readcart",
-      "script_removecartitem"
-    ],
-    "4": [
+      "script_initializegallerydrag",
+      "script_initializeimagemodal",
+      "script_initializemasonry",
+      "script_initializenfcguide",
       "script_initializeproductcart",
+      "script_initializeproductfilters",
+      "script_initializethemetoggle",
+      "script_initializetranslation",
       "script_normalizequantity",
+      "script_readcart",
+      "script_removecartitem",
       "script_savecart",
       "script_updatecartbadge"
     ],
+    "1": [
+      "_layouts_default",
+      "img_mini_img",
+      "index",
+      "index_external_section",
+      "index_intro_section",
+      "pages_products",
+      "pages_products_3d_products_title",
+      "pages_products_cart_announcement",
+      "pages_products_layout_default",
+      "pages_products_product_catalog",
+      "pages_products_product_filters",
+      "pages_products_products_intro",
+      "pages_products_productsandservices_data"
+    ],
+    "2": [
+      "pages_products_add_to_cart",
+      "pages_products_catalog",
+      "pages_products_image_modal",
+      "pages_products_modal_image",
+      "pages_products_price_formatting",
+      "pages_products_price_output",
+      "pages_products_product_card",
+      "pages_products_product_extra",
+      "pages_products_product_extras",
+      "pages_products_product_gallery",
+      "pages_products_quantity_selector",
+      "pages_products_quantity_stepper"
+    ],
+    "3": [
+      "layouts_default",
+      "layouts_default_person_schema",
+      "layouts_default_tailwind_config",
+      "layouts_default_theme_script",
+      "pages_guides_nfc",
+      "pages_guides_nfc_stepper",
+      "pages_guides_nfc_wa_helper",
+      "pages_yml_languages"
+    ],
+    "4": [
+      "includes_legal_sections",
+      "layouts_default_footer",
+      "pages_legal",
+      "pages_privacy",
+      "pages_yml_legal",
+      "pages_yml_privacy"
+    ],
     "5": [
+      "pages_yml",
+      "pages_yml_aarontxu_3d",
+      "pages_yml_nfc_guide",
+      "pages_yml_products_and_services",
+      "pages_yml_site_images",
+      "pages_yml_whatsapp"
+    ],
+    "6": [
+      "layouts_default_header",
+      "pages_cart",
+      "pages_cart_publish_opt_out",
+      "pages_cart_whatsapp_order",
+      "pages_yml_profile"
+    ],
+    "7": [
       "404_html",
       "404_site_pages_json",
       "404_suggestion_script"
     ],
-    "6": [
+    "8": [
       "config_yml",
       "config_yml_exclude_graphify_out",
       "config_yml_jekyll_sitemap"
-    ],
-    "7": [
-      "index",
-      "index_external_section",
-      "index_intro_section"
-    ],
-    "8": [
-      "pages_guides_nfc",
-      "pages_guides_nfc_stepper",
-      "pages_guides_nfc_wa_helper"
     ],
     "9": [
       "readme"
     ]
   },
   "cohesion": {
-    "0": 0.24358974358974358,
-    "1": 0.28888888888888886,
-    "2": 0.2222222222222222,
-    "3": 0.7,
-    "4": 0.5,
-    "5": 1.0,
-    "6": 0.6666666666666666,
-    "7": 0.6666666666666666,
+    "0": 0.19298245614035087,
+    "1": 0.1794871794871795,
+    "2": 0.22727272727272727,
+    "3": 0.25,
+    "4": 0.4666666666666667,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 1.0,
     "8": 0.6666666666666666,
     "9": 1.0
   },
   "gods": [
     {
-      "id": "layouts_default",
-      "label": "Default layout",
-      "degree": 13
+      "id": "pages_products_product_card",
+      "label": "Product card (data-product-card)",
+      "degree": 12
     },
     {
-      "id": "pages_cart",
-      "label": "Cart page",
-      "degree": 8
+      "id": "layouts_default",
+      "label": "Default layout",
+      "degree": 12
+    },
+    {
+      "id": "pages_products",
+      "label": "Productos y servicios page",
+      "degree": 11
     },
     {
       "id": "pages_yml_aarontxu_3d",
@@ -109,19 +136,14 @@
       "degree": 7
     },
     {
+      "id": "pages_cart",
+      "label": "Cart page",
+      "degree": 7
+    },
+    {
       "id": "script_initializecartpage",
       "label": "initializeCartPage()",
       "degree": 6
-    },
-    {
-      "id": "script_readcart",
-      "label": "readCart()",
-      "degree": 5
-    },
-    {
-      "id": "script_savecart",
-      "label": "saveCart()",
-      "degree": 5
     },
     {
       "id": "script_changecartquantity",
@@ -129,28 +151,17 @@
       "degree": 5
     },
     {
-      "id": "script_removecartitem",
-      "label": "removeCartItem()",
+      "id": "script_initializeproductcart",
+      "label": "initializeProductCart()",
       "degree": 5
     },
     {
-      "id": "pages_yml_legal",
-      "label": "Field group: legal",
+      "id": "script_readcart",
+      "label": "readCart()",
       "degree": 5
     }
   ],
   "surprises": [
-    {
-      "source": "Default layout",
-      "target": "Field group: languages",
-      "source_files": [
-        "_layouts/default.html",
-        ".pages.yml"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "shares_data_with",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Field group: languages` unexpectedly reaches hub `Default layout`"
-    },
     {
       "source": "Home page (index.html)",
       "target": "Default layout",
@@ -163,10 +174,10 @@
       "why": "connects across different repos/directories; bridges separate communities"
     },
     {
-      "source": "NFC keychain guide page",
+      "source": "404 page",
       "target": "Default layout",
       "source_files": [
-        "pages/guides/nfc.html",
+        "404.html",
         "_layouts/default.html"
       ],
       "confidence": "EXTRACTED",
@@ -174,30 +185,41 @@
       "why": "connects across different repos/directories; bridges separate communities"
     },
     {
-      "source": "Products and services page",
-      "target": "Default layout",
+      "source": "Default layout",
+      "target": "Field group: languages",
       "source_files": [
-        "pages/products.html",
-        "_layouts/default.html"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `Products and services page` unexpectedly reaches hub `Default layout`"
-    },
-    {
-      "source": "Cart page",
-      "target": "Field group: profile",
-      "source_files": [
-        "pages/cart.html",
+        "_layouts/default.html",
         ".pages.yml"
       ],
       "confidence": "EXTRACTED",
       "relation": "shares_data_with",
+      "why": "connects across different repos/directories; peripheral node `Field group: languages` unexpectedly reaches hub `Default layout`"
+    },
+    {
+      "source": "Cart page",
+      "target": "Default layout",
+      "source_files": [
+        "pages/cart.html",
+        "_layouts/default.html"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "Legal notice page",
+      "target": "Default layout",
+      "source_files": [
+        "pages/legal.html",
+        "_layouts/default.html"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
       "why": "connects across different repos/directories; bridges separate communities"
     }
   ],
   "tokens": {
-    "input": 165910,
-    "output": 14516
+    "input": 0,
+    "output": 0
   }
 }
