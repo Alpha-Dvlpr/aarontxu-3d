@@ -19825,7 +19825,7 @@
       "file_type": "code",
       "norm_label": "adminpage()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L151"
+      "source_location": "L156"
     },
     {
       "id": "worker_src_index_adminrequest",
@@ -19837,7 +19837,7 @@
       "file_type": "code",
       "norm_label": "adminrequest()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L131"
+      "source_location": "L136"
     },
     {
       "id": "worker_src_index_allocateordernumber",
@@ -19849,7 +19849,7 @@
       "file_type": "code",
       "norm_label": "allocateordernumber()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L62"
+      "source_location": "L66"
     },
     {
       "id": "worker_src_index_base64url",
@@ -19885,7 +19885,7 @@
       "file_type": "code",
       "norm_label": "createorder()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L85"
+      "source_location": "L89"
     },
     {
       "id": "worker_src_index_fetch",
@@ -19897,7 +19897,7 @@
       "file_type": "code",
       "norm_label": "fetch()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L156"
+      "source_location": "L161"
     },
     {
       "id": "worker_src_index_formatordernumber",
@@ -19909,7 +19909,7 @@
       "file_type": "code",
       "norm_label": "formatordernumber()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L57"
+      "source_location": "L61"
     },
     {
       "id": "worker_src_index_getorder",
@@ -19921,7 +19921,7 @@
       "file_type": "code",
       "norm_label": "getorder()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L124"
+      "source_location": "L129"
     },
     {
       "id": "worker_src_index_json",
@@ -19948,6 +19948,18 @@
       "source_location": "L51"
     },
     {
+      "id": "worker_src_index_orderprefix",
+      "label": "orderPrefix()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "index.js",
+      "file_type": "code",
+      "norm_label": "orderprefix()",
+      "source_file": "aarontxu-3d/worker/src/index.js",
+      "source_location": "L57"
+    },
+    {
       "id": "worker_src_index_priceorder",
       "label": "priceOrder()",
       "_callable": true,
@@ -19957,7 +19969,7 @@
       "file_type": "code",
       "norm_label": "priceorder()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L68"
+      "source_location": "L72"
     },
     {
       "id": "worker_src_index_scheduled",
@@ -19969,7 +19981,7 @@
       "file_type": "code",
       "norm_label": "scheduled()",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L175"
+      "source_location": "L180"
     },
     {
       "id": "worker_src_index_sha256",
@@ -25628,7 +25640,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L65",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "worker_src_index_createorder",
+      "target": "worker_src_index_orderprefix",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "aarontxu-3d/worker/src/index.js",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -25640,7 +25664,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0
     },
     {
@@ -25982,6 +26006,18 @@
     {
       "source": "worker_src_index_test",
       "target": "worker_src_index_formatordernumber",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "aarontxu-3d/worker/src/index.test.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "worker_src_index_test",
+      "target": "worker_src_index_orderprefix",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -27004,7 +27040,7 @@
     },
     {
       "source": "worker_src_index",
-      "target": "worker_src_index_formatordernumber",
+      "target": "worker_src_index_orderprefix",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -27015,13 +27051,24 @@
     },
     {
       "source": "worker_src_index",
+      "target": "worker_src_index_formatordernumber",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "aarontxu-3d/worker/src/index.js",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "worker_src_index",
       "target": "worker_src_index_allocateordernumber",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "aarontxu-3d/worker/src/index.js",
-      "source_location": "L62",
+      "source_location": "L66",
       "weight": 1.0
     },
     {

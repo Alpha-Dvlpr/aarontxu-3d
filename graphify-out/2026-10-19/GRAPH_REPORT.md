@@ -1,12 +1,12 @@
 # Graph Report - aarontxu-3d  (2026-10-19)
 
 ## Corpus Check
-- 12 files · ~87,765 words
+- 12 files · ~87,828 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: (none) 5, .toml 1)
 
 ## Summary
-- 1993 nodes · 2115 edges · 168 communities (20 shown, 148 thin omitted)
+- 1994 nodes · 2118 edges · 168 communities (20 shown, 148 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 9 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
@@ -236,8 +236,8 @@ Cohesion: 0.17
 Nodes (13): announce(), applyCatalog(), cartLineName(), formatCurrency(), initializeCartPage(), initializeProductCart(), localOrderRequest(), normalizeQuantity() (+5 more)
 
 ### Community 4 - "index.js"
-Cohesion: 0.18
-Nodes (17): accessEmail(), adminPage(), adminRequest(), allocateOrderNumber(), cors(), createOrder(), encoder, fetch() (+9 more)
+Cohesion: 0.17
+Nodes (18): accessEmail(), adminPage(), adminRequest(), allocateOrderNumber(), cors(), createOrder(), encoder, fetch() (+10 more)
 
 ### Community 5 - "package.json"
 Cohesion: 0.29
@@ -313,11 +313,11 @@ _Questions this graph is uniquely positioned to answer:_
   _28 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0021141649048625794 - nodes in this community are weakly interconnected._
-- **Why does `SubtleCrypto` connect `SubtleCrypto` to `worker-configuration.d.ts`?**
+- **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
 - **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
-- **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
+- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
 - **Should `Event` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._

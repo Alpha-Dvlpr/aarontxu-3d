@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { allocateOrderNumber, formatOrderNumber, orderPrefix, priceOrder } from './index.js';
+import worker, { allocateOrderNumber, formatOrderNumber, orderPrefix, priceOrder } from './index.js';
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
@@ -59,5 +59,41 @@ describe('priceOrder', () => {
         assert.throws(() => priceOrder([{ id: 'PROD_01:vehiculo:vehiculo', quantity: 1 }], catalog));
         assert.throws(() => priceOrder([], catalog));
         assert.throws(() => priceOrder(Array.from({ length: 31 }, () => ({ id: 'PROD_01', quantity: 1 })), catalog));
+    });
+});
+
+describe('admin order deletion', () => {
+    const origin = 'https://orders.test';
+    const env = { ALLOWED_WORKER_ORIGIN: origin, ACCESS_TEAM_DOMAIN: 'team.test', ACCESS_AUD: 'aud', ADMIN_EMAILS: 'admin@test.com' };
+    const realFetch = globalThis.fetch;
+    let token;
+    const encode = value => Buffer.from(JSON.stringify(value)).toString('base64url');
+    const request = (id, headers = {}) => new Request(`${origin}/api/admin/orders/${id}`, { method: 'DELETE', headers: { origin, ...headers } });
+    const db = rows => ({ prepare: sql => ({ bind: id => ({ run: async () => {
+        assert.match(sql, /^DELETE FROM orders WHERE id = \? AND expires_at > \?$/);
+        return { meta: { changes: rows.delete(id) ? 1 : 0 } };
+    } }) }) });
+
+    before(async () => {
+        const { publicKey, privateKey } = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
+        const jwk = { ...await crypto.subtle.exportKey('jwk', publicKey), kid: 'k1', use: 'sig', alg: 'RS256' };
+        globalThis.fetch = async () => Response.json({ keys: [jwk] });
+        const unsigned = `${encode({ alg: 'RS256', kid: 'k1' })}.${encode({ aud: 'aud', iss: 'https://team.test', email: 'admin@test.com', exp: Date.now() / 1000 + 60 })}`;
+        token = `${unsigned}.${Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5', privateKey, new TextEncoder().encode(unsigned))).toString('base64url')}`;
+    });
+    after(() => { globalThis.fetch = realFetch; });
+
+    it('rejects requests without a valid Access token and keeps the order', async () => {
+        const rows = new Set(['7']);
+        for (const headers of [{}, { 'cf-access-jwt-assertion': `${token}x` }]) {
+            assert.equal((await worker.fetch(request(7, headers), { ...env, DB: db(rows) })).status, 401);
+        }
+        assert.ok(rows.has('7'));
+    });
+    it('deletes an existing order once and returns 404 afterwards', async () => {
+        const rows = new Set(['7']);
+        const send = () => worker.fetch(request(7, { 'cf-access-jwt-assertion': token }), { ...env, DB: db(rows) });
+        assert.deepEqual(await (await send()).json(), { deleted: true });
+        assert.equal((await send()).status, 404);
     });
 });
