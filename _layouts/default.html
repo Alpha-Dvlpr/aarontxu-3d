@@ -10,11 +10,11 @@
     {% assign page_heading = page_product.title | default: page_product.category.name %}
     {% assign page_title = page_heading | append: ' · Impresión 3D en Asturias | ' | append: site.title %}
     {% assign page_description = page_product.description | first | strip_html | normalize_whitespace | truncate: 160 %}
-    {% assign page_image = page_product.images.first | default: '/img/mini_img.png' %}
+    {% assign page_image = page_product.images.first | default: '/img/og-image.png' %}
     {% else %}
     {% assign page_title = page.title | default: site.title %}
     {% assign page_description = page.description | default: site.description | strip_html | normalize_whitespace %}
-    {% assign page_image = '/img/mini_img.png' %}
+    {% assign page_image = '/img/og-image.png' %}
     {% endif %}
     <meta name="description" content="{{ page_description | escape }}">
     {% if page.noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
@@ -44,49 +44,11 @@
     <meta property="og:description" content="{{ page_description | escape }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:image" content="{{ page_image | absolute_url }}">
-    <meta name="twitter:card" content="summary">
-    {% assign favicon = page.favicon | default: '/img/mini_img.png' %}
-    <link rel="icon" type="image/png" href="{{ favicon | relative_url }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ favicon | relative_url }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Paleta global: los colores salen de las variables CSS de :root (claro y oscuro, abajo).
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI"', 'system-ui', 'sans-serif']
-                    },
-                    colors: {
-                        canvas: 'rgb(var(--canvas) / <alpha-value>)',
-                        surface: 'rgb(var(--surface) / <alpha-value>)',
-                        fill: 'rgb(var(--fill) / <alpha-value>)',
-                        ink: 'rgb(var(--ink) / <alpha-value>)',
-                        muted: 'rgb(var(--muted) / <alpha-value>)',
-                        line: 'rgb(var(--line) / <alpha-value>)',
-                        brand: {
-                            DEFAULT: 'rgb(var(--brand) / <alpha-value>)',
-                            hover: 'rgb(var(--brand-hover) / <alpha-value>)',
-                            text: 'rgb(var(--brand-text) / <alpha-value>)',
-                            on: 'rgb(var(--brand-on) / <alpha-value>)',
-                            tint: 'rgb(var(--brand-tint) / <alpha-value>)'
-                        },
-                        accent: {
-                            DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
-                            hover: 'rgb(var(--accent-hover) / <alpha-value>)',
-                            on: 'rgb(var(--accent-on) / <alpha-value>)'
-                        },
-                        danger: 'rgb(var(--danger) / <alpha-value>)',
-                        'grad-from': 'rgb(var(--grad-from) / <alpha-value>)',
-                        'grad-to': 'rgb(var(--grad-to) / <alpha-value>)'
-                    },
-                    boxShadow: {
-                        card: '0 1px 2px rgb(0 0 0 / .04), 0 8px 24px rgb(0 0 0 / .06)'
-                    }
-                }
-            }
-        };
-    </script>
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/img/icon-32.png' | relative_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/img/apple-touch-icon.png' | relative_url }}">
+    {% comment %}Tailwind compilado: ver tailwind.config.js para recompilar al cambiar clases.{% endcomment %}
+    <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
     <style>
         :root {
             --canvas: 250 247 243;
@@ -185,7 +147,7 @@
         </div>
     </header>
     {% comment %}Sin JavaScript tampoco hay Tailwind (CDN), por eso el aviso lleva estilos en línea.{% endcomment %}
-    <noscript><p style="margin:1rem;max-width:40rem;padding:1rem;border-radius:1rem;background:#ffedd5;color:#1d1d1f;font:16px/1.5 system-ui,sans-serif">Esta web necesita JavaScript para mostrarse bien y para usar la cesta. Puedes consultar o pedir lo que quieras por <a style="color:#9a3412;font-weight:600" href="{{ whatsapp_chip.destination | escape }}">WhatsApp</a>.</p></noscript>
+    <noscript><p style="margin:1rem;max-width:40rem;padding:1rem;border-radius:1rem;background:#ffedd5;color:#1d1d1f;font:16px/1.5 system-ui,sans-serif">Sin JavaScript no funcionan la cesta ni los filtros del catálogo. Puedes consultar o pedir lo que quieras por <a style="color:#9a3412;font-weight:600" href="{{ whatsapp_chip.destination | escape }}">WhatsApp</a>.</p></noscript>
     <main id="main-content" class="{{ page.main_class | default: 'w-full max-w-5xl px-4 py-8 sm:py-12' }}">
         {{ content }}
     </main>

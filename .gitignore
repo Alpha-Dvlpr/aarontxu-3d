@@ -1,2 +1,6 @@
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Salida de Jekyll: GitHub Pages compila desde el código.
+_site/
+.jekyll-cache/

@@ -16,3 +16,6 @@ exclude:
   - worker
   - graphify-out
   - _config.local.yml
+  - graft
+  - README.md
+  - tailwind.config.js
