@@ -4,6 +4,12 @@ url: https://3d.aarontxu.com
 baseurl: ""
 orders_api_url: "https://aarontxu-3d-orders.aarontxu.workers.dev"
 turnstile_site_key: "0x4AAAAAAFbiOimVKIiFle2v"
+defaults:
+  - scope:
+      path: "pages/products"
+    values:
+      layout: product
+      back_url: "/pages/products.html"
 plugins:
   - jekyll-sitemap
 exclude:

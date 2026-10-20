@@ -1,0 +1,8 @@
+<dialog id="image-modal" class="max-h-[90vh] max-w-[90vw] rounded-2xl bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm" aria-label="Foto ampliada">
+    <form method="dialog" class="absolute right-3 top-3 z-10">
+        <button class="grid h-11 w-11 place-items-center rounded-full bg-black/60 text-2xl text-white backdrop-blur transition hover:bg-black/80" aria-label="Cerrar foto">×</button>
+    </form>
+    <button id="modal-prev" type="button" class="absolute left-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-black/60 text-2xl text-white backdrop-blur transition hover:bg-black/80" aria-label="Foto anterior"><span aria-hidden="true">‹</span></button>
+    <button id="modal-next" type="button" class="absolute right-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-black/60 text-2xl text-white backdrop-blur transition hover:bg-black/80" aria-label="Foto siguiente"><span aria-hidden="true">›</span></button>
+    <img id="modal-image" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" alt="">
+</dialog>

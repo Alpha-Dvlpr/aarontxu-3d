@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{% comment %}Ficha de producto: los datos salen de _data/aarontxu_3d.json por product_id; cada ficha es un archivo en pages/products/ con solo ese campo.{% endcomment %}
+{% assign product = site.data.aarontxu_3d.productsAndServices.elements | where: "id", page.product_id | first %}
+{% assign product_name = product.title | default: product.category.name %}
+<style>
+    /* En móvil la tarjeta de compra va fija abajo: el botón «Arriba» sube por encima y la página reserva su hueco. */
+    @media (max-width: 767px) {
+        #scrollTopBtn { bottom: calc(var(--buy-bar-height, 0px) + max(1.5rem, env(safe-area-inset-bottom))); }
+        body { padding-bottom: calc(var(--buy-bar-height, 0px) + env(safe-area-inset-bottom)); }
+    }
+</style>
+<div class="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_18rem] md:items-start lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-8 md:col-start-1" aria-labelledby="product-title">
+        <p class="text-sm font-semibold text-brand-text">{{ product.category.name | escape }}</p>
+        <h2 id="product-title" class="mt-1 text-3xl font-bold tracking-tight text-ink">{{ product_name | escape }}</h2>
+        <div class="mt-4 leading-relaxed text-muted">
+            {% for paragraph in product.description %}<p class="mb-3 whitespace-pre-line last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
+        </div>
+    </section>
+
+    {% if product.images.size > 0 %}
+    <section class="rounded-3xl bg-surface p-4 shadow-card sm:p-6 md:col-start-1" aria-labelledby="product-photos">
+        <h2 id="product-photos" class="mb-4 text-xl font-bold tracking-tight text-ink">Fotos</h2>
+        <div class="grid grid-cols-3 gap-2">
+            {% for image in product.images %}
+            {% assign size = site.data.image_sizes[image] %}
+            {% capture image_alt %}{{ product_name }}, foto {{ forloop.index }} de {{ product.images.size }}{% endcapture %}
+            <button class="aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-fill" type="button" data-image-src="{{ image | relative_url }}" data-image-alt="{{ image_alt | escape }}" aria-label="Ampliar {{ image_alt | escape }}">
+                <img class="h-full w-full select-none object-cover transition hover:scale-105" draggable="false" src="{{ image | relative_url }}" alt="{{ image_alt | escape }}" width="{{ size[0] | default: 800 }}" height="{{ size[1] | default: 800 }}" {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+            </button>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <aside class="fixed inset-x-4 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30 rounded-3xl bg-surface p-4 shadow-card ring-1 ring-line sm:p-5 md:sticky md:inset-x-auto md:bottom-auto md:top-[85px] md:col-start-2 md:row-span-2 md:row-start-1 md:self-start md:ring-0" aria-label="Comprar {{ product_name | escape }}" data-buy-bar>
+        {% include product-buy.html product=product class="flex flex-col gap-3" %}
+    </aside>
+</div>
+
+<p id="cart-announcement" class="sr-only" aria-live="polite"></p>
+
+{% include image-modal.html %}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "sku": {{ product.id | jsonify }},
+    "name": {{ product_name | jsonify }},
+    "category": {{ product.category.name | jsonify }},
+    "description": {{ product.description | join: ' ' | jsonify }},
+    "image": [{% for image in product.images %}{{ image | absolute_url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+    "url": {{ page.url | absolute_url | jsonify }},
+    "brand": { "@type": "Brand", "name": {{ site.title | jsonify }} }{% unless product.price_label %},
+    "offers": {
+        "@type": "Offer",
+        "price": {{ product.price | jsonify }},
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/MadeToOrder",
+        "url": {{ page.url | absolute_url | jsonify }},
+        "seller": { "@id": {{ '/#business' | absolute_url | jsonify }} }
+    }{% endunless %}
+}
+</script>

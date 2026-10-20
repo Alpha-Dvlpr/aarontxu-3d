@@ -1,6 +1,7 @@
 ---
 layout: default
-title: "Productos y servicios | Aarontxu 3D"
+title: "Figuras, llaveros y piezas impresas en 3D en Asturias | Aarontxu 3D"
+heading: "Productos y servicios"
 favicon: "/img/mini_img.png"
 heading_source: 3d_products_title
 description: "Ejemplos de productos y servicios de impresión 3D personalizada, con precios e imágenes."
@@ -19,48 +20,28 @@ back_url: "/"
 <section class="mb-10 mt-4 grid grid-cols-1 items-start gap-6 md:grid-cols-2" aria-label="Catálogo de productos" data-masonry>
     {% for product in products.elements %}
     {% assign product_name = product.title | default: product.category.name %}
-    <article class="flex min-w-0 flex-col overflow-hidden rounded-3xl bg-surface shadow-card" data-product-card data-product-id="{{ product.id | escape }}" data-product-name="{{ product_name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{{ product.price_label | escape }}" data-product-image="{{ product.images.first | relative_url }}" data-category="{{ product.category.id | escape }}" data-category-name="{{ product.category.name | escape }}">
+    {% assign product_page = site.pages | where: "product_id", product.id | first %}
+    <article class="flex min-w-0 flex-col overflow-hidden rounded-3xl bg-surface shadow-card" data-category="{{ product.category.id | escape }}" data-category-name="{{ product.category.name | escape }}">
         {% if product.images.size > 0 %}
+        {% assign product_index = forloop.index %}
         <div class="gallery relative flex h-64 gap-2 overflow-x-auto overflow-y-hidden bg-fill sm:h-72" data-gallery>
             {% for image in product.images %}
-            <button class="h-full cursor-zoom-in {% if product.images.size > 1 %}shrink-0{% else %}w-full{% endif %}" type="button" data-image-src="{{ image | relative_url }}" data-image-alt="{{ product_name | escape }}">
-                <img class="h-full select-none object-cover {% if product.images.size > 1 %}w-auto{% else %}w-full{% endif %}" draggable="false" src="{{ image | relative_url }}" alt="{{ product_name | escape }}" width="640" height="480" loading="lazy" decoding="async">
-                <span class="sr-only">Ampliar foto {{ forloop.index }} de {{ product.images.size }}</span>
+            {% assign size = site.data.image_sizes[image] %}
+            {% capture image_alt %}{{ product_name }}, foto {{ forloop.index }} de {{ product.images.size }}{% endcapture %}
+            <button class="h-full cursor-zoom-in {% if product.images.size > 1 %}shrink-0{% else %}w-full{% endif %}" type="button" data-image-src="{{ image | relative_url }}" data-image-alt="{{ image_alt | escape }}" aria-label="Ampliar {{ image_alt | escape }}">
+                <img class="h-full select-none object-cover {% if product.images.size > 1 %}w-auto{% else %}w-full{% endif %}" draggable="false" src="{{ image | relative_url }}" alt="{{ image_alt | escape }}" width="{{ size[0] | default: 800 }}" height="{{ size[1] | default: 800 }}" {% if product_index == 1 and forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
             </button>
             {% endfor %}
         </div>
         {% endif %}
         <div class="flex flex-1 flex-col gap-3 p-5 sm:p-6">
             {% if product.title and product.title != product.category.name %}<p class="text-sm font-semibold text-brand-text">{{ product.category.name | escape }}</p>{% endif %}
-            <h2 class="text-2xl font-bold tracking-tight text-ink">{{ product_name | escape }}</h2>
+            <h2 class="text-2xl font-bold tracking-tight text-ink">{% if product_page %}<a class="rounded transition hover:text-brand-text" href="{{ product_page.url | relative_url }}">{{ product_name | escape }}</a>{% else %}{{ product_name | escape }}{% endif %}</h2>
             <div class="whitespace-pre-line leading-relaxed text-muted">
                 {% for paragraph in product.description %}<p class="mb-3 last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
             </div>
-            {% assign price_in_cents = product.price | times: 100 | round %}
-            {% assign price_euros = price_in_cents | divided_by: 100 %}
-            {% assign price_cents = price_in_cents | modulo: 100 %}
-            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
-                <p class="text-2xl font-bold text-ink">{% if product.price_label %}{{ product.price_label | escape }}{% else %}<span class="text-sm font-medium text-muted">Precio:</span> <span data-product-price-output>{{ price_euros }},{% if price_cents < 10 %}0{% endif %}{{ price_cents }} €</span>{% endif %}</p>
-                {% if product.extras %}
-                {% for extra in product.extras %}
-                {% assign extra_in_cents = extra.price | times: 100 | round %}
-                {% assign extra_cents = extra_in_cents | modulo: 100 %}
-                <label class="flex min-h-11 cursor-pointer items-center gap-3 rounded-2xl bg-fill px-4 text-sm font-medium text-ink">
-                    <input type="checkbox" class="h-5 w-5 shrink-0 cursor-pointer accent-brand" value="{{ extra.id | escape }}" data-product-extra data-extra-price="{{ extra.price }}" data-extra-label="{{ extra.label | escape }}">
-                    <span>{{ extra.label | escape }} (+{{ extra_in_cents | divided_by: 100 }},{% if extra_cents < 10 %}0{% endif %}{{ extra_cents }} €)</span>
-                </label>
-                {% endfor %}
-                {% endif %}
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
-                    <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
-                    <label class="sr-only" for="quantity-{{ product.id | escape }}">Cantidad de {{ product_name | escape }}</label>
-                    <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.id | escape }}" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
-                    <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
-                </div>
-                <button class="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
-            </div>
+            {% if product_page %}<a class="inline-flex min-h-11 items-center gap-1 self-start rounded-full font-semibold text-brand-text underline-offset-2 transition hover:underline" href="{{ product_page.url | relative_url }}">Ver ficha y todas las fotos<span aria-hidden="true">→</span><span class="sr-only"> de {{ product_name | escape }}</span></a>{% endif %}
+            {% include product-buy.html product=product class="mt-auto flex flex-col gap-3 pt-2" %}
         </div>
     </article>
     {% endfor %}
@@ -68,32 +49,4 @@ back_url: "/"
 
 <p id="cart-announcement" class="sr-only" aria-live="polite"></p>
 
-<dialog id="image-modal" class="max-h-[90vh] max-w-[90vw] rounded-2xl bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm">
-    <form method="dialog" class="absolute right-3 top-3">
-        <button class="grid h-11 w-11 place-items-center rounded-full bg-black/60 text-2xl text-white backdrop-blur transition hover:bg-black/80" aria-label="Cerrar imagen">×</button>
-    </form>
-    <img id="modal-image" class="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" alt="">
-</dialog>
-
-<script type="application/ld+json">
-[{% for product in products.elements %}
-    {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "sku": {{ product.id | jsonify }},
-        "name": {{ product.title | default: product.category.name | jsonify }},
-        "category": {{ product.category.name | jsonify }},
-        "description": {{ product.description | join: ' ' | jsonify }},
-        "image": [{% for image in product.images %}{{ image | absolute_url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
-        "brand": { "@type": "Brand", "name": {{ site.title | jsonify }} }{% unless product.price_label %},
-        "offers": {
-            "@type": "Offer",
-            "price": {{ product.price | jsonify }},
-            "priceCurrency": "EUR",
-            "availability": "https://schema.org/MadeToOrder",
-            "url": {{ page.url | absolute_url | jsonify }},
-            "seller": { "@id": {{ '/#business' | absolute_url | jsonify }} }
-        }{% endunless %}
-    }{% unless forloop.last %},{% endunless %}{% endfor %}
-]
-</script>
+{% include image-modal.html %}

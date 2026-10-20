@@ -251,7 +251,7 @@ function initializeCartPage() {
             if (item.image) {
                 const image = document.createElement('img');
                 image.src = item.image;
-                image.alt = item.name;
+                image.alt = ''; // The name is right next to it in the heading.
                 image.width = 96;
                 image.height = 96;
                 image.loading = 'lazy';
@@ -261,7 +261,7 @@ function initializeCartPage() {
 
             const details = document.createElement('div');
             details.className = 'min-w-0 flex-1 text-center sm:text-left';
-            const name = document.createElement('h2');
+            const name = document.createElement('h3');
             name.className = 'font-semibold text-ink';
             name.textContent = item.name;
             const unitPrice = document.createElement('p');
@@ -430,6 +430,8 @@ function initializeCartPage() {
     }
 
     render();
+    // iOS restores the page from the back/forward cache without running scripts again.
+    window.addEventListener('pageshow', event => { if (event.persisted) render(); });
     noPublish.addEventListener('change', () => render());
     window.addEventListener('storage', event => {
         if (event.key === CART_STORAGE_KEY) render();
@@ -501,7 +503,7 @@ function initializeTranslation() {
 
 function initializeProductFilters() {
     const controls = document.getElementById('product-filters');
-    const cards = Array.from(document.querySelectorAll('[data-product-card]'));
+    const cards = Array.from(document.querySelectorAll('[data-category]'));
     if (!controls || cards.length === 0) return;
 
     const categories = new Map(cards.map(card => [card.dataset.category, card.dataset.categoryName]));
@@ -550,19 +552,46 @@ function initializeMasonry() {
 function initializeImageModal() {
     const modal = document.getElementById('image-modal');
     const image = document.getElementById('modal-image');
+    const prevButton = document.getElementById('modal-prev');
+    const nextButton = document.getElementById('modal-next');
     if (!(modal instanceof HTMLDialogElement) || !image) return;
+
+    // The modal steps through the photos of the gallery that was clicked.
+    let photos = [];
+    let index = 0;
+    const show = newIndex => {
+        index = (newIndex + photos.length) % photos.length;
+        image.src = photos[index].dataset.imageSrc;
+        image.alt = photos[index].dataset.imageAlt || '';
+        modal.setAttribute('aria-label', image.alt || 'Foto ampliada');
+    };
 
     document.querySelectorAll('[data-image-src]').forEach(button => {
         button.addEventListener('click', () => {
-            image.src = button.dataset.imageSrc;
-            image.alt = button.dataset.imageAlt || '';
+            photos = Array.from(button.parentElement.querySelectorAll('[data-image-src]'));
+            prevButton.hidden = nextButton.hidden = photos.length < 2;
+            show(photos.indexOf(button));
             modal.showModal();
         });
     });
 
+    prevButton.addEventListener('click', () => show(index - 1));
+    nextButton.addEventListener('click', () => show(index + 1));
+    modal.addEventListener('keydown', event => {
+        if (photos.length < 2) return;
+        if (event.key === 'ArrowLeft') show(index - 1);
+        if (event.key === 'ArrowRight') show(index + 1);
+    });
     modal.addEventListener('click', event => {
         if (event.target === modal) modal.close();
     });
+}
+
+// On phones the buy card sticks to the bottom of the product page; the back-to-top button moves up by its height.
+function initializeBuyBar() {
+    const bar = document.querySelector('[data-buy-bar]');
+    if (!bar) return;
+    new ResizeObserver(() => document.documentElement.style.setProperty('--buy-bar-height', `${bar.offsetHeight + 12}px`)).observe(bar);
 }
 
 function initializeGalleryDrag() {
@@ -637,11 +666,15 @@ function initializeNfcGuide() {
     const cleanNumber = () => numberInput.value.replace(/[\s.-]/g, '');
     const isValidNumber = number => prefixSelect.value === '34' ? /^[67]\d{8}$/.test(number) : /^\d{6,12}$/.test(number);
 
-    const updateHelper = () => {
+    const numberError = () => {
         const number = cleanNumber();
-        const valid = isValidNumber(number);
-        errorOutput.textContent = number && !valid ? (prefixSelect.value === '34' ? root.dataset.errorSpain : root.dataset.errorOther) : '';
-        generateButton.hidden = !valid;
+        return number && !isValidNumber(number) ? (prefixSelect.value === '34' ? root.dataset.errorSpain : root.dataset.errorOther) : '';
+    };
+
+    // The error waits until the field is left, so it does not pop up with the first digit; once shown, it follows the typing.
+    const updateHelper = () => {
+        if (errorOutput.textContent) errorOutput.textContent = numberError();
+        generateButton.hidden = !isValidNumber(cleanNumber());
         resultBox.hidden = true;
         copyError.textContent = '';
     };
@@ -710,8 +743,12 @@ function initializeNfcGuide() {
         });
     });
 
-    prefixSelect.addEventListener('change', updateHelper);
+    prefixSelect.addEventListener('change', () => {
+        updateHelper();
+        errorOutput.textContent = numberError();
+    });
     numberInput.addEventListener('input', updateHelper);
+    numberInput.addEventListener('change', () => { errorOutput.textContent = numberError(); });
     generateButton.addEventListener('click', () => {
         const url = `https://wa.me/${prefixSelect.value}${cleanNumber()}`;
         resultLink.href = url;
@@ -741,7 +778,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProductFilters();
     initializeMasonry();
     initializeImageModal();
+    initializeBuyBar();
     updateCartBadge();
+    window.addEventListener('pageshow', event => { if (event.persisted) updateCartBadge(); });
     initializeProductCart();
     initializeCartPage();
 });

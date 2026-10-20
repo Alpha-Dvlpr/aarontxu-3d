@@ -1,6 +1,7 @@
 ---
 layout: default
-title: "Guía de llaveros NFC | Aarontxu 3D"
+title: "Cómo grabar tu llavero NFC con NFC Tools | Aarontxu 3D"
+heading: "Guía de llaveros NFC"
 favicon: "/img/mini_img.png"
 heading_source: 3d_nfc_title
 description: "Guía paso a paso para borrar y grabar tu llavero NFC con la app NFC Tools en Android o iPhone."
@@ -35,7 +36,13 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
         <p class="mt-3 text-sm leading-relaxed text-muted">{{ g.app.versionNote | escape }}</p>
     </section>
 
-    <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-labelledby="nfc-select-title">
+    {% comment %}Sin JavaScript se ven todos los pasos de las dos plataformas, sin selector ni botones.{% endcomment %}
+    <noscript><style>
+        #nfc-stepper, [data-platform], [data-step], [data-option], [data-nojs-only] { display: block !important; }
+        #nfc-select, #nfc-counter, #nfc-progress, #nfc-prev, #nfc-next, [data-option-btn], label:has([data-wa-checkbox]) { display: none !important; }
+    </style></noscript>
+
+    <section id="nfc-select" class="rounded-3xl bg-surface p-6 shadow-card sm:p-10" aria-labelledby="nfc-select-title">
         <h2 id="nfc-select-title" class="text-xl font-bold tracking-tight text-ink">{{ g.selector.title | escape }}</h2>
         <div class="mt-4 flex flex-wrap gap-3" role="group" aria-labelledby="nfc-select-title">
             {% for platform in g.platforms %}
@@ -50,6 +57,7 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
 
         {% for platform in g.platforms %}
         <div class="mt-6" data-platform="{{ platform.id | escape }}" hidden>
+            <h2 data-nojs-only hidden>{{ platform.name | escape }}</h2>
             {% for step in platform.steps %}
             <div data-step hidden>
                 <h3 class="text-2xl font-bold tracking-tight text-ink" tabindex="-1" data-step-title>{{ step.title | escape }}</h3>
