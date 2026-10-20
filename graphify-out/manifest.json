@@ -6,10 +6,10 @@
     "semantic_hash": "56b1dab8faa23589d3f2ac7e590997be"
   },
   "script.js": {
-    "mtime": 1792510708.8158424,
-    "seen": 1792513209.4902542,
-    "ast_hash": "5f4d96c8a84ee4bbb255b944bd856858",
-    "semantic_hash": "5f4d96c8a84ee4bbb255b944bd856858"
+    "mtime": 1792517047.366749,
+    "seen": 1792517773.739022,
+    "ast_hash": "e8abd7933a27a7ab95712862a07650a0",
+    "semantic_hash": "e8abd7933a27a7ab95712862a07650a0"
   },
   ".pages.yml": {
     "mtime": 1792410532.097135,
@@ -24,34 +24,34 @@
     "semantic_hash": "58b6720fde7c4ae3a88c02f0e84dd97d"
   },
   "_config.yml": {
-    "mtime": 1792426614.853257,
-    "seen": 1792429692.792672,
-    "ast_hash": "3ec19388eeab5e095f26ae51e2ac7190",
-    "semantic_hash": ""
+    "mtime": 1792510367.009572,
+    "seen": 1792517773.7392251,
+    "ast_hash": "408e33ebad2d91a967c1972f351c76c3",
+    "semantic_hash": "408e33ebad2d91a967c1972f351c76c3"
   },
   "_layouts/default.html": {
-    "mtime": 1792426614.8543913,
-    "seen": 1792429692.7926998,
-    "ast_hash": "233316baf64b608475ad2c10224ca66f",
-    "semantic_hash": ""
+    "mtime": 1792517047.3672066,
+    "seen": 1792517773.739226,
+    "ast_hash": "f732819a29e1be5f8c5312f0c034bbec",
+    "semantic_hash": "f732819a29e1be5f8c5312f0c034bbec"
   },
   "index.html": {
-    "mtime": 1791834421.9954517,
-    "seen": 1791835673.630283,
-    "ast_hash": "61ada6bc3ffde80719aefb6d9a4ee3ff",
-    "semantic_hash": ""
+    "mtime": 1792510456.809887,
+    "seen": 1792517773.7392268,
+    "ast_hash": "52ce13ab3d24efb3637ef2d362d48fe1",
+    "semantic_hash": "52ce13ab3d24efb3637ef2d362d48fe1"
   },
   "pages/cart.html": {
-    "mtime": 1792426614.8784542,
-    "seen": 1792429692.792726,
-    "ast_hash": "41ef514dee302188be4b669a780d6501",
-    "semantic_hash": ""
+    "mtime": 1792510454.1392596,
+    "seen": 1792517773.7392268,
+    "ast_hash": "e8cd88b22722d7601147de2d8e04b619",
+    "semantic_hash": "e8cd88b22722d7601147de2d8e04b619"
   },
   "pages/guides/nfc.html": {
-    "mtime": 1791817649.6503801,
-    "seen": 1791835673.630285,
-    "ast_hash": "f7fc13b1d6b332557c3b1695e74e56c2",
-    "semantic_hash": ""
+    "mtime": 1792510608.7731383,
+    "seen": 1792517773.739228,
+    "ast_hash": "fc2310c0dd27cd03b4342916d828e2f3",
+    "semantic_hash": "fc2310c0dd27cd03b4342916d828e2f3"
   },
   "pages/privacy.html": {
     "mtime": 1792171769.2589471,
@@ -60,10 +60,10 @@
     "semantic_hash": "72c7b9089441f6d6a6b00b3009941c55"
   },
   "pages/products.html": {
-    "mtime": 1792410531.0672915,
-    "seen": 1792410767.564053,
-    "ast_hash": "3fa249f7df62fefd1e6a619b35e5a03d",
-    "semantic_hash": ""
+    "mtime": 1792517207.0691972,
+    "seen": 1792517773.739229,
+    "ast_hash": "bb7deac446a9cf2d665fbcafcae75663",
+    "semantic_hash": "bb7deac446a9cf2d665fbcafcae75663"
   },
   "404.html": {
     "mtime": 1791992288.1141243,

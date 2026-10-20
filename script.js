@@ -594,44 +594,6 @@ function initializeBuyBar() {
     new ResizeObserver(() => document.documentElement.style.setProperty('--buy-bar-height', `${bar.offsetHeight + 12}px`)).observe(bar);
 }
 
-function initializeGalleryDrag() {
-    document.querySelectorAll('[data-gallery]').forEach(gallery => {
-        let startX = 0;
-        let startScroll = 0;
-        let dragged = false;
-
-        gallery.addEventListener('pointerdown', event => {
-            if (event.pointerType !== 'mouse' || event.button !== 0) return;
-            startX = event.clientX;
-            startScroll = gallery.scrollLeft;
-            dragged = false;
-            const onMove = moveEvent => {
-                const delta = moveEvent.clientX - startX;
-                if (Math.abs(delta) > 5) {
-                    dragged = true;
-                    gallery.classList.add('dragging');
-                }
-                gallery.scrollLeft = startScroll - delta;
-            };
-            const onUp = () => {
-                window.removeEventListener('pointermove', onMove);
-                window.removeEventListener('pointerup', onUp);
-                gallery.classList.remove('dragging');
-            };
-            window.addEventListener('pointermove', onMove);
-            window.addEventListener('pointerup', onUp);
-        });
-
-        gallery.addEventListener('click', event => {
-            if (dragged) {
-                event.stopPropagation();
-                event.preventDefault();
-                dragged = false;
-            }
-        }, true);
-    });
-}
-
 function initializeNfcGuide() {
     const root = document.getElementById('nfc-guide');
     if (!root) return;
@@ -770,7 +732,6 @@ function initializeNfcGuide() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeNfcGuide();
-    initializeGalleryDrag();
     initializeBackLink();
     initializeBackToTop();
     initializeThemeToggle();
