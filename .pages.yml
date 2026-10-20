@@ -19,6 +19,7 @@ content:
           - { name: title, label: Título, type: string }
           - { name: description, label: Presentación, type: text, list: true }
           - { name: externalTitle, label: Título de la tarjeta de enlaces externos, type: string }
+          - { name: contactNote, label: "Horario y correo bajo los enlaces externos (el correo del aviso legal se enlaza solo)", type: text }
           - name: chips
             label: Enlaces
             type: object
@@ -86,13 +87,39 @@ content:
         fields:
           - { name: title, label: Título de la página, type: string }
           - { name: linkLabel, label: Texto del enlace en el pie, type: string }
-          - { name: email, label: "Correo de contacto (se enlaza solo en los textos de privacidad y aviso legal)", type: string }
+          - { name: email, label: "Correo de contacto (se enlaza solo en los textos legales, en «Cómo hacer un pedido» y en la portada)", type: string }
           - name: sections
             label: Apartados
             type: object
             list: true
             fields:
               - { name: heading, label: Encabezado, type: string }
+              - { name: paragraphs, label: Párrafos, type: text, list: true }
+      - name: conditions
+        label: Condiciones de contratación
+        type: object
+        fields:
+          - { name: title, label: Título de la página, type: string }
+          - { name: linkLabel, label: Texto del enlace en el pie, type: string }
+          - name: sections
+            label: Apartados
+            type: object
+            list: true
+            fields:
+              - { name: heading, label: Encabezado, type: string }
+              - { name: paragraphs, label: "Párrafos (para una lista, empieza cada línea con · )", type: text, list: true }
+      - name: howToOrder
+        label: Cómo hacer un pedido y preguntas frecuentes
+        type: object
+        fields:
+          - { name: title, label: Título de la página, type: string }
+          - { name: linkLabel, label: Texto del enlace en el pie, type: string }
+          - name: sections
+            label: "Apartados (cada pregunta frecuente es un apartado)"
+            type: object
+            list: true
+            fields:
+              - { name: heading, label: Encabezado o pregunta, type: string }
               - { name: paragraphs, label: Párrafos, type: text, list: true }
       - name: nfcGuide
         label: Guía de llaveros NFC

@@ -37,5 +37,10 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
         {% endif %}
         {% endfor %}
     </div>
+    {% if profile.contactNote and profile.contactNote != "" %}
+    {% assign email = site.data.aarontxu_3d.legal.email %}
+    {% capture email_link %}<a class="font-medium text-brand-text underline underline-offset-2 transition hover:text-brand-hover" href="mailto:{{ email }}">{{ email }}</a>{% endcapture %}
+    <p class="mx-auto mt-5 max-w-xl leading-relaxed text-muted">{{ profile.contactNote | escape | replace: email, email_link }}</p>
+    {% endif %}
 </section>
 {% endif %}

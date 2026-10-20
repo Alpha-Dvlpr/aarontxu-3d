@@ -7,3 +7,6 @@ _site/
 
 # Grafo local de graphify: se regenera con graphify extract/update.
 /graphify-out/
+
+# Capturas y snapshots de playwright-cli al probar en local.
+/.playwright-cli/

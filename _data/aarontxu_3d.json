@@ -7,10 +7,15 @@
             "Contáctame y te proporcionaré un presupuesto detallado sin compromiso para cualquier idea que tengas."
         ],
         "externalTitle": "Contacto y redes",
+        "contactNote": "Respondo por WhatsApp, por Instagram o por correo, en aarongranado98@gmail.com, de lunes a viernes de 10:00 a 20:00, lo antes posible.",
         "chips": [
             {
                 "name": "Productos y servicios",
                 "destination": "/pages/products.html"
+            },
+            {
+                "name": "Cómo hacer un pedido",
+                "destination": "/pages/how-to-order.html"
             },
             {
                 "name": "WhatsApp",
@@ -203,8 +208,9 @@
                     "name": "Piezas para coches"
                 },
                 "description": [
-                    "Juego de 3 parrillas, la central y las dos laterales, diseñadas a medida para el Seat León FR. Están impresas en ASA, un material que resiste el calor y los rayos UV y aguanta bien la intemperie y el uso diario. Es un producto no oficial y sin relación con SEAT: la marca se nombra solo para indicar el modelo compatible.",
-                    "Puedes elegir el color del fondo de la \"S\" de la parrilla central para dar a tu coche un toque propio. El precio incluye las 3 piezas."
+                    "Juego de 3 parrillas, la central y las dos laterales, diseñadas a medida para el Seat León FR MK2. Cada una está impresa en ASA en una sola pieza, sin uniones ni pegamento. El ASA resiste el calor y los rayos UV y aguanta bien la intemperie y el uso diario. Es un producto no oficial y sin relación con SEAT: la marca se nombra solo para indicar el modelo compatible.",
+                    "Puedes elegir el color del fondo de la \"S\" de la parrilla central para dar a tu coche un toque propio. El precio incluye las 3 piezas.",
+                    "¿Tienes otro modelo? Consúltame antes: por 5 € te hago una versión básica en PLA para comprobar que encaja. Si luego encargas la parrilla, te descuento esos 5 €; si no, no se devuelven."
                 ],
                 "price": 35.0,
                 "images": [
@@ -426,6 +432,161 @@
                 "heading": "5. Legislación aplicable",
                 "paragraphs": [
                     "Este aviso se rige por la legislación española. Si eres consumidor, serán competentes los juzgados de tu domicilio."
+                ]
+            }
+        ]
+    },
+    "conditions": {
+        "title": "Condiciones de contratación",
+        "linkLabel": "Condiciones de contratación",
+        "sections": [
+            {
+                "heading": "",
+                "paragraphs": [
+                    "Última actualización: 20 de octubre de 2026."
+                ]
+            },
+            {
+                "heading": "1. Quién vende",
+                "paragraphs": [
+                    "Aarón Granado Amores (Aarontxu 3D), NIF 45134922K, con domicilio en Calle Claudio Sánchez Albornoz 17, 2.º D, 33900 Sama de Langreo (Asturias, España).",
+                    "Contacto: aarongranado98@gmail.com o WhatsApp +34 604 972 522."
+                ]
+            },
+            {
+                "heading": "2. Cómo se hace un pedido",
+                "paragraphs": [
+                    "La web es un escaparate. Enviar la cesta por WhatsApp es una solicitud, no una compra cerrada.",
+                    "El pedido queda confirmado cuando acordamos por WhatsApp los detalles, el diseño y el precio final. Al confirmarlo te envío un resumen con los productos, el precio, el plazo y la forma de pago."
+                ]
+            },
+            {
+                "heading": "3. Precios",
+                "paragraphs": [
+                    "Los precios están en euros y son los del producto tal como se describe. No incluyen el envío. Los cambios que no estén descritos se presupuestan antes de confirmar el pedido."
+                ]
+            },
+            {
+                "heading": "4. Pago",
+                "paragraphs": [
+                    "Por norma general, se paga al entregar el pedido, en efectivo y en mano.",
+                    "Señal: en los pedidos de más de 100 € se paga la mitad al confirmar el pedido, o el total si lo prefieres. En los pedidos de muchas unidades, como llaveros o medallas, se paga la mitad antes de empezar. La señal se paga en efectivo.",
+                    "Envíos a otra provincia: el pedido completo y el envío se pagan por Bizum cuando el pedido está terminado y se ha calculado el coste del envío, antes de enviarlo."
+                ]
+            },
+            {
+                "heading": "5. Plazos de fabricación",
+                "paragraphs": [
+                    "Cuentan desde que apruebas el diseño. Al confirmar el pedido te digo el plazo exacto.",
+                    "· Figuras estilo cabezón, réplicas de coches y figuras de animales realistas: alrededor de una semana, a veces dos.\n· Parrillas para Seat León FR: una semana.\n· Letreros y mosaicos: 1-2 días.\n· Piezas personalizadas: 1-2 días si me das el archivo, 2-3 días si hay que diseñarla y 2-3 semanas si hacen falta prototipos, según cuántos.\n· Pedidos de muchas unidades, como llaveros o medallas: depende del número de piezas. Te digo el plazo antes de empezar."
+                ]
+            },
+            {
+                "heading": "6. Entrega y envíos",
+                "paragraphs": [
+                    "En Asturias, entrego en mano. Fuera de Asturias, envío por Correos con seguro.",
+                    "El envío se calcula al terminar el pedido, según el destino, el tamaño y el peso del paquete y las opciones que elijas, como el envío urgente. Como referencia, cuesta unos 6,50 € a la España peninsular; a las islas suele costar más.",
+                    "Si el paquete llega dañado, avísame por WhatsApp o por correo, con fotos del paquete y de la pieza, en las 24 horas siguientes a que Correos me confirme la entrega. Si te pido más fotos o pruebas, intenta enviármelas también en 24 horas. Así puedo reclamar al seguro. Si avisas más tarde, lo revisamos igualmente según la garantía legal."
+                ]
+            },
+            {
+                "heading": "7. Sin derecho de desistimiento",
+                "paragraphs": [
+                    "Todos los productos se hacen a medida, según tus indicaciones y tu diseño. Por eso no tienen derecho de desistimiento (artículo 103.c de la Ley General para la Defensa de los Consumidores y Usuarios): una vez confirmado el pedido, no se puede devolver solo porque hayas cambiado de opinión."
+                ]
+            },
+            {
+                "heading": "8. Cancelación",
+                "paragraphs": [
+                    "· Antes de que empiece a imprimir: puedes cancelar sin coste y, si pagaste señal, te la devuelvo.\n· Si ya he empezado a imprimir: pagas el coste del material y de la máquina usados hasta ese momento (filamento, electricidad, mantenimiento y amortización).\n· Si ya he empezado a pintar a mano (figuras y otras piezas pintadas): se paga el pedido entero."
+                ]
+            },
+            {
+                "heading": "9. Garantía",
+                "paragraphs": [
+                    "Todos los productos tienen la garantía legal de 3 años por falta de conformidad, como un defecto de fabricación.",
+                    "Si una pieza tiene un defecto, eliges entre que la repare o que te haga una nueva, salvo que una de las dos opciones sea imposible o desproporcionada; en ese caso te ofrezco la otra. Yo corro con todos los gastos: en Asturias voy a recogerla, y fuera te pago la etiqueta del envío.",
+                    "Si no se puede reparar ni hacer de nuevo, o no lo resuelvo en un plazo razonable, puedes elegir entre una rebaja del precio o que te devuelva el dinero.",
+                    "Si el defecto aparece en los dos años siguientes a la entrega, se presume que ya existía al entregarla y no tienes que demostrarlo.",
+                    "En los pedidos de muchas unidades, como llaveros, se aplica lo mismo a cada pieza defectuosa: la reparo o la repongo y, si no es posible, te devuelvo su parte del importe, que es el precio por unidad multiplicado por las piezas defectuosas.",
+                    "La garantía no cubre los daños causados por un mal uso, como golpes o calor, cuando se vea claramente que no son un defecto de fabricación."
+                ]
+            },
+            {
+                "heading": "10. Reclamaciones",
+                "paragraphs": [
+                    "Para cualquier queja o reclamación, escríbeme a aarongranado98@gmail.com o por WhatsApp. Te responderé lo antes posible y, como mucho, en un mes.",
+                    "Si no quedas conforme, puedes acudir a la oficina de consumo de tu ayuntamiento o a la Dirección General de Consumo del Principado de Asturias."
+                ]
+            },
+            {
+                "heading": "11. Legislación aplicable",
+                "paragraphs": [
+                    "Estas condiciones se rigen por la legislación española. Si eres consumidor, serán competentes los juzgados de tu domicilio."
+                ]
+            }
+        ]
+    },
+    "howToOrder": {
+        "title": "Cómo hacer un pedido",
+        "linkLabel": "Cómo hacer un pedido",
+        "sections": [
+            {
+                "heading": "Paso a paso",
+                "paragraphs": [
+                    "1. Elige en el catálogo lo que quieres y añádelo a la cesta.\n2. Desde la cesta, envíame el pedido por WhatsApp. Te llega con su número de orden.\n3. Mándame las fotos y las indicaciones. Más abajo te explico qué fotos necesito para una figura.\n4. Te envío un boceto en 2D y lo ajustamos hasta que te guste.\n5. Al aprobar el diseño, confirmamos el precio y el plazo, y pagas la señal si corresponde.\n6. Lo fabrico y, si va pintado, lo pinto a mano.\n7. En Asturias te lo entrego en mano y pagas en efectivo. Fuera de Asturias, pagas el pedido y el envío por Bizum y te lo envío por Correos con seguro."
+                ]
+            },
+            {
+                "heading": "Horario de atención",
+                "paragraphs": [
+                    "Respondo por WhatsApp, por Instagram o por correo, en aarongranado98@gmail.com, de lunes a viernes de 10:00 a 20:00, lo antes posible. Si tenemos una entrega pendiente de organizar, puede que te escriba también fuera de ese horario."
+                ]
+            },
+            {
+                "heading": "¿Puedo ver el diseño antes de que lo fabriques?",
+                "paragraphs": [
+                    "Sí. Antes de imprimir te envío un boceto en 2D por WhatsApp, y puedes pedirme los cambios que quieras hasta que te guste."
+                ]
+            },
+            {
+                "heading": "¿Qué fotos necesitas para una figura?",
+                "paragraphs": [
+                    "Como mínimo, una foto de la persona de frente o poco girada. Si puede ser, que sea de cuerpo entero y con la ropa que quieres que lleve la figura.",
+                    "Si quieres accesorios, como una moto, un patinete o un juguete, mándame también una foto de cada uno.",
+                    "Para las figuras de dos personas, mejor dos fotos de cada una: hago cada figura por separado y luego las junto, y así queda mejor.",
+                    "Si no tienes fotos de cuerpo entero, dime cómo quieres que vaya vestida y la preparo a partir de eso. Si luego hay que cambiar algo para que quede como quieres, se ajusta sin problema."
+                ]
+            },
+            {
+                "heading": "¿Cuánto tardas?",
+                "paragraphs": [
+                    "Depende del producto: desde 1-2 días en letreros y mosaicos hasta una o dos semanas en las figuras. Las piezas que necesitan prototipos pueden tardar 2-3 semanas. Tienes todos los plazos en las condiciones de contratación, y al confirmar el pedido te digo el tuyo."
+                ]
+            },
+            {
+                "heading": "¿Aguanta el sol o el calor del coche?",
+                "paragraphs": [
+                    "Casi todo está impreso en PLA, que se deforma a partir de unos 50-60 °C. No dejes las piezas dentro del coche al sol ni cerca de radiadores, estufas o ventanas con mucho sol. Algunas piezas, como las de los coches de radiocontrol, llevan refuerzo.",
+                    "Las parrillas del Seat León FR son de ASA, que resiste el calor, los rayos UV y la intemperie. Van impresas en una sola pieza, sin uniones ni pegamento."
+                ]
+            },
+            {
+                "heading": "¿Envías fuera de Asturias?",
+                "paragraphs": [
+                    "Sí, por Correos con seguro. El envío se calcula al terminar el pedido: unos 6,50 € a la España peninsular; a las islas suele costar más. El pedido y el envío se pagan por Bizum antes de enviarlo."
+                ]
+            },
+            {
+                "heading": "¿Puedo cancelar o devolver un pedido?",
+                "paragraphs": [
+                    "Puedes cancelarlo sin coste antes de que empiece a imprimirlo. Como todo se hace a medida, no se puede devolver solo porque hayas cambiado de opinión, pero tiene la garantía legal de 3 años si tiene algún defecto. Los detalles están en las condiciones de contratación."
+                ]
+            },
+            {
+                "heading": "¿La parrilla sirve para mi coche?",
+                "paragraphs": [
+                    "Está diseñada para el Seat León FR MK2. Si tienes otro modelo, consúltame antes: por 5 € te hago una versión básica en PLA para comprobar que encaja. Si luego encargas la parrilla, te descuento esos 5 €; si no, no se devuelven."
                 ]
             }
         ]
