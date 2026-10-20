@@ -1,6 +1,12 @@
 {% comment %}Precio, extras, cantidad y «Añadir a la cesta». Lo usan el catálogo y la ficha de producto; script.js lee los data-* de este bloque.{% endcomment %}
 {% assign product = include.product %}
 {% assign product_name = product.title | default: product.category.name %}
+{% if product.unavailable %}
+<div class="{{ include.class }}">
+    <p class="text-2xl font-bold text-ink">No disponible</p>
+    <p class="text-sm text-muted">Ya no está a la venta; lo muestro como ejemplo de trabajos hechos.</p>
+</div>
+{% else %}
 <div class="{{ include.class }}" data-product-card data-product-id="{{ product.id | escape }}" data-product-name="{{ product_name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{{ product.price_label | escape }}" data-product-image="{{ product.images.first | relative_url }}">
     {% assign price_in_cents = product.price | times: 100 | round %}
     {% assign price_euros = price_in_cents | divided_by: 100 %}
@@ -26,3 +32,4 @@
         <button class="inline-flex min-h-11 flex-1 items-center justify-center whitespace-nowrap rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
     </div>
 </div>
+{% endif %}

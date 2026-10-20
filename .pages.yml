@@ -49,6 +49,7 @@ content:
               - { name: description, label: Descripción, type: text, list: true }
               - { name: price, label: "Precio (0 si es a consultar)", type: number, required: true }
               - { name: price_label, label: Precio mostrado (opcional), type: string }
+              - { name: unavailable, label: "No disponible (solo escaparate, sin compra)", type: boolean }
               - name: extras
                 label: Extras de pago (opcional)
                 type: object

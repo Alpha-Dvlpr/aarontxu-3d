@@ -54,7 +54,7 @@ layout: default
     "description": {{ product.description | join: ' ' | jsonify }},
     "image": [{% for image in product.images %}{{ image | absolute_url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
     "url": {{ page.url | absolute_url | jsonify }},
-    "brand": { "@type": "Brand", "name": {{ site.title | jsonify }} }{% unless product.price_label %},
+    "brand": { "@type": "Brand", "name": {{ site.title | jsonify }} }{% unless product.price_label or product.unavailable %},
     "offers": {
         "@type": "Offer",
         "price": {{ product.price | jsonify }},
