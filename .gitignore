@@ -4,3 +4,6 @@
 # Salida de Jekyll: GitHub Pages compila desde el código.
 _site/
 .jekyll-cache/
+
+# Grafo local de graphify: se regenera con graphify extract/update.
+/graphify-out/

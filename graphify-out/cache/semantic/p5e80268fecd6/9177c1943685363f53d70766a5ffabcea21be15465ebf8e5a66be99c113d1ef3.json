@@ -1,1 +1,0 @@
-{"nodes": [{"id": "_includes_product_buy", "label": "Product buy block include", "file_type": "code", "source_file": "_includes/product-buy.html", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "Shared by catalog and product page; script.js reads its data-* attributes."}], "edges": [], "hyperedges": []}
