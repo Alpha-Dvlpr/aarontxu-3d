@@ -42,8 +42,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko y 10 cm de alto. Modelo la figura en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
-                    "Se entrega en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar o para lucir en la estantería.",
+                    "Una figura única de ti, de un familiar o de quien tú quieras, con estilo Funko. Modelo la figura en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
+                    "Se entrega en una caja personalizada a juego, lista para regalar o para lucir en la estantería.",
                     "Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como un funko de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.",
                     "Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea."
                 ],
@@ -78,8 +78,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Dos personas en una sola pieza: una pareja, dos amigos, hermanos o madre e hijo. Cada figura mide 10 cm de alto, tiene su propio parecido y su propia ropa, y las dos van en la misma composición. Se imprimen en PLA blanco, se lijan y se pintan a mano con acrílicos.",
-                    "Incluye una caja personalizada a juego, más ancha para que quepan juntas (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para aniversarios, bodas y cumpleaños.",
+                    "Dos personas en una sola pieza: una pareja, dos amigos, hermanos o madre e hijo. Cada figura tiene su propio parecido y su propia ropa, y las dos van en la misma composición. Se imprimen en PLA blanco, se lijan y se pintan a mano con acrílicos.",
+                    "Incluye una caja personalizada a juego, más ancha para que quepan juntas. Es un regalo pensado para aniversarios, bodas y cumpleaños.",
                     "Sin coste añadido, las figuras pueden ir acompañadas de mascotas o de objetos, en el suelo o en sus manos, siempre que no aumenten el ancho de la composición, para que quepa en la caja. Por eso, en este modelo no se pueden añadir vehículos, ni pequeños ni grandes."
                 ],
                 "price": 35.0,
@@ -100,8 +100,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Para el aficionado que vive el Mundial de Fútbol 2026: una figura estilo Funko de 10 cm con temática futbolera, hecha a partir de fotos y con el parecido de la persona. Impresa en PLA blanco, lijada y pintada a mano con acrílicos.",
-                    "Viene en una caja personalizada a juego (14 cm de alto, 10 de ancho y 7,5 de fondo), lista para regalar a cualquier fan."
+                    "Para el aficionado que vive el Mundial de Fútbol 2026: una figura estilo Funko con temática futbolera, hecha a partir de fotos y con el parecido de la persona. Impresa en PLA blanco, lijada y pintada a mano con acrílicos.",
+                    "Viene en una caja personalizada a juego, lista para regalar a cualquier fan."
                 ],
                 "price": 25.0,
                 "images": [
@@ -117,8 +117,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Tu perro, tu gato o cualquier otro animal de la casa convertido en un Funko de 10 cm, con su pose, su pelaje y sus detalles. Se hace a partir de tus fotos, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
-                    "Se entrega en una caja protectora personalizada del mismo tamaño que la de un Funko de persona (14 × 10 × 7,5 cm). El precio es por animal."
+                    "Tu perro, tu gato o cualquier otro animal de la casa convertido en un Funko, con su pose, su pelaje y sus detalles. Se hace a partir de tus fotos, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
+                    "Se entrega en una caja protectora personalizada. El precio es por animal."
                 ],
                 "price": 20.0,
                 "images": [
@@ -157,7 +157,7 @@
                     "name": "Mosaicos 3D"
                 },
                 "description": [
-                    "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, de modo que el retrato gana profundidad y textura. Formato grande, de unos 17 × 17 cm y entre 2 y 3 mm de grosor según el relieve.",
+                    "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, de modo que el retrato gana profundidad y textura. Formato grande.",
                     "Lleva un pequeño pie negro en el que encaja por abajo para que se mantenga de pie en cualquier mueble. Es un detalle original para parejas, familias y mascotas."
                 ],
                 "price": 10.0,
@@ -174,7 +174,7 @@
                     "name": "Mosaicos 3D"
                 },
                 "description": [
-                    "Tu fotografía en un mosaico de colores con relieve, impreso en PLA, con colores adaptados a la imagen. Formato mediano, de unos 17 × 10 cm y entre 2 y 3 mm de grosor según el relieve.",
+                    "Tu fotografía en un mosaico de colores con relieve, impreso en PLA, con colores adaptados a la imagen. Formato mediano.",
                     "Incluye un pequeño pie negro en el que encaja por la parte inferior para que se mantenga de pie. Es un regalo vistoso y original, ideal para una estantería o un escritorio."
                 ],
                 "price": 7.5,
@@ -188,7 +188,7 @@
                     "name": "Llaveros y medallas"
                 },
                 "description": [
-                    "Medallas de 8,5 cm de diámetro con relieve, para celebrar el final de curso, de etapa o de carrera. Puedes personalizar los textos, las tipografías y los colores, con el nombre, el curso, el año o la temática del grupo.",
+                    "Medallas con relieve, para celebrar el final de curso, de etapa o de carrera. Puedes personalizar los textos, las tipografías y los colores, con el nombre, el curso, el año o la temática del grupo.",
                     "Se entregan con su cinta incluida en el precio, que es por unidad. En pedidos grandes se puede ajustar el precio final."
                 ],
                 "price": 5.0,
@@ -239,8 +239,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Tu cantante, actor o personaje favorito de película, serie o libro, en versión Funko de 10 cm de alto. Se modela en 3D a partir de fotos de referencia, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos para reproducir su look más reconocible.",
-                    "Incluye una caja personalizada a juego (14 × 10 × 7,5 cm). Es un regalo pensado para fans y coleccionistas."
+                    "Tu cantante, actor o personaje favorito de película, serie o libro, en versión Funko. Se modela en 3D a partir de fotos de referencia, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos para reproducir su look más reconocible.",
+                    "Incluye una caja personalizada a juego. Es un regalo pensado para fans y coleccionistas."
                 ],
                 "price": 20.0,
                 "images": [
@@ -256,8 +256,8 @@
                     "name": "Réplicas de coches"
                 },
                 "description": [
-                    "Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos. Mide unos 7 × 5,1 × 10 cm de alto, ancho y fondo.",
-                    "Si quieres, puedes añadir una mini cabeza estilo Funko con el conductor, sin coste extra. Se entrega en una caja a juego de 14 × 10 × 8 cm."
+                    "Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos.",
+                    "Si quieres, puedes añadir una mini cabeza estilo Funko con el conductor, sin coste extra. Se entrega en una caja a juego."
                 ],
                 "price": 20.0,
                 "images": [
@@ -272,7 +272,7 @@
                     "name": "Figuras de animales"
                 },
                 "description": [
-                    "Una escultura realista de tu perro, o de cualquier otro animal, que recoge su postura, su pelaje y su mirada. Se imprime en PLA y se termina a mano con pintura acrílica. Mide unos 15 cm de alto si está sentado, o 15 cm en su lado más largo si está tumbado.",
+                    "Una escultura realista de tu perro, o de cualquier otro animal, que recoge su postura, su pelaje y su mirada. Se imprime en PLA y se termina a mano con pintura acrílica.",
                     "A diferencia de los Funkos, el acabado es naturalista, no de dibujo animado. Es un recuerdo muy especial de una mascota. El precio es por unidad y no incluye caja."
                 ],
                 "price": 15.0,
@@ -306,8 +306,8 @@
                     "name": "Funkos personalizados"
                 },
                 "description": [
-                    "Para toda la familia peluda: una composición con varias mascotas, o con personas y mascotas, en estilo Funko de 10 cm de alto. Cada figura mantiene el parecido, los colores y los detalles del original. Se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
-                    "La figura va sobre una base y en una caja personalizada más amplia (14 cm de ancho, 12 de alto y 7,5 de fondo). Es un regalo pensado para quien considera a sus animales parte de la familia."
+                    "Para toda la familia peluda: una composición con varias mascotas, o con personas y mascotas, en estilo Funko. Cada figura mantiene el parecido, los colores y los detalles del original. Se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
+                    "La figura va sobre una base y en una caja personalizada más amplia. Es un regalo pensado para quien considera a sus animales parte de la familia."
                 ],
                 "price": 35.0,
                 "images": ["/img/products/PROD_15/1.jpg"]
@@ -317,10 +317,10 @@
     "privacy": {
         "title": "Política de privacidad",
         "linkLabel": "Política de privacidad",
-        "updated": "Última actualización: 19 de octubre de 2026.",
+        "updated": "Última actualización: 20 de octubre de 2026.",
         "changesTitle": "¿Qué ha cambiado?",
         "changes": [
-            "Apartados 2, 4, 5 y 6: añado la información sobre las órdenes de compra de la web, su conservación durante 15 días y los servicios de Cloudflare que las procesan."
+            "Apartado 6: la cesta recuerda si has marcado que no se publique tu trabajo, y los estilos de la web ya no se cargan desde Tailwind CSS, así que ese servicio ya no recibe tu dirección IP."
         ],
         "sections": [
             {
@@ -374,11 +374,11 @@
                 "heading": "6. Cookies y almacenamiento en tu navegador",
                 "paragraphs": [
                     "Esta web no usa cookies de analítica ni de publicidad. Solo guarda en tu navegador lo necesario para que funcione lo que tú usas:",
-                    "Cesta: los productos que añades, para que no se pierdan al cambiar de página. Al tramitar una orden, el navegador guarda temporalmente una referencia de reintento y una clave aleatoria para que puedas volver a acceder a ella; la clave también aparece en el enlace de consulta. Puedes borrar estos datos desde los ajustes del navegador, pero si borras la clave podrías perder el acceso a la orden.",
+                    "Cesta: los productos que añades, para que no se pierdan al cambiar de página, y si has marcado que no se publique tu trabajo, para no tener que marcarlo en cada pedido. Al tramitar una orden, el navegador guarda temporalmente una referencia de reintento y una clave aleatoria para que puedas volver a acceder a ella; la clave también aparece en el enlace de consulta. Puedes borrar estos datos desde los ajustes del navegador, pero si borras la clave podrías perder el acceso a la orden.",
                     "Tema: tu preferencia de modo claro u oscuro.",
                     "Guía de llaveros NFC: el número de teléfono que escribes en el ayudante de WhatsApp se procesa solo en tu navegador y no se envía a ningún sitio.",
                     "Estos datos no salen de tu dispositivo y puedes borrarlos desde los ajustes del navegador.",
-                    "Si pulsas «Traducir», se carga el Traductor de Google, que puede guardar una cookie con el idioma elegido y recibir tu dirección IP según su propia política de privacidad. Además, para mostrar la web, el alojamiento (GitHub) y el servicio de estilos (Tailwind CSS) reciben tu dirección IP. Yo no tengo acceso a esos datos ni los uso."
+                    "Si pulsas «Traducir», se carga el Traductor de Google, que puede guardar una cookie con el idioma elegido y recibir tu dirección IP según su propia política de privacidad. Además, para mostrar la web, el alojamiento (GitHub) recibe tu dirección IP. Yo no tengo acceso a esos datos ni los uso."
                 ]
             },
             {

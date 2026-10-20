@@ -1,0 +1,12 @@
+{
+    "name": "Aarontxu 3D · Impresión 3D en Asturias",
+    "short_name": "Aarontxu 3D",
+    "lang": "es",
+    "start_url": "/",
+    "display": "browser",
+    "background_color": "#faf7f3",
+    "theme_color": "#faf7f3",
+    "icons": [
+        { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" }
+    ]
+}

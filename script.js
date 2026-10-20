@@ -1,5 +1,6 @@
 const CART_STORAGE_KEY = 'aarontxu-3d-cart-v1';
 const ORDER_REQUEST_STORAGE_KEY = 'aarontxu-3d-order-request-v1';
+const NO_PUBLISH_STORAGE_KEY = 'aarontxu-3d-no-publish';
 const MAX_QUANTITY = 99;
 
 function localOrderRequest(fingerprint) {
@@ -194,6 +195,7 @@ function initializeProductCart() {
             try { localStorage.removeItem(ORDER_REQUEST_STORAGE_KEY); } catch {}
 
             if (!saveCart(cart)) return;
+            quantityInput.value = '1';
             announce(added === 0
                 ? `Ya tienes el máximo de ${MAX_QUANTITY} unidades de ${product.name} en la cesta.`
                 : `${added === 1 ? 'Añadida 1 unidad' : `Añadidas ${added} unidades`} de ${product.name} a la cesta.`);
@@ -429,10 +431,14 @@ function initializeCartPage() {
         document.head.appendChild(script);
     }
 
+    try { noPublish.checked = localStorage.getItem(NO_PUBLISH_STORAGE_KEY) === '1'; } catch {}
     render();
     // iOS restores the page from the back/forward cache without running scripts again.
     window.addEventListener('pageshow', event => { if (event.persisted) render(); });
-    noPublish.addEventListener('change', () => render());
+    noPublish.addEventListener('change', () => {
+        try { localStorage.setItem(NO_PUBLISH_STORAGE_KEY, noPublish.checked ? '1' : '0'); } catch {}
+        render();
+    });
     window.addEventListener('storage', event => {
         if (event.key === CART_STORAGE_KEY) render();
     });
