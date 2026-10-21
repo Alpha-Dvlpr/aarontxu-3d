@@ -48,8 +48,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/img/icon-32.png' | relative_url }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/img/apple-touch-icon.png' | relative_url }}">
     <link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
-    {% comment %}Tailwind compilado: ver tailwind.config.js para recompilar al cambiar clases.{% endcomment %}
-    <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+    {% comment %}Tailwind compilado: ver tailwind.config.js para recompilar al cambiar clases. El ?v= de cada publicación evita que el navegador mezcle el HTML nuevo con el CSS o el JS de su caché.{% endcomment %}
+    {% assign asset_version = site.time | date: '%s' %}
+    <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ asset_version }}">
     <style>
         :root {
             --canvas: 250 247 243;
@@ -161,6 +162,6 @@
     <script type="application/json" id="translate-languages">{{ site.data.aarontxu_3d.languages | jsonify }}</script>
     {% comment %}Precios y nombres vigentes: la cesta los toma de aquí, no de lo que guardó el navegador.{% endcomment %}
     <script type="application/json" id="product-catalog">{% include catalog.json %}</script>
-    <script defer src="{{ '/script.js' | relative_url }}"></script>
+    <script defer src="{{ '/script.js' | relative_url }}?v={{ asset_version }}"></script>
 </body>
 </html>
