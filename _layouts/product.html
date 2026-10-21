@@ -20,6 +20,19 @@ layout: default
         {% endif %}
     </section>
 
+    {% comment %}Medidas del producto o de cada opción; las opciones sin medida no salen.{% endcomment %}
+    {% assign sized_options = product.options | where_exp: "option", "option.dimensions" %}
+    {% if product.dimensions or sized_options.size > 0 %}
+    <section class="rounded-3xl bg-surface p-4 shadow-card sm:p-6 md:col-start-1" aria-labelledby="product-dimensions">
+        <h2 id="product-dimensions" class="mb-3 text-xl font-bold tracking-tight text-ink">Medidas</h2>
+        {% if product.dimensions %}<p class="leading-relaxed text-muted">{{ product.dimensions | escape }}</p>{% endif %}
+        {% if sized_options.size > 0 %}<dl class="divide-y divide-line">{% for option in sized_options %}<div class="py-3 first:pt-0 last:pb-0"><dt class="font-semibold text-ink">{{ option.label | escape }}</dt><dd class="mt-1 leading-relaxed text-muted">{{ option.dimensions | escape }}</dd></div>{% endfor %}</dl>{% endif %}
+    </section>
+    {% assign buy_rows = 'md:row-span-3' %}
+    {% else %}
+    {% assign buy_rows = 'md:row-span-2' %}
+    {% endif %}
+
     {% if product.images.size > 0 %}
     <section class="rounded-3xl bg-surface p-4 shadow-card sm:p-6 md:col-start-1" aria-labelledby="product-photos">
         <h2 id="product-photos" class="mb-4 text-xl font-bold tracking-tight text-ink">Fotos</h2>
@@ -36,7 +49,7 @@ layout: default
     {% endif %}
 
     {% comment %}En móvil la tarjeta se abre sobre el botón flotante «Comprar» (a la izquierda, en la misma fila que «Arriba»); si el producto no está disponible, va en el flujo de la página.{% endcomment %}
-    <aside id="buy-bar" class="{% unless product.unavailable %}fixed inset-x-4 bottom-[calc(max(1.5rem,env(safe-area-inset-bottom))+3.5rem)] z-40 shadow-lg ring-1 ring-line md:shadow-card md:ring-0{% else %}shadow-card{% endunless %} rounded-3xl bg-surface p-4 sm:p-5 md:sticky md:inset-x-auto md:bottom-auto md:top-[85px] md:col-start-2 md:row-span-2 md:row-start-1 md:self-start" aria-label="Comprar {{ product_name | escape }}" data-buy-bar>
+    <aside id="buy-bar" class="{% unless product.unavailable %}fixed inset-x-4 bottom-[calc(max(1.5rem,env(safe-area-inset-bottom))+3.5rem)] z-40 shadow-lg ring-1 ring-line md:shadow-card md:ring-0{% else %}shadow-card{% endunless %} rounded-3xl bg-surface p-4 sm:p-5 md:sticky md:inset-x-auto md:bottom-auto md:top-[85px] md:col-start-2 {{ buy_rows }} md:row-start-1 md:self-start" aria-label="Comprar {{ product_name | escape }}" data-buy-bar>
         {% include product-buy.html product=product class="flex flex-col gap-3" %}
     </aside>
 </div>

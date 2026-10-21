@@ -19,6 +19,7 @@ options:
 - id: 1-persona
   label: 1 persona
   price: 20.0
+  dimensions: Figura de 10 cm de alto. Caja de 10 × 8 × 14 cm (ancho × fondo × alto).
   image: "/img/products/PROD_01/1.jpg"
   extras:
   - id: vehiculo-grande
@@ -31,6 +32,7 @@ options:
 - id: mascota
   label: Mascota (por animal)
   price: 20.0
+  dimensions: Figura de 10 cm de alto. Caja de 10 × 8 × 14 cm (ancho × fondo × alto).
   image: "/img/products/PROD_01/23.jpg"
 - id: familia-mascotas
   label: Familia con mascotas

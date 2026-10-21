@@ -30,6 +30,7 @@ content:
       - { name: description, label: Descripción, type: text, list: true }
       - { name: price, label: "Precio (0 si es a consultar; con opciones no se usa)", type: number, required: true }
       - { name: price_label, label: Precio mostrado (opcional), type: string }
+      - { name: dimensions, label: "Medidas (opcional; si el producto tiene opciones, ponlas en cada opción)", type: string }
       - { name: unavailable, label: "No disponible (solo escaparate, sin compra)", type: boolean }
       - { name: safety_warning, label: "Mostrar la advertencia de seguridad (no es un juguete, piezas pequeñas…)", type: boolean, default: true }
       - { name: client_models_warning, label: "Mostrar la advertencia de modelos del cliente", type: boolean }
@@ -49,6 +50,7 @@ content:
           - { name: id, label: "Identificador (sin espacios, barras ni dos puntos, p. ej. 2-personas)", type: string, required: true }
           - { name: label, label: Nombre, type: string, required: true }
           - { name: price, label: Precio, type: number, required: true }
+          - { name: dimensions, label: "Medidas de esta opción (opcional)", type: string }
           - { name: image, label: "Imagen en la cesta (opcional; si no, la primera del producto)", type: image, options: { media: site_images } }
           - name: extras
             label: "Extras de esta opción (opcional; precio 0 para no sumar nada al precio, p. ej. si el coste va en el presupuesto)"
