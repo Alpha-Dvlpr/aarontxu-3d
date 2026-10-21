@@ -11,6 +11,13 @@ layout: default
         <div class="mt-4 leading-relaxed text-muted">
             {% for paragraph in product.description %}<p class="mb-3 whitespace-pre-line last:mb-0">{{ paragraph | escape }}</p>{% endfor %}
         </div>
+        {% if product.safety_warning or product.client_models_warning %}
+        {% assign catalog = site.data.aarontxu_3d.productsAndServices %}
+        <div class="mt-6 flex flex-col gap-3">
+            {% if product.safety_warning %}{% comment %}GPSR: los datos del fabricante se enlazan al aviso legal para no repetir el domicilio.{% endcomment %}{% include warning-box.html warning=catalog.safetyWarning link_url="/pages/legal.html" link_label="Ver el aviso legal" %}{% endif %}
+            {% if product.client_models_warning %}{% include warning-box.html warning=catalog.clientModelsWarning %}{% endif %}
+        </div>
+        {% endif %}
     </section>
 
     {% if product.images.size > 0 %}

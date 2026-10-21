@@ -38,6 +38,14 @@
         "description": [
             "Aquí encontrarás una lista con algunos ejemplos de los encargos que he realizado hasta ahora, organizados por tipo."
         ],
+        "safetyWarning": {
+            "title": "Advertencia de seguridad",
+            "text": "Artículo decorativo y de colección. No es un juguete. No apto para menores de 14 años. Contiene piezas pequeñas.\nFabricante: Aarón Granado Amores (Aarontxu 3D). Su domicilio y sus datos de contacto están en el aviso legal."
+        },
+        "clientModelsWarning": {
+            "title": "Modelos del cliente",
+            "text": "Estas piezas se imprimen siempre a partir de modelos que me facilita el cliente. No soy responsable de su origen ni de su licencia de uso o de venta. Solo cobro los costes de fabricación (material, electricidad, desgaste y amortización de las máquinas), sin beneficio."
+        },
         "elements": [
             {
                 "id": "PROD_01",
@@ -49,8 +57,8 @@
                 "description": [
                     "Una figura única de ti, de tu familia, de tu pareja o de tu mascota, con estilo cabezón. Modelo cada figura en 3D a partir de tus fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa, su pelaje y sus detalles.",
                     "Se entrega en una caja personalizada a juego, lista para regalar o para lucir en la estantería.",
-                    "Opciones y precios:\n· 1 persona, 20,00 €. Sin coste añadido, puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir a un bebé o un niño muy pequeño; si no, cuenta como 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.\n· 2 personas, 35,00 €. Una pareja, dos amigos, hermanos o madre e hijo, cada uno con su parecido y su ropa, en la misma composición y en una caja más ancha. Pueden llevar mascotas u objetos sin coste, siempre que no aumenten el ancho para que quepa en la caja; por eso no admite vehículos.\n· Mascota, 20,00 € por animal. Tu perro, tu gato o cualquier otro animal de la casa, con su pose y su pelaje.\n· Familia con mascotas, 35,00 €. Una composición con varias mascotas, o con personas y mascotas, sobre una base y en una caja más amplia.",
-                    "Límites de los añadidos en la figura de 1 persona: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea."
+                    "Opciones y precios:\n· 1 persona, 20,00 €. Sin coste añadido, puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de mascotas (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir a un bebé o un niño muy pequeño; si no, cuenta como 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.\n· 2 personas, 35,00 €. Una pareja, dos amigos, hermanos o madre e hijo, cada uno con su parecido y su ropa, en la misma composición y en una caja más ancha. Pueden llevar mascotas u objetos sin coste, siempre que no aumenten el ancho para que quepa en la caja; por eso no admite vehículos.\n· Mascota, 20,00 € por animal. Tu perro, tu gato o cualquier otro animal de la casa, con su pose y su pelaje.\n· Familia con mascotas, 35,00 €. Una composición con varias mascotas, o con personas y mascotas, sobre una base y en una caja más amplia.",
+                    "Límites de los añadidos en la figura de 1 persona: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea. Un animal pequeño mide en torno al 20-25 % de la altura de la figura, y uno grande, hasta el 60 %. Los dos van incluidos en el precio; el único añadido con coste es el vehículo grande, que por tamaño y material se acerca a una figura de 1 persona. No es lo mismo que la opción «Mascota», que es una figura completa del animal."
                 ],
                 "price": 20.0,
                 "options": [
@@ -86,6 +94,7 @@
                         "image": "/img/products/PROD_01/27.jpg"
                     }
                 ],
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_01/1.jpg",
                     "/img/products/PROD_01/2.jpg",
@@ -129,6 +138,7 @@
                     "Viene en una caja personalizada a juego, lista para regalar a cualquier fan."
                 ],
                 "price": 25.0,
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_02/1.jpg",
                     "/img/products/PROD_02/2.jpg"
@@ -154,6 +164,7 @@
                         "price": 0.0
                     }
                 ],
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_03/1.jpg",
                     "/img/products/PROD_03/2.jpg",
@@ -175,6 +186,7 @@
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_04/1.jpg"
                 ]
@@ -191,6 +203,7 @@
                     "A diferencia de las figuras estilo cabezón, el acabado es naturalista, no de dibujo animado. Es un recuerdo muy especial de una mascota. El precio es por unidad y no incluye caja."
                 ],
                 "price": 15.0,
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_05/1.jpg",
                     "/img/products/PROD_05/2.jpg"
@@ -223,6 +236,7 @@
                         "image": "/img/products/PROD_06/3.jpg"
                     }
                 ],
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_06/1.jpg",
                     "/img/products/PROD_06/2.jpg",
@@ -253,6 +267,7 @@
                         "price": 20.0
                     }
                 ],
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_07/1.jpg"
                 ]
@@ -270,6 +285,7 @@
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_08/1.jpg"
                 ]
@@ -287,6 +303,7 @@
                     "¿Tienes otro modelo? Consúltame antes: por 5 € te hago una versión básica en PLA para comprobar que encaja. Si luego encargas la parrilla, te descuento esos 5 €; si no, no se devuelven."
                 ],
                 "price": 35.0,
+                "safety_warning": true,
                 "images": [
                     "/img/products/PROD_09/1.jpg",
                     "/img/products/PROD_09/2.jpg",
@@ -302,10 +319,12 @@
                 },
                 "description": [
                     "Piezas y accesorios impresos en 3D para tu coche radiocontrol: componentes de dirección y elementos decorativos como bidones o planchas de arena. Se hacen a partir de un modelo que tú eliges y se adaptan con tu nombre y tus colores.",
-                    "Están impresas en PLA. Las piezas que van a sufrir más esfuerzo se refuerzan por dentro para que resistan mejor, mientras que las meramente decorativas se imprimen sin refuerzo. El precio depende de la pieza y del tiempo de impresión."
+                    "Están impresas en PLA. Las piezas que van a sufrir más esfuerzo se refuerzan por dentro para que resistan mejor, mientras que las meramente decorativas se imprimen sin refuerzo. El precio cubre solo los costes de fabricación, así que depende de la pieza y del tiempo de impresión."
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
+                "safety_warning": true,
+                "client_models_warning": true,
                 "images": [
                     "/img/products/PROD_10/1.jpg",
                     "/img/products/PROD_10/2.jpg",
@@ -317,11 +336,13 @@
     "privacy": {
         "title": "Política de privacidad",
         "linkLabel": "Política de privacidad",
-        "updated": "Última actualización: 20 de octubre de 2026.",
+        "updated": "Última actualización: 21 de octubre de 2026.",
         "changesTitle": "¿Qué ha cambiado?",
         "changes": [
-            "Apartado 2: si el pedido se envía a otra provincia, se paga por Bizum.",
-            "Apartado 6: la cesta recuerda si has marcado que no se publique tu trabajo, y los estilos de la web ya no se cargan desde Tailwind CSS, así que ese servicio ya no recibe tu dirección IP."
+            "Apartado 2: también puedes escribirme por correo electrónico.",
+            "Apartado 4: las facturas se conservan 6 años.",
+            "Apartado 5: el correo electrónico funciona con Gmail (Google).",
+            "Apartado 8: para hacer un pedido hay que ser mayor de 18 años o tener el permiso por escrito de tu padre, tu madre o tu tutor legal."
         ],
         "sections": [
             {
@@ -333,7 +354,7 @@
             {
                 "heading": "2. Qué datos trato y para qué",
                 "paragraphs": [
-                    "Consultas y pedidos: cuando me escribes por WhatsApp o Instagram trato tu nombre, tu teléfono o usuario de Instagram, tus mensajes y las fotos o ideas que me envías. Los uso solo para responderte, preparar el presupuesto, diseñar la pieza y entregártela. La base legal es la aplicación de medidas precontractuales y la ejecución del encargo.",
+                    "Consultas y pedidos: cuando me escribes por WhatsApp, Instagram o correo electrónico trato tu nombre, tu teléfono, tu usuario de Instagram o tu dirección de correo, tus mensajes y las fotos o ideas que me envías. Los uso solo para responderte, preparar el presupuesto, diseñar la pieza y entregártela. La base legal es la aplicación de medidas precontractuales y la ejecución del encargo.",
                     "Órdenes de compra desde la web: al crear una orden sin datos personales guardo durante 15 días su número, los productos, cantidades, precios mostrados, fecha, estado y la preferencia sobre fotografías. Una clave aleatoria permite consultar la orden; guardo su hash, no la clave. Cloudflare procesa la solicitud y almacena estos datos en su base de datos D1. Si el pedido continúa, la información necesaria se incorpora a la conversación y a los registros del encargo; la orden temporal se elimina automáticamente al vencer el plazo.",
                     "Figuras personalizadas: a partir de tus fotos preparo, con ayuda de una herramienta de inteligencia artificial, un diseño 2D de la figura que revisas y apruebas antes de fabricarla. Con ese diseño hago después el modelo 3D y la caja.",
                     "Si las fotos son de otra persona, asegúrate de que está de acuerdo en que me las envíes y de que conoce esta política.",
@@ -358,6 +379,7 @@
                     "Diseño 2D y archivo de impresión de tu figura: los guardo en un disco duro externo que solo uso para el negocio durante un máximo de 3 años desde tu último pedido, para poder repetir la figura o hacerte otra caja sin empezar de cero. La base legal es mi interés legítimo en poder repetir o reparar tus encargos. Si prefieres que los borre antes, dímelo.",
                     "Registro de clientes: como máximo 3 años desde tu último pedido, o hasta que me pidas que lo borre.",
                     "Órdenes web: 15 días desde su creación, tras los cuales se eliminan automáticamente en todos sus estados. Este plazo no sustituye los plazos legales aplicables a facturas u otros registros que deban conservarse; si el pedido sigue adelante, traslado la información necesaria a esos registros.",
+                    "Facturas: las conservo 6 años, como exige el Código de Comercio a la documentación de un negocio. La base legal es el cumplimiento de una obligación legal.",
                     "Datos de envío: solo el tiempo necesario para que el paquete llegue."
                 ]
             },
@@ -366,7 +388,7 @@
                 "paragraphs": [
                     "No cedo tus datos a terceros, salvo en estos casos:",
                     "Empresa de transporte: si pides un envío, Correos o la empresa que elijas recibirá los datos necesarios para entregarlo.",
-                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; GitHub, que aloja esta web; y Cloudflare, que presta la base de datos y el servicio técnico para registrar y consultar las órdenes web, y verifica solicitudes mediante Turnstile. Estos servicios pueden recibir datos técnicos como la dirección IP y datos del navegador al tramitar una solicitud.",
+                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.) y Gmail (Google Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; GitHub, que aloja esta web; y Cloudflare, que presta la base de datos y el servicio técnico para registrar y consultar las órdenes web, y verifica solicitudes mediante Turnstile. Estos servicios pueden recibir datos técnicos como la dirección IP y datos del navegador al tramitar una solicitud.",
                     "Herramientas de diseño de las figuras: Perplexity (Perplexity AI, Inc., Estados Unidos) recibe tus fotos de referencia para crear el diseño 2D, con la opción de usarlas para entrenar su inteligencia artificial desactivada; remove.bg (Canva Austria GmbH) recibe solo el diseño 2D ya generado, nunca tus fotos, para quitarle el fondo; y MakerLab (Bambu Lab) recibe ese diseño sin fondo para crear el modelo 3D. La caja la preparo en mi ordenador, sin subirla a la nube.",
                     "Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, por ejemplo en Estados Unidos. Lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea."
                 ]
@@ -392,7 +414,7 @@
             {
                 "heading": "8. Menores de edad",
                 "paragraphs": [
-                    "Si eres menor de 14 años, el pedido debe hacerlo tu padre, tu madre o tu tutor legal."
+                    "Para hacer un pedido tienes que ser mayor de 18 años. Si eres menor, necesitas el permiso por escrito de tu padre, tu madre o tu tutor legal."
                 ]
             },
             {

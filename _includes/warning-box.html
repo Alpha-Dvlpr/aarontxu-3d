@@ -1,0 +1,9 @@
+{% comment %}Recuadro de advertencia de la ficha; el título y el texto son comunes y se editan en el CMS (Productos y servicios). Enlace opcional con link_url y link_label.{% endcomment %}
+<div class="flex gap-3 rounded-2xl bg-warning-tint p-4 text-sm text-ink" role="note">
+    <svg class="h-6 w-6 shrink-0 text-warning" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round"/></svg>
+    <div>
+        <p class="font-semibold">{{ include.warning.title | escape }}</p>
+        <p class="mt-1 whitespace-pre-line leading-relaxed">{{ include.warning.text | escape }}</p>
+        {% if include.link_url %}<a class="mt-1 inline-flex min-h-11 items-center rounded font-semibold underline underline-offset-2 transition hover:text-brand-text" href="{{ include.link_url | relative_url }}">{{ include.link_label }}</a>{% endif %}
+    </div>
+</div>

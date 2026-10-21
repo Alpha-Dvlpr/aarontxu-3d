@@ -34,6 +34,18 @@ content:
         fields:
           - { name: title, label: Título, type: string }
           - { name: description, label: Presentación, type: text, list: true }
+          - name: safetyWarning
+            label: "Advertencia de seguridad (sale en las fichas que la tengan marcada)"
+            type: object
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: "Texto (cada salto de línea se respeta)", type: text }
+          - name: clientModelsWarning
+            label: "Advertencia de modelos del cliente (sale en las fichas que la tengan marcada)"
+            type: object
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: "Texto (cada salto de línea se respeta)", type: text }
           - name: elements
             label: Productos
             type: object
@@ -51,6 +63,8 @@ content:
               - { name: price, label: "Precio (0 si es a consultar; con opciones no se usa)", type: number, required: true }
               - { name: price_label, label: Precio mostrado (opcional), type: string }
               - { name: unavailable, label: "No disponible (solo escaparate, sin compra)", type: boolean }
+              - { name: safety_warning, label: "Mostrar la advertencia de seguridad (no es un juguete, piezas pequeñas…)", type: boolean, default: true }
+              - { name: client_models_warning, label: "Mostrar la advertencia de modelos del cliente", type: boolean }
               - name: extras
                 label: "Extras (opcional; precio 0 para no sumar nada al precio, p. ej. si el coste va en el presupuesto)"
                 type: object
@@ -218,7 +232,7 @@ content:
             label: Textos de la interfaz
             type: object
             fields:
-              - { name: stepOf, label: Contador ({n} y {total}), type: string }
+              - { name: stepOf, label: "Contador ({n} y {total})", type: string }
               - { name: prev, label: Botón anterior, type: string }
               - { name: next, label: Botón siguiente, type: string }
               - { name: restart, label: Botón reiniciar, type: string }

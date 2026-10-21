@@ -28,6 +28,10 @@ module.exports = {
                     on: 'rgb(var(--accent-on) / <alpha-value>)'
                 },
                 danger: 'rgb(var(--danger) / <alpha-value>)',
+                warning: {
+                    DEFAULT: 'rgb(var(--warning) / <alpha-value>)',
+                    tint: 'rgb(var(--warning-tint) / <alpha-value>)'
+                },
                 'grad-from': 'rgb(var(--grad-from) / <alpha-value>)',
                 'grad-to': 'rgb(var(--grad-to) / <alpha-value>)'
             },
