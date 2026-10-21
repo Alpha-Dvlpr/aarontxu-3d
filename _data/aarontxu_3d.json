@@ -71,19 +71,19 @@
                         "id": "2-personas",
                         "label": "2 personas",
                         "price": 35.0,
-                        "image": "/img/products/PROD_02/2.jpg"
+                        "image": "/img/products/PROD_01/17.jpg"
                     },
                     {
                         "id": "mascota",
                         "label": "Mascota (por animal)",
                         "price": 20.0,
-                        "image": "/img/products/PROD_04/1.jpg"
+                        "image": "/img/products/PROD_01/23.jpg"
                     },
                     {
                         "id": "familia-mascotas",
                         "label": "Familia con mascotas",
                         "price": 35.0,
-                        "image": "/img/products/PROD_15/1.jpg"
+                        "image": "/img/products/PROD_01/27.jpg"
                     }
                 ],
                 "images": [
@@ -103,21 +103,21 @@
                     "/img/products/PROD_01/14.jpg",
                     "/img/products/PROD_01/15.jpg",
                     "/img/products/PROD_01/16.jpg",
-                    "/img/products/PROD_02/2.jpg",
-                    "/img/products/PROD_02/3.jpg",
-                    "/img/products/PROD_02/4.jpg",
-                    "/img/products/PROD_02/5.jpg",
-                    "/img/products/PROD_02/6.jpg",
-                    "/img/products/PROD_02/7.jpg",
-                    "/img/products/PROD_04/1.jpg",
-                    "/img/products/PROD_04/2.jpg",
-                    "/img/products/PROD_04/3.jpg",
-                    "/img/products/PROD_04/4.jpg",
-                    "/img/products/PROD_15/1.jpg"
+                    "/img/products/PROD_01/17.jpg",
+                    "/img/products/PROD_01/18.jpg",
+                    "/img/products/PROD_01/19.jpg",
+                    "/img/products/PROD_01/20.jpg",
+                    "/img/products/PROD_01/21.jpg",
+                    "/img/products/PROD_01/22.jpg",
+                    "/img/products/PROD_01/23.jpg",
+                    "/img/products/PROD_01/24.jpg",
+                    "/img/products/PROD_01/25.jpg",
+                    "/img/products/PROD_01/26.jpg",
+                    "/img/products/PROD_01/27.jpg"
                 ]
             },
             {
-                "id": "PROD_03",
+                "id": "PROD_02",
                 "title": "Figura estilo cabezón futbolera 2026",
                 "unavailable": true,
                 "category": {
@@ -130,16 +130,16 @@
                 ],
                 "price": 25.0,
                 "images": [
-                    "/img/products/PROD_03/1.jpg",
-                    "/img/products/PROD_03/2.jpg"
+                    "/img/products/PROD_02/1.jpg",
+                    "/img/products/PROD_02/2.jpg"
                 ]
             },
             {
-                "id": "PROD_05",
+                "id": "PROD_03",
                 "title": "Llaveros personalizados",
                 "category": {
-                    "id": "llaveros_medallas",
-                    "name": "Llaveros y medallas"
+                    "id": "impresion_personalizada",
+                    "name": "Impresión personalizada"
                 },
                 "description": [
                     "Llaveros 3D hechos a tu gusto: con tu logotipo, los colores de tu equipo, un nombre o una forma original, e incluso articulados. Tú eliges tamaño, forma y colores, hasta 4 a la vez en una misma pieza.",
@@ -148,11 +148,28 @@
                 "price": 0.0,
                 "price_label": "Precio a consultar",
                 "images": [
-                    "/img/products/PROD_05/1.jpg",
-                    "/img/products/PROD_05/2.jpg",
-                    "/img/products/PROD_05/3.jpg",
-                    "/img/products/PROD_05/4.jpg",
-                    "/img/products/PROD_05/5.jpg"
+                    "/img/products/PROD_03/1.jpg",
+                    "/img/products/PROD_03/2.jpg",
+                    "/img/products/PROD_03/3.jpg",
+                    "/img/products/PROD_03/4.jpg",
+                    "/img/products/PROD_03/5.jpg"
+                ]
+            },
+            {
+                "id": "PROD_04",
+                "title": "Medallas de graduación",
+                "category": {
+                    "id": "impresion_personalizada",
+                    "name": "Impresión personalizada"
+                },
+                "description": [
+                    "Medallas con relieve, para celebrar el final de curso, de etapa o de carrera. Puedes personalizar los textos, las tipografías y los colores, con el nombre, el curso, el año o la temática del grupo.",
+                    "Se entregan con su cinta incluida. Como orientación, cada medalla ronda los 5 € por unidad; el precio final depende del diseño y del número total de unidades."
+                ],
+                "price": 0.0,
+                "price_label": "Precio a consultar",
+                "images": [
+                    "/img/products/PROD_04/1.jpg"
                 ]
             },
             {
@@ -179,29 +196,13 @@
                         "id": "mediano",
                         "label": "Mediano",
                         "price": 7.5,
-                        "image": "/img/products/PROD_07/1.jpg"
+                        "image": "/img/products/PROD_06/3.jpg"
                     }
                 ],
                 "images": [
                     "/img/products/PROD_06/1.jpg",
                     "/img/products/PROD_06/2.jpg",
-                    "/img/products/PROD_07/1.jpg"
-                ]
-            },
-            {
-                "id": "PROD_08",
-                "title": "Medallas de graduación",
-                "category": {
-                    "id": "llaveros_medallas",
-                    "name": "Llaveros y medallas"
-                },
-                "description": [
-                    "Medallas con relieve, para celebrar el final de curso, de etapa o de carrera. Puedes personalizar los textos, las tipografías y los colores, con el nombre, el curso, el año o la temática del grupo.",
-                    "Se entregan con su cinta incluida en el precio, que es por unidad. En pedidos grandes se puede ajustar el precio final."
-                ],
-                "price": 5.0,
-                "images": [
-                    "/img/products/PROD_08/1.jpg"
+                    "/img/products/PROD_06/3.jpg"
                 ]
             },
             {
@@ -279,8 +280,8 @@
                 "id": "PROD_14",
                 "title": "Letreros 3D personalizados",
                 "category": {
-                    "id": "letreros",
-                    "name": "Letreros"
+                    "id": "impresion_personalizada",
+                    "name": "Impresión personalizada"
                 },
                 "description": [
                     "Letreros con la forma, el texto o el logotipo que tú elijas, con luz LED por todo el contorno interior para que destaquen también de noche. Están pensados para cumpleaños, negocios y decoración.",

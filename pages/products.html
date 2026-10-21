@@ -17,7 +17,13 @@ back_url: "/"
 <nav id="product-filters" class="z-30 -mx-4 mt-6 flex flex-wrap justify-center gap-2 bg-canvas/80 px-4 py-3 backdrop-blur-xl sm:sticky sm:top-[61px]" aria-label="Filtrar productos"></nav>
 
 <section class="mb-10 mt-4 grid grid-cols-1 items-start gap-6 md:grid-cols-2" aria-label="Catálogo de productos" data-masonry>
-    {% for product in products.elements %}
+    {% comment %}Por id y los no disponibles al final, también por id; los filtros solo ocultan tarjetas, así que mantienen este orden.
+    shortcut: el id se ordena como texto, vale mientras tenga dos cifras (PROD_01…PROD_99).{% endcomment %}
+    {% assign sorted_products = products.elements | sort: "id" %}
+    {% assign available_products = sorted_products | where_exp: "product", "product.unavailable != true" %}
+    {% assign unavailable_products = sorted_products | where_exp: "product", "product.unavailable == true" %}
+    {% assign ordered_products = available_products | concat: unavailable_products %}
+    {% for product in ordered_products %}
     {% assign product_name = product.title | default: product.category.name %}
     {% assign product_page = site.pages | where: "product_id", product.id | first %}
     <article class="flex min-w-0 flex-col overflow-hidden rounded-3xl bg-surface shadow-card" data-category="{{ product.category.id | escape }}" data-category-name="{{ product.category.name | escape }}">
