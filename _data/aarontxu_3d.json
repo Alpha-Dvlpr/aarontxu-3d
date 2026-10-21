@@ -157,34 +157,34 @@
             },
             {
                 "id": "PROD_06",
-                "title": "Mosaico 3D grande",
+                "title": "Mosaico 3D",
                 "category": {
                     "id": "mosaicos_3d",
                     "name": "Mosaicos 3D"
                 },
                 "description": [
-                    "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, de modo que el retrato gana profundidad y textura. Formato grande.",
-                    "Lleva un pequeño pie negro en el que encaja por abajo para que se mantenga de pie en cualquier mueble. Es un detalle original para parejas, familias y mascotas."
+                    "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, con colores adaptados a la foto, de modo que el retrato gana profundidad y textura.",
+                    "Lleva un pequeño pie negro en el que encaja por abajo para que se mantenga de pie en cualquier mueble. Es un detalle original para parejas, familias y mascotas, ideal para una estantería o un escritorio.",
+                    "Tamaños y precios:\n· Grande, 10,00 €.\n· Mediano, 7,50 €."
                 ],
                 "price": 10.0,
+                "options": [
+                    {
+                        "id": "grande",
+                        "label": "Grande",
+                        "price": 10.0,
+                        "image": "/img/products/PROD_06/1.jpg"
+                    },
+                    {
+                        "id": "mediano",
+                        "label": "Mediano",
+                        "price": 7.5,
+                        "image": "/img/products/PROD_07/1.jpg"
+                    }
+                ],
                 "images": [
                     "/img/products/PROD_06/1.jpg",
-                    "/img/products/PROD_06/2.jpg"
-                ]
-            },
-            {
-                "id": "PROD_07",
-                "title": "Mosaico 3D mediano",
-                "category": {
-                    "id": "mosaicos_3d",
-                    "name": "Mosaicos 3D"
-                },
-                "description": [
-                    "Tu fotografía en un mosaico de colores con relieve, impreso en PLA, con colores adaptados a la imagen. Formato mediano.",
-                    "Incluye un pequeño pie negro en el que encaja por la parte inferior para que se mantenga de pie. Es un regalo vistoso y original, ideal para una estantería o un escritorio."
-                ],
-                "price": 7.5,
-                "images": [
+                    "/img/products/PROD_06/2.jpg",
                     "/img/products/PROD_07/1.jpg"
                 ]
             },
