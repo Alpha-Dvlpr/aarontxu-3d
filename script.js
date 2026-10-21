@@ -586,20 +586,6 @@ function initializeProductFilters() {
     });
 }
 
-// Masonry: 1px rows and each card spans its own height plus the gap, so cards fill the free space while keeping catalog order.
-// Without JS the grid stays a normal grid.
-function initializeMasonry() {
-    document.querySelectorAll('[data-masonry]').forEach(grid => {
-        const gap = parseFloat(getComputedStyle(grid).rowGap) || 0;
-        grid.style.gridAutoRows = '1px';
-        grid.style.rowGap = '0px';
-        const observer = new ResizeObserver(entries => entries.forEach(({ target }) => {
-            target.style.gridRowEnd = `span ${Math.ceil(target.getBoundingClientRect().height + gap)}`;
-        }));
-        Array.from(grid.children).forEach(card => observer.observe(card));
-    });
-}
-
 function initializeImageModal() {
     const modal = document.getElementById('image-modal');
     const image = document.getElementById('modal-image');
@@ -805,7 +791,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeThemeToggle();
     initializeTranslation();
     initializeProductFilters();
-    initializeMasonry();
     initializeImageModal();
     initializeBuyBar();
     updateCartBadge();
