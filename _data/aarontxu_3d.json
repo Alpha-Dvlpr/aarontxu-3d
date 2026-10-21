@@ -143,10 +143,17 @@
                 },
                 "description": [
                     "Llaveros 3D hechos a tu gusto: con tu logotipo, los colores de tu equipo, un nombre o una forma original, e incluso articulados. Tú eliges tamaño, forma y colores, hasta 4 a la vez en una misma pieza.",
-                    "También se pueden fabricar con chip NFC para que, al acercar el móvil, abra tu web, tus redes o tus datos de contacto. Son una opción práctica para negocios, regalos de empresa y aficionados. El precio depende del diseño y de la cantidad."
+                    "También se pueden fabricar con chip NFC para que, al acercar el móvil, abra tu web, tus redes o tus datos de contacto. El chip NFC tiene un coste adicional por unidad, que se incluye en el presupuesto. Son una opción práctica para negocios, regalos de empresa y aficionados. El precio depende del diseño y de la cantidad."
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
+                "extras": [
+                    {
+                        "id": "nfc",
+                        "label": "Chip NFC",
+                        "price": 0.0
+                    }
+                ],
                 "images": [
                     "/img/products/PROD_03/1.jpg",
                     "/img/products/PROD_03/2.jpg",
@@ -173,11 +180,28 @@
                 ]
             },
             {
+                "id": "PROD_05",
+                "title": "Figuras de animales realistas",
+                "category": {
+                    "id": "figuras_animales",
+                    "name": "Figuras de animales"
+                },
+                "description": [
+                    "Una escultura realista de tu perro, o de cualquier otro animal, que recoge su postura, su pelaje y su mirada. Se imprime en PLA y se termina a mano con pintura acrílica.",
+                    "A diferencia de las figuras estilo cabezón, el acabado es naturalista, no de dibujo animado. Es un recuerdo muy especial de una mascota. El precio es por unidad y no incluye caja."
+                ],
+                "price": 15.0,
+                "images": [
+                    "/img/products/PROD_05/1.jpg",
+                    "/img/products/PROD_05/2.jpg"
+                ]
+            },
+            {
                 "id": "PROD_06",
                 "title": "Mosaico 3D",
                 "category": {
-                    "id": "mosaicos_3d",
-                    "name": "Mosaicos 3D"
+                    "id": "impresion_personalizada",
+                    "name": "Impresión personalizada"
                 },
                 "description": [
                     "Tu fotografía convertida en un mosaico de colores con relieve. Cada tono de la imagen se traduce en una capa de PLA, con colores adaptados a la foto, de modo que el retrato gana profundidad y textura.",
@@ -203,6 +227,51 @@
                     "/img/products/PROD_06/1.jpg",
                     "/img/products/PROD_06/2.jpg",
                     "/img/products/PROD_06/3.jpg"
+                ]
+            },
+            {
+                "id": "PROD_07",
+                "title": "Réplicas de coches en miniatura",
+                "category": {
+                    "id": "funkos",
+                    "name": "Figuras estilo cabezón"
+                },
+                "description": [
+                    "Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos.",
+                    "Si quieres, puedes añadir al conductor, con solo la cabeza en estilo cabezón, sin coste extra. Se entrega en una caja a juego."
+                ],
+                "price": 20.0,
+                "options": [
+                    {
+                        "id": "con-cabeza",
+                        "label": "Con cabeza estilo cabezón",
+                        "price": 20.0
+                    },
+                    {
+                        "id": "sin-cabeza",
+                        "label": "Sin cabeza",
+                        "price": 20.0
+                    }
+                ],
+                "images": [
+                    "/img/products/PROD_07/1.jpg"
+                ]
+            },
+            {
+                "id": "PROD_08",
+                "title": "Letreros 3D personalizados",
+                "category": {
+                    "id": "impresion_personalizada",
+                    "name": "Impresión personalizada"
+                },
+                "description": [
+                    "Letreros con la forma, el texto o el logotipo que tú elijas, con luz LED por todo el contorno interior para que destaquen también de noche. Están pensados para cumpleaños, negocios y decoración.",
+                    "Se fabrican en dos piezas, con la parte frontal encajada en el cuerpo a modo de tapa. En la parte trasera tienen un orificio para el cable y se alimentan por USB. Si prefieres otro tipo de iluminación, se puede estudiar, y el precio dependerá del tamaño, del diseño y del sistema elegido."
+                ],
+                "price": 0.0,
+                "price_label": "Precio a consultar",
+                "images": [
+                    "/img/products/PROD_08/1.jpg"
                 ]
             },
             {
@@ -241,56 +310,6 @@
                     "/img/products/PROD_10/1.jpg",
                     "/img/products/PROD_10/2.jpg",
                     "/img/products/PROD_10/3.jpg"
-                ]
-            },
-            {
-                "id": "PROD_12",
-                "title": "Réplicas de coches en miniatura",
-                "category": {
-                    "id": "replicas_coches",
-                    "name": "Réplicas de coches"
-                },
-                "description": [
-                    "Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos.",
-                    "Si quieres, puedes añadir al conductor, con solo la cabeza en estilo cabezón, sin coste extra. Se entrega en una caja a juego."
-                ],
-                "price": 20.0,
-                "images": [
-                    "/img/products/PROD_12/1.jpg"
-                ]
-            },
-            {
-                "id": "PROD_13",
-                "title": "Figuras de animales realistas",
-                "category": {
-                    "id": "figuras_animales",
-                    "name": "Figuras de animales"
-                },
-                "description": [
-                    "Una escultura realista de tu perro, o de cualquier otro animal, que recoge su postura, su pelaje y su mirada. Se imprime en PLA y se termina a mano con pintura acrílica.",
-                    "A diferencia de las figuras estilo cabezón, el acabado es naturalista, no de dibujo animado. Es un recuerdo muy especial de una mascota. El precio es por unidad y no incluye caja."
-                ],
-                "price": 15.0,
-                "images": [
-                    "/img/products/PROD_13/1.jpg",
-                    "/img/products/PROD_13/2.jpg"
-                ]
-            },
-            {
-                "id": "PROD_14",
-                "title": "Letreros 3D personalizados",
-                "category": {
-                    "id": "impresion_personalizada",
-                    "name": "Impresión personalizada"
-                },
-                "description": [
-                    "Letreros con la forma, el texto o el logotipo que tú elijas, con luz LED por todo el contorno interior para que destaquen también de noche. Están pensados para cumpleaños, negocios y decoración.",
-                    "Se fabrican en dos piezas, con la parte frontal encajada en el cuerpo a modo de tapa. En la parte trasera tienen un orificio para el cable y se alimentan por USB. Si prefieres otro tipo de iluminación, se puede estudiar, y el precio dependerá del tamaño, del diseño y del sistema elegido."
-                ],
-                "price": 0.0,
-                "price_label": "Precio a consultar",
-                "images": [
-                    "/img/products/PROD_14/1.jpg"
                 ]
             }
         ]

@@ -81,7 +81,8 @@ function readCatalog() {
 }
 
 function cartLineName(productName, extraLabels) {
-    return extraLabels.length ? `${productName} (extra: ${extraLabels.map(label => label.toLowerCase()).join(', ')})` : productName;
+    // Only the first letter is lowered, so acronyms like «NFC» stay as they are.
+    return extraLabels.length ? `${productName} (extra: ${extraLabels.map(label => label.charAt(0).toLowerCase() + label.slice(1)).join(', ')})` : productName;
 }
 
 // Name, price and image always come from the published catalog, never from what the browser stored.

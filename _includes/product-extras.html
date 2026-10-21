@@ -1,9 +1,9 @@
-{% comment %}Casillas de extras de pago de un producto o de una de sus opciones.{% endcomment %}
+{% comment %}Casillas de extras de un producto o de una de sus opciones; con precio 0 no se muestra precio (su coste va en el presupuesto, p. ej. en productos a consultar).{% endcomment %}
 {% for extra in include.extras %}
 {% assign extra_in_cents = extra.price | times: 100 | round %}
 {% assign extra_cents = extra_in_cents | modulo: 100 %}
 <label class="flex min-h-11 cursor-pointer items-center gap-3 rounded-2xl bg-fill px-4 text-sm font-medium text-ink">
     <input type="checkbox" class="h-5 w-5 shrink-0 cursor-pointer accent-brand" value="{{ extra.id | escape }}" data-product-extra data-extra-price="{{ extra.price }}" data-extra-label="{{ extra.label | escape }}">
-    <span>{{ extra.label | escape }} (+{{ extra_in_cents | divided_by: 100 }},{% if extra_cents < 10 %}0{% endif %}{{ extra_cents }} €)</span>
+    <span>{{ extra.label | escape }}{% if extra_in_cents > 0 %} (+{{ extra_in_cents | divided_by: 100 }},{% if extra_cents < 10 %}0{% endif %}{{ extra_cents }} €){% endif %}</span>
 </label>
 {% endfor %}

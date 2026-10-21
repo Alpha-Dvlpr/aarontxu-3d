@@ -81,7 +81,7 @@ export function priceOrder(lines, catalog) {
         if (!Number.isFinite(price) || price < 0) throw new Error('invalid_price');
         const unitCents = Math.round(price * 100);
         totalCents += unitCents * line.quantity;
-        return { productId, extraIds: JSON.stringify(extraIds), name: extraIds.length ? `${product.name} (extra: ${extraIds.map(id => product.extras[id].label.toLowerCase()).join(', ')})` : product.name, quantity: line.quantity, unitCents, priceLabel: product.priceLabel || '' };
+        return { productId, extraIds: JSON.stringify(extraIds), name: extraIds.length ? `${product.name} (extra: ${extraIds.map(id => product.extras[id].label.charAt(0).toLowerCase() + product.extras[id].label.slice(1)).join(', ')})` : product.name, quantity: line.quantity, unitCents, priceLabel: product.priceLabel || '' };
     });
     return { items, totalCents };
 }

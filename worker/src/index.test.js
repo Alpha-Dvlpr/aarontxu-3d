@@ -4,7 +4,7 @@ import worker, { allocateOrderNumber, formatOrderNumber, orderPrefix, priceOrder
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
-    PROD_02: { name: 'Consulta', price: 0, priceLabel: 'Precio a consultar', extras: {} },
+    PROD_02: { name: 'Consulta', price: 0, priceLabel: 'Precio a consultar', extras: { nfc: { label: 'Chip NFC', price: 0 } } },
     'PROD_03/2-personas': { name: 'Figura – 2 personas', price: 35, priceLabel: '', extras: {} }
 };
 
@@ -54,6 +54,11 @@ describe('priceOrder', () => {
     });
     it('accepts quote products with zero price', () => {
         assert.equal(priceOrder([{ id: 'PROD_02', quantity: 1 }], catalog).items[0].priceLabel, 'Precio a consultar');
+    });
+    it('accepts zero-price extras and keeps acronyms in the line name', () => {
+        const [item] = priceOrder([{ id: 'PROD_02:nfc', quantity: 1 }], catalog).items;
+        assert.equal(item.unitCents, 0);
+        assert.equal(item.name, 'Consulta (extra: chip NFC)');
     });
     it('rejects unknown products, extras and out-of-range quantities', () => {
         for (const line of [{ id: 'PROD_99', quantity: 1 }, { id: 'PROD_01:fake', quantity: 1 }, { id: 'PROD_01', quantity: 100 }, { id: 'PROD_01', quantity: 0 }]) {
