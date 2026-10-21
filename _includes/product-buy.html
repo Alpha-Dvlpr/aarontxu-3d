@@ -1,4 +1,5 @@
-{% comment %}Precio, extras, cantidad y «Añadir a la cesta». Lo usan el catálogo y la ficha de producto; script.js lee los data-* de este bloque.{% endcomment %}
+{% comment %}Precio, opciones, extras, cantidad y «Añadir a la cesta». Lo usan el catálogo y la ficha de producto; script.js lee los data-* de este bloque.
+Con opciones, el precio, la cantidad y el botón esperan a que se elija una; cada opción es una entrada «PROD_XX/opcion» de catalog.json.{% endcomment %}
 {% assign product = include.product %}
 {% assign product_name = product.title | default: product.category.name %}
 {% if product.unavailable %}
@@ -7,29 +8,44 @@
     <p class="text-sm text-muted">Ya no está a la venta; lo muestro como ejemplo de trabajos hechos.</p>
 </div>
 {% else %}
-<div class="{{ include.class }}" data-product-card data-product-id="{{ product.id | escape }}" data-product-name="{{ product_name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{{ product.price_label | escape }}" data-product-image="{{ product.images.first | relative_url }}">
+<div class="{{ include.class }}" data-product-card data-product-id="{{ product.id | escape }}" data-product-name="{{ product_name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{% unless product.options %}{{ product.price_label | escape }}{% endunless %}" data-product-image="{{ product.images.first | relative_url }}">
     {% assign price_in_cents = product.price | times: 100 | round %}
     {% assign price_euros = price_in_cents | divided_by: 100 %}
     {% assign price_cents = price_in_cents | modulo: 100 %}
     <div class="flex flex-wrap items-center justify-between gap-3">
+        {% if product.options %}
+        <p class="text-2xl font-bold text-ink"><span class="text-sm font-medium text-muted">Precio:</span> <span class="text-lg" data-product-price-output>Selecciona una opción</span></p>
+        <label class="sr-only" for="option-{{ product.id | escape }}">Opción de {{ product_name | escape }}</label>
+        {% comment %}Sin el aspecto nativo, para que vaya con el resto de la tarjeta; text-base evita que iOS haga zoom al tocarlo. Mientras no hay opción (required sin valor) el texto va atenuado.{% endcomment %}
+        <div class="relative w-full">
+        <select class="min-h-11 w-full cursor-pointer appearance-none rounded-full bg-fill pl-5 pr-12 text-base font-medium text-ink transition hover:bg-line invalid:text-muted" id="option-{{ product.id | escape }}" required data-product-option>
+            <option value="" selected disabled>Elige una opción</option>
+            {% for option in product.options %}
+            {% assign option_in_cents = option.price | times: 100 | round %}
+            {% assign option_cents = option_in_cents | modulo: 100 %}
+            <option value="{{ option.id | escape }}" data-option-name="{{ product_name | escape }} – {{ option.label | escape }}" data-option-price="{{ option.price }}" data-option-image="{{ option.image | default: product.images.first | relative_url }}">{{ option.label | escape }} ({{ option_in_cents | divided_by: 100 }},{% if option_cents < 10 %}0{% endif %}{{ option_cents }} €)</option>
+            {% endfor %}
+        </select>
+        <svg class="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        {% for option in product.options %}{% if option.extras.size > 0 %}
+        <div class="w-full" data-option-extras="{{ option.id | escape }}" hidden>{% include product-extras.html extras=option.extras %}</div>
+        {% endif %}{% endfor %}
+        {% else %}
         <p class="text-2xl font-bold text-ink">{% if product.price_label %}{{ product.price_label | escape }}{% else %}<span class="text-sm font-medium text-muted">Precio:</span> <span data-product-price-output>{{ price_euros }},{% if price_cents < 10 %}0{% endif %}{{ price_cents }} €</span>{% endif %}</p>
-        {% for extra in product.extras %}
-        {% assign extra_in_cents = extra.price | times: 100 | round %}
-        {% assign extra_cents = extra_in_cents | modulo: 100 %}
-        <label class="flex min-h-11 cursor-pointer items-center gap-3 rounded-2xl bg-fill px-4 text-sm font-medium text-ink">
-            <input type="checkbox" class="h-5 w-5 shrink-0 cursor-pointer accent-brand" value="{{ extra.id | escape }}" data-product-extra data-extra-price="{{ extra.price }}" data-extra-label="{{ extra.label | escape }}">
-            <span>{{ extra.label | escape }} (+{{ extra_in_cents | divided_by: 100 }},{% if extra_cents < 10 %}0{% endif %}{{ extra_cents }} €)</span>
-        </label>
-        {% endfor %}
+        {% include product-extras.html extras=product.extras %}
+        {% endif %}
     </div>
     <div class="flex flex-wrap items-center gap-3">
-        <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
-            <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
-            <label class="sr-only" for="quantity-{{ product.id | escape }}">Cantidad de {{ product_name | escape }}</label>
-            <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.id | escape }}" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
-            <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
+        <div{% if product.options %} hidden{% endif %} data-quantity-group>
+            <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
+                <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
+                <label class="sr-only" for="quantity-{{ product.id | escape }}">Cantidad de {{ product_name | escape }}</label>
+                <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.id | escape }}" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
+                <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
+            </div>
         </div>
-        <button class="inline-flex min-h-11 flex-1 items-center justify-center whitespace-nowrap rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95" type="button" data-add-to-cart>Añadir a la cesta</button>
+        <button class="inline-flex min-h-11 flex-1 items-center justify-center whitespace-nowrap rounded-full bg-brand px-5 font-semibold text-brand-on transition hover:bg-brand-hover active:scale-95 disabled:pointer-events-none disabled:opacity-50" type="button" data-add-to-cart{% if product.options %} disabled{% endif %}>Añadir a la cesta</button>
     </div>
 </div>
 {% endif %}

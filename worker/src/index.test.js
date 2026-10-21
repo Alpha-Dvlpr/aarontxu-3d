@@ -4,7 +4,8 @@ import worker, { allocateOrderNumber, formatOrderNumber, orderPrefix, priceOrder
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
-    PROD_02: { name: 'Consulta', price: 0, priceLabel: 'Precio a consultar', extras: {} }
+    PROD_02: { name: 'Consulta', price: 0, priceLabel: 'Precio a consultar', extras: {} },
+    'PROD_03/2-personas': { name: 'Figura – 2 personas', price: 35, priceLabel: '', extras: {} }
 };
 
 describe('orderPrefix', () => {
@@ -46,6 +47,10 @@ describe('allocateOrderNumber', () => {
 describe('priceOrder', () => {
     it('recalculates product and extra prices from the catalog', () => {
         assert.equal(priceOrder([{ id: 'PROD_01:vehiculo', quantity: 2 }], catalog).totalCents, 5000);
+    });
+    it('prices a product option by its own catalog entry', () => {
+        assert.equal(priceOrder([{ id: 'PROD_03/2-personas', quantity: 1 }], catalog).totalCents, 3500);
+        assert.throws(() => priceOrder([{ id: 'PROD_03', quantity: 1 }], catalog));
     });
     it('accepts quote products with zero price', () => {
         assert.equal(priceOrder([{ id: 'PROD_02', quantity: 1 }], catalog).items[0].priceLabel, 'Precio a consultar');

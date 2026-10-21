@@ -48,7 +48,7 @@ content:
                   - { name: id, label: Identificador, type: string, required: true }
                   - { name: name, label: Nombre, type: string }
               - { name: description, label: Descripción, type: text, list: true }
-              - { name: price, label: "Precio (0 si es a consultar)", type: number, required: true }
+              - { name: price, label: "Precio (0 si es a consultar; con opciones no se usa)", type: number, required: true }
               - { name: price_label, label: Precio mostrado (opcional), type: string }
               - { name: unavailable, label: "No disponible (solo escaparate, sin compra)", type: boolean }
               - name: extras
@@ -59,12 +59,29 @@ content:
                   - { name: id, label: "Identificador (sin espacios ni dos puntos, p. ej. vehiculo-grande)", type: string, required: true }
                   - { name: label, label: Nombre, type: string, required: true }
                   - { name: price, label: Precio del extra, type: number, required: true }
+              - name: options
+                label: "Opciones (opcional: si hay, se elige una antes de añadir a la cesta; cada una con su precio y sus extras)"
+                type: object
+                list: true
+                fields:
+                  - { name: id, label: "Identificador (sin espacios, barras ni dos puntos, p. ej. 2-personas)", type: string, required: true }
+                  - { name: label, label: Nombre, type: string, required: true }
+                  - { name: price, label: Precio, type: number, required: true }
+                  - { name: image, label: "Imagen en la cesta (opcional; si no, la primera del producto)", type: image, options: { media: site_images } }
+                  - name: extras
+                    label: Extras de pago de esta opción (opcional)
+                    type: object
+                    list: true
+                    fields:
+                      - { name: id, label: "Identificador (sin espacios ni dos puntos, p. ej. vehiculo-grande)", type: string, required: true }
+                      - { name: label, label: Nombre, type: string, required: true }
+                      - { name: price, label: Precio del extra, type: number, required: true }
               - name: images
                 label: Imágenes
                 type: image
                 options:
                   media: site_images
-                  multiple: { max: 20 }
+                  multiple: { max: 30 }
       - name: privacy
         label: Política de privacidad
         type: object

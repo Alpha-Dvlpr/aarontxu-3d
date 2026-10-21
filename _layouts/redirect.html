@@ -1,0 +1,14 @@
+<!doctype html>
+{% comment %}Fichas retiradas o fusionadas: mandan a la nueva para que no se rompan los enlaces ya compartidos.{% endcomment %}
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>{{ site.title }}</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="{{ page.redirect_to | absolute_url }}">
+    <meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}">
+</head>
+<body>
+    <a href="{{ page.redirect_to | relative_url }}">Ir a la ficha del producto</a>
+</body>
+</html>

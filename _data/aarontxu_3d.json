@@ -47,14 +47,44 @@
                     "name": "Figuras estilo cabezón"
                 },
                 "description": [
-                    "Una figura única de ti, de un familiar o de quien tú quieras, con estilo cabezón. Modelo la figura en 3D a partir de fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa y sus detalles.",
+                    "Una figura única de ti, de tu familia, de tu pareja o de tu mascota, con estilo cabezón. Modelo cada figura en 3D a partir de tus fotos y la imprimo en PLA blanco. Después la lijo y la pinto a mano con pincel y acrílicos para captar su estilo, su ropa, su pelaje y sus detalles.",
                     "Se entrega en una caja personalizada a juego, lista para regalar o para lucir en la estantería.",
-                    "Sin coste añadido, la figura puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir una segunda persona sin coste si es un bebé o un niño muy pequeño; si no, cuenta como una figura de 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.",
-                    "Límites de los añadidos: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea."
+                    "Opciones y precios:\n· 1 persona, 20,00 €. Sin coste añadido, puede ir acompañada de un vehículo pequeño (bici, patinete, minimoto…), de una mascota pequeña (gato, perro…) o de objetos, en el suelo o en sus manos. También puede incluir a un bebé o un niño muy pequeño; si no, cuenta como 2 personas. Si prefieres un vehículo más grande, como una moto a escala de la figura, tiene un extra de 5,00 €.\n· 2 personas, 35,00 €. Una pareja, dos amigos, hermanos o madre e hijo, cada uno con su parecido y su ropa, en la misma composición y en una caja más ancha. Pueden llevar mascotas u objetos sin coste, siempre que no aumenten el ancho para que quepa en la caja; por eso no admite vehículos.\n· Mascota, 20,00 € por animal. Tu perro, tu gato o cualquier otro animal de la casa, con su pose y su pelaje.\n· Familia con mascotas, 35,00 €. Una composición con varias mascotas, o con personas y mascotas, sobre una base y en una caja más amplia.",
+                    "Límites de los añadidos en la figura de 1 persona: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea."
                 ],
                 "price": 20.0,
-                "extras": [
-                    { "id": "vehiculo-grande", "label": "Vehículo grande", "price": 5.0 }
+                "options": [
+                    {
+                        "id": "1-persona",
+                        "label": "1 persona",
+                        "price": 20.0,
+                        "image": "/img/products/PROD_01/1.jpg",
+                        "extras": [
+                            {
+                                "id": "vehiculo-grande",
+                                "label": "Vehículo grande",
+                                "price": 5.0
+                            }
+                        ]
+                    },
+                    {
+                        "id": "2-personas",
+                        "label": "2 personas",
+                        "price": 35.0,
+                        "image": "/img/products/PROD_02/2.jpg"
+                    },
+                    {
+                        "id": "mascota",
+                        "label": "Mascota (por animal)",
+                        "price": 20.0,
+                        "image": "/img/products/PROD_04/1.jpg"
+                    },
+                    {
+                        "id": "familia-mascotas",
+                        "label": "Familia con mascotas",
+                        "price": 35.0,
+                        "image": "/img/products/PROD_15/1.jpg"
+                    }
                 ],
                 "images": [
                     "/img/products/PROD_01/1.jpg",
@@ -72,29 +102,18 @@
                     "/img/products/PROD_01/13.jpg",
                     "/img/products/PROD_01/14.jpg",
                     "/img/products/PROD_01/15.jpg",
-                    "/img/products/PROD_01/16.jpg"
-                ]
-            },
-            {
-                "id": "PROD_02",
-                "title": "Figura estilo cabezón 2 personas",
-                "category": {
-                    "id": "funkos",
-                    "name": "Figuras estilo cabezón"
-                },
-                "description": [
-                    "Dos personas en una sola pieza: una pareja, dos amigos, hermanos o madre e hijo. Cada figura tiene su propio parecido y su propia ropa, y las dos van en la misma composición. Se imprimen en PLA blanco, se lijan y se pintan a mano con acrílicos.",
-                    "Incluye una caja personalizada a juego, más ancha para que quepan juntas. Es un regalo pensado para aniversarios, bodas y cumpleaños.",
-                    "Sin coste añadido, las figuras pueden ir acompañadas de mascotas o de objetos, en el suelo o en sus manos, siempre que no aumenten el ancho de la composición, para que quepa en la caja. Por eso, en este modelo no se pueden añadir vehículos, ni pequeños ni grandes."
-                ],
-                "price": 35.0,
-                "images": [
+                    "/img/products/PROD_01/16.jpg",
                     "/img/products/PROD_02/2.jpg",
                     "/img/products/PROD_02/3.jpg",
                     "/img/products/PROD_02/4.jpg",
                     "/img/products/PROD_02/5.jpg",
                     "/img/products/PROD_02/6.jpg",
-                    "/img/products/PROD_02/7.jpg"
+                    "/img/products/PROD_02/7.jpg",
+                    "/img/products/PROD_04/1.jpg",
+                    "/img/products/PROD_04/2.jpg",
+                    "/img/products/PROD_04/3.jpg",
+                    "/img/products/PROD_04/4.jpg",
+                    "/img/products/PROD_15/1.jpg"
                 ]
             },
             {
@@ -113,25 +132,6 @@
                 "images": [
                     "/img/products/PROD_03/1.jpg",
                     "/img/products/PROD_03/2.jpg"
-                ]
-            },
-            {
-                "id": "PROD_04",
-                "title": "Figura estilo cabezón mascotas",
-                "category": {
-                    "id": "funkos",
-                    "name": "Figuras estilo cabezón"
-                },
-                "description": [
-                    "Tu perro, tu gato o cualquier otro animal de la casa convertido en una figura estilo cabezón, con su pose, su pelaje y sus detalles. Se hace a partir de tus fotos, se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
-                    "Se entrega en una caja protectora personalizada. El precio es por animal."
-                ],
-                "price": 20.0,
-                "images": [
-                    "/img/products/PROD_04/1.jpg",
-                    "/img/products/PROD_04/2.jpg",
-                    "/img/products/PROD_04/3.jpg",
-                    "/img/products/PROD_04/4.jpg"
                 ]
             },
             {
@@ -184,7 +184,9 @@
                     "Incluye un pequeño pie negro en el que encaja por la parte inferior para que se mantenga de pie. Es un regalo vistoso y original, ideal para una estantería o un escritorio."
                 ],
                 "price": 7.5,
-                "images": ["/img/products/PROD_07/1.jpg"]
+                "images": [
+                    "/img/products/PROD_07/1.jpg"
+                ]
             },
             {
                 "id": "PROD_08",
@@ -198,7 +200,9 @@
                     "Se entregan con su cinta incluida en el precio, que es por unidad. En pedidos grandes se puede ajustar el precio final."
                 ],
                 "price": 5.0,
-                "images": ["/img/products/PROD_08/1.jpg"]
+                "images": [
+                    "/img/products/PROD_08/1.jpg"
+                ]
             },
             {
                 "id": "PROD_09",
@@ -287,20 +291,6 @@
                 "images": [
                     "/img/products/PROD_14/1.jpg"
                 ]
-            },
-            {
-                "id": "PROD_15",
-                "title": "Figura estilo cabezón mascotas grandes",
-                "category": {
-                    "id": "funkos",
-                    "name": "Figuras estilo cabezón"
-                },
-                "description": [
-                    "Para toda la familia peluda: una composición con varias mascotas, o con personas y mascotas, en estilo cabezón. Cada figura mantiene el parecido, los colores y los detalles del original. Se imprime en PLA blanco, se lija y se pinta a mano con acrílicos.",
-                    "La figura va sobre una base y en una caja personalizada más amplia. Es un regalo pensado para quien considera a sus animales parte de la familia."
-                ],
-                "price": 35.0,
-                "images": ["/img/products/PROD_15/1.jpg"]
             }
         ]
     },

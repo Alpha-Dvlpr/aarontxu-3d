@@ -170,6 +170,32 @@ function initializeProductCart() {
             if (priceOutput) priceOutput.textContent = formatCurrency(unitPrice());
         }));
 
+        // Products with options: each option is its own catalog entry («PROD_XX/option»), so the card takes its id, name, price and image.
+        const optionSelect = card.querySelector('[data-product-option]');
+        if (optionSelect) {
+            const baseId = card.dataset.productId;
+            const applyOption = () => {
+                const option = optionSelect.selectedOptions[0];
+                if (!option || !option.value) return;
+                Object.assign(card.dataset, {
+                    productId: `${baseId}/${option.value}`,
+                    productName: option.dataset.optionName,
+                    productPrice: option.dataset.optionPrice,
+                    productImage: option.dataset.optionImage
+                });
+                card.querySelectorAll('[data-option-extras]').forEach(group => {
+                    group.hidden = group.dataset.optionExtras !== option.value;
+                    if (group.hidden) group.querySelectorAll('[data-product-extra]').forEach(extra => { extra.checked = false; });
+                });
+                card.querySelector('[data-quantity-group]').hidden = false;
+                addButton.disabled = false;
+                priceOutput.classList.remove('text-lg');
+                priceOutput.textContent = formatCurrency(unitPrice());
+            };
+            optionSelect.addEventListener('change', applyOption);
+            applyOption(); // The browser may restore the choice when going back to the page.
+        }
+
         const addLabel = addButton.textContent;
         let labelTimer;
         addButton.addEventListener('click', () => {
