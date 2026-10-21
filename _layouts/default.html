@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    {% comment %}Las fichas de producto solo llevan product_id: título, descripción e imagen salen del catálogo.{% endcomment %}
+    {% comment %}En las fichas de producto (_products/), el título, la descripción y la imagen salen de los datos del producto.{% endcomment %}
     {% assign page_product = nil %}
-    {% if page.product_id %}{% assign page_product = site.data.aarontxu_3d.productsAndServices.elements | where: "id", page.product_id | first %}{% endif %}
+    {% if page.product_id %}{% assign page_product = page %}{% endif %}
     {% if page_product %}
     {% assign page_heading = page_product.title | default: page_product.category.name %}
     {% assign page_title = page_heading | append: ' · Impresión 3D en Asturias | ' | append: site.title %}

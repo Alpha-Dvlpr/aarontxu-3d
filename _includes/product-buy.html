@@ -8,17 +8,17 @@ Con opciones, el precio, la cantidad y el botón esperan a que se elija una; cad
     <p class="text-sm text-muted">Ya no está a la venta; lo muestro como ejemplo de trabajos hechos.</p>
 </div>
 {% else %}
-<div class="{{ include.class }}" data-product-card data-product-id="{{ product.id | escape }}" data-product-name="{{ product_name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{% unless product.options %}{{ product.price_label | escape }}{% endunless %}" data-product-image="{{ product.images.first | relative_url }}">
+<div class="{{ include.class }}" data-product-card data-product-id="{{ product.product_id | escape }}" data-product-name="{{ product_name | escape }}" data-product-price="{{ product.price }}" data-product-price-label="{% unless product.options %}{{ product.price_label | escape }}{% endunless %}" data-product-image="{{ product.images.first | relative_url }}">
     {% assign price_in_cents = product.price | times: 100 | round %}
     {% assign price_euros = price_in_cents | divided_by: 100 %}
     {% assign price_cents = price_in_cents | modulo: 100 %}
     <div class="flex flex-wrap items-center justify-between gap-3">
         {% if product.options %}
         <p class="text-2xl font-bold text-ink"><span class="text-sm font-medium text-muted">Precio:</span> <span class="text-lg" data-product-price-output>Selecciona una opción</span></p>
-        <label class="sr-only" for="option-{{ product.id | escape }}">Opción de {{ product_name | escape }}</label>
+        <label class="sr-only" for="option-{{ product.product_id | escape }}">Opción de {{ product_name | escape }}</label>
         {% comment %}Sin el aspecto nativo, para que vaya con el resto de la tarjeta; text-base evita que iOS haga zoom al tocarlo. Mientras no hay opción (required sin valor) el texto va atenuado.{% endcomment %}
         <div class="relative w-full">
-        <select class="min-h-11 w-full cursor-pointer appearance-none rounded-full bg-fill pl-5 pr-12 text-base font-medium text-ink transition hover:bg-line invalid:text-muted" id="option-{{ product.id | escape }}" required data-product-option>
+        <select class="min-h-11 w-full cursor-pointer appearance-none rounded-full bg-fill pl-5 pr-12 text-base font-medium text-ink transition hover:bg-line invalid:text-muted" id="option-{{ product.product_id | escape }}" required data-product-option>
             <option value="" selected disabled>Elige una opción</option>
             {% for option in product.options %}
             {% assign option_in_cents = option.price | times: 100 | round %}
@@ -40,8 +40,8 @@ Con opciones, el precio, la cantidad y el botón esperan a que se elija una; cad
         <div{% if product.options %} hidden{% endif %} data-quantity-group>
             <div class="inline-flex items-center rounded-full bg-fill" role="group" aria-label="Seleccionar cantidad">
                 <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="-1" aria-label="Reducir cantidad">−</button>
-                <label class="sr-only" for="quantity-{{ product.id | escape }}">Cantidad de {{ product_name | escape }}</label>
-                <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.id | escape }}" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
+                <label class="sr-only" for="quantity-{{ product.product_id | escape }}">Cantidad de {{ product_name | escape }}</label>
+                <input class="h-11 w-10 bg-transparent text-center font-medium text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" id="quantity-{{ product.product_id | escape }}" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" data-product-quantity>
                 <button class="grid h-11 w-11 place-items-center rounded-full text-xl text-ink transition hover:bg-line" type="button" data-quantity-step="1" aria-label="Aumentar cantidad">+</button>
             </div>
         </div>

@@ -1,8 +1,8 @@
 ---
 layout: default
 ---
-{% comment %}Ficha de producto: los datos salen de _data/aarontxu_3d.json por product_id; cada ficha es un archivo en pages/products/ con solo ese campo.{% endcomment %}
-{% assign product = site.data.aarontxu_3d.productsAndServices.elements | where: "id", page.product_id | first %}
+{% comment %}Ficha de producto: cada archivo de _products/ es un producto y su ficha. El id va en product_id porque Jekyll reserva «id» en las colecciones.{% endcomment %}
+{% assign product = page %}
 {% assign product_name = product.title | default: product.category.name %}
 <div class="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_18rem] md:items-start lg:grid-cols-[minmax(0,1fr)_20rem]">
     <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-8 md:col-start-1" aria-labelledby="product-title">
@@ -53,7 +53,7 @@ layout: default
 {
     "@context": "https://schema.org",
     "@type": "Product",
-    "sku": {{ product.id | jsonify }},
+    "sku": {{ product.product_id | jsonify }},
     "name": {{ product_name | jsonify }},
     "category": {{ product.category.name | jsonify }},
     "description": {{ product.description | join: ' ' | jsonify }},

@@ -20,13 +20,12 @@ back_url: "/"
     {% comment %}Por id y los no disponibles al final, también por id; los filtros solo ocultan tarjetas, así que mantienen este orden.
     Rejilla por filas, sin masonry: las dos tarjetas de cada fila miden lo mismo y el orden se lee de izquierda a derecha.
     shortcut: el id se ordena como texto, vale mientras tenga dos cifras (PROD_01…PROD_99).{% endcomment %}
-    {% assign sorted_products = products.elements | sort: "id" %}
+    {% assign sorted_products = site.products | sort: "product_id" %}
     {% assign available_products = sorted_products | where_exp: "product", "product.unavailable != true" %}
     {% assign unavailable_products = sorted_products | where_exp: "product", "product.unavailable == true" %}
     {% assign ordered_products = available_products | concat: unavailable_products %}
     {% for product in ordered_products %}
     {% assign product_name = product.title | default: product.category.name %}
-    {% assign product_page = site.pages | where: "product_id", product.id | first %}
     <article class="flex min-w-0 flex-col overflow-hidden rounded-3xl bg-surface shadow-card" data-category="{{ product.category.id | escape }}" data-category-name="{{ product.category.name | escape }}">
         {% comment %}Solo la primera foto: las demás están en la ficha.{% endcomment %}
         {% if product.images.size > 0 %}
@@ -40,11 +39,11 @@ back_url: "/"
         {% endif %}
         <div class="flex flex-1 flex-col gap-3 p-5 sm:p-6">
             {% if product.title and product.title != product.category.name %}<p class="text-sm font-semibold text-brand-text">{{ product.category.name | escape }}</p>{% endif %}
-            <h2 class="text-2xl font-bold tracking-tight text-ink">{% if product_page %}<a class="rounded transition hover:text-brand-text" href="{{ product_page.url | relative_url }}">{{ product_name | escape }}</a>{% else %}{{ product_name | escape }}{% endif %}</h2>
+            <h2 class="text-2xl font-bold tracking-tight text-ink"><a class="rounded transition hover:text-brand-text" href="{{ product.url | relative_url }}">{{ product_name | escape }}</a></h2>
             {% comment %}Resumen: la primera frase de la descripción; la completa está en la ficha.{% endcomment %}
             {% assign sentences = product.description.first | split: '. ' %}
             <p class="leading-relaxed text-muted">{{ sentences.first | escape }}{% if sentences.size > 1 %}.{% endif %}</p>
-            {% if product_page %}<a class="inline-flex min-h-11 items-center gap-1 self-start rounded-full font-semibold text-brand-text underline-offset-2 transition hover:underline" href="{{ product_page.url | relative_url }}">Ver ficha completa y fotos<span aria-hidden="true">→</span><span class="sr-only"> de {{ product_name | escape }}</span></a>{% endif %}
+            <a class="inline-flex min-h-11 items-center gap-1 self-start rounded-full font-semibold text-brand-text underline-offset-2 transition hover:underline" href="{{ product.url | relative_url }}">Ver ficha completa y fotos<span aria-hidden="true">→</span><span class="sr-only"> de {{ product_name | escape }}</span></a>
             {% include product-buy.html product=product class="mt-auto flex flex-col gap-3 pt-2" %}
         </div>
     </article>

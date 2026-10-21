@@ -4,9 +4,15 @@ url: https://3d.aarontxu.com
 baseurl: ""
 orders_api_url: "https://aarontxu-3d-orders.aarontxu.workers.dev"
 turnstile_site_key: "0x4AAAAAAFbiOimVKIiFle2v"
+# Un archivo por producto en _products/; cada uno es su ficha, con la misma URL que tenían las antiguas pages/products/prod-xx.html.
+collections:
+  products:
+    output: true
+    permalink: /pages/products/:name.html
 defaults:
   - scope:
-      path: "pages/products"
+      path: ""
+      type: products
     values:
       layout: product
       back_url: "/pages/products.html"
