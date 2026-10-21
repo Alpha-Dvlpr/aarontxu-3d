@@ -106,4 +106,16 @@ describe('admin order deletion', () => {
         assert.deepEqual(await (await send()).json(), { deleted: true });
         assert.equal((await send()).status, 404);
     });
+    it('serves the admin home and orders pages only with a valid Access token', async () => {
+        const page = (path, headers = {}) => worker.fetch(new Request(`${origin}${path}`, { headers }), env);
+        for (const path of ['/admin', '/admin/orders']) assert.equal((await page(path)).status, 401);
+        const home = await (await page('/admin', { 'cf-access-jwt-assertion': token })).text();
+        assert.match(home, /href="\/admin\/orders"/);
+        assert.match(home, /app\.pagescms\.org/);
+        const orders = await (await page('/admin/orders', { 'cf-access-jwt-assertion': token })).text();
+        assert.match(orders, /id="orders"/);
+        assert.match(orders, /href="\/admin"/);
+        // Each page's inline script must parse.
+        for (const html of [home, orders]) new Function(html.split('<script>').pop().split('</script>')[0]);
+    });
 });
