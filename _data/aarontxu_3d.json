@@ -281,7 +281,8 @@
                 },
                 "description": [
                     "Letreros con la forma, el texto o el logotipo que tú elijas, con luz LED por todo el contorno interior para que destaquen también de noche. Están pensados para cumpleaños, negocios y decoración.",
-                    "Se fabrican en dos piezas, con la parte frontal encajada en el cuerpo a modo de tapa. En la parte trasera tienen un orificio para el cable y se alimentan por USB. Si prefieres otro tipo de iluminación, se puede estudiar, y el precio dependerá del tamaño, del diseño y del sistema elegido."
+                    "Se fabrican en dos piezas, con la parte frontal encajada en el cuerpo a modo de tapa. En la parte trasera tienen un orificio para el cable y se alimentan por USB. Si prefieres otro tipo de iluminación, se puede estudiar, y el precio dependerá del tamaño, del diseño y del sistema elegido.",
+                    "La luz es una tira LED comercial con marcado CE, con mando a distancia y conexión USB. No la modifico: solo la pego por dentro del letrero, y te la entrego con su embalaje y sus instrucciones originales."
                 ],
                 "price": 0.0,
                 "price_label": "Precio a consultar",
@@ -336,12 +337,12 @@
     "privacy": {
         "title": "Política de privacidad",
         "linkLabel": "Política de privacidad",
-        "updated": "Última actualización: 21 de octubre de 2026.",
+        "updated": "Última actualización: 22 de octubre de 2026.",
         "changesTitle": "¿Qué ha cambiado?",
         "changes": [
             "Apartado 2: también puedes escribirme por correo electrónico.",
             "Apartado 4: las facturas se conservan 6 años.",
-            "Apartado 5: el correo electrónico funciona con Gmail (Google).",
+            "Apartado 5: el correo electrónico funciona con Gmail (Google). Las fotos que recibe Perplexity llevan la cara pixelada, y antes de subir el diseño 2D a MakerLab te pido permiso, porque no ofrece las garantías de la ley para tratar datos fuera de Europa.",
             "Apartado 8: para hacer un pedido hay que ser mayor de 18 años o tener el permiso por escrito de tu padre, tu madre o tu tutor legal."
         ],
         "sections": [
@@ -389,8 +390,8 @@
                     "No cedo tus datos a terceros, salvo en estos casos:",
                     "Empresa de transporte: si pides un envío, Correos o la empresa que elijas recibirá los datos necesarios para entregarlo.",
                     "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.) y Gmail (Google Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; GitHub, que aloja esta web; y Cloudflare, que presta la base de datos y el servicio técnico para registrar y consultar las órdenes web, y verifica solicitudes mediante Turnstile. Estos servicios pueden recibir datos técnicos como la dirección IP y datos del navegador al tramitar una solicitud.",
-                    "Herramientas de diseño de las figuras: Perplexity (Perplexity AI, Inc., Estados Unidos) recibe tus fotos de referencia para crear el diseño 2D, con la opción de usarlas para entrenar su inteligencia artificial desactivada; remove.bg (Canva Austria GmbH) recibe solo el diseño 2D ya generado, nunca tus fotos, para quitarle el fondo; y MakerLab (Bambu Lab) recibe ese diseño sin fondo para crear el modelo 3D. La caja la preparo en mi ordenador, sin subirla a la nube.",
-                    "Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, por ejemplo en Estados Unidos. Lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea."
+                    "Herramientas de diseño de las figuras: Perplexity (Perplexity AI, Inc., Estados Unidos) recibe tus fotos de referencia con la cara pixelada y sin metadatos (lo hago en mi ordenador antes de subirlas) para crear el diseño 2D, con la opción de usarlas para entrenar su inteligencia artificial desactivada; remove.bg (Canva Austria GmbH) recibe solo el diseño 2D ya generado, nunca tus fotos, para quitarle el fondo; y MakerLab (Bambu Lab, empresa con sede en China) recibe ese diseño sin fondo para crear el modelo 3D. La caja la preparo en mi ordenador, sin subirla a la nube.",
+                    "Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, por ejemplo en Estados Unidos. Lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea. La excepción es MakerLab: para crear el modelo 3D no ofrece esas garantías, y el diseño 2D puede tratarse fuera del Espacio Económico Europeo. Por eso, cuando te envío el diseño 2D para que lo apruebes, te pido también permiso para subirlo a MakerLab; sin tu permiso no lo subo."
                 ]
             },
             {
