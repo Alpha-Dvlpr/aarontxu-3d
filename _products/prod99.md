@@ -1,5 +1,5 @@
 ---
-product_id: PROD__99
+product_id: PROD_99
 title: Producto de prueba
 category:
   id: pruebas
