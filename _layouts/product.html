@@ -4,13 +4,6 @@ layout: default
 {% comment %}Ficha de producto: los datos salen de _data/aarontxu_3d.json por product_id; cada ficha es un archivo en pages/products/ con solo ese campo.{% endcomment %}
 {% assign product = site.data.aarontxu_3d.productsAndServices.elements | where: "id", page.product_id | first %}
 {% assign product_name = product.title | default: product.category.name %}
-<style>
-    /* En móvil la tarjeta de compra va fija abajo: el botón «Arriba» sube por encima y la página reserva su hueco. */
-    @media (max-width: 767px) {
-        #scrollTopBtn { bottom: calc(var(--buy-bar-height, 0px) + max(1.5rem, env(safe-area-inset-bottom))); }
-        body { padding-bottom: calc(var(--buy-bar-height, 0px) + env(safe-area-inset-bottom)); }
-    }
-</style>
 <div class="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_18rem] md:items-start lg:grid-cols-[minmax(0,1fr)_20rem]">
     <section class="rounded-3xl bg-surface p-6 shadow-card sm:p-8 md:col-start-1" aria-labelledby="product-title">
         <p class="text-sm font-semibold text-brand-text">{{ product.category.name | escape }}</p>
@@ -35,10 +28,15 @@ layout: default
     </section>
     {% endif %}
 
-    <aside class="fixed inset-x-4 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30 rounded-3xl bg-surface p-4 shadow-card ring-1 ring-line sm:p-5 md:sticky md:inset-x-auto md:bottom-auto md:top-[85px] md:col-start-2 md:row-span-2 md:row-start-1 md:self-start md:ring-0" aria-label="Comprar {{ product_name | escape }}" data-buy-bar>
+    {% comment %}En móvil la tarjeta se abre sobre el botón flotante «Comprar» (a la izquierda, en la misma fila que «Arriba»); si el producto no está disponible, va en el flujo de la página.{% endcomment %}
+    <aside id="buy-bar" class="{% unless product.unavailable %}fixed inset-x-4 bottom-[calc(max(1.5rem,env(safe-area-inset-bottom))+3.5rem)] z-40 shadow-lg ring-1 ring-line md:shadow-card md:ring-0{% else %}shadow-card{% endunless %} rounded-3xl bg-surface p-4 sm:p-5 md:sticky md:inset-x-auto md:bottom-auto md:top-[85px] md:col-start-2 md:row-span-2 md:row-start-1 md:self-start" aria-label="Comprar {{ product_name | escape }}" data-buy-bar>
         {% include product-buy.html product=product class="flex flex-col gap-3" %}
     </aside>
 </div>
+
+{% unless product.unavailable %}
+<button class="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-4 z-50 h-11 rounded-full bg-brand px-5 font-semibold text-brand-on shadow-lg transition hover:bg-brand-hover active:scale-95 sm:left-6 md:hidden" type="button" aria-controls="buy-bar" aria-expanded="false" data-buy-toggle hidden><span class="flex items-center gap-2"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1 12h-11l-1-12z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span data-buy-toggle-label>Comprar</span></span></button>
+{% endunless %}
 
 <p id="cart-announcement" class="sr-only" aria-live="polite"></p>
 

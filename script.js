@@ -98,7 +98,8 @@ function applyCatalog(item, catalog) {
         name: cartLineName(product.name, extras.map(extra => extra.label)),
         price: extras.reduce((sum, extra) => sum + Number(extra.price), Number(product.price)),
         priceLabel: product.priceLabel || '',
-        image: product.image || ''
+        image: product.image || '',
+        url: product.url || ''
     };
 }
 
@@ -248,7 +249,16 @@ function initializeCartPage() {
 
         cart.forEach(item => {
             const row = document.createElement('li');
-            row.className = 'flex flex-col gap-4 rounded-3xl bg-surface p-4 shadow-card sm:flex-row sm:items-center';
+            row.className = 'flex items-center gap-3 rounded-3xl bg-surface p-4 shadow-card sm:gap-4';
+            // The image and the name open the product page; only the name is a tab stop, so the link is not announced twice.
+            const productLink = (child, className) => {
+                if (!item.url) return child;
+                const link = document.createElement('a');
+                link.href = item.url;
+                link.className = className;
+                link.append(child);
+                return link;
+            };
 
             if (item.image) {
                 const image = document.createElement('img');
@@ -257,15 +267,20 @@ function initializeCartPage() {
                 image.width = 96;
                 image.height = 96;
                 image.loading = 'lazy';
-                image.className = 'h-24 w-24 shrink-0 self-center rounded-2xl object-cover sm:self-auto';
-                row.appendChild(image);
+                image.className = 'h-16 w-16 shrink-0 rounded-2xl object-cover sm:h-24 sm:w-24';
+                const imageLink = productLink(image, 'shrink-0 transition hover:opacity-80');
+                if (imageLink !== image) {
+                    imageLink.tabIndex = -1;
+                    imageLink.setAttribute('aria-hidden', 'true');
+                }
+                row.appendChild(imageLink);
             }
 
             const details = document.createElement('div');
-            details.className = 'min-w-0 flex-1 text-center sm:text-left';
+            details.className = 'min-w-0 flex-1';
             const name = document.createElement('h3');
             name.className = 'font-semibold text-ink';
-            name.textContent = item.name;
+            name.append(productLink(document.createTextNode(item.name), 'transition hover:text-brand-text'));
             const unitPrice = document.createElement('p');
             unitPrice.className = 'mt-1 text-sm text-muted';
             unitPrice.textContent = item.priceLabel || `${formatCurrency(item.price)} / unidad`;
@@ -273,7 +288,7 @@ function initializeCartPage() {
             row.appendChild(details);
 
             const quantityControls = document.createElement('div');
-            quantityControls.className = 'flex items-center justify-center gap-2';
+            quantityControls.className = 'flex shrink-0 flex-col-reverse items-center min-[440px]:flex-row min-[440px]:gap-2';
             const decreaseButton = document.createElement('button');
             decreaseButton.type = 'button';
             decreaseButton.textContent = '−';
@@ -282,7 +297,7 @@ function initializeCartPage() {
             decreaseButton.dataset.focusKey = `${item.id}:decrease`;
             decreaseButton.addEventListener('click', () => changeQuantity(item, item.quantity - 1, decreaseButton.dataset.focusKey));
             const quantity = document.createElement('span');
-            quantity.className = 'min-w-8 text-center font-medium text-ink';
+            quantity.className = 'min-w-8 py-1 text-center font-medium text-ink';
             quantity.textContent = String(item.quantity);
             const increaseButton = document.createElement('button');
             increaseButton.type = 'button';
@@ -291,21 +306,25 @@ function initializeCartPage() {
             increaseButton.className = 'grid h-11 w-11 place-items-center rounded-full bg-fill text-xl text-ink transition hover:bg-line';
             increaseButton.dataset.focusKey = `${item.id}:increase`;
             increaseButton.addEventListener('click', () => changeQuantity(item, item.quantity + 1, increaseButton.dataset.focusKey));
+            // − quantity + in a row; below 440px (every iPhone) stacked with + on top so the whole line fits in one row.
             quantityControls.append(decreaseButton, quantity, increaseButton);
-            row.appendChild(quantityControls);
 
             const subtotal = document.createElement('p');
-            subtotal.className = 'min-w-24 text-center font-bold text-brand-text';
+            subtotal.className = 'font-bold text-brand-text';
             subtotal.textContent = item.priceLabel ? 'A consultar' : formatCurrency(item.price * item.quantity);
-            row.appendChild(subtotal);
 
             const removeButton = document.createElement('button');
             removeButton.type = 'button';
             removeButton.textContent = 'Quitar';
             removeButton.setAttribute('aria-label', `Quitar ${item.name} de la cesta`);
-            removeButton.className = 'min-h-11 rounded-full px-4 text-sm font-medium text-danger transition hover:bg-fill';
+            removeButton.className = 'min-h-11 rounded-full px-3 text-sm font-medium text-danger transition hover:bg-fill';
             removeButton.addEventListener('click', () => removeItem(item));
-            row.appendChild(removeButton);
+
+            const lineFooter = document.createElement('div');
+            lineFooter.className = 'mt-1 flex flex-wrap items-center gap-x-2';
+            lineFooter.append(subtotal, removeButton);
+            details.appendChild(lineFooter);
+            row.appendChild(quantityControls);
             itemList.appendChild(row);
         });
 
@@ -593,11 +612,28 @@ function initializeImageModal() {
     });
 }
 
-// On phones the buy card sticks to the bottom of the product page; the back-to-top button moves up by its height.
+// On phones the buy card stays closed so it does not cover the page; the floating «Comprar» button opens and closes it.
+// It is only hidden here, so without JavaScript the card is still visible.
 function initializeBuyBar() {
     const bar = document.querySelector('[data-buy-bar]');
-    if (!bar) return;
-    new ResizeObserver(() => document.documentElement.style.setProperty('--buy-bar-height', `${bar.offsetHeight + 12}px`)).observe(bar);
+    const toggle = document.querySelector('[data-buy-toggle]');
+    if (!bar || !toggle) return;
+
+    const label = toggle.querySelector('[data-buy-toggle-label]');
+    const setOpen = open => {
+        bar.classList.toggle('max-md:hidden', !open);
+        toggle.setAttribute('aria-expanded', String(open));
+        label.textContent = open ? 'Cerrar' : 'Comprar';
+    };
+    setOpen(false);
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
 }
 
 function initializeNfcGuide() {
