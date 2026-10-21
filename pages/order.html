@@ -56,8 +56,9 @@ main_class: "w-full max-w-3xl px-4 py-8 sm:py-12"
             li.append(name, price); list.appendChild(li);
         });
         const quoted = order.items.some(item => item.priceLabel);
-        document.getElementById('order-total-label').textContent = quoted ? 'Subtotal estimado' : 'Total';
-        document.getElementById('order-total').textContent = format(order.total_cents);
+        const allQuoted = order.items.every(item => item.priceLabel);
+        document.getElementById('order-total-label').textContent = quoted && !allQuoted ? 'Subtotal estimado' : 'Total';
+        document.getElementById('order-total').textContent = allQuoted ? 'A consultar' : format(order.total_cents);
         document.getElementById('order-publish').textContent = order.no_publish ? 'Preferencia de publicación: te opones a que se publiquen fotografías del trabajo terminado.' : 'Preferencia de publicación: no has indicado oposición; puedes oponerte más adelante.';
         const whatsapp = document.getElementById('order-whatsapp');
         const whatsappUrl = new URL(document.getElementById('order-page').dataset.whatsappUrl);

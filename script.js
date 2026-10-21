@@ -359,9 +359,10 @@ function initializeCartPage() {
         const hasQuoteItems = cart.some(item => item.priceLabel);
         const totalLabel = document.getElementById('cart-total-label');
         const quoteNote = document.getElementById('cart-quote-note');
-        totalLabel.textContent = hasQuoteItems ? 'Subtotal estimado:' : 'Total:';
+        const allQuoted = cart.length > 0 && cart.every(item => item.priceLabel);
+        totalLabel.textContent = hasQuoteItems && !allQuoted ? 'Subtotal estimado:' : 'Total:';
         quoteNote.hidden = !hasQuoteItems;
-        totalOutput.textContent = formatCurrency(total);
+        totalOutput.textContent = allQuoted ? 'A consultar' : formatCurrency(total);
         if (cart.length > 0) {
             orderLink.disabled = false;
             orderLink.textContent = 'Crear orden de compra';
