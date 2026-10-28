@@ -8,7 +8,6 @@ description:
 - 'Llaveros 3D hechos a tu gusto: con tu logotipo, los colores de tu equipo, un nombre o una forma original, e incluso articulados. Tú eliges tamaño, forma y colores, hasta 4 a la vez en una misma pieza.'
 - También se pueden fabricar con chip NFC para que, al acercar el móvil, abra tu web, tus redes o tus datos de contacto. El chip NFC tiene un coste adicional por unidad, que se incluye en el presupuesto. Son una opción práctica para negocios, regalos de empresa y aficionados. El precio depende del diseño y de la cantidad.
 price: 0.0
-dimensions: A consultar.
 price_label: Precio a consultar
 extras:
 - id: nfc

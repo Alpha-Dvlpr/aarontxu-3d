@@ -15,11 +15,18 @@ description:
   · Familia con mascotas, 35,00 €. Una composición con varias mascotas, o con personas y mascotas, sobre una base y en una caja más amplia.
 - 'Límites de los añadidos en la figura de 1 persona: hasta 2 animales pequeños (uno a cada lado de la figura) o 1 animal grande, y un solo vehículo, sea del tamaño que sea. Un animal pequeño mide en torno al 20-25 % de la altura de la figura, y uno grande, hasta el 60 %. Los dos van incluidos en el precio; el único añadido con coste es el vehículo grande, que por tamaño y material se acerca a una figura de 1 persona. No es lo mismo que la opción «Mascota», que es una figura completa del animal.'
 price: 20.0
+dimensions: Figuras de 10 cm de alto.
+sizes:
+- label: Caja estándar
+  size: 10 × 8 × 14 cm
+  items: Figura de 1 persona y figura de 1 animal.
+- label: Caja grande
+  size: 14 × 8 × 12 cm
+  items: Figura de 1 persona con vehículo grande, figura de 2 personas y figura de varios animales.
 options:
 - id: 1-persona
   label: 1 persona
   price: 20.0
-  dimensions: Figura de 10 cm de alto. Caja de 10 × 8 × 14 cm (ancho × fondo × alto).
   image: "/img/products/PROD_01/1.jpg"
   extras:
   - id: vehiculo-grande
@@ -32,7 +39,6 @@ options:
 - id: mascota
   label: Mascota (por animal)
   price: 20.0
-  dimensions: Figura de 10 cm de alto. Caja de 10 × 8 × 14 cm (ancho × fondo × alto).
   image: "/img/products/PROD_01/23.jpg"
 - id: familia-mascotas
   label: Familia con mascotas

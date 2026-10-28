@@ -8,6 +8,11 @@ description:
 - Una réplica en miniatura de tu coche, con el color y los detalles que lo hacen reconocible. Se parte de un modelo 3D simplificado a partir de fotos, y los detalles finos se añaden después al pintarlo a mano con acrílicos.
 - Si quieres, puedes añadir al conductor, con solo la cabeza en estilo cabezón, sin coste extra. Se entrega en una caja a juego.
 price: 20.0
+dimensions: Varían según el modelo de coche. La caja se hace a la medida de cada figura, para que no quede hueco vacío.
+sizes:
+- label: Referencia (Golf GTI)
+  size: 5 × 10 × 4 cm
+  items: Con la cabeza estilo cabezón, el alto aumenta 3 cm.
 options:
 - id: con-cabeza
   label: Con cabeza estilo cabezón

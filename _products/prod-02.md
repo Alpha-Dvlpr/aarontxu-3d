@@ -9,7 +9,10 @@ description:
 - 'Para el aficionado que vivió el campeonato global de fútbol de 2026: una figura estilo cabezón con temática futbolera, hecha a partir de fotos y con el parecido de la persona. Impresa en PLA blanco, lijada y pintada a mano con acrílicos.'
 - Viene en una caja con un diseño totalmente personalizado y único, lista para regalar a cualquier fan.
 price: 25.0
-dimensions: Figura de 10 cm de alto. Caja de 10 × 8 × 14 cm (ancho × fondo × alto).
+dimensions: Figura de 10 cm de alto.
+sizes:
+- label: Caja estándar
+  size: 10 × 8 × 14 cm
 safety_warning: true
 images:
 - "/img/products/PROD_02/1.jpg"
