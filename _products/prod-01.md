@@ -62,6 +62,7 @@ images:
 - "/img/products/PROD_01/14.jpg"
 - "/img/products/PROD_01/15.jpg"
 - "/img/products/PROD_01/16.jpg"
+- "/img/products/PROD_01/28.jpg"
 - "/img/products/PROD_01/17.jpg"
 - "/img/products/PROD_01/18.jpg"
 - "/img/products/PROD_01/19.jpg"

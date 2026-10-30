@@ -17,4 +17,5 @@ safety_warning: true
 images:
 - "/img/products/PROD_02/1.jpg"
 - "/img/products/PROD_02/2.jpg"
+- "/img/products/PROD_02/3.jpg"
 ---

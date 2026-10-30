@@ -20,4 +20,5 @@ images:
 - "/img/products/PROD_03/3.jpg"
 - "/img/products/PROD_03/4.jpg"
 - "/img/products/PROD_03/5.jpg"
+- "/img/products/PROD_03/6.jpg"
 ---
