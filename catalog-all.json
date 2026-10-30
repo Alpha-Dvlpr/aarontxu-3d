@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /catalog-all.json
+---
+{% include catalog.json all=true %}

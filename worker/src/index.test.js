@@ -1,6 +1,6 @@
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { allocateOrderNumber, formatOrderNumber, orderPrefix, priceOrder } from './index.js';
+import worker, { allocateOrderNumber, buildSale, formatOrderNumber, orderPrefix, parseCustomer, priceOrder } from './index.js';
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
@@ -72,6 +72,45 @@ describe('priceOrder', () => {
     });
 });
 
+describe('parseCustomer', () => {
+    it('trims the fields and defaults to allowing publication', () => {
+        assert.deepEqual(parseCustomer({ name: ' Ana ', phone: ' 600 ' }), { name: 'Ana', phone: '600', publish: 1 });
+        assert.equal(parseCustomer({ name: 'Ana', publish: false }).publish, 0);
+    });
+    it('rejects empty names and wrong types', () => {
+        for (const body of [null, {}, { name: '  ' }, { name: 'Ana', phone: 600 }, { name: 'Ana', publish: 'no' }, { name: 'x'.repeat(101) }]) {
+            assert.throws(() => parseCustomer(body));
+        }
+    });
+});
+
+describe('buildSale', () => {
+    const sale = (changes = {}) => ({ customerId: 3, date: '2026-10-30', status: 'in_progress', shippingCents: 450, paidCents: 0, items: [{ id: 'PROD_01:vehiculo', quantity: 2 }], ...changes });
+    it('copies the catalog name and price into each line', () => {
+        const { items } = buildSale(sale(), catalog);
+        assert.deepEqual(items, [{ productId: 'PROD_01', name: 'Funko (extra: vehículo grande)', quantity: 2, unitCents: 2500 }]);
+    });
+    it('keeps a manually agreed price instead of the catalog one', () => {
+        assert.equal(buildSale(sale({ items: [{ id: 'PROD_01', quantity: 1, unitCents: 1800 }] }), catalog).items[0].unitCents, 1800);
+    });
+    it('accepts the provisional PROD_99 only for sales, never in web orders', () => {
+        assert.equal(buildSale(sale({ items: [{ id: 'PROD_99', quantity: 1, unitCents: 3000 }] }), catalog).items[0].name, 'Personalizado (provisional)');
+        assert.throws(() => priceOrder([{ id: 'PROD_99', quantity: 1 }], catalog));
+    });
+    it('accepts a new customer instead of an existing one, with a required phone', () => {
+        const built = buildSale(sale({ customerId: undefined, newCustomer: { name: ' Ana ', phone: '600' } }), catalog).sale;
+        assert.deepEqual([built.customerId, built.newCustomer], [null, { name: 'Ana', phone: '600', publish: 1 }]);
+        for (const changes of [{ newCustomer: { name: 'Ana', phone: '600' } }, { customerId: undefined, newCustomer: { name: 'Ana', phone: ' ' } }, { customerId: undefined, newCustomer: { name: '', phone: '600' } }]) {
+            assert.throws(() => buildSale(sale(changes), catalog), JSON.stringify(changes));
+        }
+    });
+    it('rejects invalid dates, statuses, amounts, products and a missing customer', () => {
+        for (const changes of [{ customerId: undefined }, { customerId: null }, { date: '2026-02-30' }, { date: '30/10/2026' }, { status: 'pending' }, { paidCents: -1 }, { shippingCents: 4.5 }, { customerId: '3' }, { items: [] }, { items: [{ id: 'PROD_42', quantity: 1 }] }, { items: [{ id: 'PROD_01', quantity: 1, unitCents: -5 }] }]) {
+            assert.throws(() => buildSale(sale(changes), catalog), JSON.stringify(changes));
+        }
+    });
+});
+
 describe('admin order deletion', () => {
     const origin = 'https://orders.test';
     const env = { ALLOWED_WORKER_ORIGIN: origin, ACCESS_TEAM_DOMAIN: 'team.test', ACCESS_AUD: 'aud', ADMIN_EMAILS: 'admin@test.com' };
@@ -108,14 +147,18 @@ describe('admin order deletion', () => {
     });
     it('serves the admin home and orders pages only with a valid Access token', async () => {
         const page = (path, headers = {}) => worker.fetch(new Request(`${origin}${path}`, { headers }), env);
-        for (const path of ['/admin', '/admin/orders']) assert.equal((await page(path)).status, 401);
+        for (const path of ['/admin', '/admin/orders', '/admin/sales', '/admin/customers']) assert.equal((await page(path)).status, 401);
         const home = await (await page('/admin', { 'cf-access-jwt-assertion': token })).text();
         assert.match(home, /href="\/admin\/orders"/);
+        assert.match(home, /href="\/admin\/sales"/);
+        assert.match(home, /href="\/admin\/customers"/);
         assert.match(home, /app\.pagescms\.org/);
         const orders = await (await page('/admin/orders', { 'cf-access-jwt-assertion': token })).text();
         assert.match(orders, /id="orders"/);
         assert.match(orders, /href="\/admin"/);
+        const sales = await (await page('/admin/sales', { 'cf-access-jwt-assertion': token })).text();
+        const customers = await (await page('/admin/customers', { 'cf-access-jwt-assertion': token })).text();
         // Each page's inline script must parse.
-        for (const html of [home, orders]) new Function(html.split('<script>').pop().split('</script>')[0]);
+        for (const html of [home, orders, sales, customers]) new Function(html.split('<script>').pop().split('</script>')[0]);
     });
 });
