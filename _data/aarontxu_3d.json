@@ -50,13 +50,12 @@
     "privacy": {
         "title": "Política de privacidad",
         "linkLabel": "Política de privacidad",
-        "updated": "Última actualización: 22 de octubre de 2026.",
+        "updated": "Última actualización: 31 de octubre de 2026.",
         "changesTitle": "¿Qué ha cambiado?",
         "changes": [
-            "Apartado 2: también puedes escribirme por correo electrónico.",
-            "Apartado 4: las facturas se conservan 6 años.",
-            "Apartado 5: el correo electrónico funciona con Gmail (Google). Las fotos que recibe Perplexity llevan la cara pixelada, y antes de subir el diseño 2D a MakerLab te pido permiso, porque no ofrece las garantías de la ley para tratar datos fuera de Europa.",
-            "Apartado 8: para hacer un pedido hay que ser mayor de 18 años o tener el permiso por escrito de tu padre, tu madre o tu tutor legal."
+            "Apartado 2: el registro de clientes guarda ahora también los datos de cada pedido (fecha, productos, precios, pagos y estado) y si permites publicar fotos de tus encargos.",
+            "Apartado 4: las ventas se conservan 6 años. Si se borra tu ficha de cliente, se quedan sin tu nombre ni tu teléfono.",
+            "Apartado 5: el registro de clientes y ventas pasa de Google Drive a Cloudflare, con acceso protegido. Durante 3 meses se mantiene una copia en Google Drive para comprobar que todo funciona; después se borra."
         ],
         "sections": [
             {
@@ -72,7 +71,7 @@
                     "Órdenes de compra desde la web: al crear una orden sin datos personales guardo durante 15 días su número, los productos, cantidades, precios mostrados, fecha, estado y la preferencia sobre fotografías. Una clave aleatoria permite consultar la orden; guardo su hash, no la clave. Cloudflare procesa la solicitud y almacena estos datos en su base de datos D1. Si el pedido continúa, la información necesaria se incorpora a la conversación y a los registros del encargo; la orden temporal se elimina automáticamente al vencer el plazo.",
                     "Figuras personalizadas: a partir de tus fotos preparo, con ayuda de una herramienta de inteligencia artificial, un diseño 2D de la figura que revisas y apruebas antes de fabricarla. Con ese diseño hago después el modelo 3D y la caja.",
                     "Si las fotos son de otra persona, asegúrate de que está de acuerdo en que me las envíes y de que conoce esta política.",
-                    "Registro de clientes: guardo solo lo necesario para identificarte, según cómo me contactes: tu usuario de Instagram, o tu teléfono junto con tu nombre sin apellidos o, si no me lo dices, tu alias de WhatsApp. Además anoto el número de pedidos que has hecho. Lo hago para saber si ya has sido cliente, ya que las conversaciones se borran (ver apartado 4). La base legal es mi interés legítimo en llevar el control de mis pedidos.",
+                    "Registro de clientes y ventas: guardo solo lo necesario para identificarte, según cómo me contactes: tu usuario de Instagram, o tu teléfono junto con tu nombre sin apellidos o, si no me lo dices, tu alias de WhatsApp. También anoto si me permites publicar fotos de tus encargos y, de cada pedido, la fecha, los productos, los precios, el envío, lo que has pagado, el estado y, si me la indicas, la fecha para la que lo necesitas. Lo hago para saber si ya has sido cliente, ya que las conversaciones se borran (ver apartado 4), y para llevar las cuentas del negocio. La base legal es mi interés legítimo en llevar el control de mis pedidos y, para las ventas, el cumplimiento de mis obligaciones contables.",
                     "Envíos: solo si pides que te lo envíe, trato tu nombre, tu dirección y tu teléfono para entregar el paquete.",
                     "Pagos: se paga en efectivo al entregar el pedido en mano. Si hay que enviarlo a otra provincia, el producto y el envío se pagan por Bizum, y solo veo el nombre, el teléfono y el importe que muestra Bizum. No trato datos de tarjetas ni cuentas.",
                     "No uso tus datos para publicidad, no elaboro perfiles, no tomo decisiones automatizadas y no vendo tus datos a nadie."
@@ -91,7 +90,8 @@
                     "Conversaciones y fotos de referencia: se borran 30 días después de la entrega, salvo que tengas otro pedido en curso. Las fotos no se guardan en la galería del móvil ni en copias de seguridad.",
                     "Copias en las herramientas de diseño: las fotos subidas a Perplexity y los modelos creados en MakerLab se borran al menos una vez al mes. remove.bg borra la imagen automáticamente en una hora.",
                     "Diseño 2D y archivo de impresión de tu figura: los guardo en un disco duro externo que solo uso para el negocio durante un máximo de 3 años desde tu último pedido, para poder repetir la figura o hacerte otra caja sin empezar de cero. La base legal es mi interés legítimo en poder repetir o reparar tus encargos. Si prefieres que los borre antes, dímelo.",
-                    "Registro de clientes: como máximo 3 años desde tu último pedido, o hasta que me pidas que lo borre.",
+                    "Registro de clientes: como máximo 3 años desde tu último pedido, o hasta que me pidas que lo borre. Al borrarlo, tus ventas se conservan sin tu nombre ni tu teléfono.",
+                    "Registro de ventas: 6 años, como las facturas, porque forma parte de la contabilidad del negocio. La base legal es el cumplimiento de una obligación legal.",
                     "Órdenes web: 15 días desde su creación, tras los cuales se eliminan automáticamente en todos sus estados. Este plazo no sustituye los plazos legales aplicables a facturas u otros registros que deban conservarse; si el pedido sigue adelante, traslado la información necesaria a esos registros.",
                     "Facturas: las conservo 6 años, como exige el Código de Comercio a la documentación de un negocio. La base legal es el cumplimiento de una obligación legal.",
                     "Datos de envío: solo el tiempo necesario para que el paquete llegue."
@@ -102,7 +102,7 @@
                 "paragraphs": [
                     "No cedo tus datos a terceros, salvo en estos casos:",
                     "Empresa de transporte: si pides un envío, Correos o la empresa que elijas recibirá los datos necesarios para entregarlo.",
-                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.) y Gmail (Google Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo el registro de clientes de forma privada; GitHub, que aloja esta web; y Cloudflare, que presta la base de datos y el servicio técnico para registrar y consultar las órdenes web, y verifica solicitudes mediante Turnstile. Estos servicios pueden recibir datos técnicos como la dirección IP y datos del navegador al tramitar una solicitud.",
+                    "Proveedores tecnológicos con los que funciona este negocio: WhatsApp e Instagram (Meta Platforms Ireland Ltd.) y Gmail (Google Ireland Ltd.), que son los canales de contacto que tú eliges; Google Drive (Google Ireland Ltd.), donde guardo de forma privada una copia del registro de clientes durante los 3 meses siguientes a pasarlo a Cloudflare, para comprobar que el nuevo registro funciona bien, y después la borro junto con su papelera y cualquier otra copia; GitHub, que aloja esta web; y Cloudflare, que presta la base de datos donde guardo el registro de clientes y ventas, con acceso protegido por inicio de sesión y reservado a mí, y el servicio técnico para registrar y consultar las órdenes web, y verifica solicitudes mediante Turnstile. Estos servicios pueden recibir datos técnicos como la dirección IP y datos del navegador al tramitar una solicitud.",
                     "Herramientas de diseño de las figuras: Perplexity (Perplexity AI, Inc., Estados Unidos) recibe tus fotos de referencia con la cara pixelada y sin metadatos (lo hago en mi ordenador antes de subirlas) para crear el diseño 2D, con la opción de usarlas para entrenar su inteligencia artificial desactivada; remove.bg (Canva Austria GmbH) recibe solo el diseño 2D ya generado, nunca tus fotos, para quitarle el fondo; y MakerLab (Bambu Lab, empresa con sede en China) recibe ese diseño sin fondo para crear el modelo 3D. La caja la preparo en mi ordenador, sin subirla a la nube.",
                     "Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, por ejemplo en Estados Unidos. Lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea. La excepción es MakerLab: para crear el modelo 3D no ofrece esas garantías, y el diseño 2D puede tratarse fuera del Espacio Económico Europeo. Por eso, cuando te envío el diseño 2D para que lo apruebes, te pido también permiso para subirlo a MakerLab; sin tu permiso no lo subo."
                 ]
