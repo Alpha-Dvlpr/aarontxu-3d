@@ -1,6 +1,6 @@
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { allocateOrderNumber, buildSale, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder } from './index.js';
+import worker, { allocateOrderNumber, buildSale, duplicateCustomer, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder } from './index.js';
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
@@ -74,13 +74,39 @@ describe('priceOrder', () => {
 
 describe('parseCustomer', () => {
     it('trims the fields and defaults to allowing publication', () => {
-        assert.deepEqual(parseCustomer({ name: ' Ana ', phone: ' 600 ' }), { name: 'Ana', phone: '600', publish: 1 });
-        assert.equal(parseCustomer({ name: 'Ana', publish: false }).publish, 0);
+        assert.deepEqual(parseCustomer({ name: ' Ana ', phone: ' 612 34 56 78 ' }), { name: 'Ana', phone: '612345678', instagram: '', publish: 1 });
+        assert.equal(parseCustomer({ name: 'Ana', phone: '612345678', publish: false }).publish, 0);
     });
-    it('rejects empty names and wrong types', () => {
-        for (const body of [null, {}, { name: '  ' }, { name: 'Ana', phone: 600 }, { name: 'Ana', publish: 'no' }, { name: 'x'.repeat(101) }]) {
-            assert.throws(() => parseCustomer(body));
+    it('keeps Spanish mobiles without +34, other countries with their prefix, and the bare Instagram user', () => {
+        assert.equal(parseCustomer({ name: 'Ana', phone: '+34 712-345-678' }).phone, '712345678');
+        assert.equal(parseCustomer({ name: 'Ana', phone: '+33 6 12 34 56 78' }).phone, '+33612345678');
+        assert.deepEqual(parseCustomer({ name: 'Ana', instagram: ' @ana_3d.es ' }), { name: 'Ana', phone: '', instagram: 'ana_3d.es', publish: 1 });
+    });
+    it('rejects empty names, wrong types and customers without a valid phone or Instagram', () => {
+        for (const body of [null, {}, { name: '  ', phone: '612345678' }, { name: 'Ana', phone: 612345678 }, { name: 'Ana', phone: '612345678', publish: 'no' }, { name: 'x'.repeat(101), phone: '612345678' }]) {
+            assert.throws(() => parseCustomer(body), /invalid_customer/);
         }
+        for (const contact of [{}, { phone: ' ', instagram: '@' }, { phone: 'Instagram' }, { phone: '600' }, { phone: '912345678' }, { phone: '+34 600' }, { instagram: 'instagram.com/ana' }, { instagram: 'ana 3d' }, { phone: '612345678', instagram: 'https://www.instagram.com/ana/' }]) {
+            assert.throws(() => parseCustomer({ name: 'Ana', ...contact }), /invalid_contact/, JSON.stringify(contact));
+        }
+    });
+});
+
+describe('duplicateCustomer', () => {
+    const rows = [{ name: 'Ángel', phone: '612345678', instagram: 'Ana.3D' }, { name: 'Luis', phone: '', instagram: '' }];
+    const db = { prepare: sql => ({ bind: id => ({ all: async () => {
+        assert.match(sql, /WHERE id != \?$/);
+        return { results: id === 1 ? rows.slice(1) : rows };
+    } }) }) };
+    const check = (changes, id) => duplicateCustomer(db, { name: 'Nuevo', phone: '699999999', instagram: '', ...changes }, id);
+    it('rejects a repeated name ignoring case and accents, a repeated phone or Instagram user', async () => {
+        for (const name of ['ángel', 'ANGEL']) assert.match(await check({ name }), /Ya hay un cliente llamado/);
+        assert.match(await check({ phone: '612345678' }), /teléfono/);
+        assert.match(await check({ instagram: 'ana.3d' }), /Instagram/);
+    });
+    it('lets a customer keep their own data and ignores empty fields', async () => {
+        assert.equal(await check({ name: 'Ángel', phone: '612345678', instagram: 'Ana.3D' }, 1), null);
+        assert.equal(await check({ phone: '', instagram: 'otro' }), null);
     });
 });
 
@@ -124,10 +150,11 @@ describe('buildSale', () => {
         assert.equal(buildSale(sale({ items: [{ id: 'PROD_99', quantity: 1, unitCents: 3000 }] }), catalog).items[0].name, 'Personalizado (provisional)');
         assert.throws(() => priceOrder([{ id: 'PROD_99', quantity: 1 }], catalog));
     });
-    it('accepts a new customer instead of an existing one, with a required phone', () => {
-        const built = buildSale(sale({ customerId: undefined, newCustomer: { name: ' Ana ', phone: '600' } }), catalog).sale;
-        assert.deepEqual([built.customerId, built.newCustomer], [null, { name: 'Ana', phone: '600', publish: 1 }]);
-        for (const changes of [{ newCustomer: { name: 'Ana', phone: '600' } }, { customerId: undefined, newCustomer: { name: 'Ana', phone: ' ' } }, { customerId: undefined, newCustomer: { name: '', phone: '600' } }]) {
+    it('accepts a new customer instead of an existing one, with a phone or an Instagram user', () => {
+        const built = buildSale(sale({ customerId: undefined, newCustomer: { name: ' Ana ', phone: '612345678' } }), catalog).sale;
+        assert.deepEqual([built.customerId, built.newCustomer], [null, { name: 'Ana', phone: '612345678', instagram: '', publish: 1 }]);
+        assert.equal(buildSale(sale({ customerId: undefined, newCustomer: { name: 'Ana', instagram: 'ana.3d' } }), catalog).sale.newCustomer.instagram, 'ana.3d');
+        for (const changes of [{ newCustomer: { name: 'Ana', phone: '612345678' } }, { customerId: undefined, newCustomer: { name: 'Ana', phone: ' ' } }, { customerId: undefined, newCustomer: { name: '', phone: '612345678' } }]) {
             assert.throws(() => buildSale(sale(changes), catalog), JSON.stringify(changes));
         }
     });
