@@ -1,6 +1,6 @@
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { allocateOrderNumber, buildSale, formatOrderNumber, orderPrefix, parseCustomer, priceOrder } from './index.js';
+import worker, { allocateOrderNumber, buildSale, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder } from './index.js';
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
@@ -84,6 +84,33 @@ describe('parseCustomer', () => {
     });
 });
 
+describe('parseExpense', () => {
+    const expense = (changes = {}) => ({ name: ' Bambu P1S ', type: 'tool', quantity: 1, totalCents: 53789, advances: [{ month: '2026-08', amountCents: 17930 }, { month: '2026-06', amountCents: 17930 }, { month: '2026-07', amountCents: 17929 }], ...changes });
+    it('takes the year from the earliest plazo and keeps every plazo', () => {
+        const parsed = parseExpense(expense({ advances: [{ month: '2027-01', amountCents: 50000 }, { month: '2026-12', amountCents: 3789 }] }));
+        assert.equal(parsed.year, 2026);
+        assert.equal(parsed.name, 'Bambu P1S');
+        assert.equal(parseExpense(expense()).advances.length, 3);
+    });
+    it('rejects plazos that do not add up to the total, bad months and bad fields', () => {
+        for (const changes of [{ totalCents: 53790 }, { advances: [] }, { advances: [{ month: '2026-13', amountCents: 53789 }] }, { advances: [{ month: '2026-6', amountCents: 53789 }] }, { advances: [{ month: '2026-06', amountCents: 0 }, { month: '2026-07', amountCents: 53789 }] }, { type: 'food' }, { quantity: 0 }, { quantity: 1.5 }, { name: ' ' }]) {
+            assert.throws(() => parseExpense(expense(changes)), JSON.stringify(changes));
+        }
+    });
+});
+
+describe('parseRecovery', () => {
+    it('accepts a month, an amount and an optional note', () => {
+        assert.deepEqual(parseRecovery({ month: '2026-11', amountCents: 2500 }), { month: '2026-11', amountCents: 2500, notes: '' });
+        assert.equal(parseRecovery({ month: '2026-11', amountCents: 2500, notes: ' Venta 3 ' }).notes, 'Venta 3');
+    });
+    it('rejects bad months and amounts', () => {
+        for (const body of [null, { month: '2026-00', amountCents: 1 }, { month: '2026-11', amountCents: 0 }, { month: '2026-11', amountCents: 1.5 }, { month: '2026-11', amountCents: 1, notes: 'x'.repeat(201) }]) {
+            assert.throws(() => parseRecovery(body), JSON.stringify(body));
+        }
+    });
+});
+
 describe('buildSale', () => {
     const sale = (changes = {}) => ({ customerId: 3, date: '2026-10-30', status: 'in_progress', shippingCents: 450, paidCents: 0, items: [{ id: 'PROD_01:vehiculo', quantity: 2 }], ...changes });
     it('copies the catalog name and price into each line', () => {
@@ -151,19 +178,16 @@ describe('admin order deletion', () => {
     });
     it('serves the admin home and orders pages only with a valid Access token', async () => {
         const page = (path, headers = {}) => worker.fetch(new Request(`${origin}${path}`, { headers }), env);
-        for (const path of ['/admin', '/admin/orders', '/admin/sales', '/admin/customers']) assert.equal((await page(path)).status, 401);
-        const home = await (await page('/admin', { 'cf-access-jwt-assertion': token })).text();
+        const paths = ['/admin', '/admin/orders', '/admin/sales', '/admin/customers', '/admin/expenses', '/admin/amortization'];
+        for (const path of paths) assert.equal((await page(path)).status, 401);
+        const [home, orders, ...others] = await Promise.all(paths.map(async path => (await page(path, { 'cf-access-jwt-assertion': token })).text()));
+        for (const path of paths.slice(2)) assert.match(home, new RegExp(`href="${path.replaceAll('/', '\\/')}"`));
         assert.match(home, /href="\/admin\/orders"/);
-        assert.match(home, /href="\/admin\/sales"/);
-        assert.match(home, /href="\/admin\/customers"/);
         assert.match(home, /app\.pagescms\.org/);
-        assert.match(home, /id="paid-total"[\s\S]*id="pending-total"[\s\S]*\/api\/admin\/summary/);
-        const orders = await (await page('/admin/orders', { 'cf-access-jwt-assertion': token })).text();
+        assert.match(home, /id="global-total"[\s\S]*id="pending-total"[\s\S]*id="unassigned-total"[\s\S]*\/api\/admin\/summary/);
         assert.match(orders, /id="orders"/);
         assert.match(orders, /href="\/admin"/);
-        const sales = await (await page('/admin/sales', { 'cf-access-jwt-assertion': token })).text();
-        const customers = await (await page('/admin/customers', { 'cf-access-jwt-assertion': token })).text();
         // Each page's inline script must parse.
-        for (const html of [home, orders, sales, customers]) new Function(html.split('<script>').pop().split('</script>')[0]);
+        for (const html of [home, orders, ...others]) new Function(html.split('<script>').pop().split('</script>')[0]);
     });
 });
