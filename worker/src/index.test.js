@@ -104,8 +104,12 @@ describe('buildSale', () => {
             assert.throws(() => buildSale(sale(changes), catalog), JSON.stringify(changes));
         }
     });
+    it('keeps an optional deadline, null when there is none', () => {
+        assert.equal(buildSale(sale(), catalog).sale.deadline, null);
+        assert.equal(buildSale(sale({ deadline: '2026-12-20' }), catalog).sale.deadline, '2026-12-20');
+    });
     it('rejects invalid dates, statuses, amounts, products and a missing customer', () => {
-        for (const changes of [{ customerId: undefined }, { customerId: null }, { date: '2026-02-30' }, { date: '30/10/2026' }, { status: 'pending' }, { paidCents: -1 }, { shippingCents: 4.5 }, { customerId: '3' }, { items: [] }, { items: [{ id: 'PROD_42', quantity: 1 }] }, { items: [{ id: 'PROD_01', quantity: 1, unitCents: -5 }] }]) {
+        for (const changes of [{ deadline: '2026-13-45' }, { deadline: '' }, { customerId: undefined }, { customerId: null }, { date: '2026-02-30' }, { date: '30/10/2026' }, { status: 'pending' }, { paidCents: -1 }, { shippingCents: 4.5 }, { customerId: '3' }, { items: [] }, { items: [{ id: 'PROD_42', quantity: 1 }] }, { items: [{ id: 'PROD_01', quantity: 1, unitCents: -5 }] }]) {
             assert.throws(() => buildSale(sale(changes), catalog), JSON.stringify(changes));
         }
     });
@@ -153,6 +157,7 @@ describe('admin order deletion', () => {
         assert.match(home, /href="\/admin\/sales"/);
         assert.match(home, /href="\/admin\/customers"/);
         assert.match(home, /app\.pagescms\.org/);
+        assert.match(home, /id="paid-total"[\s\S]*id="pending-total"[\s\S]*\/api\/admin\/summary/);
         const orders = await (await page('/admin/orders', { 'cf-access-jwt-assertion': token })).text();
         assert.match(orders, /id="orders"/);
         assert.match(orders, /href="\/admin"/);
