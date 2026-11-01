@@ -1,6 +1,25 @@
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { allocateOrderNumber, buildSale, duplicateCustomer, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder } from './index.js';
+import { readdirSync, readFileSync } from 'node:fs';
+import { DatabaseSync } from 'node:sqlite';
+import worker, { allocateOrderNumber, buildSale, duplicateCustomer, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder, purgeExpired } from './index.js';
+
+// An in-memory SQLite with every migration, behind the few D1 methods the Worker uses.
+function sqliteDb() {
+    const raw = new DatabaseSync(':memory:'), folder = new URL('../migrations/', import.meta.url);
+    raw.exec('PRAGMA foreign_keys = ON');
+    for (const file of readdirSync(folder).sort()) raw.exec(readFileSync(new URL(file, folder), 'utf8'));
+    const prepare = sql => {
+        let args = [];
+        const statement = { bind: (...values) => { args = values; return statement; }, all: async () => ({ results: raw.prepare(sql).all(...args) }), first: async () => raw.prepare(sql).get(...args) ?? null };
+        return statement;
+    };
+    const batch = async statements => {
+        raw.exec('BEGIN');
+        try { const results = []; for (const statement of statements) results.push(await statement.all()); raw.exec('COMMIT'); return results; } catch (error) { raw.exec('ROLLBACK'); throw error; }
+    };
+    return { raw, prepare, batch };
+}
 
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
@@ -110,6 +129,24 @@ describe('duplicateCustomer', () => {
     });
 });
 
+describe('purgeExpired', () => {
+    it('deletes customers 3 years after their last sale and anonymises sales after 6 years, keeping their total', async () => {
+        const db = sqliteDb(), sql = query => db.raw.exec(query), rows = query => db.raw.prepare(query).all();
+        sql(`INSERT INTO customers (id, name, phone, created_at) VALUES (1, 'Caducado', '611111111', '2020-01-01'), (2, 'Repite', '622222222', '2020-01-01'), (3, 'Sin ventas viejo', '633333333', date('now', '-3 years', '-1 day')), (4, 'Sin ventas nuevo', '644444444', date('now'));
+            INSERT INTO sales (id, customer_id, sale_date, shipping_cents, paid_cents, notes) VALUES (1, 1, date('now', '-3 years', '-1 day'), 0, 2000, 'Figura 12'), (2, 2, date('now', '-6 years', '-1 day'), 450, 4000, 'Figura 3'), (3, 2, date('now', '-1 year'), 0, 2000, '');
+            INSERT INTO sale_items (sale_id, product_id, name, quantity, unit_cents) VALUES (1, 'PROD_01', 'Figura', 1, 2000), (2, 'PROD_01', 'Figura', 1, 2000), (2, 'PROD_03', 'Llavero', 3, 500), (3, 'PROD_01', 'Figura', 1, 2000);`);
+        await purgeExpired(db);
+        await purgeExpired(db);
+        assert.deepEqual(rows('SELECT name FROM customers ORDER BY id').map(row => row.name), ['Repite', 'Sin ventas nuevo']);
+        assert.deepEqual(rows('SELECT id, customer_id, notes, shipping_cents, paid_cents FROM sales ORDER BY id').map(row => ({ ...row })), [
+            { id: 1, customer_id: null, notes: 'Figura 12', shipping_cents: 0, paid_cents: 2000 },
+            { id: 2, customer_id: null, notes: '', shipping_cents: 450, paid_cents: 4000 },
+            { id: 3, customer_id: 2, notes: '', shipping_cents: 0, paid_cents: 2000 }
+        ]);
+        assert.deepEqual(rows('SELECT sale_id, product_id, name, quantity, unit_cents FROM sale_items WHERE sale_id = 2').map(row => ({ ...row })), [{ sale_id: 2, product_id: '', name: 'Venta anonimizada', quantity: 1, unit_cents: 3500 }]);
+    });
+});
+
 describe('parseExpense', () => {
     const expense = (changes = {}) => ({ name: ' Bambu P1S ', type: 'tool', quantity: 1, totalCents: 53789, advances: [{ month: '2026-08', amountCents: 17930 }, { month: '2026-06', amountCents: 17930 }, { month: '2026-07', amountCents: 17929 }], ...changes });
     it('takes the year from the earliest plazo and keeps every plazo', () => {
@@ -202,6 +239,22 @@ describe('admin order deletion', () => {
         const send = () => worker.fetch(request(7, { 'cf-access-jwt-assertion': token }), { ...env, DB: db(rows) });
         assert.deepEqual(await (await send()).json(), { deleted: true });
         assert.equal((await send()).status, 404);
+    });
+    it('lists in the summary the customers deleted within 30 days, with their deletion date', async () => {
+        const DB = sqliteDb();
+        DB.raw.exec(`INSERT INTO customers (id, name, instagram) VALUES (1, 'Pronto', 'pronto'), (2, 'Lejos', 'lejos'), (3, 'Sin ventas', 'nueva');
+            INSERT INTO sales (customer_id, sale_date) VALUES (1, date('now', '-3 years', '+10 days')), (2, date('now', '-3 years', '+40 days')), (1, date('now', '-4 years'));`);
+        const summary = await (await worker.fetch(new Request(`${origin}/api/admin/summary`, { headers: { origin, 'cf-access-jwt-assertion': token } }), { ...env, DB })).json();
+        assert.deepEqual(summary.expiring.map(row => ({ ...row })), [{ name: 'Pronto', phone: '', instagram: 'pronto', delete_on: DB.raw.prepare("SELECT date('now', '+10 days') AS day").get().day }]);
+    });
+    it('refuses to change or delete an anonymised sale', async () => {
+        const DB = sqliteDb();
+        DB.raw.exec(`INSERT INTO sales (id, sale_date, paid_cents) VALUES (1, '2020-01-01', 2000); INSERT INTO sale_items (sale_id, product_id, name, quantity, unit_cents) VALUES (1, '', 'Venta anonimizada', 1, 2000);`);
+        for (const [method, body] of [['PATCH', '{"paidCents":0}'], ['DELETE']]) {
+            const response = await worker.fetch(new Request(`${origin}/api/admin/sales/1`, { method, body, headers: { origin, 'content-type': 'application/json', 'cf-access-jwt-assertion': token } }), { ...env, DB });
+            assert.equal(response.status, 409);
+        }
+        assert.deepEqual({ ...DB.raw.prepare('SELECT paid_cents, (SELECT COUNT(*) FROM sale_items) AS lines FROM sales').get() }, { paid_cents: 2000, lines: 1 });
     });
     it('serves the admin home and orders pages only with a valid Access token', async () => {
         const page = (path, headers = {}) => worker.fetch(new Request(`${origin}${path}`, { headers }), env);
