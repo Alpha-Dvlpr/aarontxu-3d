@@ -11,12 +11,12 @@ function sqliteDb() {
     for (const file of readdirSync(folder).sort()) raw.exec(readFileSync(new URL(file, folder), 'utf8'));
     const prepare = sql => {
         let args = [];
-        const statement = { bind: (...values) => { args = values; return statement; }, all: async () => ({ results: raw.prepare(sql).all(...args) }), first: async () => raw.prepare(sql).get(...args) ?? null };
+        const statement = { sql, bind: (...values) => { args = values; return statement; }, all: async () => ({ results: raw.prepare(sql).all(...args) }), first: async () => raw.prepare(sql).get(...args) ?? null, run: async () => ({ meta: { changes: Number(raw.prepare(sql).run(...args).changes) } }) };
         return statement;
     };
     const batch = async statements => {
         raw.exec('BEGIN');
-        try { const results = []; for (const statement of statements) results.push(await statement.all()); raw.exec('COMMIT'); return results; } catch (error) { raw.exec('ROLLBACK'); throw error; }
+        try { const results = []; for (const statement of statements) results.push(await (/^\s*SELECT|RETURNING/i.test(statement.sql) ? statement.all() : statement.run())); raw.exec('COMMIT'); return results; } catch (error) { raw.exec('ROLLBACK'); throw error; }
     };
     return { raw, prepare, batch };
 }
@@ -208,7 +208,7 @@ describe('buildSale', () => {
 
 describe('admin order deletion', () => {
     const origin = 'https://orders.test';
-    const env = { ALLOWED_WORKER_ORIGIN: origin, ACCESS_TEAM_DOMAIN: 'team.test', ACCESS_AUD: 'aud', ADMIN_EMAILS: 'admin@test.com' };
+    const env = { ALLOWED_WORKER_ORIGIN: origin, ACCESS_TEAM_DOMAIN: 'team.test', ACCESS_AUD: 'aud', ADMIN_EMAILS: 'admin@test.com', SALES_CATALOG_URL: 'https://shop.test/catalog-all.json' };
     const realFetch = globalThis.fetch;
     let token;
     const encode = value => Buffer.from(JSON.stringify(value)).toString('base64url');
@@ -221,7 +221,7 @@ describe('admin order deletion', () => {
     before(async () => {
         const { publicKey, privateKey } = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
         const jwk = { ...await crypto.subtle.exportKey('jwk', publicKey), kid: 'k1', use: 'sig', alg: 'RS256' };
-        globalThis.fetch = async () => Response.json({ keys: [jwk] });
+        globalThis.fetch = async url => Response.json(String(url).includes('catalog') ? catalog : { keys: [jwk] });
         const unsigned = `${encode({ alg: 'RS256', kid: 'k1' })}.${encode({ aud: 'aud', iss: 'https://team.test', email: 'admin@test.com', exp: Date.now() / 1000 + 60 })}`;
         token = `${unsigned}.${Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5', privateKey, new TextEncoder().encode(unsigned))).toString('base64url')}`;
     });
@@ -235,10 +235,28 @@ describe('admin order deletion', () => {
         assert.ok(rows.has('7'));
     });
     it('deletes an existing order once and returns 404 afterwards', async () => {
-        const rows = new Set(['7']);
-        const send = () => worker.fetch(request(7, { 'cf-access-jwt-assertion': token }), { ...env, DB: db(rows) });
+        const DB = sqliteDb(), send = () => worker.fetch(request(7, { 'cf-access-jwt-assertion': token }), { ...env, DB });
+        DB.raw.exec("INSERT INTO orders (id, order_number, request_key, request_hash, access_key_hash, total_cents, items_json, expires_at) VALUES (7, 'P-20261102/1', 'k', 'h', 'a', 0, '[]', datetime('now', '+1 day'))");
         assert.deepEqual(await (await send()).json(), { deleted: true });
         assert.equal((await send()).status, 404);
+    });
+    it('keeps a delivered order or sale with nothing owed: no deleting, no deadline changes', async () => {
+        const DB = sqliteDb(), send = (path, method, body) => worker.fetch(new Request(`${origin}${path}`, { method, body: body && JSON.stringify(body), headers: { origin, 'content-type': 'application/json', 'cf-access-jwt-assertion': token } }), { ...env, DB });
+        DB.raw.exec(`INSERT INTO sales (id, sale_date, status, shipping_cents, paid_cents) VALUES (1, '2026-11-02', 'delivered', 500, 2000);
+            INSERT INTO sale_items (sale_id, product_id, name, quantity, unit_cents) VALUES (1, 'PROD_01', 'Funko', 1, 2000);
+            INSERT INTO orders (id, order_number, request_key, request_hash, access_key_hash, total_cents, items_json, expires_at, status, sale_id) VALUES (7, 'P-20261102/1', 'k', 'h', 'a', 2000, '[]', datetime('now', '+1 day'), 'delivered', 1), (8, 'P-20261102/2', 'k2', 'h2', 'a2', 0, '[]', datetime('now', '+1 day'), 'delivered', NULL);`);
+        const pending = async () => (await (await send('/api/admin/orders', 'GET')).json()).orders.find(order => order.id === 7).sale_pending_cents;
+        // 500 € still owed: everything stays editable.
+        assert.equal(await pending(), 500);
+        assert.equal((await send('/api/admin/sales/1', 'PATCH', { deadline: '2026-12-01' })).status, 200);
+        assert.equal((await send('/api/admin/orders/8', 'DELETE')).status, 409);
+        assert.equal((await send('/api/admin/sales/1', 'PATCH', { paidCents: 2500 })).status, 200);
+        assert.equal(await pending(), 0);
+        for (const [path, method, body] of [['/api/admin/sales/1', 'DELETE'], ['/api/admin/sales/1', 'PATCH', { deadline: null }], ['/api/admin/sales/1', 'PATCH', { paidCents: 2400 }], ['/api/admin/orders/7', 'DELETE']]) assert.equal((await send(path, method, body)).status, 409);
+        // Only the notes and the status change; out of «Entregado», the paid amount can be lowered and the debt unlocks the order.
+        for (const body of [{ notes: 'Figura 57' }, { status: 'in_progress' }, { paidCents: 2400 }]) assert.equal((await send('/api/admin/sales/1', 'PATCH', body)).status, 200);
+        assert.equal((await send('/api/admin/orders/7', 'DELETE')).status, 200);
+        assert.equal((await send('/api/admin/sales/1', 'DELETE')).status, 200);
     });
     it('lists in the summary the customers deleted within 30 days, with their deletion date', async () => {
         const DB = sqliteDb();
@@ -255,6 +273,37 @@ describe('admin order deletion', () => {
             assert.equal(response.status, 409);
         }
         assert.deepEqual({ ...DB.raw.prepare('SELECT paid_cents, (SELECT COUNT(*) FROM sale_items) AS lines FROM sales').get() }, { paid_cents: 2000, lines: 1 });
+    });
+    it('edits the notes and deadline of a sale, removes the deadline with null and rejects invalid dates', async () => {
+        const DB = sqliteDb(), patch = body => worker.fetch(new Request(`${origin}/api/admin/sales/1`, { method: 'PATCH', body: JSON.stringify(body), headers: { origin, 'content-type': 'application/json', 'cf-access-jwt-assertion': token } }), { ...env, DB });
+        DB.raw.exec(`INSERT INTO sales (id, sale_date, status, paid_cents, notes) VALUES (1, '2026-11-02', 'in_progress', 500, 'Pedido web'); INSERT INTO sale_items (sale_id, product_id, name, quantity, unit_cents) VALUES (1, 'PROD_01', 'Funko', 1, 2000);`);
+        const row = () => ({ ...DB.raw.prepare('SELECT status, paid_cents, notes, deadline FROM sales').get() });
+        assert.equal((await patch({ notes: ' Figura 57 ', deadline: '2026-12-01' })).status, 200);
+        assert.deepEqual(row(), { status: 'in_progress', paid_cents: 500, notes: 'Figura 57', deadline: '2026-12-01' });
+        for (const body of [{ deadline: '2026-02-30' }, { notes: 5 }, {}]) assert.equal((await patch(body)).status, 400);
+        assert.equal((await patch({ deadline: null })).status, 200);
+        assert.deepEqual(row(), { status: 'in_progress', paid_cents: 500, notes: 'Figura 57', deadline: null });
+    });
+    it('passes a web order to sales once, in progress, with the agreed prices and the same customer checks', async () => {
+        const DB = sqliteDb(), send = (path, method, body) => worker.fetch(new Request(`${origin}${path}`, { method, body: body && JSON.stringify(body), headers: { origin, 'content-type': 'application/json', 'cf-access-jwt-assertion': token } }), { ...env, DB });
+        const { items } = priceOrder([{ id: 'PROD_01:vehiculo', quantity: 2 }, { id: 'PROD_02', quantity: 1 }], catalog);
+        DB.raw.prepare("INSERT INTO orders (id, order_number, request_key, request_hash, access_key_hash, total_cents, items_json, expires_at) VALUES (7, 'P-20261102/1', 'k', 'h', 'a', 5000, ?, datetime('now', '+1 day'))").run(JSON.stringify(items));
+        DB.raw.exec("INSERT INTO customers (id, name, phone) VALUES (1, 'Ana', '612345678')");
+        const body = { newCustomer: { name: 'ána', instagram: 'otra' }, shippingCents: 450, prices: [2500, 1200] };
+        assert.equal((await send('/api/admin/orders/7/sale', 'POST', body)).status, 409);
+        assert.equal((await send('/api/admin/orders/7/sale', 'POST', { ...body, prices: [2500] })).status, 400);
+        assert.equal(DB.raw.prepare('SELECT COUNT(*) AS n FROM sales').get().n, 0);
+        const created = await send('/api/admin/orders/7/sale', 'POST', { ...body, newCustomer: { name: 'Bea', instagram: 'bea' }, notes: ' Pedido web P-20261102/1 · figura 57 ', deadline: '2026-12-01' });
+        assert.equal(created.status, 201);
+        const { id } = await created.json();
+        assert.deepEqual({ ...DB.raw.prepare('SELECT c.name, s.status, s.notes, s.deadline, s.shipping_cents, s.paid_cents FROM sales s JOIN customers c ON c.id = s.customer_id WHERE s.id = ?').get(id) }, { name: 'Bea', status: 'in_progress', notes: 'Pedido web P-20261102/1 · figura 57', deadline: '2026-12-01', shipping_cents: 450, paid_cents: 0 });
+        assert.deepEqual(DB.raw.prepare('SELECT product_id, name, quantity, unit_cents FROM sale_items ORDER BY id').all().map(row => ({ ...row })), [{ product_id: 'PROD_01', name: 'Funko (extra: vehículo grande)', quantity: 2, unit_cents: 2500 }, { product_id: 'PROD_02', name: 'Consulta', quantity: 1, unit_cents: 1200 }]);
+        assert.deepEqual({ ...DB.raw.prepare('SELECT sale_id, status FROM orders').get() }, { sale_id: id, status: 'confirmed' });
+        assert.equal((await send('/api/admin/orders/7/sale', 'POST', { customerId: 1, shippingCents: 0, prices: [2500, 1200] })).status, 409);
+        // Deleting the sale frees the order again.
+        await send(`/api/admin/sales/${id}`, 'DELETE');
+        assert.equal(DB.raw.prepare('SELECT sale_id FROM orders').get().sale_id, null);
+        assert.equal((await send('/api/admin/orders/7/sale', 'POST', { customerId: 1, shippingCents: 0, prices: [2500, 1200] })).status, 201);
     });
     it('serves the admin home and orders pages only with a valid Access token', async () => {
         const page = (path, headers = {}) => worker.fetch(new Request(`${origin}${path}`, { headers }), env);
