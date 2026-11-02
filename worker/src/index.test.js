@@ -263,7 +263,15 @@ describe('admin order deletion', () => {
         DB.raw.exec(`INSERT INTO customers (id, name, instagram) VALUES (1, 'Pronto', 'pronto'), (2, 'Lejos', 'lejos'), (3, 'Sin ventas', 'nueva');
             INSERT INTO sales (customer_id, sale_date) VALUES (1, date('now', '-3 years', '+10 days')), (2, date('now', '-3 years', '+40 days')), (1, date('now', '-4 years'));`);
         const summary = await (await worker.fetch(new Request(`${origin}/api/admin/summary`, { headers: { origin, 'cf-access-jwt-assertion': token } }), { ...env, DB })).json();
+        assert.equal(summary.customers_count, 3);
         assert.deepEqual(summary.expiring.map(row => ({ ...row })), [{ name: 'Pronto', phone: '', instagram: 'pronto', delete_on: DB.raw.prepare("SELECT date('now', '+10 days') AS day").get().day }]);
+    });
+    it('adds up in the summary what was paid and spent each year, without cancelled sales', async () => {
+        const DB = sqliteDb();
+        DB.raw.exec(`INSERT INTO sales (sale_date, status, paid_cents) VALUES ('2026-03-01', 'delivered', 2000), ('2026-10-01', 'in_progress', 500), ('2026-05-01', 'cancelled', 900), ('2024-01-01', 'delivered', 300);
+            INSERT INTO expenses (year, name, type, quantity, total_cents) VALUES (2026, 'PLA', 'material', 1, 1500), (2025, 'Boquilla', 'tool', 1, 700);`);
+        const summary = await (await worker.fetch(new Request(`${origin}/api/admin/summary`, { headers: { origin, 'cf-access-jwt-assertion': token } }), { ...env, DB })).json();
+        assert.deepEqual(summary.years.map(row => ({ ...row })), [{ year: 2026, paid_cents: 2500, expenses_cents: 1500 }, { year: 2025, paid_cents: 0, expenses_cents: 700 }, { year: 2024, paid_cents: 300, expenses_cents: 0 }]);
     });
     it('refuses to change or delete an anonymised sale', async () => {
         const DB = sqliteDb();
