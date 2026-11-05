@@ -2,7 +2,7 @@ import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
-import worker, { allocateOrderNumber, buildSale, duplicateCustomer, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder, purgeExpired } from './index.js';
+import worker, { allocateOrderNumber, assignFigureNumbers, buildSale, duplicateCustomer, formatOrderNumber, orderPrefix, parseCustomer, parseExpense, parseRecovery, priceOrder, purgeExpired } from './index.js';
 
 // An in-memory SQLite with every migration, behind the few D1 methods the Worker uses.
 function sqliteDb() {
@@ -24,8 +24,25 @@ function sqliteDb() {
 const catalog = {
     PROD_01: { name: 'Funko', price: 20, priceLabel: '', extras: { vehiculo: { label: 'Vehículo grande', price: 5 } } },
     PROD_02: { name: 'Consulta', price: 0, priceLabel: 'Precio a consultar', extras: { nfc: { label: 'Chip NFC', price: 0 } } },
-    'PROD_03/2-personas': { name: 'Figura – 2 personas', price: 35, priceLabel: '', extras: {} }
+    'PROD_03/2-personas': { name: 'Figura – 2 personas', price: 35, priceLabel: '', extras: {} },
+    'PROD_01/1-persona': { name: 'Cabezón – 1 persona', price: 20, priceLabel: '', extras: {} },
+    'PROD_01/mascota': { name: 'Cabezón – Mascota (por animal)', price: 20, priceLabel: '', extras: {} }
 };
+
+describe('assignFigureNumbers', () => {
+    const used = { one: [...Array(31).keys()].map(n => n + 1).concat(40, 318), two: [1, 2, 3, 4, 5, 6, 50], car: [1, 2], pet: [1, 2, 3, 4, 5] };
+    const line = (productId, quantity = 1) => ({ productId, quantity });
+    it('gives each box the lowest free number of its own type', () => {
+        assert.deepEqual(assignFigureNumbers([line('PROD_01/1-persona', 2)], used), [{ series: 'one', number: 32 }, { series: 'one', number: 33 }]);
+        assert.deepEqual(assignFigureNumbers([line('PROD_01/1-persona'), line('PROD_01/2-personas')], used), [{ series: 'one', number: 32 }, { series: 'two', number: 7 }]);
+        assert.deepEqual(assignFigureNumbers([line('PROD_07/sin-cabeza'), line('PROD_07/con-cabeza')], used), [{ series: 'car', number: 3 }, { series: 'car', number: 4 }]);
+        assert.deepEqual(assignFigureNumbers([line('PROD_01/1-persona', 9)], used).map(figure => figure.number), [32, 33, 34, 35, 36, 37, 38, 39, 41]);
+    });
+    it('gives each pet and each pet family its own number, and none to products without a box', () => {
+        assert.deepEqual(assignFigureNumbers([line('PROD_01/mascota', 3), line('PROD_01/familia-mascotas', 2)], used).map(figure => figure.series + figure.number), ['pet6', 'pet7', 'pet8', 'pet9', 'pet10']);
+        assert.deepEqual(assignFigureNumbers([line('PROD_05'), line('PROD_02'), line('PROD_99')], used), []);
+    });
+});
 
 describe('orderPrefix', () => {
     it('derives the test or production prefix from the server environment', () => {
@@ -258,6 +275,31 @@ describe('admin order deletion', () => {
         assert.equal((await send('/api/admin/orders/7', 'DELETE')).status, 200);
         assert.equal((await send('/api/admin/sales/1', 'DELETE')).status, 200);
     });
+    it('numbers the boxes of a new sale, lets a sale number change and frees them when the sale is cancelled or deleted', async () => {
+        const DB = sqliteDb(), send = async (path, method = 'GET', body) => worker.fetch(new Request(`${origin}${path}`, { method, body: body && JSON.stringify(body), headers: { origin, 'content-type': 'application/json', 'cf-access-jwt-assertion': token } }), { ...env, DB });
+        const numbers = async () => Object.fromEntries((await (await send('/api/admin/figure-numbers')).json()).series.map(({ key, numbers }) => [key, numbers]));
+        const excel = { one: [...Array(31).keys()].map(n => n + 1).concat(40, 318), two: [1, 2, 3, 4, 5, 6, 50], car: [1, 2], pet: [1, 2, 3, 4, 5] };
+        DB.raw.exec("INSERT INTO customers (id, name, instagram) VALUES (1, 'Ana', 'ana')");
+        assert.deepEqual((await numbers()).pet, [1, 2, 3, 4, 5]);
+        const created = await send('/api/admin/sales', 'POST', { customerId: 1, date: '2026-11-05', status: 'in_progress', shippingCents: 0, paidCents: 0, items: [{ id: 'PROD_01/1-persona', quantity: 2 }, { id: 'PROD_01/mascota', quantity: 3 }, { id: 'PROD_01', quantity: 1 }] });
+        assert.equal(created.status, 201);
+        const { id } = await created.json(), sale = async () => (await (await send('/api/admin/sales')).json()).sales.find(row => row.id === id);
+        assert.deepEqual((await sale()).figures.map(({ series, number }) => series + number), ['one32', 'one33', 'pet6', 'pet7', 'pet8']);
+        // The customer asked for 40, already used: it repeats and 33 is free again.
+        const [, second] = (await sale()).figures;
+        assert.equal((await send(`/api/admin/figure-numbers/${second.id}`, 'PATCH', { number: 40 })).status, 200);
+        assert.deepEqual((await numbers()).one.slice(30), [31, 32, 40, 318]);
+        for (const number of [0, 1.5, '7', 100000]) assert.equal((await send(`/api/admin/figure-numbers/${second.id}`, 'PATCH', { number })).status, 400);
+        // The Excel numbers have no sale and do not change.
+        assert.equal((await send('/api/admin/figure-numbers/1', 'PATCH', { number: 99 })).status, 404);
+        // Cancelled, its numbers are free; reopened, they count again.
+        assert.equal((await send(`/api/admin/sales/${id}`, 'PATCH', { status: 'cancelled' })).status, 200);
+        assert.deepEqual(await numbers(), excel);
+        assert.equal((await send(`/api/admin/sales/${id}`, 'PATCH', { status: 'in_progress' })).status, 200);
+        assert.deepEqual((await numbers()).pet, [1, 2, 3, 4, 5, 6, 7, 8]);
+        assert.equal((await send(`/api/admin/sales/${id}`, 'DELETE')).status, 200);
+        assert.deepEqual(await numbers(), excel);
+    });
     it('lists in the summary the customers deleted within 30 days, with their deletion date', async () => {
         const DB = sqliteDb();
         DB.raw.exec(`INSERT INTO customers (id, name, instagram) VALUES (1, 'Pronto', 'pronto'), (2, 'Lejos', 'lejos'), (3, 'Sin ventas', 'nueva');
@@ -272,6 +314,14 @@ describe('admin order deletion', () => {
             INSERT INTO expenses (year, name, type, quantity, total_cents) VALUES (2026, 'PLA', 'material', 1, 1500), (2025, 'Boquilla', 'tool', 1, 700);`);
         const summary = await (await worker.fetch(new Request(`${origin}/api/admin/summary`, { headers: { origin, 'cf-access-jwt-assertion': token } }), { ...env, DB })).json();
         assert.deepEqual(summary.years.map(row => ({ ...row })), [{ year: 2026, paid_cents: 2500, expenses_cents: 1500 }, { year: 2025, paid_cents: 0, expenses_cents: 700 }, { year: 2024, paid_cents: 300, expenses_cents: 0 }]);
+    });
+    it('lists in the summary the sales not delivered with a deadline within 7 days or already past', async () => {
+        const DB = sqliteDb();
+        DB.raw.exec(`INSERT INTO customers (id, name, instagram) VALUES (1, 'Ana', 'ana');
+            INSERT INTO sales (id, customer_id, sale_date, status, deadline, notes) VALUES (1, 1, '2026-11-01', 'in_progress', date('now', '+3 days'), '32'), (2, NULL, '2026-11-01', 'pending_shipping', date('now', '-2 days'), ''),
+            (3, 1, '2026-11-01', 'in_progress', date('now', '+20 days'), ''), (4, 1, '2026-11-01', 'delivered', date('now'), ''), (5, 1, '2026-11-01', 'cancelled', date('now'), ''), (6, 1, '2026-11-01', 'in_progress', NULL, '');`);
+        const summary = await (await worker.fetch(new Request(`${origin}/api/admin/summary`, { headers: { origin, 'cf-access-jwt-assertion': token } }), { ...env, DB })).json();
+        assert.deepEqual(summary.upcoming.map(({ id, name, notes }) => ({ id, name, notes })), [{ id: 2, name: null, notes: '' }, { id: 1, name: 'Ana', notes: '32' }]);
     });
     it('refuses to change or delete an anonymised sale', async () => {
         const DB = sqliteDb();
